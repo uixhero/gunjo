@@ -70,6 +70,16 @@ function derivePageId(pathname: string | null): string | null {
     return `components/${slug}`;
 }
 
+// 部品名は PascalCase の1語（`OnboardingTemplate`）なので、改行できる所が無い。
+// 375px では h1 の 36px で 358px になり、本文の幅 311px を超えて横にはみ出す（#1065）。
+// 語の継ぎ目に <wbr> を置き、語の途中ではなく継ぎ目で折る。
+// <wbr> はコピーされる文字にも読み上げにも何も足さない。日本語の題は継ぎ目が無いので素通り。
+function withWordSeams(name: string): React.ReactNode {
+    return name
+        .split(/(?=[A-Z][a-z])/)
+        .flatMap((part, index) => (index === 0 ? [part] : [<wbr key={index} />, part]));
+}
+
 export interface UsedComponent {
     name: string;
     href: string;
@@ -150,7 +160,8 @@ export function ComponentLayout({ title, description, children, usedComponents, 
                 <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_auto]">
                     <div className="min-w-0 space-y-2">
                         <h1 className="flex scroll-m-20 flex-wrap items-baseline gap-x-3 gap-y-1 text-4xl font-extrabold tracking-tight lg:text-5xl">
-                            <span>{titleLabel.primary}</span>
+                            {/* min-w-0 break-words は、継ぎ目の間の1語だけで幅を超えたときの受け止め。 */}
+                            <span className="min-w-0 break-words">{withWordSeams(titleLabel.primary)}</span>
                             {titleLabel.secondary !== titleLabel.primary && (
                                 <span className="text-sm font-normal tracking-normal text-muted-foreground lg:text-base">
                                     {titleLabel.secondary}

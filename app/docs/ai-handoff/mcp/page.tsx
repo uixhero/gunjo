@@ -120,12 +120,12 @@ export default function McpServerPage() {
                     <p className="text-base leading-7 text-muted-foreground">
                         MCP turns the Phase 5 spec endpoints into a typed,
                         discoverable namespace. Instead of pasting Markdown,
-                        users say &quot;use GunjoUI&quot; and the AI tool calls
-                        <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm font-mono">
+                        users say &quot;use GunjoUI&quot; and the AI tool calls{" "}
+                        <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono">
                             list_components
-                        </code>
-                        and
-                        <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm font-mono">
+                        </code>{" "}
+                        and{" "}
+                        <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono">
                             get_component_spec
                         </code>{" "}
                         as needed. Closes the loop: AI can ask for what it
@@ -183,10 +183,10 @@ export default function McpServerPage() {
                     </h2>
                     <p className="text-base leading-7 text-muted-foreground">
                         The MCP server is a thin CLI that proxies to the
-                        existing
-                        <code className="mx-1 rounded bg-muted px-1 py-0.5 text-sm font-mono">
+                        existing{" "}
+                        <code className="rounded bg-muted px-1 py-0.5 text-sm font-mono">
                             /api/specs
-                        </code>
+                        </code>{" "}
                         endpoints, normalizing responses into MCP tool results.
                         No state of its own — the docs site remains the single
                         source of truth.
