@@ -46,6 +46,7 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
   const alert = feedbackSpec.components?.alert;
   const avatar = displaySpec.components?.avatar;
   const kbd = displaySpec.components?.kbd;
+  const code = displaySpec.components?.code;
   const img = displaySpec.components?.img;
   const progress = feedbackSpec.components?.progress;
   const spinner = feedbackSpec.components?.spinner;
@@ -84,6 +85,7 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
     separator: separatorSource,
     avatar: avatarSource,
     kbd: kbdSource,
+    code: codeSource,
     img: imgSource,
     toolPill: toolPillSource,
     dataTable: dataTableSource,
@@ -92,6 +94,7 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
     separator: "Separator.tsx",
     avatar: "Avatar.tsx",
     kbd: "Kbd.tsx",
+    code: "Code.tsx",
     img: "Img.tsx",
     toolPill: "ToolPill.tsx",
     dataTable: "DataTable.tsx",
@@ -974,6 +977,24 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       kbdSource,
       /\btext-muted-foreground\b/,
       'Kbd should include "text-muted-foreground"'
+    );
+    },
+  });
+
+  withRequiredVariants({
+    errors,
+    componentSpec: code,
+    componentKey: "code",
+    specPath: DISPLAY_SPEC_PATH,
+    run: () => {
+    // Inline code shares MarkdownRenderer's wrap contract: one long token — a
+    // path, a URL, an identifier — wraps instead of widening the page on a
+    // narrow viewport (#893, #1065).
+    assertMatch(
+      errors,
+      codeSource,
+      /cva\(\s*"[^"]*\bbreak-words\b/,
+      'Code base classes should include "break-words" so an unbreakable token wraps instead of widening the page'
     );
     },
   });

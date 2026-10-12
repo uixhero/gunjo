@@ -1826,10 +1826,12 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       /\{\.\.\.rest\}/,
       'MarkdownRenderer must not spread a raw rest object onto an element (that emits node="[object Object]"); route it through withoutNode() first'
     );
-    // Long code splits two ways: a fenced block keeps its verbatim line breaks
-    // and scrolls inside the `pre`, while a backtick span wraps. Drop either
-    // half and a single unbreakable token — a path, a URL — widens the whole
-    // page on a narrow viewport (#893: /docs/adoption overflowed 58px at 375).
+    // Long runs split two ways: a fenced block keeps its verbatim line breaks
+    // and scrolls inside the `pre`, while everything else wraps. The wrap sits
+    // on the wrapper so prose inherits it as well as backtick spans. Drop
+    // either half and a single unbreakable token — a path, a URL, slash-joined
+    // names — widens the whole page on a narrow viewport (#893: /docs/adoption
+    // overflowed 58px at 375; #1065: /docs/changelog overflowed 86px).
     assertMatch(
       errors,
       markdownRendererSource,
@@ -1839,8 +1841,8 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     assertMatch(
       errors,
       markdownRendererSource,
-      /<code className=\{cn\("[^"]*\bbreak-words\b/,
-      'MarkdownRenderer inline code should include "break-words" so an unbreakable token wraps instead of widening the page'
+      /ref=\{ref\}\s*className=\{cn\(\s*"[^"]*\bbreak-words\b/,
+      'MarkdownRenderer wrapper should include "break-words" so an unbreakable token in prose or a backtick span wraps instead of widening the page'
     );
     },
   });

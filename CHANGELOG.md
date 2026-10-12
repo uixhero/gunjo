@@ -50,6 +50,10 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
     - 対象：`SafetyBanner`・`CheckboxCard`・`RadioCard`・`Itinerary`・`MetadataList`・`Timeline`・`PasswordRequirementList` など
 - **`--space-0-5`・`--space-1-5`・`--space-2-5`・`--space-3-5`・`--space-px` に「細部専用」と注記した**（影響: **none**）：線・点・中心合わせに使い、余白には使わない。`public/tokens.css` の行末と `/docs/spacing` の表に出る。(#1057)
 
+### Fixed
+
+- **改行できない長い語が、狭い画面でページを横に押し広げていた**（影響: **none**）：`MarkdownRenderer` は `break-words` をインラインのコードから外側の要素に移した。地の文の中で `/` でつないだ英字（`List/Item/Trigger/Content` など）も折り返す。`Code` にも同じ `break-words` を付けた（Markdown の中のコードと同じ形）。どちらも1行に入りきらない語のときだけ効くので、ふだんの見た目は変わらない。`/docs/changelog` は 375px で 86px はみ出していた。(#1065)
+
 ## [0.2.0-beta.1] — 2026-10-11
 
 > `0.1.0-beta.4` 以降の変更。**破壊的変更が2件**（どちらも影響 **minor**＝import の書き換えと依存の追加で済む）あるので、真ん中の数字を上げた。見た目の変更は無い。
