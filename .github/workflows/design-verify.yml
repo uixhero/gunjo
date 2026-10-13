@@ -416,8 +416,12 @@ jobs:
       # layout imports `TooltipProvider` from the root barrel (the #684 repro),
       # then runs `next build` with Turbopack and with webpack. #684 could not
       # be reproduced on demand, so the only way to keep saying "fixed" is to
-      # build that shape on every change. The self-test first proves a broken
-      # RSC import (a client hook called from a Server Component) fails it.
+      # build that shape on every change. It then builds the page skeleton
+      # from the installation docs (#774: page.tsx exports `metadata`, the
+      # content is a "use client" file importing root + `@gunjo/ui/table`) and
+      # checks the tab title and the heading. The self-test first proves a
+      # broken RSC import (a client hook called from a Server Component) and
+      # the skeleton without `metadata` both fail it.
       - name: Packed tarball in a Next.js Server Component (self-test)
         run: npm run lib:check:rsc-consumer:self-test
         env:
