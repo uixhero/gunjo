@@ -19,11 +19,20 @@
 // - `next build` with Turbopack (the reported bundler) and with webpack.
 //   Pass = exit 0, no `createContext is not a function`, and the prerendered
 //   page contains the marker text.
+// - Then the page skeleton the installation docs teach (#774) is added and
+//   built with the same bundlers: `app/orders/page.tsx` (a Server Component
+//   that exports `metadata`) and `app/orders/OrdersClient.tsx` ("use client",
+//   imports from the root and from `@gunjo/ui/table`). The code is read from
+//   the docs themselves (ja.ts, en.ts, docs/adoption.md), so the published
+//   example is the code that builds. `@tanstack/react-table` is installed for
+//   this step only, after the no-peer builds. Pass = the prerendered page has
+//   the `metadata` title in <title> and the header title in <h1>.
 //
 //   node scripts/check-pack-consumer-rsc.mjs                 # both bundlers
 //   node scripts/check-pack-consumer-rsc.mjs --bundler=turbopack
 //   node scripts/check-pack-consumer-rsc.mjs --tarball=path/to/gunjo-ui.tgz
 //   node scripts/check-pack-consumer-rsc.mjs --self-test     # must catch a broken RSC import
+//                                                            # and a skeleton without metadata
 //
 // Next.js version: GUNJO_PACK_NEXT_VERSION (default 16.2.10, the version #684
 // was reported on). Needs network access for `npm install`.
@@ -96,6 +105,85 @@ export default function Page() {
   return <p>${MARKER} {String(theme)}</p>;
 }
 `;
+
+// The page skeleton from the installation docs (#774). Each source must hold
+// exactly one `app/orders/page.tsx` block and one `app/orders/OrdersClient.tsx`
+// block; the Japanese docs page and docs/adoption.md must carry the same code.
+const SKELETON_SOURCES = [
+  { lang: "ja", file: "app/lib/docs-content/ja.ts", templateLiteral: true },
+  { lang: "ja", file: "docs/adoption.md", templateLiteral: false },
+  { lang: "en", file: "app/lib/docs-content/en.ts", templateLiteral: true },
+];
+const SKELETON_FILES = ["app/orders/page.tsx", "app/orders/OrdersClient.tsx"];
+const PEER_FOR_SKELETON = "@tanstack/react-table";
+
+function extractSkeleton({ file, templateLiteral }) {
+  let text = readFileSync(join(root, file), "utf8");
+  // ja.ts / en.ts hold the docs as template literals: undo their escapes.
+  if (templateLiteral) text = text.replace(/\\([`$\\])/g, "$1");
+  const blocks = {};
+  for (const match of text.matchAll(/```tsx\n(\/\/ (app\/orders\/[\w.]+)[^\n]*\n[\s\S]*?)```/g)) {
+    const [, code, path] = match;
+    if (blocks[path]) throw new Error(`${file}: more than one code block for ${path}`);
+    blocks[path] = code;
+  }
+  for (const path of SKELETON_FILES) {
+    if (!blocks[path]) throw new Error(`${file}: no code block starting with "// ${path}"`);
+  }
+  return blocks;
+}
+
+function loadSkeletons() {
+  const byLang = new Map();
+  for (const source of SKELETON_SOURCES) {
+    const blocks = extractSkeleton(source);
+    const seen = byLang.get(source.lang);
+    if (!seen) {
+      byLang.set(source.lang, { ...blocks, from: source.file });
+      continue;
+    }
+    for (const path of SKELETON_FILES) {
+      if (seen[path] !== blocks[path]) {
+        throw new Error(`${source.file}: ${path} differs from the same block in ${seen.from}`);
+      }
+    }
+  }
+  return [...byLang].map(([lang, blocks]) => ({ lang, blocks }));
+}
+
+// Self-test only: the skeleton with `metadata` taken out — the #774 mistake.
+function stripMetadata(code) {
+  const stripped = code
+    .replace(/^import type \{ Metadata \} from "next";\n/m, "")
+    .replace(/^export const metadata[\s\S]*?\n\};\n\n?/m, "");
+  if (stripped === code || /metadata/i.test(stripped)) throw new Error("could not strip metadata from the skeleton");
+  return stripped;
+}
+
+function writeSkeletons(dir, skeletons, { withoutMetadata = false } = {}) {
+  return skeletons.map(({ lang, blocks }) => {
+    for (const path of SKELETON_FILES) {
+      const target = join(dir, path.replace(/^app\//, `app/${lang}/`));
+      mkdirSync(dirname(target), { recursive: true });
+      const code = withoutMetadata && path.endsWith("page.tsx") ? stripMetadata(blocks[path]) : blocks[path];
+      writeFileSync(target, code);
+    }
+    const title = blocks["app/orders/page.tsx"].match(/title: "([^"]+)"/)?.[1];
+    const heading = blocks["app/orders/OrdersClient.tsx"].match(/PageHeader[^>]*\btitle="([^"]+)"/)?.[1];
+    if (!title || !heading) throw new Error(`${lang}: could not read the metadata title or the header title from the skeleton`);
+    return { lang, route: `/${lang}/orders`, html: join(dir, ".next", "server", "app", lang, "orders.html"), title, heading };
+  });
+}
+
+function checkSkeletonHtml(page) {
+  const html = existsSync(page.html) ? readFileSync(page.html, "utf8") : "";
+  const escape = (value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return {
+    title: html.includes(`<title>${escape(page.title)}</title>`),
+    heading: new RegExp(`<h1[^>]*>${escape(page.heading).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}</h1>`).test(html),
+    table: html.includes("<table"),
+  };
+}
 
 function run(command, commandArgs, options) {
   const result = spawnSync(command, commandArgs, { encoding: "utf8", maxBuffer: 1 << 28, ...options });
@@ -184,6 +272,7 @@ function buildWith(dir, bundler) {
 const work = mkdtempSync(join(tmpdir(), "gunjo-pack-consumer-"));
 let failed = false;
 try {
+  const skeletons = loadSkeletons();
   const tarball = packTarball(work);
   const app = join(work, "app");
   createApp(app, tarball, selfTest ? BROKEN_PAGE : PAGE);
@@ -219,6 +308,43 @@ try {
       );
     }
   }
+
+  // The installation docs' page skeleton (#774). In the self-test it is built
+  // without `metadata`, and the check has to notice the missing tab title.
+  if (selfTest) writeFileSync(join(app, "app", "page.tsx"), PAGE);
+  const pages = writeSkeletons(app, skeletons, { withoutMetadata: selfTest });
+  const peer = run("npm", ["install", "--no-audit", "--no-fund", "--loglevel=error", PEER_FOR_SKELETON], { cwd: app });
+  if (peer.status !== 0) {
+    console.error(peer.output);
+    console.error(`check-pack-consumer-rsc: npm install ${PEER_FOR_SKELETON} failed`);
+    process.exit(1);
+  }
+  for (const bundler of bundlers) {
+    const result = buildWith(app, bundler);
+    const checks = pages.map((page) => ({ page, ...checkSkeletonHtml(page) }));
+    if (selfTest) {
+      const caught = result.status === 0 && checks.every((c) => !c.title && c.heading && c.table);
+      if (caught) {
+        console.log(`check-pack-consumer-rsc --self-test: ok (${bundler}: the skeleton without metadata fails the tab-title check)`);
+      } else {
+        failed = true;
+        console.log(result.output.split("\n").slice(-40).join("\n"));
+        console.error(
+          `check-pack-consumer-rsc --self-test: FAILED — the skeleton without metadata was not caught as a missing tab title (${bundler}, exit ${result.status}, ${JSON.stringify(checks.map(({ page, ...c }) => ({ route: page.route, ...c })))})`
+        );
+      }
+      continue;
+    }
+    if (result.status === 0 && checks.every((c) => c.title && c.heading && c.table)) {
+      console.log(`  ok   docs page skeleton (${bundler}) — ${pages.map((p) => `${p.route}: <title>${p.title}</title>`).join(", ")}`);
+    } else {
+      failed = true;
+      if (result.status !== 0) console.log(result.output.split("\n").slice(-40).join("\n"));
+      for (const { page, title, heading, table } of checks) {
+        console.log(`  FAIL docs page skeleton (${bundler}) ${page.route} — exit ${result.status}, <title> ${title}, <h1> ${heading}, <table> ${table}`);
+      }
+    }
+  }
 } finally {
   if (args.has("keep")) console.log(`  kept: ${work}`);
   else rmSync(work, { recursive: true, force: true });
@@ -226,5 +352,7 @@ try {
 
 if (failed) process.exit(1);
 if (!selfTest) {
-  console.log(`check-pack-consumer-rsc: passed (${bundlers.join(" + ")}, Server Component imports from the root barrel)`);
+  console.log(
+    `check-pack-consumer-rsc: passed (${bundlers.join(" + ")}, Server Component imports from the root barrel, docs page skeleton with metadata)`
+  );
 }

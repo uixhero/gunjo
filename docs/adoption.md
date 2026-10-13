@@ -150,6 +150,69 @@ export default function Page() {
 
 `npm run dev` で `Button` が GunjoUI のスタイルで表示されれば成功。
 
+### 6. ページを1つ作る
+
+<!-- この節のコードは scripts/check-pack-consumer-rsc.mjs がそのままビルドする（#774）。/docs/installation（app/lib/docs-content/ja.ts）と同じに保つ -->
+
+`page.tsx` は Server Component のままにして、ブラウザのタブの名前を `metadata` の `title` で決める。見出しには、PC 向けの画面なら `DesktopPageHeader`、スマホ向けなら `PageHeader` を使う。
+
+下の例の `DataTable` は `@tanstack/react-table` を使う。手順1 の「重い部品」で入れていなければ、先に入れる。
+
+```bash
+npm install @tanstack/react-table
+```
+
+```tsx
+// app/orders/page.tsx（Server Component。"use client" は付けない）
+import type { Metadata } from "next";
+import { OrdersClient } from "./OrdersClient";
+
+export const metadata: Metadata = {
+  title: "注文一覧 | 在庫管理",
+};
+
+export default function Page() {
+  return <OrdersClient />;
+}
+```
+
+```tsx
+// app/orders/OrdersClient.tsx
+"use client";
+
+import { Button, DesktopPageHeader } from "@gunjo/ui";
+import { DataTable, type ColumnDef } from "@gunjo/ui/table";
+
+type Order = { id: string; customer: string; total: number };
+
+const columns: ColumnDef<Order>[] = [
+  { accessorKey: "id", header: "注文番号" },
+  { accessorKey: "customer", header: "顧客" },
+  {
+    accessorKey: "total",
+    header: "金額",
+    cell: ({ row }) => `¥${row.original.total.toLocaleString("ja-JP")}`,
+  },
+];
+
+const orders: Order[] = [
+  { id: "A-1001", customer: "青山商店", total: 12800 },
+  { id: "A-1002", customer: "群青工房", total: 4300 },
+];
+
+export function OrdersClient() {
+  return (
+    <main className="p-8">
+      <DesktopPageHeader title="注文一覧" actions={<Button>注文を追加</Button>} />
+      <DataTable columns={columns} data={orders} />
+    </main>
+  );
+}
+```
+
+- **`DesktopPageHeader`・`PageHeader` の `title` は画面の見出し（`<h1>`）で、タブの名前にはならない。** `metadata` を書き忘れると、タブには `layout.tsx` の `metadata` の `title` が出る。`create-next-app` で作ったままなら「Create Next App」。
+- `page.tsx` は Server Component なので、Client Component の `DataTable` へ `cell` のような関数を渡せない。そこで画面の中身を `"use client"` の `OrdersClient.tsx` にまとめ、`page.tsx` はそれを呼ぶだけにする。
+
 ## Tailwind を使わないプロジェクト（純 CSS サブパス）
 
 npm 不可環境向けに固定 URL で配布している **Tailwind 非依存の純 CSS 資産** は、パッケージにも同梱しており subpath で import できる：

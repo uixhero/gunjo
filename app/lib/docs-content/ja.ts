@@ -34,6 +34,8 @@ export const contentJa: Record<string, DocContent> = {
 
 合うほうを選んでください。npm 経由のほうが早く、コピー経由のほうが完全な自由度が得られます。`,
   },
+  // The page-skeleton code in step 5 is built as-is by scripts/check-pack-consumer-rsc.mjs (#774);
+  // keep it identical to docs/adoption.md.
   installation: {
     title: "インストール",
     description: "既存の Next.js / Vite + React プロジェクトに @gunjo/ui を導入する手順。",
@@ -157,6 +159,67 @@ export default function Page() {
 \`\`\`
 
 \`npm run dev\` でボタンが GunjoUI のスタイルで表示されれば成功。
+
+### 5. ページを1つ作る
+
+\`page.tsx\` は Server Component のままにして、ブラウザのタブの名前を \`metadata\` の \`title\` で決めます。見出しには、PC 向けの画面なら \`DesktopPageHeader\`、スマホ向けなら \`PageHeader\` を使います。
+
+下の例の \`DataTable\` は \`@tanstack/react-table\` を使います。手順1で入れていなければ、先に入れてください。
+
+\`\`\`bash
+npm install @tanstack/react-table
+\`\`\`
+
+\`\`\`tsx
+// app/orders/page.tsx（Server Component。"use client" は付けない）
+import type { Metadata } from "next";
+import { OrdersClient } from "./OrdersClient";
+
+export const metadata: Metadata = {
+  title: "注文一覧 | 在庫管理",
+};
+
+export default function Page() {
+  return <OrdersClient />;
+}
+\`\`\`
+
+\`\`\`tsx
+// app/orders/OrdersClient.tsx
+"use client";
+
+import { Button, DesktopPageHeader } from "@gunjo/ui";
+import { DataTable, type ColumnDef } from "@gunjo/ui/table";
+
+type Order = { id: string; customer: string; total: number };
+
+const columns: ColumnDef<Order>[] = [
+  { accessorKey: "id", header: "注文番号" },
+  { accessorKey: "customer", header: "顧客" },
+  {
+    accessorKey: "total",
+    header: "金額",
+    cell: ({ row }) => \`¥\${row.original.total.toLocaleString("ja-JP")}\`,
+  },
+];
+
+const orders: Order[] = [
+  { id: "A-1001", customer: "青山商店", total: 12800 },
+  { id: "A-1002", customer: "群青工房", total: 4300 },
+];
+
+export function OrdersClient() {
+  return (
+    <main className="p-8">
+      <DesktopPageHeader title="注文一覧" actions={<Button>注文を追加</Button>} />
+      <DataTable columns={columns} data={orders} />
+    </main>
+  );
+}
+\`\`\`
+
+- **\`DesktopPageHeader\`・\`PageHeader\` の \`title\` は画面の見出し（\`<h1>\`）で、タブの名前にはなりません。** \`metadata\` を書き忘れると、タブには \`layout.tsx\` の \`metadata\` の \`title\` が出ます。\`create-next-app\` で作ったままなら「Create Next App」です。
+- \`page.tsx\` は Server Component なので、Client Component の \`DataTable\` へ \`cell\` のような関数を渡せません。そこで画面の中身を \`"use client"\` の \`OrdersClient.tsx\` にまとめ、\`page.tsx\` はそれを呼ぶだけにします。
 
 ### Server Component から使う場合（Next.js App Router / RSC）
 
