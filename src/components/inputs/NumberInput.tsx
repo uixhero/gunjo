@@ -124,8 +124,8 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
             return wrap(
                 <div
                     className={cn(
-                        "inline-flex items-center rounded-md border border-input bg-transparent shadow-sm focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
-                        disabled && "opacity-50 pointer-events-none",
+                        "inline-flex items-center rounded-md border border-input bg-card shadow-sm focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
+                        disabled && "pointer-events-none border-input/40 bg-muted text-muted-foreground",
                         className
                     )}
                     data-slot="number-input"
@@ -174,8 +174,8 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         return wrap(
             <div
                 className={cn(
-                    "inline-flex items-center rounded-md border border-input bg-transparent shadow-sm focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
-                    disabled && "opacity-50 pointer-events-none",
+                    "inline-flex items-center rounded-md border border-input bg-card shadow-sm focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
+                    disabled && "pointer-events-none border-input/40 bg-muted text-muted-foreground",
                     className
                 )}
                 data-slot="number-input"
