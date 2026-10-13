@@ -42,7 +42,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
             <div
                 className={cn(
                     "relative inline-flex items-center w-full",
-                    disabled && "opacity-50 pointer-events-none",
+                    disabled && "pointer-events-none",
                     className
                 )}
                 data-slot="search-input"
@@ -55,7 +55,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
                     onChange={(e) => onValueChange?.(e.target.value)}
                     disabled={disabled}
                     placeholder={placeholder ?? strings.searchPlaceholder}
-                    className="flex h-9 w-full rounded-md border border-input bg-transparent pl-9 pr-9 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring [&::-webkit-search-cancel-button]:hidden"
+                    className="flex h-9 w-full rounded-md border border-input bg-card pl-9 pr-9 py-1 disabled:border-input/40 disabled:bg-muted disabled:text-muted-foreground text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring [&::-webkit-search-cancel-button]:hidden"
                     {...props}
                 />
                 {showClear ? (

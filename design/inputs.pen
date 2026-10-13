@@ -1,5 +1,5 @@
 {
-  "version": "2.13",
+  "version": "2.18",
   "children": [
     {
       "type": "frame",
@@ -111,9 +111,9 @@
                   "name": "Button/Outline",
                   "reusable": true,
                   "height": 36,
-                  "fill": "transparent",
+                  "fill": "#ffffff",
                   "cornerRadius": 8,
-                  "stroke": "#e2e8f0",
+                  "stroke": "#6c819d",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
                   "gap": 8,
@@ -333,9 +333,9 @@
                   "reusable": true,
                   "width": 280,
                   "height": 36,
-                  "fill": "transparent",
+                  "fill": "#ffffff",
                   "cornerRadius": 8,
-                  "stroke": "#e2e8f0",
+                  "stroke": "#6c819d",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
                   "padding": [
@@ -361,9 +361,9 @@
                   "reusable": true,
                   "width": 280,
                   "height": 36,
-                  "fill": "transparent",
+                  "fill": "#ffffff",
                   "cornerRadius": 8,
-                  "stroke": "#e2e8f0",
+                  "stroke": "#6c819d",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
                   "padding": [
@@ -557,9 +557,9 @@
                   "reusable": true,
                   "width": 20,
                   "height": 20,
-                  "fill": "transparent",
+                  "fill": "#ffffff",
                   "cornerRadius": 4,
-                  "stroke": "#e2e8f0",
+                  "stroke": "#6c819d",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner"
                 },
@@ -765,6 +765,7 @@
             {
               "type": "frame",
               "id": "textareaVariants",
+              "width": "fit_content(0)",
               "layout": "vertical",
               "gap": 16,
               "children": [
@@ -775,9 +776,9 @@
                   "reusable": true,
                   "width": "fill_container",
                   "height": 80,
-                  "fill": "transparent",
+                  "fill": "#ffffff",
                   "cornerRadius": 8,
-                  "stroke": "#e2e8f0",
+                  "stroke": "#6c819d",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
                   "layout": "vertical",
@@ -831,6 +832,7 @@
             {
               "type": "frame",
               "id": "textareaShowcase",
+              "width": "fit_content(0)",
               "layout": "vertical",
               "gap": 12,
               "children": [
@@ -888,9 +890,9 @@
                   "reusable": true,
                   "width": 16,
                   "height": 16,
-                  "fill": "transparent",
+                  "fill": "#ffffff",
                   "cornerRadius": 8,
-                  "stroke": "#e2e8f0",
+                  "stroke": "#6c819d",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner"
                 },
@@ -1220,9 +1222,9 @@
                   "reusable": true,
                   "width": 200,
                   "height": 40,
-                  "fill": "transparent",
+                  "fill": "#ffffff",
                   "cornerRadius": 8,
-                  "stroke": "#e2e8f0",
+                  "stroke": "#6c819d",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
                   "padding": [
@@ -1339,9 +1341,9 @@
                   "name": "ToggleGroup/Outline",
                   "reusable": true,
                   "height": 36,
-                  "fill": "transparent",
+                  "fill": "#ffffff",
                   "cornerRadius": 8,
-                  "stroke": "#e2e8f0",
+                  "stroke": "#6c819d",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
                   "padding": [
@@ -1461,7 +1463,7 @@
           "reusable": true,
           "fill": "#ffffff",
           "cornerRadius": 6,
-          "stroke": "#e2e8f0",
+          "stroke": "#6c819d",
           "strokeWidth": 1,
           "strokeAlignment": "inner",
           "padding": [
@@ -2030,6 +2032,7 @@
           "type": "frame",
           "id": "yPJde",
           "name": "showcase/textarea",
+          "width": "fit_content(0)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -4178,9 +4181,9 @@
           "name": "Button/Outline",
           "reusable": true,
           "height": 36,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "cornerRadius": 6,
-          "stroke": "#e5e5e5",
+          "stroke": "#6c819d",
           "strokeWidth": 1,
           "strokeAlignment": "inner",
           "gap": 8,
@@ -4289,5 +4292,6 @@
         }
       ]
     }
-  ]
+  ],
+  "fileToken": "541c73ce-4183-44c6-aab8-e79da8b4aceb"
 }

@@ -229,7 +229,7 @@ const Mention = React.forwardRef<HTMLTextAreaElement, MentionProps>(
                     placeholder={placeholder}
                     onChange={handleChange}
                     className={cn(
-                        "relative flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm caret-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+                        "relative flex w-full rounded-md border border-input bg-card px-3 py-2 text-sm shadow-sm caret-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
                         value && "text-transparent selection:bg-primary-subtle"
                     )}
                     {...props}

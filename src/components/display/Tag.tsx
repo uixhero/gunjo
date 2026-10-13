@@ -14,7 +14,7 @@ export const tagVariants = cva(
             variant: {
                 default: "bg-secondary text-secondary-foreground",
                 secondary: "bg-foreground text-background",
-                outline: "border border-border bg-transparent text-foreground",
+                outline: "border border-input bg-card text-foreground",
                 destructive: "bg-destructive-strong text-destructive-strong-foreground",
             },
             size: {

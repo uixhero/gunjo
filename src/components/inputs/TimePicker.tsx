@@ -95,7 +95,7 @@ const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         }
 
         const selectClass =
-            "h-9 rounded-md border border-input bg-transparent px-2 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:opacity-50"
+            "h-9 rounded-md border border-input bg-card px-2 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring disabled:border-input/40 disabled:bg-muted disabled:text-muted-foreground"
 
         return (
             <div

@@ -20,6 +20,18 @@ function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+// Field / outline surfaces (#1067, KeEem 2026-10-13): an enabled field and an
+// outline control are a filled box (bg-card) with the 3:1 edge (border-input).
+// A disabled field is a muted block with the 3:1 edge at 40% (still a shape on a
+// muted band, where --border would vanish) and dimmed text.
+// No opacity: half-transparent fields only read as "fainter", which was the
+// complaint, so the contract forbids it.
+function assertFieldDisabledContract(errors, source, label) {
+  assertMatch(errors, source, /\bdisabled:border-input\/40\b/, `${label} disabled state should include "disabled:border-input/40"`);
+  assertMatch(errors, source, /\bdisabled:bg-muted\b/, `${label} disabled state should include "disabled:bg-muted"`);
+  assertNoMatch(errors, source, /\bdisabled:opacity-\d+\b/, `${label} disabled state should not use "disabled:opacity-*" (#1067)`);
+}
+
 // A .pen padding (px) as the Tailwind step the source must carry. GunjoUI sits
 // on a 4px grid (#1057), so the step is an integer and `px-2` must not also
 // match an off-grid `px-2.5` — hence the `(?![\w.])` tail.
@@ -154,8 +166,8 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         buttonSource,
-        /\bborder border-border\b/,
-        'Button outline variant should include "border border-border"'
+        /\bborder border-input bg-card\b/,
+        'Button outline variant should include "border border-input bg-card" (#1067)'
       );
     }
 
@@ -234,18 +246,12 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
 
     const hasDisabledVariant = input.variants.some((v) => v?.key === "disabled");
     if (hasDisabledVariant) {
-      assertMatch(errors, inputSource, /\bdisabled:bg-muted\b/, 'Input should include "disabled:bg-muted"');
+      assertFieldDisabledContract(errors, inputSource, "Input");
       assertMatch(
         errors,
         inputSource,
         /\bdisabled:text-muted-foreground\b/,
         'Input should include "disabled:text-muted-foreground"'
-      );
-      assertMatch(
-        errors,
-        inputSource,
-        /\bdisabled:opacity-50\b/,
-        'Input should include "disabled:opacity-50"'
       );
     }
 
@@ -336,8 +342,8 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         badgeSource,
-        /\bborder-border\b/,
-        'Badge outline should include "border-border"'
+        /outline: "border-input bg-card\b/,
+        'Badge outline should be "border-input bg-card" (#1067)'
       );
       assertMatch(
         errors,
@@ -448,18 +454,7 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
 
     const hasDisabledVariant = checkbox.variants.some((v) => v?.key === "disabled");
     if (hasDisabledVariant) {
-      assertMatch(
-        errors,
-        checkboxSource,
-        /\bdisabled:bg-muted\b/,
-        'Checkbox disabled state should include "disabled:bg-muted"'
-      );
-      assertMatch(
-        errors,
-        checkboxSource,
-        /\bdisabled:opacity-50\b/,
-        'Checkbox disabled state should include "disabled:opacity-50"'
-      );
+      assertFieldDisabledContract(errors, checkboxSource, "Checkbox");
     }
 
     assertMatch(
@@ -733,23 +728,12 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
 
     const hasDisabled = textarea.variants.some((v) => v?.key === "disabled");
     if (hasDisabled) {
-      assertMatch(
-        errors,
-        textareaSource,
-        /\bdisabled:bg-muted\b/,
-        'Textarea disabled state should include "disabled:bg-muted"'
-      );
+      assertFieldDisabledContract(errors, textareaSource, "Textarea");
       assertMatch(
         errors,
         textareaSource,
         /\bdisabled:text-muted-foreground\b/,
         'Textarea disabled state should include "disabled:text-muted-foreground"'
-      );
-      assertMatch(
-        errors,
-        textareaSource,
-        /\bdisabled:opacity-50\b/,
-        'Textarea disabled state should include "disabled:opacity-50"'
       );
     }
 
@@ -1363,12 +1347,7 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       /\bfocus:ring-ring\b/,
       'Select should include "focus:ring-ring"'
     );
-    assertMatch(
-      errors,
-      selectSource,
-      /\bdisabled:bg-muted\b/,
-      'Select disabled state should include "disabled:bg-muted"'
-    );
+    assertFieldDisabledContract(errors, selectSource, "Select");
     assertMatch(
       errors,
       selectSource,
@@ -1457,8 +1436,8 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         toggleGroupSource,
-        /\bbg-transparent\b/,
-        'ToggleGroup outline variant should include "bg-transparent"'
+        /outline: "border border-input bg-card\b/,
+        'ToggleGroup outline variant should be "border border-input bg-card" (#1067)'
       );
     }
 
