@@ -33,9 +33,9 @@ export default function DesignSpecPage() {
                         href="https://github.com/uixhero/gunjo/blob/main/DESIGN.md"
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-1.5 text-sm font-medium transition-colors hover:bg-muted"
+                        className="inline-flex min-h-9 items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-1 text-sm font-medium transition-colors hover:bg-muted"
                     >
-                        <FileText className="h-3.5 w-3.5" />
+                        <FileText className="h-4 w-4" />
                         View on GitHub
                         <ExternalLink className="h-3 w-3" />
                     </Link>

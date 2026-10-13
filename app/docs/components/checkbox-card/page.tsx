@@ -376,7 +376,7 @@ export default function CheckboxCardDocPage() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+        <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>
@@ -389,13 +389,13 @@ export default function CheckboxCardDocPage() {
         {locale === "ja" ? (
           <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
             <li>
-              <strong>カードの見た目でも、中身はチェックボックスにした。</strong>一片は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="checkbox"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code> を持つ本物の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> で、高さは 44px 以上を確保しています。資料の「カード全体を押せるようにする」を、リンクではなくチェックボックスとして実装した形です。
+              <strong>カードの見た目でも、中身はチェックボックスにした。</strong>一片は <code className="rounded bg-muted px-1 font-mono text-xs">{'role="checkbox"'}</code> と <code className="rounded bg-muted px-1 font-mono text-xs">aria-checked</code> を持つ本物の <code className="rounded bg-muted px-1 font-mono text-xs">button</code> で、高さは 44px 以上を確保しています。資料の「カード全体を押せるようにする」を、リンクではなくチェックボックスとして実装した形です。
             </li>
             <li>
-              <strong>矢印キーは付けていない。</strong>兄弟の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RadioCard</code> は矢印キーで移動できますが、こちらは1つずつが独立して選べるので、それぞれが自分の Tab 停止位置を持ちます（WAI-ARIA のチェックボックスの型）。同じ見た目でも、キーボードの動きは意味に合わせて変えています。
+              <strong>矢印キーは付けていない。</strong>兄弟の <code className="rounded bg-muted px-1 font-mono text-xs">RadioCard</code> は矢印キーで移動できますが、こちらは1つずつが独立して選べるので、それぞれが自分の Tab 停止位置を持ちます（WAI-ARIA のチェックボックスの型）。同じ見た目でも、キーボードの動きは意味に合わせて変えています。
             </li>
             <li>
-              <strong>選択の印は四角いチェックで、色に頼らない。</strong>選ばれた状態は、枠の色・輪郭・四角いチェックの3つで同時に出ます。選べないカードには <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> を渡すと、理由がツールチップで読めます。押せない理由を画面に出さずに済ませないためです。
+              <strong>選択の印は四角いチェックで、色に頼らない。</strong>選ばれた状態は、枠の色・輪郭・四角いチェックの3つで同時に出ます。選べないカードには <code className="rounded bg-muted px-1 font-mono text-xs">disabledReason</code> を渡すと、理由がツールチップで読めます。押せない理由を画面に出さずに済ませないためです。
               <br />
               一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
@@ -403,13 +403,13 @@ export default function CheckboxCardDocPage() {
         ) : (
           <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
             <li>
-              <strong>It looks like a card but behaves like a checkbox.</strong> Each card is a real <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> carrying <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="checkbox"'}</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code>, with a 44px minimum height. That is GUNJO&rsquo;s reading of the article&rsquo;s whole-card-clickable rule: implemented as a checkbox, not as a link.
+              <strong>It looks like a card but behaves like a checkbox.</strong> Each card is a real <code className="rounded bg-muted px-1 font-mono text-xs">button</code> carrying <code className="rounded bg-muted px-1 font-mono text-xs">{'role="checkbox"'}</code> and <code className="rounded bg-muted px-1 font-mono text-xs">aria-checked</code>, with a 44px minimum height. That is GUNJO&rsquo;s reading of the article&rsquo;s whole-card-clickable rule: implemented as a checkbox, not as a link.
             </li>
             <li>
-              <strong>No arrow-key navigation here.</strong> Its twin <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RadioCard</code> moves with arrow keys; this one does not, because checkboxes are independent, so every card is its own tab stop (the WAI-ARIA checkbox pattern). Same look, different keyboard behaviour, decided by meaning.
+              <strong>No arrow-key navigation here.</strong> Its twin <code className="rounded bg-muted px-1 font-mono text-xs">RadioCard</code> moves with arrow keys; this one does not, because checkboxes are independent, so every card is its own tab stop (the WAI-ARIA checkbox pattern). Same look, different keyboard behaviour, decided by meaning.
             </li>
             <li>
-              <strong>Selection is marked with a square check, never colour alone.</strong> A selected card shows the coloured border, the ring and the square check together. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> on a card that cannot be chosen and the reason is readable in a tooltip, so an unavailable option never sits there unexplained.
+              <strong>Selection is marked with a square check, never colour alone.</strong> A selected card shows the coloured border, the ring and the square check together. Pass <code className="rounded bg-muted px-1 font-mono text-xs">disabledReason</code> on a card that cannot be chosen and the reason is readable in a tooltip, so an unavailable option never sits there unexplained.
               <br />
               The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>

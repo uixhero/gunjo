@@ -65,7 +65,7 @@ export default function AiHandoffPage() {
                 <header className="space-y-4">
                     <Badge
                         variant="outline"
-                        className="gap-1.5 bg-accent text-accent-foreground"
+                        className="gap-1 bg-accent text-accent-foreground"
                     >
                         <Cpu className="h-3 w-3" />
                         {t.badge}
@@ -98,7 +98,7 @@ export default function AiHandoffPage() {
                                     </div>
                                     <CardTitle className="flex items-center justify-between text-base">
                                         {copy.title}
-                                        <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
+                                        <span className="rounded bg-muted px-2 text-[10px] leading-5 font-mono uppercase tracking-wider text-muted-foreground">
                                             {copy.badge}
                                         </span>
                                     </CardTitle>
@@ -200,7 +200,7 @@ export default function AiHandoffPage() {
                         ).map((asset) => (
                             <li
                                 key={asset.key}
-                                className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-2"
+                                className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-2"
                             >
                                 <a
                                     href={asset.href}
@@ -352,7 +352,7 @@ curl -fsSL https://gunjo.dev/api/ssot/manifest \\
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
-                                    <ol className="list-decimal pl-5 space-y-1.5 text-sm text-muted-foreground">
+                                    <ol className="list-decimal pl-5 space-y-2 text-sm text-muted-foreground">
                                         {t.ssotFiles.usage.designer.steps.map((step, i) => (
                                             <li key={i}>{step}</li>
                                         ))}
@@ -370,7 +370,7 @@ curl -fsSL https://gunjo.dev/api/ssot/manifest \\
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent className="space-y-3">
-                                    <ol className="list-decimal pl-5 space-y-1.5 text-sm text-muted-foreground">
+                                    <ol className="list-decimal pl-5 space-y-2 text-sm text-muted-foreground">
                                         {t.ssotFiles.usage.contributor.steps.map((step, i) => (
                                             <li key={i}>{step}</li>
                                         ))}
@@ -471,7 +471,7 @@ curl -fsSL https://gunjo.dev/api/ssot/manifest \\
                         <Button asChild>
                             <Link href="/docs/ai-handoff/cookbook">
                                 {t.cookbook.cta}
-                                <ArrowRight className="ml-1.5 h-4 w-4" />
+                                <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>
                     </div>

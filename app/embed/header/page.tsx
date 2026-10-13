@@ -101,7 +101,7 @@ export default function Embed() {
                     {drawerNav ? (
                         <Drawer direction="right" open={drawerOpen} onOpenChange={setDrawerOpen}>
                             <DrawerTrigger asChild>
-                                <Button size="sm" variant="outline" className="h-9 w-9 gap-1.5 p-0 sm:h-8 sm:w-auto sm:px-3" aria-label={isJa ? "メニューを開く" : "Open menu"}>
+                                <Button size="sm" variant="outline" className="h-9 w-9 gap-2 p-0 sm:h-8 sm:w-auto sm:px-3" aria-label={isJa ? "メニューを開く" : "Open menu"}>
                                     <Menu className="h-4 w-4" aria-hidden />
                                     <span className="hidden sm:inline">{isJa ? "メニュー" : "Menu"}</span>
                                 </Button>

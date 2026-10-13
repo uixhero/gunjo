@@ -185,7 +185,7 @@ export default function ShowcasePage() {
                                 className="data-[state=active]:border data-[state=active]:border-primary-border data-[state=active]:text-primary data-[state=active]:shadow-md"
                             >
                                 {t.allTab}
-                                <span className="ml-1.5 text-xs tabular-nums text-muted-foreground data-[state=active]:text-primary-strong">
+                                <span className="ml-2 text-xs tabular-nums text-muted-foreground data-[state=active]:text-primary-strong">
                                     {counts.all}
                                 </span>
                             </TabsTrigger>
@@ -196,7 +196,7 @@ export default function ShowcasePage() {
                                     className="data-[state=active]:border data-[state=active]:border-primary-border data-[state=active]:text-primary data-[state=active]:shadow-md"
                                 >
                                     {bilingual(c).primary}
-                                    <span className="ml-1.5 text-xs tabular-nums text-muted-foreground">
+                                    <span className="ml-2 text-xs tabular-nums text-muted-foreground">
                                         {counts[c]}
                                     </span>
                                 </TabsTrigger>
@@ -252,12 +252,12 @@ export default function ShowcasePage() {
                                                         {title.primary}
                                                     </span>
                                                     {showSecondary ? (
-                                                        <span className="mt-0.5 block truncate text-xs font-medium text-muted-foreground">
+                                                        <span className="mt-1 block truncate text-xs font-medium text-muted-foreground">
                                                             {title.secondary}
                                                         </span>
                                                     ) : null}
                                                 </span>
-                                                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-40 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+                                                <ArrowUpRight className="h-4 w-4 shrink-0 opacity-40 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
                                             </span>
                                             <Badge
                                                 variant="outline"

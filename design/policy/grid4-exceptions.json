@@ -15,6 +15,22 @@
       "reason": "幅 10px（w-2.5／h-2.5）のスクロールバーの中で、つまみを 1px 内側へ寄せる細部。消すとつまみが 7px から 9px に太り、端の隙間が無くなる。部品の余白ではなく線の太さの調整。",
       "addedOn": "2026-10-11",
       "expiresOn": "permanent"
+    },
+    {
+      "file": "app/docs/components/scan-gate/page.tsx",
+      "className": "gap-0.5",
+      "count": 6,
+      "reason": "バーコードと QR の絵（BarcodeVisual・QrVisual と、その見本のコード）の中の、棒と棒・升目と升目の隙間。棒の幅は 1〜4px で、隙間は絵の線と同じ細部。4px にするとバーコードの幅が 92px から 130px に広がり、48px の QR の升目は約 2.3px に潰れる。",
+      "addedOn": "2026-10-12",
+      "expiresOn": "permanent"
+    },
+    {
+      "file": "app/components/app-promo/HomeAppsSection.tsx",
+      "className": "max-w-[165px]",
+      "count": 1,
+      "reason": "幅 330px の画面写真を、ちょうど半分（2倍の密度）で出すための実寸。164px にすると縮小率が半端になり、写真の中の字がにじむ。並びの幅 lg:w-[696px]（4×165＋3×12）もこの値から決まっている。",
+      "addedOn": "2026-10-12",
+      "expiresOn": "permanent"
     }
   ]
 }

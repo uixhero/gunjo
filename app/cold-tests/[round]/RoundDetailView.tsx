@@ -461,7 +461,7 @@ export function RoundDetailView({
                             className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         >
                             {isEnglish ? "日本語で読む" : "Read this round in English"}
-                            <ArrowUpRight className="h-3.5 w-3.5" />
+                            <ArrowUpRight className="h-4 w-4" />
                         </Link>
                     </div>
                 )}
@@ -642,7 +642,7 @@ export function RoundDetailView({
                                     href={href}
                                     aria-label={td.componentDocsLabel(name)}
                                     className={cn(
-                                        "group inline-flex items-center gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2.5 py-1 text-xs font-medium text-foreground transition-colors",
+                                        "group inline-flex items-center gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-1 text-xs font-medium text-foreground transition-colors",
                                         "hover:border-primary-border hover:bg-muted/60 hover:text-primary"
                                     )}
                                 >

@@ -19,10 +19,10 @@ export function ReferenceValueDemo() {
             <table className="w-full text-sm">
                 <thead>
                     <tr className="border-b text-left text-muted-foreground">
-                        <th scope="col" className="py-1.5 pr-3 font-medium">
+                        <th scope="col" className="py-1 pr-3 font-medium leading-6">
                             項目
                         </th>
-                        <th scope="col" className="py-1.5 font-medium">
+                        <th scope="col" className="py-1 font-medium leading-6">
                             結果
                         </th>
                     </tr>

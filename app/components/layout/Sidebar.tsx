@@ -54,7 +54,7 @@ function NavLink({
             onClick={onNavigate}
             aria-current={active ? "page" : undefined}
             className={cn(
-                "group relative flex w-full flex-col gap-0 rounded-md px-2 py-1.5 leading-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                "group relative flex w-full flex-col gap-0 rounded-md px-2 py-1 leading-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                 active
                     ? "bg-primary-subtle text-primary-subtle-foreground shadow-[inset_0_0_0_1px_hsl(var(--primary-border))]"
                     : onPath
@@ -64,7 +64,7 @@ function NavLink({
         >
             <span className={cn(active ? "font-semibold" : "")}>{label.primary}</span>
             {label.secondary !== label.primary && (
-                <span className={cn("text-[9px]", active ? "text-primary-strong" : "text-muted-foreground")}>
+                <span className={cn("text-[9px] leading-3", active ? "text-primary-strong" : "text-muted-foreground")}>
                     {label.secondary}
                 </span>
             )}
@@ -121,7 +121,7 @@ function NavTree({
                                     href={sectionLandingHref}
                                     onClick={onNavigate}
                                     className={cn(
-                                        "inline-flex items-baseline gap-1.5 rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                                        "inline-flex items-baseline gap-2 rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                                         sectionActive ? "text-primary-strong" : "text-foreground/95 hover:text-foreground"
                                     )}
                                 >
@@ -130,7 +130,7 @@ function NavTree({
                             ) : (
                                 <span
                                     className={cn(
-                                        "inline-flex items-baseline gap-1.5",
+                                        "inline-flex items-baseline gap-2",
                                         sectionActive ? "text-primary-strong" : "text-foreground/95"
                                     )}
                                 >

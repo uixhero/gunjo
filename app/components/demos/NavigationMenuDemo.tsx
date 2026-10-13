@@ -52,7 +52,7 @@ export function NavigationMenuDemo() {
                                 <li key={s.href}>
                                     <NavigationMenuLink
                                         href={s.href}
-                                        className="block rounded-md px-2 py-1.5 text-sm hover:bg-muted"
+                                        className="block rounded-md px-2 py-1 text-sm leading-6 hover:bg-muted"
                                     >
                                         {s.title}
                                     </NavigationMenuLink>

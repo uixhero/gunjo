@@ -113,7 +113,7 @@ function FlowRunCard({ run, isJa }: { run: FlowRun; isJa: boolean }) {
                 >
                     {name}
                     {screen ? null : (
-                        <Badge variant="outline" className="ml-0.5">
+                        <Badge variant="outline" className="ml-1">
                             {isJa ? PLANNED_BADGE_SHORT_JA : PLANNED_BADGE_SHORT_EN}
                         </Badge>
                     )}
@@ -134,7 +134,7 @@ function FlowDiagram({ flow, isJa }: { flow: BusinessFlow; isJa: boolean }) {
                     {index > 0 ? (
                         <div
                             aria-hidden
-                            className="flex justify-center text-muted-foreground sm:items-center sm:px-0.5"
+                            className="flex justify-center text-muted-foreground sm:items-center sm:px-1"
                         >
                             <IconChevronDown className="h-4 w-4 sm:hidden" />
                             <IconChevronRight className="hidden h-4 w-4 sm:block" />
@@ -219,7 +219,7 @@ export function EntryOverview() {
                                             {isJa ? screen.titleJa : screen.titleEn}
                                         </span>
                                         <IconArrowUpRight
-                                            className="h-3.5 w-3.5 shrink-0 opacity-40 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+                                            className="h-4 w-4 shrink-0 opacity-40 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
                                             aria-hidden
                                         />
                                     </div>
@@ -253,11 +253,11 @@ export function EntryOverview() {
                                     {isJa ? planned.ja : planned.en}
                                 </span>
                                 <IconArrowUpRight
-                                    className="h-3.5 w-3.5 shrink-0 opacity-40 transition-opacity group-hover:opacity-100"
+                                    className="h-4 w-4 shrink-0 opacity-40 transition-opacity group-hover:opacity-100"
                                     aria-hidden
                                 />
                             </div>
-                            <p className="mt-0.5 text-xs text-muted-foreground">
+                            <p className="mt-1 text-xs text-muted-foreground">
                                 {isJa ? planned.stepJa : planned.stepEn}
                             </p>
                         </Link>
@@ -282,7 +282,7 @@ export function EntryOverview() {
                     <h3 className="text-sm font-semibold text-foreground">
                         {isJa ? "出発点になった回" : "Where it started"}
                     </h3>
-                    <ul className="space-y-1.5 text-sm">
+                    <ul className="space-y-2 text-sm">
                         {ORIGIN_ROUNDS.map((origin) => (
                             <li key={origin.round}>
                                 <Link
@@ -291,7 +291,7 @@ export function EntryOverview() {
                                 >
                                     {isJa ? origin.ja : origin.en}
                                     <IconArrowUpRight
-                                        className="h-3.5 w-3.5 shrink-0"
+                                        className="h-4 w-4 shrink-0"
                                         aria-hidden
                                     />
                                 </Link>
@@ -327,7 +327,7 @@ export function EntryOverview() {
                         <AccordionContent>
                             <ul className="space-y-2 text-sm leading-7">
                                 {PROVENANCE_LOG.map((entry, index) => (
-                                    <li key={index} className="flex flex-wrap gap-x-3 gap-y-0.5">
+                                    <li key={index} className="flex flex-wrap gap-x-3 gap-y-1">
                                         <time
                                             dateTime={entry.date}
                                             className="shrink-0 font-mono text-xs leading-7 text-muted-foreground"

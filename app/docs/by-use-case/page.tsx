@@ -178,7 +178,7 @@ export default function ByUseCasePage() {
                                     <div className="min-w-0">
                                         <p className="text-sm text-foreground">{t(it.build)}</p>
                                         {it.when ? (
-                                            <p className="mt-0.5 text-xs text-muted-foreground">{t(it.when)}</p>
+                                            <p className="mt-1 text-xs text-muted-foreground">{t(it.when)}</p>
                                         ) : null}
                                     </div>
                                     <div className="shrink-0">

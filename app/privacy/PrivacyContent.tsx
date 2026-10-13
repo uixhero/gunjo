@@ -14,7 +14,7 @@ export function PrivacyPolicyBody() {
                 4px合同会社（以下「当社」）は、GunjoUI（gunjo.jp、以下「本サイト」）における個人情報の取り扱いについて、以下のとおり定めます。本ポリシーは主に、本サイトの先行登録フォーム（
                 {/* ⛔ /pack へのリンクは張りません＝2026-09-20 にそのページを下げたので 404 です。
                     文字としての `/pack` は本文の一部なので残してあります（上のコメント参照）。 */}
-                <code className="rounded bg-muted px-1 py-0.5 text-sm">/pack</code>
+                <code className="rounded bg-muted px-1 text-sm">/pack</code>
                 ）でお預かりする情報を対象とします。
             </p>
 

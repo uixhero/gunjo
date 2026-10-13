@@ -79,7 +79,7 @@ export function StringlineDemo() {
     <div className="w-full max-w-2xl space-y-4">
       <div className="flex flex-wrap items-end gap-x-6 gap-y-3">
         <div className="min-w-52 flex-1">
-          <Label className="mb-1.5 flex justify-between text-xs">
+          <Label className="mb-2 flex justify-between text-xs">
             <span>現在時刻（now-line）</span>
             <span className="tabular-nums text-muted-foreground">
               {String(Math.floor(now / 60)).padStart(2, "0")}:{String(now % 60).padStart(2, "0")}

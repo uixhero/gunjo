@@ -340,7 +340,7 @@ export function LongFormDialog() {
         </DialogHeader>
         <DialogBody className="space-y-4">
           {fields.map((field) => (
-            <div key={field.id} className="space-y-1.5">
+            <div key={field.id} className="space-y-2">
               <Label htmlFor={field.id}>{field.label}</Label>
               <Input id={field.id} defaultValue={field.value} />
             </div>
@@ -392,7 +392,7 @@ export function LongFormDialog() {
         </DialogHeader>
         <DialogBody className="space-y-4">
           {fields.map((field) => (
-            <div key={field.id} className="space-y-1.5">
+            <div key={field.id} className="space-y-2">
               <Label htmlFor={field.id}>{field.label}</Label>
               <Input id={field.id} defaultValue={field.value} />
             </div>
@@ -546,7 +546,7 @@ export default function DialogPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

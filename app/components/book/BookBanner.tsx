@@ -82,11 +82,11 @@ export function BookBanner({ copy }: { copy: BookPromoStrings }) {
                                 {copy.eyebrow}
                             </p>
 
-                            <CardTitle as="h2" id={TITLE_ID} className="mt-1.5 text-lg leading-snug sm:text-xl">
+                            <CardTitle as="h2" id={TITLE_ID} className="mt-2 text-lg leading-snug sm:text-xl">
                                 {copy.title}
                             </CardTitle>
 
-                            <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                                 {copy.lead}
                             </p>
                         </div>

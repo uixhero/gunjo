@@ -26,14 +26,6 @@ function tsString(value) {
   return JSON.stringify(value);
 }
 
-/**
- * The Tailwind width utility that draws a spacing step in the docs ruler.
- * Emitted as a literal so Tailwind's content scan still sees every class.
- */
-function widthClass(entry) {
-  return `w-${entry.step}`;
-}
-
 function rows(entries, toFields) {
   return entries
     .map((entry) => {
@@ -61,8 +53,6 @@ export type SpacingStep = {
     value: string;
     /** What it measures at the 16px root default, e.g. "16px". */
     px: string;
-    /** Tailwind width utility that draws this step. */
-    widthClass: string;
     /** Off the 4px grid: hairlines, dots, ticks and centring only — never spacing (#1057). */
     detailOnly: boolean;
 };
@@ -96,7 +86,6 @@ ${rows(SPACING_STEPS, (entry) => ({
   token: entry.name,
   value: spacingValue(entry),
   px: spacingPx(entry),
-  widthClass: widthClass(entry),
   detailOnly: entry.detailOnly === true,
 }))}
 ];

@@ -795,7 +795,9 @@ export default function ChartsPage() {
                                     {item.description[locale]}
                                 </span>
                             </span>
-                            <ArrowRight className="mt-0.5 h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+                            <span className="flex h-6 shrink-0 items-center">
+                                <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+                            </span>
                         </Link>
                     ))}
                 </div>

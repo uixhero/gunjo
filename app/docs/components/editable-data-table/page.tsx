@@ -965,13 +965,13 @@ export function GuestList() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>升目の中身は部品が持たない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">columns[].cell</code> が返した要素をそのまま置くので、入力欄でも選択でも、計算した読み取り専用の文字でもかまいません。部品が持つのは骨組み（列幅・揃え・行の追加と削除・合計行）だけです。
+                            <strong>升目の中身は部品が持たない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">columns[].cell</code> が返した要素をそのまま置くので、入力欄でも選択でも、計算した読み取り専用の文字でもかまいません。部品が持つのは骨組み（列幅・揃え・行の追加と削除・合計行）だけです。
                         </li>
                         <li>
-                            <strong>読み上げ用の名前を作って渡す。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">cell</code> の第2引数には「2行目 単価」のような文字列（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ariaLabel</code>）が入っています。呼ぶ側はこれを入力欄の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> に載せるだけで済みます。名前の無い入力欄が並んだ表を作らせないための形です。
+                            <strong>読み上げ用の名前を作って渡す。</strong><code className="rounded bg-muted px-1 font-mono text-xs">cell</code> の第2引数には「2行目 単価」のような文字列（<code className="rounded bg-muted px-1 font-mono text-xs">ariaLabel</code>）が入っています。呼ぶ側はこれを入力欄の <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code> に載せるだけで済みます。名前の無い入力欄が並んだ表を作らせないための形です。
                         </li>
                         <li>
-                            <strong>スマホでは表をやめてカードに積み直す。</strong>デスクトップは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">table</code>、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">md</code> 未満は1行が1枚のカードになり、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">renderFooterCell</code> の合計もそれぞれの形で出ます（#210）。入力欄が並ぶ表は横に流すと打ち込めなくなるので、資料の「スクロール耐性」をここでは「形を変える」で解きました。
+                            <strong>スマホでは表をやめてカードに積み直す。</strong>デスクトップは <code className="rounded bg-muted px-1 font-mono text-xs">table</code>、<code className="rounded bg-muted px-1 font-mono text-xs">md</code> 未満は1行が1枚のカードになり、<code className="rounded bg-muted px-1 font-mono text-xs">renderFooterCell</code> の合計もそれぞれの形で出ます（#210）。入力欄が並ぶ表は横に流すと打ち込めなくなるので、資料の「スクロール耐性」をここでは「形を変える」で解きました。
                             <br />
                             一般の表の設計は UIXHERO の「テーブル」にあります。
                         </li>
@@ -979,13 +979,13 @@ export function GuestList() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The component owns no cell content.</strong> Whatever <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">columns[].cell</code> returns is placed as-is: an input, a select, or read-only derived text. All the component supplies is the frame: column widths, alignment, add and remove row, the footer row.
+                            <strong>The component owns no cell content.</strong> Whatever <code className="rounded bg-muted px-1 font-mono text-xs">columns[].cell</code> returns is placed as-is: an input, a select, or read-only derived text. All the component supplies is the frame: column widths, alignment, add and remove row, the footer row.
                         </li>
                         <li>
-                            <strong>It hands you the accessible name.</strong> The second argument to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">cell</code> carries <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ariaLabel</code>, a ready-made string like &ldquo;row 2, unit price&rdquo;; the caller just spreads it onto the editor&rsquo;s <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code>. That is how a grid of unlabelled inputs is prevented by construction.
+                            <strong>It hands you the accessible name.</strong> The second argument to <code className="rounded bg-muted px-1 font-mono text-xs">cell</code> carries <code className="rounded bg-muted px-1 font-mono text-xs">ariaLabel</code>, a ready-made string like &ldquo;row 2, unit price&rdquo;; the caller just spreads it onto the editor&rsquo;s <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code>. That is how a grid of unlabelled inputs is prevented by construction.
                         </li>
                         <li>
-                            <strong>Below <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">md</code> the table becomes cards.</strong> Desktop renders a real <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">table</code>; on narrow screens each row becomes a card, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">renderFooterCell</code> totals render in both shapes (#210). A grid of inputs is unusable when it scrolls sideways, so the article&rsquo;s scroll-resilience principle is answered here by changing shape instead.
+                            <strong>Below <code className="rounded bg-muted px-1 font-mono text-xs">md</code> the table becomes cards.</strong> Desktop renders a real <code className="rounded bg-muted px-1 font-mono text-xs">table</code>; on narrow screens each row becomes a card, and <code className="rounded bg-muted px-1 font-mono text-xs">renderFooterCell</code> totals render in both shapes (#210). A grid of inputs is unusable when it scrolls sideways, so the article&rsquo;s scroll-resilience principle is answered here by changing shape instead.
                             <br />
                             The general design of tables is covered by UIXHERO&rsquo;s table article.
                         </li>

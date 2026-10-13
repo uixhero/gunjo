@@ -165,7 +165,7 @@ export function WhyView({
                         className="pointer-events-none relative select-none overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted"
                     >
                         <div
-                            className="flex gap-1.5 opacity-[0.6]"
+                            className="flex gap-2 opacity-[0.6]"
                             style={{
                                 WebkitMaskImage:
                                     "linear-gradient(to bottom, black 40%, transparent)",
@@ -211,7 +211,7 @@ export function WhyView({
                     </h2>
                     {isJa ? (
                         <p className="leading-7 text-foreground">
-                            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">@gunjo/ui</code>{" "}
+                            <code className="rounded bg-muted px-1 font-mono text-sm">@gunjo/ui</code>{" "}
                             は、「AI から使えるように設計した」とうたって公開されました。コンポーネントを型つきで一か所からまとめて呼べること、
                             コンポーネントの仕様を機械が読めること、AI にそのまま渡せる説明があること。AI が「眺める」だけでなく
                             「読んでそのまま使える」形を、最初から組み込んだ設計です。
@@ -222,7 +222,7 @@ export function WhyView({
                     ) : (
                         <p className="leading-7 text-foreground">
                             When I shipped{" "}
-                            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">@gunjo/ui</code>{" "}
+                            <code className="rounded bg-muted px-1 font-mono text-sm">@gunjo/ui</code>{" "}
                             I claimed it was &quot;designed for AI to use&quot; — typed entry point, machine-readable
                             metadata, an AI-handoff doc surface built in from day one. Anyone can write that on a
                             landing page. So I tested it.
@@ -275,7 +275,7 @@ export function WhyView({
                             2回目は docs のコンポーネント検索や説明を調整するだけにとどめ、3回目になって初めてコンポーネントをつくります。
                             <strong>その形が本当に安定するのを見届けるため</strong>です。
                             急いで正式なコンポーネントにすると、コンポーネントの形がひとつの用途に狭く固まってしまいます。たとえば{" "}
-                            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">MatchCard</code>{" "}
+                            <code className="rounded bg-muted px-1 font-mono text-sm">MatchCard</code>{" "}
                             は、3回目（補助金マッチング＝会社×制度という<strong>異なる種類どうしのペア</strong>）が決め手になりました。
                             もし1〜2回目（同じ種類どうしのペア）の時点でつくっていたら、「会社×会社」に固定してしまっていたかもしれません。
                             異なる種類のペアに出会ったからこそ、「左右はどんな対象でもよい」という設計にたどり着けたのです。
@@ -286,7 +286,7 @@ export function WhyView({
                             Wait until the same gap shows up three times. First hit: file an issue. Second hit: nudge
                             the docs / discovery index. Third hit: build. The wait lets the shape stabilise — building
                             too early locks the API around a single use-case.{" "}
-                            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">MatchCard</code>{" "}
+                            <code className="rounded bg-muted px-1 font-mono text-sm">MatchCard</code>{" "}
                             became real on the third sighting (a subsidy-matching screen pairing{" "}
                             <em>company × programme</em> — heterogeneous entities). The first two were same-type pairs;
                             building then would have hard-coded a company-vs-company shape. The heterogeneous third
@@ -417,7 +417,7 @@ export function WhyView({
                                             className="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
                                         />
                                     </div>
-                                    <div className="truncate px-2 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors group-hover:text-foreground">
+                                    <div className="truncate px-2 py-1 text-[11px] leading-5 font-medium text-muted-foreground transition-colors group-hover:text-foreground">
                                         {t.categories[tile.category] ?? tile.category}
                                     </div>
                                 </Link>

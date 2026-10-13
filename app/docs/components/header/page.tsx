@@ -102,7 +102,7 @@ function HeaderExample({ compact = false, drawerNav = false }: { compact?: boole
                     {drawerNav ? (
                         <Drawer direction="right" open={drawerOpen} onOpenChange={setDrawerOpen}>
                             <DrawerTrigger asChild>
-                                <Button size="sm" variant="outline" className="h-9 w-9 gap-1.5 p-0 sm:h-8 sm:w-auto sm:px-3" aria-label={isJa ? "メニューを開く" : "Open menu"}>
+                                <Button size="sm" variant="outline" className="h-9 w-9 gap-2 p-0 sm:h-8 sm:w-auto sm:px-3" aria-label={isJa ? "メニューを開く" : "Open menu"}>
                                     <Menu className="h-4 w-4" aria-hidden />
                                     <span className="hidden sm:inline">{isJa ? "メニュー" : "Menu"}</span>
                                 </Button>
@@ -580,7 +580,7 @@ export function DrawerMenuHeader() {
           </TooltipButton>
           <Drawer direction="right" open={drawerOpen} onOpenChange={setDrawerOpen}>
             <DrawerTrigger asChild>
-              <Button size="sm" variant="outline" className="h-9 w-9 gap-1.5 p-0 sm:h-8 sm:w-auto sm:px-3" aria-label={isJa ? "メニューを開く" : "Open menu"}>
+              <Button size="sm" variant="outline" className="h-9 w-9 gap-2 p-0 sm:h-8 sm:w-auto sm:px-3" aria-label={isJa ? "メニューを開く" : "Open menu"}>
                 <Menu className="h-4 w-4" aria-hidden />
                 <span className="hidden sm:inline">{isJa ? "メニュー" : "Menu"}</span>
               </Button>
@@ -711,7 +711,7 @@ export function DrawerMenuHeader() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
