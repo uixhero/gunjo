@@ -13,13 +13,13 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### 採用先向けの要約（見た目が変わるもの）
 
-コードを直さなくても、依存を上げると部品の余白とアイコンの大きさが変わる（部品のファイル 120 個）。outline のボタンと入力欄の見た目も変わる。公開 API（部品・props・export・トークン名）は変わらない。
+コードを直さなくても、依存を上げると部品の余白とアイコンの大きさが変わる（部品のファイル 120 個）。公開 API（部品・props・export・トークン名）は変わらない。
 
 1. **余白・並びの間・大きさを 4px の倍数にそろえた**：6px の間は 8px に、2px の間は 4px になる。題と説明の間や、ラベルと入力の間で、縦が 2〜4px 伸びる。1行の行とバッジの高さは保った（メニューの項目は 32px、バッジは 20px のまま）。
 2. **14px のアイコンを 16px にした**：text-xs のバッジの中だけは 12px にした。
 3. **4つの部品は大きさが変わる**：`MapControlButton` の `sm`、`Tooltip`、`PlacePanel` の閉じる釦、`SegmentedControl` の `sm`。
-4. **outline のボタンに背景と濃い枠が付く**：`Button`・`Toggle`・`ToggleGroup`・`Badge`・`Tag` の outline。前の枠は、どの面の上でも見分けにくかった。
-5. **入力欄に背景が付き、使えない状態の見せ方が変わる**：使える欄は白い面（dark はカードの色）と濃い枠になる。使えない欄は、灰の面・薄い枠・薄い字になり、半透明にはしない。
+4. **outline の部品に背景と濃い枠が付く**：前の枠は、どの面の上でもほぼ見えなかった。
+5. **入力欄に背景が付き、使えない状態の見せ方が変わる**：使える欄は白い面（dark はカードの色）になる。使えない欄は灰の面・薄い枠・薄い字になる。
 
 ### Added
 
@@ -27,15 +27,14 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Changed
 
-- **outline のボタンに背景と濃い枠を付けた**（影響: **none**・見た目が変わる）(#1067)
+- **outline の部品に背景と濃い枠を付けた**（影響: **none**・見た目が変わる）(#1067)
   - 対象：`Button`・`Toggle`・`ToggleGroup`・`Badge`・`Tag` の outline。
   - 背景を透明から `bg-card` に、枠を `--border` から `--input` にした。
-  - 前の枠と面の比は、light 1.03〜1.24:1、dark 1.00〜1.37:1 で、背景も無かった。いまは枠だけで、どの面の上でも 2.8:1 以上になる。
+  - 枠と面の比は、light 1.03〜1.24:1 から 3.05〜3.99:1 に、dark 1.00〜1.37:1 から 2.81〜4.80:1 になる。dark の `--secondary` の上だけ 3:1 に届かない。
 - **入力欄に背景を付け、使えない状態の見せ方をそろえた**（影響: **none**・見た目が変わる）(#1067)
   - 対象：`Input`・`Textarea`・`Select`・`SearchInput`・`PasswordInput`・`NumberInput`・`CurrencyInput`・`PhoneInput`・`PostalCodeInput`・`ScanInput`・`TagInput`・`Mention`・`TimePicker`・`InputOTP`・`ChatInput`・`Checkbox`・`RadioGroup` の外枠。
   - 使える状態：背景を透明から `bg-card` にした。枠 `--input` は変えていない。
-  - 使えない状態：`bg-muted`、枠は `--input` の 40%、字は `text-muted-foreground`。部品ごとに違っていた半透明（50%・40%・70%）はやめた。
-  - 前は、使える欄と使えない欄の差が「薄いかどうか」だけで、地の色とも同じだった。
+  - 使えない状態：`bg-muted`、枠は `--input` の 40%、字は `text-muted-foreground`。部品ごとに違っていた全体の不透明度（50%・40%・70%）は下げない。
 
 - **部品を 4px グリッドにそろえた**（影響: **none**・見た目が変わる）(#1057)
   - **大きさが変わる4部品**：
