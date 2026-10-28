@@ -24,6 +24,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 ### Added
 
 - **`Code` に `variant="inherit"` を足した**（影響: **none**）：背景だけを付け、字の色と太さは周りの本文から受け継ぐ。薄い色の段落の中では、コードも薄い色になる。説明文の中で、項目の名前や値を少しだけ読み分けたいとき用。`default` と `muted` の見た目は変わらない。gunjo.jp の本文の中のコード 1,368 か所を、手書きの飾りからこの形に置き換えた（見た目は同じ）。(#1063)
+- **4px グリッドの検査が部品の `.pen` も読むようにした**（影響: **none**）：全ノードの `padding`・`gap`・`width`・`height` を見る。12px 未満の大きさは細部として通す。あわせて、`.pen` に残っていた外れ 166 か所を React の実装に合わせた。軸が入れ替わっていた余白（`Code`・`TagInput` の札・`Combobox` の項目・`Banner`・`AlertDialog` の釦など）も直した。配布物（`dist`）は変わらない。(#1059)
 - **4px グリッドの検査 `npm run design:verify:grid4`**（影響: **none**）：部品のクラスと、アイコンの `size={N}` を読む。`gap`・`space`・`padding`・`margin`・位置・大きさが 4 の倍数でなければ落とす。例外は、12px 未満の線・点・目盛りと、4px 未満の位置ずらし（中心合わせ）だけ。`design:verify` に含まれる。(#1057)
 
 ### Changed

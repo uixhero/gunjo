@@ -46,6 +46,7 @@ KeEemルール（new-4px DECISIONS.md 2026-10-11・#1057）。`@gunjo/ui`（`src
 - 例外（検査が自動で通す細部）: 12px 未満の大きさ（線・点・目盛り）と、4px 未満の位置ずらし（中心合わせ）。小数の段（`0.5` `1.5` `2.5` `3.5`）と `px` はこの細部専用。
 - 1行の行やバッジは、先に高さを決めてから余白を整数の段にする（メニューの項目は `min-h-8 py-1`＝32px）。アイコンを1行目の字に合わせるときは、`mt-0.5` ではなく1行目の高さの箱（`flex h-5 items-center`）に置く。
 - 機械検査: `npm run design:verify:grid4`（`design:verify` に含まれ、CI で走る）。4px から外す必要があるものは、理由つきで `design/policy/grid4-exceptions.json` に入れる。追加する前に KeEem に確認する。
+- 部品の `.pen` も同じ検査で見る（全ノードの `padding`・`gap`・`width`・`height`・#1059）。部品の余白を変えるときは、同じ PR で `.pen` も直す。
 
 ## Icon and toggle button tooltips
 

@@ -1,5 +1,5 @@
 {
-  "version": "2.18",
+  "version": "2.21",
   "children": [
     {
       "type": "frame",
@@ -999,7 +999,7 @@
                       "id": "ZpBfm",
                       "name": "Slider Track Fill",
                       "fill": "#0f172a",
-                      "width": 66,
+                      "width": 64,
                       "height": 4
                     },
                     {
@@ -1007,7 +1007,7 @@
                       "id": "BNvrN",
                       "name": "Slider Spacer",
                       "fill": "#e2e8f0",
-                      "width": 66,
+                      "width": 64,
                       "height": 1
                     },
                     {
@@ -1045,7 +1045,7 @@
                     {
                       "type": "frame",
                       "id": "nJyzj",
-                      "width": 66,
+                      "width": 64,
                       "height": 4,
                       "fill": "#0c0c12",
                       "cornerRadius": 999
@@ -1053,7 +1053,7 @@
                     {
                       "type": "frame",
                       "id": "UpOm1",
-                      "width": 66,
+                      "width": 64,
                       "height": 1
                     },
                     {
@@ -1411,11 +1411,12 @@
           "id": "lt4dz",
           "name": "Toggle/Default",
           "reusable": true,
+          "height": 36,
           "fill": "#ffffff",
           "cornerRadius": 6,
           "padding": [
-            12,
-            10
+            0,
+            8
           ],
           "justifyContent": "center",
           "alignItems": "center",
@@ -1436,11 +1437,12 @@
           "id": "w9AIN",
           "name": "Toggle/Pressed",
           "reusable": true,
+          "height": 36,
           "fill": "#f1f5f9",
           "cornerRadius": 6,
           "padding": [
-            12,
-            10
+            0,
+            8
           ],
           "justifyContent": "center",
           "alignItems": "center",
@@ -1461,14 +1463,15 @@
           "id": "W494H",
           "name": "Toggle/Outline",
           "reusable": true,
+          "height": 36,
           "fill": "#ffffff",
           "cornerRadius": 6,
           "stroke": "#6c819d",
           "strokeWidth": 1,
           "strokeAlignment": "inner",
           "padding": [
-            12,
-            10
+            0,
+            8
           ],
           "justifyContent": "center",
           "alignItems": "center",
@@ -1523,7 +1526,7 @@
                   "type": "frame",
                   "id": "T06rF",
                   "width": "fit_content(0)",
-                  "height": 14,
+                  "height": 16,
                   "fill": "#f1f5f9",
                   "cornerRadius": 3,
                   "justifyContent": "center",
@@ -1533,7 +1536,7 @@
                   "type": "frame",
                   "id": "Yzwu3",
                   "width": "fit_content(0)",
-                  "height": 14,
+                  "height": 16,
                   "fill": "#f1f5f9",
                   "cornerRadius": 3,
                   "justifyContent": "center",
@@ -1626,7 +1629,7 @@
           "id": "O3YMzw",
           "name": "InputOTP/Default",
           "reusable": true,
-          "gap": 6,
+          "gap": 8,
           "alignItems": "center",
           "children": [
             {
@@ -2093,7 +2096,7 @@
                 {
                   "type": "frame",
                   "id": "I4BsV",
-                  "width": 66,
+                  "width": 64,
                   "height": 4,
                   "fill": "#0c0c12",
                   "cornerRadius": 999
@@ -2101,7 +2104,7 @@
                 {
                   "type": "frame",
                   "id": "SmSew",
-                  "width": 66,
+                  "width": 64,
                   "height": 1
                 },
                 {
@@ -2526,11 +2529,12 @@
                     {
                       "type": "frame",
                       "id": "filterButtonBadge",
+                      "height": 20,
                       "fill": "#f1f5f9",
                       "cornerRadius": 4,
                       "padding": [
-                        2,
-                        6
+                        0,
+                        4
                       ],
                       "children": [
                         {
@@ -2562,9 +2566,10 @@
                     {
                       "type": "frame",
                       "id": "filterButtonCommandItem",
+                      "height": 32,
                       "gap": 8,
                       "padding": [
-                        6,
+                        4,
                         8
                       ],
                       "alignItems": "center",
@@ -2816,7 +2821,7 @@
           "width": 280,
           "fill": "#ffffff",
           "layout": "vertical",
-          "gap": 6,
+          "gap": 8,
           "padding": 16,
           "children": [
             {
@@ -2962,11 +2967,12 @@
                   "id": "Xd475",
                   "name": "cmbItem1",
                   "width": "fill_container",
+                  "height": 32,
                   "fill": "#f1f5f9",
                   "cornerRadius": 4,
                   "padding": [
-                    8,
-                    6
+                    4,
+                    8
                   ],
                   "alignItems": "center",
                   "children": [
@@ -2986,10 +2992,11 @@
                   "id": "GkEjg",
                   "name": "cmbItem2",
                   "width": "fill_container",
+                  "height": 32,
                   "cornerRadius": 4,
                   "padding": [
-                    8,
-                    6
+                    4,
+                    8
                   ],
                   "alignItems": "center",
                   "children": [
@@ -3009,10 +3016,11 @@
                   "id": "w3tAv",
                   "name": "cmbItem3",
                   "width": "fill_container",
+                  "height": 32,
                   "cornerRadius": 4,
                   "padding": [
-                    8,
-                    6
+                    4,
+                    8
                   ],
                   "alignItems": "center",
                   "children": [
@@ -3255,10 +3263,10 @@
           "stroke": "#e2e8f0",
           "strokeWidth": 1,
           "strokeAlignment": "inner",
-          "gap": 6,
+          "gap": 4,
           "padding": [
-            8,
-            6
+            4,
+            8
           ],
           "alignItems": "center",
           "children": [
@@ -3266,12 +3274,13 @@
               "type": "frame",
               "id": "fkMUQ",
               "name": "tiTag1",
+              "height": 20,
               "fill": "#f1f5f9",
               "cornerRadius": 4,
               "gap": 4,
               "padding": [
-                6,
-                2
+                0,
+                8
               ],
               "alignItems": "center",
               "children": [
@@ -3299,12 +3308,13 @@
               "type": "frame",
               "id": "EHf0I",
               "name": "tiTag2",
+              "height": 20,
               "fill": "#f1f5f9",
               "cornerRadius": 4,
               "gap": 4,
               "padding": [
-                6,
-                2
+                0,
+                8
               ],
               "alignItems": "center",
               "children": [
@@ -4063,7 +4073,7 @@
               "width": "fit_content",
               "height": 32,
               "padding": [
-                6,
+                0,
                 12
               ],
               "name": "instSm",
@@ -4092,7 +4102,7 @@
               "width": "fit_content",
               "height": 40,
               "padding": [
-                10,
+                0,
                 32
               ],
               "name": "instLg",

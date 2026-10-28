@@ -1,5 +1,5 @@
 {
-  "version": "2.18",
+  "version": "2.21",
   "children": [
     {
       "type": "frame",
@@ -276,7 +276,7 @@
                         {
                           "type": "frame",
                           "id": "z7HeAO",
-                          "width": 66,
+                          "width": 68,
                           "height": 16,
                           "fill": "#0c0c12",
                           "cornerRadius": 9999
@@ -1487,11 +1487,12 @@
           "name": "Banner/Default",
           "reusable": true,
           "width": 600,
+          "height": 40,
           "fill": "#0c0c12",
           "gap": 12,
           "padding": [
-            16,
-            10
+            0,
+            16
           ],
           "justifyContent": "space_between",
           "alignItems": "center",
@@ -2168,7 +2169,7 @@
               "width": "fit_content",
               "height": 32,
               "padding": [
-                6,
+                0,
                 12
               ],
               "name": "instSm",
@@ -2197,7 +2198,7 @@
               "width": "fit_content",
               "height": 40,
               "padding": [
-                10,
+                0,
                 32
               ],
               "name": "instLg",

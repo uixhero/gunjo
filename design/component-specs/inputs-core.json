@@ -1699,12 +1699,12 @@
           "type": "frame",
           "name": null,
           "width": null,
-          "height": null,
+          "height": 20,
           "padding": [
-            2,
-            6,
-            2,
-            6
+            0,
+            4,
+            0,
+            4
           ],
           "gap": null,
           "cornerRadius": 4,
@@ -1727,11 +1727,11 @@
           "type": "frame",
           "name": null,
           "width": null,
-          "height": null,
+          "height": 32,
           "padding": [
-            6,
+            4,
             8,
-            6,
+            4,
             8
           ],
           "gap": 8,

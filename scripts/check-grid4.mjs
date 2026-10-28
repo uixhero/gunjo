@@ -1,7 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { join, relative } from "node:path"
 import { ROOT } from "./design-sync/shared.mjs"
-import { throwLinesError } from "./design-verify-assertions.mjs"
+import { runVerificationCli, throwLinesError } from "./design-verify-assertions.mjs"
 
 // KeEem decision (new-4px DECISIONS.md 2026-10-11, issue #1057): GunjoUI sits on
 // a 4px grid. Spacing between items, the padding/inset an element is pushed in
@@ -25,11 +25,22 @@ import { throwLinesError } from "./design-verify-assertions.mjs"
 // Not read: inline `style={{ … }}` numbers and values computed in JS — those
 // are charts' coordinate maths or real-world sizes (a 375×667 device frame),
 // and a regex cannot tell them apart from layout.
+//
+// The design source is held to the same grid (#1059): `padding`, `gap`,
+// `width` and `height` of every node in the component .pen files, with the
+// same details exempt (a size below 12px). tokens.pen is not read — its
+// numbers are the token scale itself, detail steps included.
 
 const TARGETS = [
   { dir: "src/components", label: "部品" },
   { dir: "app", label: "サイト" },
 ]
+const PEN_TARGET = {
+  label: "設計（.pen）",
+  files: ["display", "feedback", "inputs", "layout", "navigation", "overlay", "patterns"].map(
+    (name) => `design/${name}.pen`
+  ),
+}
 const EXCEPTION_POLICY_PATH = "design/policy/grid4-exceptions.json"
 
 const SPACING_UTILITIES = [
@@ -155,6 +166,27 @@ export function collectGrid4Issues(relativeFilePath, content) {
   return issues
 }
 
+const PEN_KEY_KIND = { padding: "spacing", gap: "spacing", width: "size", height: "size" }
+
+// A .pen issue is keyed `<node id>.<field>` (stable across renames), and the
+// node's name stands where a source file has its line number.
+export function collectPenGrid4Issues(relativeFilePath, doc) {
+  const issues = []
+  const visit = (node) => {
+    for (const [key, kind] of Object.entries(PEN_KEY_KIND)) {
+      const values = Array.isArray(node[key]) ? node[key] : [node[key]]
+      for (const px of values) {
+        if (typeof px !== "number" || px === 0 || (Number.isInteger(px) && px % 4 === 0)) continue
+        if (kind === "size" && px < SIZE_DETAIL_BELOW_PX) continue
+        issues.push({ file: relativeFilePath, className: `${node.id}.${key}`, kind, px, line: node.name ?? node.id })
+      }
+    }
+    for (const child of node.children ?? []) visit(child)
+  }
+  for (const child of doc.children ?? []) visit(child)
+  return issues
+}
+
 const DATE_PATTERN = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
 
 function isNonEmptyString(value) {
@@ -215,6 +247,15 @@ function collectIssuesByFile(root, target) {
   return byFile
 }
 
+function collectPenIssuesByFile(root) {
+  const byFile = new Map()
+  for (const relativeFilePath of PEN_TARGET.files) {
+    const issues = collectPenGrid4Issues(relativeFilePath, JSON.parse(readFileSync(join(root, relativeFilePath), "utf-8")))
+    if (issues.length > 0) byFile.set(relativeFilePath, issues)
+  }
+  return byFile
+}
+
 function formatIssue(issue) {
   return `${issue.file}:${issue.line} "${issue.className}"（${issue.px}px・${KIND_LABEL[issue.kind]}）`
 }
@@ -232,7 +273,10 @@ export function collectGrid4Report(root) {
   const exceptionDrift = []
   const seenExceptionKeys = new Set()
 
-  const issuesByTarget = TARGETS.map((target) => ({ ...target, byFile: collectIssuesByFile(root, target.dir) }))
+  const issuesByTarget = [
+    ...TARGETS.map((target) => ({ ...target, byFile: collectIssuesByFile(root, target.dir) })),
+    { label: PEN_TARGET.label, byFile: collectPenIssuesByFile(root) },
+  ]
   const allFiles = issuesByTarget.flatMap((target) => [...target.byFile])
 
   for (const [, issues] of allFiles.sort((a, b) => a[0].localeCompare(b[0]))) {
@@ -334,8 +378,37 @@ const SELF_TEST_FIXTURES = [
   },
 ]
 
+// The first .pen fixture holds values that sat in the design source unchecked
+// after #1057 (#1059): Code's padding with its axes swapped, a 14px icon.
+const PEN_SELF_TEST_FIXTURES = [
+  {
+    name: ".pen：Code の [6,2]・14px の印・6px の間を検出する（#1059 で実際に残っていた値）",
+    doc: {
+      children: [
+        { id: "code", padding: [6, 2], children: [{ id: "icon", width: 14, height: 14 }] },
+        { id: "row", gap: 6, padding: [4, 8, 4, 4] },
+      ],
+    },
+    expect: ["code.padding", "code.padding", "icon.width", "icon.height", "row.gap"],
+  },
+  {
+    name: ".pen：4 の倍数・12px 未満の大きさ・文字列の大きさは通す",
+    doc: { children: [{ id: "ok", padding: [0, 12], gap: 8, width: "fill_container", height: 1, children: [{ id: "dot", width: 6, height: 10 }] }] },
+    expect: [],
+  },
+]
+
 function runSelfTest({ verbose } = {}) {
   const failures = []
+  for (const fixture of PEN_SELF_TEST_FIXTURES) {
+    const found = collectPenGrid4Issues("fixture.pen", fixture.doc)
+      .map((issue) => issue.className)
+      .sort((a, b) => a.localeCompare(b))
+    const expected = [...fixture.expect].sort((a, b) => a.localeCompare(b))
+    const ok = JSON.stringify(found) === JSON.stringify(expected)
+    if (!ok) failures.push(`${fixture.name}: expected [${expected.join(", ")}] but found [${found.join(", ")}]`)
+    if (verbose) console.log(`${ok ? "ok" : "NG"} - ${fixture.name}`)
+  }
   for (const fixture of SELF_TEST_FIXTURES) {
     const found = collectGrid4Issues("fixture.tsx", fixture.content)
       .map((issue) => issue.className)
@@ -401,15 +474,10 @@ if (isCli && process.argv.includes("--self-test")) {
     const total = [...byFile.values()].reduce((sum, issues) => sum + issues.length, 0)
     console.log(`${label}: ${byFile.size} ファイル・${total} 件`)
   }
-} else if (isCli) {
-  // Not runVerificationCli: its process.exit() cuts a long report off mid-write
-  // when stdout/stderr is a pipe (`… | grep` saw ~870 of ~2,350 lines and read
-  // "0 left"). exitCode lets the stream drain first.
-  try {
-    verifyGrid4()
-    console.log("design:verify: 4px grid check passed")
-  } catch (error) {
-    console.error(error.message)
-    process.exitCode = 1
-  }
+} else {
+  runVerificationCli({
+    scriptName: "check-grid4.mjs",
+    verify: verifyGrid4,
+    successMessage: "design:verify: 4px grid check passed",
+  })
 }
