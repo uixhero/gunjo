@@ -34,6 +34,7 @@ You can use GunjoUI two ways depending on how much you want to own:
 
 Pick what fits. The npm path is faster; the copy path gives you full control.`,
   },
+  // The page-skeleton code in step 5 is built as-is by scripts/check-pack-consumer-rsc.mjs (#774).
   installation: {
     title: "Installation",
     description: "Install @gunjo/ui in an existing Next.js or Vite + React project.",
@@ -157,6 +158,67 @@ export default function Page() {
 \`\`\`
 
 \`npm run dev\` and the buttons render with Gunjo UI styles.
+
+### 5. Build a page
+
+Keep \`page.tsx\` a Server Component and set the browser tab's name with the \`title\` in \`metadata\`. For the page heading, use \`DesktopPageHeader\` on desktop screens and \`PageHeader\` on phone screens.
+
+The \`DataTable\` in this example uses \`@tanstack/react-table\`. If you didn't install it in step 1, install it first:
+
+\`\`\`bash
+npm install @tanstack/react-table
+\`\`\`
+
+\`\`\`tsx
+// app/orders/page.tsx (a Server Component: no "use client")
+import type { Metadata } from "next";
+import { OrdersClient } from "./OrdersClient";
+
+export const metadata: Metadata = {
+  title: "Orders | Inventory",
+};
+
+export default function Page() {
+  return <OrdersClient />;
+}
+\`\`\`
+
+\`\`\`tsx
+// app/orders/OrdersClient.tsx
+"use client";
+
+import { Button, DesktopPageHeader } from "@gunjo/ui";
+import { DataTable, type ColumnDef } from "@gunjo/ui/table";
+
+type Order = { id: string; customer: string; total: number };
+
+const columns: ColumnDef<Order>[] = [
+  { accessorKey: "id", header: "Order" },
+  { accessorKey: "customer", header: "Customer" },
+  {
+    accessorKey: "total",
+    header: "Total",
+    cell: ({ row }) => \`$\${row.original.total.toLocaleString("en-US")}\`,
+  },
+];
+
+const orders: Order[] = [
+  { id: "A-1001", customer: "Aoyama Store", total: 128 },
+  { id: "A-1002", customer: "Gunjo Works", total: 43 },
+];
+
+export function OrdersClient() {
+  return (
+    <main className="p-8">
+      <DesktopPageHeader title="Orders" actions={<Button>Add order</Button>} />
+      <DataTable columns={columns} data={orders} />
+    </main>
+  );
+}
+\`\`\`
+
+- **The \`title\` of \`DesktopPageHeader\` or \`PageHeader\` is the page heading (\`<h1>\`), not the tab's name.** Without \`metadata\` in \`page.tsx\`, the tab shows the \`title\` from the \`metadata\` in \`layout.tsx\`, which is "Create Next App" if you kept the \`create-next-app\` default.
+- \`page.tsx\` is a Server Component, so it can't pass functions such as the \`cell\` in \`columns\` to \`DataTable\`, a Client Component. That's why the page's content lives in \`OrdersClient.tsx\`, marked \`"use client"\`, and \`page.tsx\` only renders it.
 
 ### Using it from Server Components (Next.js App Router / RSC)
 

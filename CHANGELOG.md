@@ -24,6 +24,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 ### Added
 
 - **4px グリッドの検査 `npm run design:verify:grid4`**（影響: **none**）：部品のクラスと、アイコンの `size={N}` を読む。`gap`・`space`・`padding`・`margin`・位置・大きさが 4 の倍数でなければ落とす。例外は、12px 未満の線・点・目盛りと、4px 未満の位置ずらし（中心合わせ）だけ。`design:verify` に含まれる。(#1057)
+- **導入手順に「ページを1つ作る」を足した**（影響: **none**）：`page.tsx`（Server Component）で `metadata` の `title`（ブラウザのタブの名前）を決め、画面の中身を `"use client"` のファイルに分ける例。`PageHeader`・`DesktopPageHeader` の `title` はタブの名前にならないことも書いた。`/docs/installation`（日英）と `docs/adoption.md`。例のコードは `npm run lib:check:rsc-consumer` が tarball に入れてそのまま `next build` し、`<title>` と `<h1>` が出ることを確かめる。(#774)
 
 ### Changed
 
