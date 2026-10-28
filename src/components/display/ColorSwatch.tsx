@@ -39,7 +39,7 @@ const ColorSwatch = React.forwardRef<HTMLDivElement, ColorSwatchProps>(
             <div
                 ref={ref}
                 className={cn(
-                    "inline-flex items-center gap-2 rounded-md border border-input bg-transparent p-1.5 pr-2 text-sm",
+                    "inline-flex items-center gap-2 rounded-md border border-input bg-transparent p-1 pr-2 text-sm",
                     className
                 )}
                 {...props}

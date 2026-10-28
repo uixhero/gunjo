@@ -563,8 +563,10 @@ export default function DisplayOverviewPage() {
                     return (
                         <div key={group.title.en} className="space-y-3">
                             <div className="flex items-start gap-3">
-                                <div className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-md bg-primary-subtle text-primary-subtle-foreground">
-                                    <Icon className="h-5 w-5" />
+                                <div className="flex h-8 shrink-0 items-center">
+                                    <div className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-primary-subtle text-primary-subtle-foreground">
+                                        <Icon className="h-5 w-5" />
+                                    </div>
                                 </div>
                                 <div>
                                     <h2 className="text-2xl font-semibold tracking-tight">
@@ -620,11 +622,15 @@ export default function DisplayOverviewPage() {
                     </CardHeader>
                     <CardContent className="space-y-3 text-sm text-muted-foreground">
                         <div className="flex gap-2">
-                            <IconChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                            <span className="flex h-6 shrink-0 items-center">
+                                <IconChevronRight className="h-4 w-4 shrink-0 text-primary" />
+                            </span>
                             <p>{isJa ? "状態色だけで意味を伝えず、ラベルや補助テキストを併用します。" : "Do not communicate status through color alone. Pair color with labels or helper text."}</p>
                         </div>
                         <div className="flex gap-2">
-                            <IconChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                            <span className="flex h-6 shrink-0 items-center">
+                                <IconChevronRight className="h-4 w-4 shrink-0 text-primary" />
+                            </span>
                             <p>{isJa ? "カードやグリッドは、タイトル、メタ情報、操作の位置を揃えます。" : "Cards and grids should align title, metadata, and action placement."}</p>
                         </div>
                     </CardContent>
@@ -640,12 +646,16 @@ export default function DisplayOverviewPage() {
                     </CardHeader>
                     <CardContent className="space-y-3 text-sm text-muted-foreground">
                         <div className="flex gap-2">
-                            <IconPhoto className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                            <span className="flex h-6 shrink-0 items-center">
+                                <IconPhoto className="h-4 w-4 shrink-0 text-primary" />
+                            </span>
                             <p>{isJa ? "メディア単体は AssetCard、複数一覧は AssetGrid を使います。" : "Use AssetCard for one media item and AssetGrid for browsable collections."}</p>
                         </div>
                         <Separator />
                         <div className="flex gap-2">
-                            <IconUsers className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                            <span className="flex h-6 shrink-0 items-center">
+                                <IconUsers className="h-4 w-4 shrink-0 text-primary" />
+                            </span>
                             <p>{isJa ? "人物単体は Avatar、参加者のまとまりは AvatarGroup を使います。" : "Use Avatar for one person and AvatarGroup for compact participant sets."}</p>
                         </div>
                     </CardContent>

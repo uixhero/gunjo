@@ -443,7 +443,7 @@ export default function DropdownMenuPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
@@ -456,25 +456,25 @@ export default function DropdownMenuPage() {
                 {isJa ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>開く先を指定できるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">portalContainer</code> を渡すと、メニューを指定した箱の中に描きます。プレビューの枠や、画面の中に画面を描いている場面で、メニューだけが外に飛び出すのを防ぎます。あらかじめ高さを空けておく代わりに、重ねて出して解いています。
+                            <strong>開く先を指定できるようにする。</strong><code className="rounded bg-muted px-1 font-mono text-xs">portalContainer</code> を渡すと、メニューを指定した箱の中に描きます。プレビューの枠や、画面の中に画面を描いている場面で、メニューだけが外に飛び出すのを防ぎます。あらかじめ高さを空けておく代わりに、重ねて出して解いています。
                         </li>
                         <li>
-                            <strong>使えない項目に、理由を出せるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> を渡すと、灰色の項目にツールチップで理由が出ます。焦点の当たる要素で包むので、キーボードからも読めます。
+                            <strong>使えない項目に、理由を出せるようにする。</strong><code className="rounded bg-muted px-1 font-mono text-xs">disabledReason</code> を渡すと、灰色の項目にツールチップで理由が出ます。焦点の当たる要素で包むので、キーボードからも読めます。
                         </li>
                         <li>
-                            <strong>焦点の出入りは Radix に任せる。</strong>開いたときに最初の項目へ焦点が移ること、Esc で閉じてトリガーに焦点が戻ることは、土台の Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DropdownMenu</code> が持っています。GUNJO が足しているのは見た目と、上の2つの口です。三点のボタンに <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> を付けるのは呼ぶ側の仕事です。
+                            <strong>焦点の出入りは Radix に任せる。</strong>開いたときに最初の項目へ焦点が移ること、Esc で閉じてトリガーに焦点が戻ることは、土台の Radix <code className="rounded bg-muted px-1 font-mono text-xs">DropdownMenu</code> が持っています。GUNJO が足しているのは見た目と、上の2つの口です。三点のボタンに <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code> を付けるのは呼ぶ側の仕事です。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>Choose where the menu opens.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">portalContainer</code> and the menu renders inside the element you name, so it cannot escape a preview frame or a simulated browser surface. Overlaying is the answer here, rather than reserving height in advance.
+                            <strong>Choose where the menu opens.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">portalContainer</code> and the menu renders inside the element you name, so it cannot escape a preview frame or a simulated browser surface. Overlaying is the answer here, rather than reserving height in advance.
                         </li>
                         <li>
-                            <strong>A disabled item can say why.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> and the greyed-out item carries a tooltip with the reason, wrapped in a focusable element so the keyboard reaches it too.
+                            <strong>A disabled item can say why.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">disabledReason</code> and the greyed-out item carries a tooltip with the reason, wrapped in a focusable element so the keyboard reaches it too.
                         </li>
                         <li>
-                            <strong>Focus in and out belongs to Radix.</strong> Moving focus to the first item on open, and returning it to the trigger on Escape, come from the underlying Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DropdownMenu</code>. What GUNJO adds is the visual and the two props above. Giving an ellipsis trigger an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> is left to the caller.
+                            <strong>Focus in and out belongs to Radix.</strong> Moving focus to the first item on open, and returning it to the trigger on Escape, come from the underlying Radix <code className="rounded bg-muted px-1 font-mono text-xs">DropdownMenu</code>. What GUNJO adds is the visual and the two props above. Giving an ellipsis trigger an <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code> is left to the caller.
                         </li>
                     </ul>
                 )}

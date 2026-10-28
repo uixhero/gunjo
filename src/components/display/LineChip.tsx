@@ -21,7 +21,7 @@ export interface LineChipProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 const SIZE: Record<LineChipSize, string> = {
   sm: "h-5 min-w-[1.5rem] px-1 text-[11px]",
-  default: "h-6 min-w-[1.75rem] px-1.5 text-xs",
+  default: "h-6 min-w-[1.75rem] px-2 text-xs",
 }
 
 /** Black/white text for a hex bg by relative luminance — pure + SSR-deterministic. Returns null for non-hex. */

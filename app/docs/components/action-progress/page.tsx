@@ -41,8 +41,8 @@ export function SaveSettings() {
   };
 
   return (
-    // ${t("開いたときの高さ（実測 155px）を先に取ります", "Reserve the open height (measured 155px)")}
-    <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
+    // ${t("開いたときの高さ（実測 157px）を 4px の倍数に切り上げて取ります", "Reserve the open height (measured 157px), rounded up to the 4px grid")}
+    <div ref={setContainer} className="relative grid min-h-40 w-full place-items-center [&>*]:[grid-area:1/1]">
       <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(2000)}>${t("保存する（2秒）", "Save (2 s)")}</Button>
@@ -85,8 +85,8 @@ export function JustAfterSave() {
   };
 
   return (
-    // ${t("開いたときの高さ（実測 155px）を先に取ります", "Reserve the open height (measured 155px)")}
-    <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
+    // ${t("開いたときの高さ（実測 157px）を 4px の倍数に切り上げて取ります", "Reserve the open height (measured 157px), rounded up to the 4px grid")}
+    <div ref={setContainer} className="relative grid min-h-40 w-full place-items-center [&>*]:[grid-area:1/1]">
       <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(450)}>${t("0.45秒で終わる保存", "Save (0.45 s)")}</Button>
@@ -115,7 +115,7 @@ export function ProfileForm() {
   const [saved, setSaved] = React.useState(0);
 
   return (
-    <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
+    <div ref={setContainer} className="relative grid min-h-40 w-full place-items-center [&>*]:[grid-area:1/1]">
       <div className="flex w-full flex-col items-center gap-4">
       <form
         className="flex w-full max-w-sm flex-col gap-3 text-left"
@@ -125,7 +125,7 @@ export function ProfileForm() {
           setSaved((n) => n + 1);
         }}
       >
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="action-progress-name">${t("表示名", "Display name")}</Label>
           <Input id="action-progress-name" name="name" defaultValue="${t("青木", "Aoki")}" />
         </div>
@@ -165,8 +165,8 @@ export function SaveSettings() {
   };
 
   return (
-    // ${t("開いたときの高さ（実測 155px）を先に取ります", "Reserve the open height (measured 155px)")}
-    <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
+    // ${t("開いたときの高さ（実測 157px）を 4px の倍数に切り上げて取ります", "Reserve the open height (measured 157px), rounded up to the 4px grid")}
+    <div ref={setContainer} className="relative grid min-h-40 w-full place-items-center [&>*]:[grid-area:1/1]">
       <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(2000)}>${t("保存する（2秒）", "Save (2 s)")}</Button>
@@ -338,7 +338,7 @@ export function ReduceMotionDemo() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

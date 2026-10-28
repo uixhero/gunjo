@@ -70,8 +70,8 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
         return (
             <div
                 className={cn(
-                    "flex flex-wrap items-center gap-1 rounded-md border border-input bg-transparent px-2 py-1 text-sm shadow-sm focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
-                    disabled && "opacity-50 pointer-events-none",
+                    "flex flex-wrap items-center gap-1 rounded-md border border-input bg-card px-2 py-1 text-sm shadow-sm focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
+                    disabled && "pointer-events-none border-input/40 bg-muted text-muted-foreground",
                     className
                 )}
                 data-slot="tag-input"
@@ -103,7 +103,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
                     onBlur={commit}
                     placeholder={tags.length === 0 ? placeholder : ""}
                     disabled={disabled}
-                    className="min-w-[80px] flex-1 bg-transparent px-1 py-0.5 outline-none placeholder:text-muted-foreground"
+                    className="min-w-[80px] flex-1 bg-transparent px-1 leading-6 outline-none placeholder:text-muted-foreground"
                 />
             </div>
         )

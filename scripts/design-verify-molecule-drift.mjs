@@ -179,12 +179,12 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     ) {
       assertMatch(errors, cardSource, /\bp-6\b/, 'CardHeader should include "p-6"');
     }
-    if (header?.gap === 6) {
+    if (header?.gap === 8) {
       assertMatch(
         errors,
         cardSource,
-        /\bspace-y-1\.5\b/,
-        'CardHeader should include "space-y-1.5"'
+        /\bspace-y-2(?![\w.])/,
+        'CardHeader should include "space-y-2"'
       );
     }
 
@@ -554,12 +554,12 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     }
 
     const sep1 = breadcrumb.nodes?.sep1;
-    if (sep1?.width === 14 && sep1?.height === 14) {
+    if (sep1?.width === 16 && sep1?.height === 16) {
       assertMatch(
         errors,
         breadcrumbSource,
-        /\[\&>svg\]:size-3\.5/,
-        'Breadcrumb separator should include "[&>svg]:size-3.5"'
+        /\[\&>svg\]:size-4(?![\w.])/,
+        'Breadcrumb separator should include "[&>svg]:size-4"'
       );
     }
 
@@ -905,12 +905,12 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     }
 
     const successClose = toast.nodes?.successClose;
-    if (successClose?.width === 14 && successClose?.height === 14) {
+    if (successClose?.width === 16 && successClose?.height === 16) {
       assertMatch(
         errors,
         toastSource,
-        /X size=\{14\}/,
-        "Toast close icon should use size={14}"
+        /X size=\{16\}/,
+        "Toast close icon should use size={16}"
       );
     }
     },
@@ -1070,8 +1070,8 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         paginationSource,
-        /\bclassName=\{cn\("gap-1 pl-2\.5", className\)\}/,
-        'PaginationPrevious should include "gap-1 pl-2.5"'
+        /\bclassName=\{cn\("gap-1 pl-3", className\)\}/,
+        'PaginationPrevious should include "gap-1 pl-3"'
       );
     }
 
@@ -1080,8 +1080,8 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         paginationSource,
-        /\bclassName=\{cn\("gap-1 pr-2\.5", className\)\}/,
-        'PaginationNext should include "gap-1 pr-2.5"'
+        /\bclassName=\{cn\("gap-1 pr-3", className\)\}/,
+        'PaginationNext should include "gap-1 pr-3"'
       );
     }
 
@@ -1199,8 +1199,8 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     }
 
     const header = dialog.nodes?.header;
-    if (header?.gap === 6) {
-      assertMatch(errors, dialogSource, /\bspace-y-1\.5\b/, 'DialogHeader should include "space-y-1.5"');
+    if (header?.gap === 8) {
+      assertMatch(errors, dialogSource, /\bspace-y-2(?![\w.])/, 'DialogHeader should include "space-y-2"');
     }
 
     const headerTitle = dialog.nodes?.headerTitle;
@@ -1457,8 +1457,10 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     if (Array.isArray(trigger?.padding) && trigger.padding[1] === 12) {
       assertMatch(errors, menubarSource, /\bpx-3\b/, 'MenubarTrigger should include "px-3"');
     }
-    if (Array.isArray(trigger?.padding) && trigger.padding[0] === 6) {
-      assertMatch(errors, menubarSource, /\bpy-1\.5\b/, 'MenubarTrigger should include "py-1.5"');
+    // 4px grid (#1057): the .pen trigger is 32 tall with 4px block padding,
+    // which the source spells as min-h-8 + py-1 so a single line stays 32.
+    if (Array.isArray(trigger?.padding) && trigger.padding[0] === 4 && trigger?.height === 32) {
+      assertMatch(errors, menubarSource, /\bmin-h-8\b[^"]*\bpy-1(?![\w.])/, 'MenubarTrigger should include "min-h-8 … py-1"');
     }
     if (trigger?.cornerRadius === 4) {
       assertMatch(errors, menubarSource, /\brounded-sm\b/, 'MenubarTrigger should include "rounded-sm"');
@@ -1694,7 +1696,7 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       assertMatch(errors, sidebarItemSource, /\brounded-md\b/, 'SidebarItem should include "rounded-md"');
     }
     if (defaultVariant?.height === 36) {
-      assertMatch(errors, sidebarItemSource, /\bpy-1\.5\b/, 'SidebarItem should include "py-1.5"');
+      assertMatch(errors, sidebarItemSource, /\bpy-1(?![\w.])/, 'SidebarItem should include "py-1"');
     }
     if (activeVariant?.fill) {
       assertMatch(

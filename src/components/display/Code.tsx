@@ -8,8 +8,8 @@ export const codeVariants = cva(
     {
         variants: {
             variant: {
-                default: "bg-muted text-foreground px-[0.4rem] py-[0.15rem]",
-                muted: "bg-secondary text-muted-foreground border border-border px-[0.4rem] py-[0.15rem]",
+                default: "bg-muted text-foreground px-1",
+                muted: "bg-secondary text-muted-foreground border border-border px-1",
             },
             size: {
                 sm: "text-xs",

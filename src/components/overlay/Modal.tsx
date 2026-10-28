@@ -83,7 +83,7 @@ export function Modal({
                         className="rounded-md p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                         aria-label={closeLabel ?? strings.close}
                     >
-                        <X size={18} />
+                        <X size={16} />
                     </button>
                 </div>
                 <div className="p-4">

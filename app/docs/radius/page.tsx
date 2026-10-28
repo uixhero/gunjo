@@ -43,10 +43,10 @@ const COPY = {
         subtitle: (
             <>
                 Radius scale anchored to{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono">--radius (0.5rem)</code>.
+                <code className="rounded bg-muted px-1 text-sm font-mono">--radius (0.5rem)</code>.
                 Most controls sit at{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono">rounded-md</code> /{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono">rounded-lg</code>;
+                <code className="rounded bg-muted px-1 text-sm font-mono">rounded-md</code> /{" "}
+                <code className="rounded bg-muted px-1 text-sm font-mono">rounded-lg</code>;
                 use the larger steps for marketing surfaces only.
             </>
         ),
@@ -54,12 +54,12 @@ const COPY = {
         baseBody: (
             <>
                 Several Tailwind aliases derive from this:
-                <code className="mx-1 rounded bg-background px-1.5 py-0.5 text-xs font-mono">rounded-md</code> ={" "}
-                <code className="mx-1 rounded bg-background px-1.5 py-0.5 text-xs font-mono">calc(var(--radius) - 2px)</code>,{" "}
-                <code className="mx-1 rounded bg-background px-1.5 py-0.5 text-xs font-mono">rounded-sm</code> ={" "}
-                <code className="mx-1 rounded bg-background px-1.5 py-0.5 text-xs font-mono">calc(var(--radius) - 4px)</code>.
+                <code className="mx-1 rounded bg-background px-1 text-xs font-mono">rounded-md</code> ={" "}
+                <code className="mx-1 rounded bg-background px-1 text-xs font-mono">calc(var(--radius) - 2px)</code>,{" "}
+                <code className="mx-1 rounded bg-background px-1 text-xs font-mono">rounded-sm</code> ={" "}
+                <code className="mx-1 rounded bg-background px-1 text-xs font-mono">calc(var(--radius) - 4px)</code>.
                 Tweak{" "}
-                <code className="mx-1 rounded bg-background px-1.5 py-0.5 text-xs font-mono">--radius</code>{" "}
+                <code className="mx-1 rounded bg-background px-1 text-xs font-mono">--radius</code>{" "}
                 and the entire system rounds together.
             </>
         ),
@@ -70,10 +70,10 @@ const COPY = {
         subtitle: (
             <>
                 {" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono">--radius (0.5rem)</code>{" "}
+                <code className="rounded bg-muted px-1 text-sm font-mono">--radius (0.5rem)</code>{" "}
                 を基点とする radius スケール。コントロールの多くは{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono">rounded-md</code> /{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono">rounded-lg</code>{" "}
+                <code className="rounded bg-muted px-1 text-sm font-mono">rounded-md</code> /{" "}
+                <code className="rounded bg-muted px-1 text-sm font-mono">rounded-lg</code>{" "}
                 を使い、より大きなステップはマーケティング面に限定します。
             </>
         ),
@@ -81,11 +81,11 @@ const COPY = {
         baseBody: (
             <>
                 Tailwind のいくつかのエイリアスがこの値から派生します：
-                <code className="mx-1 rounded bg-background px-1.5 py-0.5 text-xs font-mono">rounded-md</code> ={" "}
-                <code className="mx-1 rounded bg-background px-1.5 py-0.5 text-xs font-mono">calc(var(--radius) - 2px)</code>、{" "}
-                <code className="mx-1 rounded bg-background px-1.5 py-0.5 text-xs font-mono">rounded-sm</code> ={" "}
-                <code className="mx-1 rounded bg-background px-1.5 py-0.5 text-xs font-mono">calc(var(--radius) - 4px)</code>。{" "}
-                <code className="mx-1 rounded bg-background px-1.5 py-0.5 text-xs font-mono">--radius</code>{" "}
+                <code className="mx-1 rounded bg-background px-1 text-xs font-mono">rounded-md</code> ={" "}
+                <code className="mx-1 rounded bg-background px-1 text-xs font-mono">calc(var(--radius) - 2px)</code>、{" "}
+                <code className="mx-1 rounded bg-background px-1 text-xs font-mono">rounded-sm</code> ={" "}
+                <code className="mx-1 rounded bg-background px-1 text-xs font-mono">calc(var(--radius) - 4px)</code>。{" "}
+                <code className="mx-1 rounded bg-background px-1 text-xs font-mono">--radius</code>{" "}
                 を変更すれば、システム全体の角丸が一斉に追従します。
             </>
         ),

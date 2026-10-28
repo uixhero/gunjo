@@ -9,7 +9,7 @@ const skeletonVariants = cva(
             shape: {
                 rectangle: "h-4 w-full",
                 circle: "h-10 w-10 rounded-full",
-                text: "h-3.5 w-full rounded-full",
+                text: "h-3 w-full rounded-full",
             },
         },
         defaultVariants: {

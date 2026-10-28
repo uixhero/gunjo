@@ -69,7 +69,7 @@ export function ScheduleGridDemo() {
                 onSelect: () => setPicked(key),
                 description: `${lesson.subject}、${lesson.teacher}、${lesson.room}${conflict ? "、競合あり" : ""}`,
                 content: (
-                    <div className="flex h-full flex-col gap-0.5">
+                    <div className="flex h-full flex-col gap-1">
                         <div className="flex items-start justify-between gap-1">
                             <span className="text-sm font-semibold leading-tight">{lesson.subject}</span>
                             {conflict ? <Badge variant="destructive">競合</Badge> : null}

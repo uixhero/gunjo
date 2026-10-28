@@ -148,7 +148,7 @@ const COPY = {
 /* ---------- dial (direction) ---------- */
 
 const DIAL = 224;
-const DIAL_R = DIAL / 2 - 14;
+const DIAL_R = DIAL / 2 - 12;
 
 function Dial({
     up,
@@ -170,11 +170,11 @@ function Dial({
         <div className="relative mx-auto shrink-0" style={{ width: DIAL, height: DIAL }} role="img" aria-label={label}>
             <div
                 className={cn(
-                    "absolute inset-[14px] rounded-full border",
+                    "absolute inset-3 rounded-full border",
                     hit ? "border-success" : "border-border"
                 )}
             />
-            {hit ? <div className="absolute inset-[9px] rounded-full border-2 border-success" /> : null}
+            {hit ? <div className="absolute inset-2 rounded-full border-2 border-success" /> : null}
             <div className="absolute inset-0" style={{ transform: `rotate(${-up}deg)` }}>
                 {Array.from({ length: 24 }, (_, i) => {
                     const a = i * 15;
@@ -183,7 +183,7 @@ function Dial({
                         <span
                             key={a}
                             className={cn(
-                                "absolute left-1/2 top-[14px]",
+                                "absolute left-1/2 top-3",
                                 major ? "-ml-px h-[11px] w-[2px] bg-foreground/70" : "h-[5px] w-px bg-muted-foreground/60"
                             )}
                             style={{ transform: `rotate(${a}deg)`, transformOrigin: `50% ${DIAL_R}px` }}
@@ -207,12 +207,12 @@ function Dial({
             </div>
             <div className="absolute inset-0" style={{ transform: `rotate(${arrow}deg)` }}>
                 <span
-                    className={cn("absolute left-1/2 -ml-[13px] h-[26px] w-[26px]", hit ? "bg-success" : "bg-warning")}
-                    style={{ top: 18, clipPath: "polygon(50% 0, 100% 100%, 50% 74%, 0 100%)" }}
+                    className={cn("absolute left-1/2 -ml-3 h-6 w-6", hit ? "bg-success" : "bg-warning")}
+                    style={{ top: 16, clipPath: "polygon(50% 0, 100% 100%, 50% 74%, 0 100%)" }}
                 />
                 <span
                     className={cn("absolute left-1/2 -ml-[1.5px] w-[3px] rounded-full", hit ? "bg-success" : "bg-warning")}
-                    style={{ top: 40, height: DIAL / 2 - 48 }}
+                    style={{ top: 36, height: DIAL / 2 - 44 }}
                 />
             </div>
         </div>
@@ -433,7 +433,7 @@ export function DirectionFinderDemo({
                         onPressedChange={setDim}
                         aria-label={copy.dimLabel}
                         variant="outline"
-                        className="h-14 w-14 flex-col gap-0.5 rounded-full text-[11px]"
+                        className="h-14 w-14 flex-col gap-1 rounded-full text-[11px]"
                     >
                         <Icon icon={IconBrightnessDown} size="sm" />
                         {copy.dim}
@@ -443,7 +443,7 @@ export function DirectionFinderDemo({
                         onPressedChange={setHaptics}
                         aria-label={copy.hapticsLabel}
                         variant="outline"
-                        className="h-14 w-14 flex-col gap-0.5 rounded-full text-[11px]"
+                        className="h-14 w-14 flex-col gap-1 rounded-full text-[11px]"
                     >
                         <Icon icon={IconDeviceMobileVibration} size="sm" />
                         {copy.haptics}
@@ -509,7 +509,7 @@ export function DirectionFinderDemo({
                     <div className="space-y-1 rounded-lg bg-muted/50 p-3" aria-live="polite">
                         <p className="text-xs font-medium text-muted-foreground">{copy.log}</p>
                         {log.length ? (
-                            <ul className="space-y-0.5 text-sm">
+                            <ul className="space-y-1 text-sm">
                                 {log.map((line, i) => (
                                     <li key={`${i}-${line}`} className={i === 0 ? "text-foreground" : "text-muted-foreground"}>
                                         {line}

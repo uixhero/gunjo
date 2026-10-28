@@ -20,6 +20,25 @@ function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+// Field / outline surfaces (#1067, KeEem 2026-10-13): an enabled field and an
+// outline control are a filled box (bg-card) with the 3:1 edge (border-input).
+// A disabled field is a muted block with the 3:1 edge at 40% (still a shape on a
+// muted band, where --border would vanish) and dimmed text.
+// No opacity: half-transparent fields only read as "fainter", which was the
+// complaint, so the contract forbids it.
+function assertFieldDisabledContract(errors, source, label) {
+  assertMatch(errors, source, /\bdisabled:border-input\/40\b/, `${label} disabled state should include "disabled:border-input/40"`);
+  assertMatch(errors, source, /\bdisabled:bg-muted\b/, `${label} disabled state should include "disabled:bg-muted"`);
+  assertNoMatch(errors, source, /\bdisabled:opacity-\d+\b/, `${label} disabled state should not use "disabled:opacity-*" (#1067)`);
+}
+
+// A .pen padding (px) as the Tailwind step the source must carry. GunjoUI sits
+// on a 4px grid (#1057), so the step is an integer and `px-2` must not also
+// match an off-grid `px-2.5` — hence the `(?![\w.])` tail.
+function spacingStepPattern(prefixes, px) {
+  return new RegExp(`(?<![\\w-])(?:${prefixes.join("|")})-${escapeRegex(String(px / 4))}(?![\\w.])`);
+}
+
 export function verifyComponentDrift({ root = ROOT } = {}) {
   const { spec: feedbackSpec, sourceDirPath: feedbackSourceDirPath } =
     readCategorySpec({ root, category: "feedback" });
@@ -147,8 +166,8 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         buttonSource,
-        /\bborder border-border\b/,
-        'Button outline variant should include "border border-border"'
+        /\bborder border-input bg-card\b/,
+        'Button outline variant should include "border border-input bg-card" (#1067)'
       );
     }
 
@@ -227,18 +246,12 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
 
     const hasDisabledVariant = input.variants.some((v) => v?.key === "disabled");
     if (hasDisabledVariant) {
-      assertMatch(errors, inputSource, /\bdisabled:bg-muted\b/, 'Input should include "disabled:bg-muted"');
+      assertFieldDisabledContract(errors, inputSource, "Input");
       assertMatch(
         errors,
         inputSource,
         /\bdisabled:text-muted-foreground\b/,
         'Input should include "disabled:text-muted-foreground"'
-      );
-      assertMatch(
-        errors,
-        inputSource,
-        /\bdisabled:opacity-50\b/,
-        'Input should include "disabled:opacity-50"'
       );
     }
 
@@ -306,8 +319,14 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
         'Badge default should include "rounded-full"'
       );
     }
-    if (Array.isArray(defaultVariant?.padding) && defaultVariant.padding[1] === 10) {
-      assertMatch(errors, badgeSource, /\bpx-2\.5\b/, 'Badge default should include "px-2.5"');
+    if (Array.isArray(defaultVariant?.padding)) {
+      const inline = defaultVariant.padding[1];
+      assertMatch(
+        errors,
+        badgeSource,
+        spacingStepPattern(["px"], inline),
+        `Badge default should include "px-${inline / 4}" (.pen padding ${inline}px)`
+      );
     }
     if (Array.isArray(defaultVariant?.padding) && defaultVariant.padding[0] === 4) {
       assertAnyMatch(
@@ -323,8 +342,8 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         badgeSource,
-        /\bborder-border\b/,
-        'Badge outline should include "border-border"'
+        /outline: "border-input bg-card\b/,
+        'Badge outline should be "border-input bg-card" (#1067)'
       );
       assertMatch(
         errors,
@@ -435,18 +454,7 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
 
     const hasDisabledVariant = checkbox.variants.some((v) => v?.key === "disabled");
     if (hasDisabledVariant) {
-      assertMatch(
-        errors,
-        checkboxSource,
-        /\bdisabled:bg-muted\b/,
-        'Checkbox disabled state should include "disabled:bg-muted"'
-      );
-      assertMatch(
-        errors,
-        checkboxSource,
-        /\bdisabled:opacity-50\b/,
-        'Checkbox disabled state should include "disabled:opacity-50"'
-      );
+      assertFieldDisabledContract(errors, checkboxSource, "Checkbox");
     }
 
     assertMatch(
@@ -720,23 +728,12 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
 
     const hasDisabled = textarea.variants.some((v) => v?.key === "disabled");
     if (hasDisabled) {
-      assertMatch(
-        errors,
-        textareaSource,
-        /\bdisabled:bg-muted\b/,
-        'Textarea disabled state should include "disabled:bg-muted"'
-      );
+      assertFieldDisabledContract(errors, textareaSource, "Textarea");
       assertMatch(
         errors,
         textareaSource,
         /\bdisabled:text-muted-foreground\b/,
         'Textarea disabled state should include "disabled:text-muted-foreground"'
-      );
-      assertMatch(
-        errors,
-        textareaSource,
-        /\bdisabled:opacity-50\b/,
-        'Textarea disabled state should include "disabled:opacity-50"'
       );
     }
 
@@ -934,11 +931,17 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
     }
 
     const defaultVariant = kbd.variants.find((v) => v?.key === "key");
-    if (Array.isArray(defaultVariant?.padding)) {
-      if (defaultVariant.padding[1] === 6) {
-        assertMatch(errors, kbdSource, /\bpx-1\.5\b/, 'Kbd should include "px-1.5"');
-      }
-      if (defaultVariant.padding[0] === 4) {
+    if (defaultVariant?.padding !== undefined) {
+      const [block, inline] = Array.isArray(defaultVariant.padding)
+        ? defaultVariant.padding
+        : [defaultVariant.padding, defaultVariant.padding];
+      assertMatch(
+        errors,
+        kbdSource,
+        spacingStepPattern(block === inline ? ["p", "px"] : ["px"], inline),
+        `Kbd should include "${block === inline ? "p" : "px"}-${inline / 4}" (.pen padding ${inline}px)`
+      );
+      if (block === 4) {
         assertMatch(
           errors,
           kbdSource,
@@ -1344,12 +1347,7 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       /\bfocus:ring-ring\b/,
       'Select should include "focus:ring-ring"'
     );
-    assertMatch(
-      errors,
-      selectSource,
-      /\bdisabled:bg-muted\b/,
-      'Select disabled state should include "disabled:bg-muted"'
-    );
+    assertFieldDisabledContract(errors, selectSource, "Select");
     assertMatch(
       errors,
       selectSource,
@@ -1438,8 +1436,8 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         toggleGroupSource,
-        /\bbg-transparent\b/,
-        'ToggleGroup outline variant should include "bg-transparent"'
+        /outline: "border border-input bg-card\b/,
+        'ToggleGroup outline variant should be "border border-input bg-card" (#1067)'
       );
     }
 
@@ -1511,9 +1509,10 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       "ToolPill should apply state classes from variant map"
     );
 
-    assertMatch(errors, toolPillSource, /\bp-1\.5\b/, 'ToolPill should include "p-1.5" size class');
-    assertMatch(errors, toolPillSource, /\bp-2\.5\b/, 'ToolPill should include "p-2.5" size class');
-    assertMatch(errors, toolPillSource, /\bp-3\.5\b/, 'ToolPill should include "p-3.5" size class');
+    // 32 / 40 / 48 boxes with a 16 / 20 / 24 glyph, all on the 4px grid (#1057).
+    assertMatch(errors, toolPillSource, /\bh-8 w-8 rounded-lg p-2(?![\w.])/, 'ToolPill sm should be "h-8 w-8 rounded-lg p-2"');
+    assertMatch(errors, toolPillSource, /\bh-10 w-10 rounded-xl p-2(?![\w.])/, 'ToolPill md should be "h-10 w-10 rounded-xl p-2"');
+    assertMatch(errors, toolPillSource, /\bh-12 w-12 rounded-xl p-3(?![\w.])/, 'ToolPill lg should be "h-12 w-12 rounded-xl p-3"');
 
     if (
       primaryVariant?.children?.length ||

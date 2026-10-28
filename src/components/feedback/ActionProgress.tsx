@@ -121,7 +121,7 @@ const ActionProgress = React.forwardRef<HTMLDivElement, ActionProgressProps>(
                         >
                             {icon ?? <Spinner className="text-primary motion-reduce:animate-none [[data-motion=reduce]_&]:animate-none" />}
                         </span>
-                        <div role="status" aria-live="polite" className="min-w-0 space-y-1.5">
+                        <div role="status" aria-live="polite" className="min-w-0 space-y-2">
                             <DialogTitle>{title}</DialogTitle>
                             {description ? <DialogDescription>{description}</DialogDescription> : null}
                         </div>

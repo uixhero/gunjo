@@ -94,7 +94,7 @@ const Statistic = React.forwardRef<HTMLDivElement, StatisticProps>(
                     `tabular-nums` aligns the digits. Text values still wrap. (#188) */}
                 <p className="text-2xl font-bold tracking-tight tabular-nums break-words">{value}</p>
                 {change !== undefined ? (
-                    <div className={cn("flex flex-wrap items-center gap-x-1 gap-y-0.5 text-xs", TONE_CLASS[resolvedTone])}>
+                    <div className={cn("flex flex-wrap items-center gap-x-1 gap-y-1 text-xs", TONE_CLASS[resolvedTone])}>
                         <TrendIcon className="h-3 w-3" />
                         <span className="font-medium">{change}</span>
                         {hint ? (

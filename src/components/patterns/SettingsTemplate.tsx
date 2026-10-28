@@ -27,7 +27,7 @@ export function SettingsTemplate({
                 </div>
             </div>
             <div className={cn("hidden min-h-screen w-full flex-col items-center gap-4 space-y-6 p-10 pb-16 md:flex", className)} {...props}>
-                <div className="space-y-0.5">
+                <div className="space-y-1">
                     <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
                     <p className="text-muted-foreground">
                         {description}

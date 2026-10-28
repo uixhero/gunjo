@@ -518,7 +518,7 @@ export function DatePickerUsage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-88 overflow-auto">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

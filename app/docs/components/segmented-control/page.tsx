@@ -40,7 +40,7 @@ function SegmentedControlPreview({ locale }: { locale: "ja" | "en" }) {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-4">
-      <label className="flex flex-col gap-1.5">
+      <label className="flex flex-col gap-2">
         <span className="text-sm font-medium text-foreground">
           {locale === "ja" ? "旅客区分" : "Passenger type"}
         </span>
@@ -52,7 +52,7 @@ function SegmentedControlPreview({ locale }: { locale: "ja" | "en" }) {
         />
       </label>
 
-      <label className="flex flex-col gap-1.5">
+      <label className="flex flex-col gap-2">
         <span className="text-sm font-medium text-foreground">
           {locale === "ja" ? "支払い方法" : "Payment method"}
         </span>
@@ -124,7 +124,7 @@ export function SegmentedControlExample() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-4">
-      <label className="flex flex-col gap-1.5">
+      <label className="flex flex-col gap-2">
         <span className="text-sm font-medium text-foreground">旅客区分</span>
         <SegmentedControl
           aria-label="旅客区分"
@@ -138,7 +138,7 @@ export function SegmentedControlExample() {
         />
       </label>
 
-      <label className="flex flex-col gap-1.5">
+      <label className="flex flex-col gap-2">
         <span className="text-sm font-medium text-foreground">支払い方法</span>
         <SegmentedControl
           aria-label="支払い方法"
@@ -169,7 +169,7 @@ export function SegmentedControlExample() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-4">
-      <label className="flex flex-col gap-1.5">
+      <label className="flex flex-col gap-2">
         <span className="text-sm font-medium text-foreground">Passenger type</span>
         <SegmentedControl
           aria-label="Passenger type"
@@ -183,7 +183,7 @@ export function SegmentedControlExample() {
         />
       </label>
 
-      <label className="flex flex-col gap-1.5">
+      <label className="flex flex-col gap-2">
         <span className="text-sm font-medium text-foreground">Payment method</span>
         <SegmentedControl
           aria-label="Payment method"
@@ -500,7 +500,7 @@ export function LockedPassengerTypeControl() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+        <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

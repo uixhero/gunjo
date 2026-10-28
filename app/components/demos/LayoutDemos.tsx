@@ -10,7 +10,7 @@ import {
 
 export function CardDemo() {
     return (
-        <Card className="w-[350px]">
+        <Card className="w-88">
             <CardHeader>
                 <CardTitle>Create project</CardTitle>
                 <CardDescription>Deploy your new project in one-click.</CardDescription>
@@ -18,7 +18,7 @@ export function CardDemo() {
             <CardContent>
                 <form>
                     <div className="grid w-full items-center gap-4">
-                        <div className="flex flex-col space-y-1.5">
+                        <div className="flex flex-col space-y-2">
                             <Input id="name" placeholder="Name of your project" />
                         </div>
                     </div>

@@ -316,7 +316,7 @@ const TimelineScrubber = React.forwardRef<HTMLDivElement, TimelineScrubberProps>
                                     ) : null}
                                     <span
                                         className={cn(
-                                            "absolute bottom-1.5 -translate-x-1/2 rounded-full",
+                                            "absolute bottom-1 -translate-x-1/2 rounded-full",
                                             step.major ? "h-4 w-0.5" : "h-3 w-px",
                                             step.pending
                                                 ? "bg-muted-foreground/30"
@@ -339,7 +339,7 @@ const TimelineScrubber = React.forwardRef<HTMLDivElement, TimelineScrubberProps>
 
                     {/* The centre: always the step being shown. */}
                     {count > 0 ? (
-                        <span aria-hidden className="pointer-events-none absolute bottom-0.5 left-1/2 top-[18px] flex -translate-x-1/2 flex-col items-center">
+                        <span aria-hidden className="pointer-events-none absolute bottom-0.5 left-1/2 top-5 flex -translate-x-1/2 flex-col items-center">
                             <span
                                 className={cn(
                                     "h-0 w-0 border-x-[5px] border-t-[6px] border-x-transparent",

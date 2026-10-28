@@ -19,7 +19,7 @@ export default function CookbookIndexPage() {
         <div className="container py-12">
             <div className="space-y-12">
                 <header className="space-y-4">
-                    <Badge variant="outline" className="gap-1.5">
+                    <Badge variant="outline" className="gap-1">
                         <ChefHat className="h-3 w-3" />
                         Prompt cookbook
                     </Badge>
@@ -67,7 +67,7 @@ export default function CookbookIndexPage() {
                                     className="inline-flex items-center gap-1 self-start text-sm font-medium text-primary hover:underline"
                                 >
                                     Open recipe
-                                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                                 </Link>
                             </CardContent>
                         </Card>

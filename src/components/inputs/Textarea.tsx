@@ -6,7 +6,7 @@ import { textareaDefaultVariantKey } from "./generated/default-variant-keys"
 const textareaVariantClasses: Record<TextareaVariantKey, string> = {
     default: "placeholder:text-muted-foreground",
     disabled:
-        "placeholder:text-muted-foreground disabled:bg-muted disabled:text-muted-foreground disabled:opacity-50",
+        "placeholder:text-muted-foreground disabled:border-input/40 disabled:bg-muted disabled:text-muted-foreground",
 }
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -42,7 +42,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         const control = (
             <textarea
                 className={cn(
-                    "block h-20 w-full rounded-lg border border-input bg-transparent px-3 py-2 text-sm font-normal shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed",
+                    "block h-20 w-full rounded-lg border border-input bg-card px-3 py-2 text-sm font-normal shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed",
                     "aria-invalid:border-destructive-border aria-invalid:ring-destructive-border aria-invalid:focus-visible:ring-destructive-border",
                     textareaVariantClasses[textareaState],
                     className
@@ -63,7 +63,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         if (!hasWrap) return control
 
         return (
-            <div className="flex w-full flex-col gap-1.5">
+            <div className="flex w-full flex-col gap-2">
                 {label ? (
                     <label htmlFor={controlId} className="text-sm font-medium leading-none text-foreground">
                         {label}

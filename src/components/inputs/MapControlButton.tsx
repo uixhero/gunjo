@@ -22,8 +22,10 @@ export type MapControlButtonStatus = "idle" | "busy" | "error"
 const sizeClasses: Record<MapControlButtonVariantKey, string> = {
     // 44px — the touch line GunjoUI holds everywhere else (#837).
     default: "h-11 w-11 [&_svg]:h-5 [&_svg]:w-5",
-    // 34px — the floor. A dense map column on a phone; never smaller.
-    sm: "h-[34px] w-[34px] [&_svg]:h-[17px] [&_svg]:w-[17px]",
+    // 40px — the floor. A dense map column on a phone; never smaller. Was 34px
+    // until the 4px grid (#1057); 40 with a 16px glyph is what 地球と月 settled
+    // on for the same column (v416).
+    sm: "h-10 w-10 [&_svg]:h-4 [&_svg]:w-4",
     // 48px — tablets, where the map is the whole screen.
     lg: "h-12 w-12 [&_svg]:h-6 [&_svg]:w-6",
 }
@@ -58,7 +60,7 @@ export interface MapControlButtonProps
      * focusable through its wrapper so keyboard readers reach the reason too.
      */
     disabledReason?: string
-    /** `sm` 34px (the floor) / `default` 44px / `lg` 48px. */
+    /** `sm` 40px (the floor) / `default` 44px / `lg` 48px. */
     size?: MapControlButtonVariantKey
     /** Side for the tooltip. Default `"left"` — map columns sit on the right edge. */
     tooltipSide?: "top" | "right" | "bottom" | "left"
@@ -73,7 +75,7 @@ export interface MapControlButtonProps
  * cloud alike. It is not a Button variant because a Button on a page has the
  * page behind it; this one has a satellite photo.
  *
- * ⚠️ **Never below 34px** (`size="sm"`). The default is 44px, the touch line
+ * ⚠️ **Never below 40px** (`size="sm"`). The default is 44px, the touch line
  * the rest of GunjoUI holds.
  *
  * ⚠️ **The glyph carries meaning, so keep two of them apart**: "my location"

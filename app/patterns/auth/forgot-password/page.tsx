@@ -116,7 +116,7 @@ export default function ForgotPasswordPage() {
                     href="/patterns/auth/login"
                     className="block text-xs text-muted-foreground underline-offset-4 hover:underline"
                 >
-                    <ArrowLeft className="mr-0.5 inline size-3.5 align-[-0.1875em]" aria-hidden />
+                    <ArrowLeft className="mr-1 inline size-3 align-[-0.1875em]" aria-hidden />
                     {t.backToLogin}
                 </Link>
             </div>
@@ -176,7 +176,7 @@ export default function ForgotPasswordPage() {
                 href="/patterns/auth/login"
                 className="text-center text-xs text-muted-foreground underline-offset-4 hover:underline"
             >
-                <ArrowLeft className="mr-0.5 inline size-3.5 align-[-0.1875em]" aria-hidden />
+                <ArrowLeft className="mr-1 inline size-3 align-[-0.1875em]" aria-hidden />
                 {t.backToLogin}
             </Link>
             </div>

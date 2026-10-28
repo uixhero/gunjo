@@ -38,13 +38,13 @@ export interface SegmentedControlProps
 }
 
 const TRACK_PAD: Record<SegmentedControlSize, string> = {
-  sm: "p-0.5",
+  sm: "p-1",
   default: "p-1",
   lg: "p-1",
 }
 
 const SEG_SIZE: Record<SegmentedControlSize, string> = {
-  sm: "h-7 px-2.5 text-xs",
+  sm: "h-6 px-2 text-xs",
   default: "h-9 px-3 text-sm",
   lg: "h-11 px-4 text-sm",
 }
@@ -115,7 +115,7 @@ const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedControlProps>
         aria-disabled={disabled || undefined}
         onKeyDown={disabled ? undefined : handleKeyDown}
         className={cn(
-          "inline-flex items-center gap-0.5 rounded-lg bg-muted text-muted-foreground",
+          "inline-flex items-center gap-1 rounded-lg bg-muted text-muted-foreground",
           TRACK_PAD[size],
           fullWidth && "flex w-full",
           disabled && "opacity-50",
@@ -140,7 +140,7 @@ const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedControlProps>
               tabIndex={tabStop ? 0 : -1}
               onClick={() => commit(opt.value)}
               className={cn(
-                "inline-flex min-w-0 items-center justify-center gap-1.5 rounded-md font-medium transition-colors",
+                "inline-flex min-w-0 items-center justify-center gap-2 rounded-md font-medium transition-colors",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
                 SEG_SIZE[size],
                 fullWidth && "flex-1",

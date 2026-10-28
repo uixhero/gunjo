@@ -104,10 +104,10 @@
           ],
           "gap": 8,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "justifyContent": "center",
@@ -608,10 +608,10 @@
           ],
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "alignItems": "center",
@@ -652,10 +652,10 @@
           ],
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "alignItems": "center",
@@ -754,10 +754,10 @@
           "padding": null,
           "gap": null,
           "cornerRadius": 4,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "iconFontFamily": null,
@@ -902,10 +902,10 @@
           ],
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "iconFontFamily": null,
@@ -959,10 +959,10 @@
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "iconFontFamily": null,
@@ -1069,10 +1069,10 @@
           ],
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "justifyContent": "space_between",
@@ -1162,10 +1162,10 @@
           ],
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "justifyContent": "center",
@@ -2563,7 +2563,7 @@
     "mapControlButton": {
       "frameId": "synthetic:mapControlButton",
       "title": "MapControlButton",
-      "description": "The round, icon-only button that floats on a map or a canvas: zoom in, zoom out, go to the picked place, go to my location. Its surface is its own (translucent background, blurred backdrop, hairline border) because the thing behind it is imagery, not a page — which is why it is a component and not a Button variant. States: `pressed` (a toggle that is on, aria-pressed), `disabled` with a `disabledReason` tooltip reachable by keyboard, `status='busy'` (the glyph pulses, aria-busy; the pulse stops under prefers-reduced-motion) and `status='error'` (a warning ring plus a `!` mark — never colour alone; brief, and cleared by the caller because the button holds no timer). `label` is both the accessible name and the tooltip. Sizes: `default` 44px (the GunjoUI touch line), `sm` 34px (the floor for a dense phone column — never smaller), `lg` 48px (tablet). The glyph carries meaning: 'my location' is a pin and 'the place I picked' is a ring with a dot; one glyph for both makes the reader guess where the map will jump. Distinct from Button / TooltipButton (on a page, not on imagery) and ToggleGroup (several exclusive choices). LayerMenu uses it as its trigger.",
+      "description": "The round, icon-only button that floats on a map or a canvas: zoom in, zoom out, go to the picked place, go to my location. Its surface is its own (translucent background, blurred backdrop, hairline border) because the thing behind it is imagery, not a page — which is why it is a component and not a Button variant. States: `pressed` (a toggle that is on, aria-pressed), `disabled` with a `disabledReason` tooltip reachable by keyboard, `status='busy'` (the glyph pulses, aria-busy; the pulse stops under prefers-reduced-motion) and `status='error'` (a warning ring plus a `!` mark — never colour alone; brief, and cleared by the caller because the button holds no timer). `label` is both the accessible name and the tooltip. Sizes: `default` 44px (the GunjoUI touch line), `sm` 40px (the floor for a dense phone column — never smaller), `lg` 48px (tablet). The glyph carries meaning: 'my location' is a pin and 'the place I picked' is a ring with a dot; one glyph for both makes the reader guess where the map will jump. Distinct from Button / TooltipButton (on a page, not on imagery) and ToggleGroup (several exclusive choices). LayerMenu uses it as its trigger.",
       "variants": [
         {
           "id": "synthetic:default",

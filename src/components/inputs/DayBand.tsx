@@ -433,7 +433,7 @@ const DayBand = React.forwardRef<HTMLDivElement, DayBandProps>(
                 {...props}
             >
                 {label != null || hint != null ? (
-                    <div className="mb-1.5 flex items-baseline justify-between gap-3 text-xs">
+                    <div className="mb-2 flex items-baseline justify-between gap-3 text-xs">
                         <span className="min-w-0 truncate font-medium text-foreground">{label}</span>
                         <span className="min-w-0 truncate tabular-nums text-muted-foreground">
                             {hint}

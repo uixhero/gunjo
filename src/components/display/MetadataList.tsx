@@ -26,16 +26,23 @@ export interface MetadataListProps extends React.HTMLAttributes<HTMLDListElement
     wrap?: boolean
 }
 
-const variantClasses: Record<MetadataListVariantKey, { root: string; row: string; horizontalRow: string; value: string }> = {
+// 4px grid (#1057): a default stacked row is 4px padding + a 24px line (label
+// and value alike), so it stays 32px tall. rowLabel / rowIcon apply to stacked
+// rows only; in the horizontal card the label keeps text-xs's line height.
+const variantClasses: Record<MetadataListVariantKey, { root: string; row: string; rowLabel: string; rowIcon: string; horizontalRow: string; value: string }> = {
     default: {
         root: "space-y-2",
-        row: "grid grid-cols-[minmax(0,1fr)_auto] gap-4 rounded-md px-0 py-1.5",
-        horizontalRow: "rounded-md border border-border/70 bg-card px-3 py-2.5",
-        value: "text-sm",
+        row: "grid grid-cols-[minmax(0,1fr)_auto] gap-4 rounded-md px-0 py-1",
+        rowLabel: "leading-6",
+        rowIcon: "h-6",
+        horizontalRow: "rounded-md border border-border/70 bg-card px-3 py-2",
+        value: "text-sm leading-6",
     },
     compact: {
         root: "space-y-1",
         row: "grid grid-cols-[minmax(0,1fr)_auto] gap-3 rounded-md px-0 py-1",
+        rowLabel: "",
+        rowIcon: "h-4",
         horizontalRow: "rounded-md border border-border/70 bg-card px-3 py-2",
         value: "text-xs",
     },
@@ -68,8 +75,8 @@ const MetadataList = React.forwardRef<HTMLDListElement, MetadataListProps>(
                     const itemWrap = item.wrap ?? wrap
                     return (
                     <div key={index} className={isHorizontal ? classes.horizontalRow : classes.row}>
-                        <dt className="flex min-w-0 items-start gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                            {item.icon ? <span className="mt-0.5 shrink-0 text-muted-foreground">{item.icon}</span> : null}
+                        <dt className={cn("flex min-w-0 items-start gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground", !isHorizontal && classes.rowLabel)}>
+                            {item.icon ? <span className={cn("flex shrink-0 items-center text-muted-foreground", isHorizontal ? "h-4" : classes.rowIcon)}>{item.icon}</span> : null}
                             <span
                                 className="min-w-0 truncate"
                                 title={typeof item.label === "string" ? item.label : undefined}
@@ -86,7 +93,7 @@ const MetadataList = React.forwardRef<HTMLDListElement, MetadataListProps>(
                             </div>
                             {item.description ? (
                                 <div
-                                    className={cn("mt-0.5 text-xs font-normal text-muted-foreground", itemWrap ? "break-words" : "truncate")}
+                                    className={cn("mt-1 text-xs font-normal text-muted-foreground", itemWrap ? "break-words" : "truncate")}
                                     title={!itemWrap && typeof item.description === "string" ? item.description : undefined}
                                 >
                                     {item.description}

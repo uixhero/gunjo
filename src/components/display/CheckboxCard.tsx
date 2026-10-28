@@ -103,25 +103,26 @@ export const CheckboxCard = React.forwardRef<HTMLButtonElement, CheckboxCardProp
         )}
         {...props}
       >
-        <span
-          aria-hidden="true"
-          className={cn(
-            "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-[5px] border",
-            checked ? "border-primary bg-primary text-primary-foreground" : "border-input"
-          )}
-        >
-          {checked && <IconCheck className="size-3.5" />}
+        <span aria-hidden="true" className="flex h-6 shrink-0 items-center">
+          <span
+            className={cn(
+              "flex size-5 items-center justify-center rounded-[5px] border",
+              checked ? "border-primary bg-primary text-primary-foreground" : "border-input"
+            )}
+          >
+            {checked && <IconCheck className="size-3" />}
+          </span>
         </span>
 
-        {leading != null && <span className="mt-0.5 flex shrink-0 items-center">{leading}</span>}
+        {leading != null && <span className="flex min-h-6 shrink-0 items-center">{leading}</span>}
 
         <span className="min-w-0 flex-1">
-          {tags != null && <span className="mb-1 flex flex-wrap items-center gap-1.5">{tags}</span>}
+          {tags != null && <span className="mb-1 flex flex-wrap items-center gap-2">{tags}</span>}
           <span className="flex items-start justify-between gap-3">
             <span className="min-w-0 font-medium text-foreground">{title}</span>
             {price != null && <span className="shrink-0 text-base font-bold tabular-nums text-foreground">{price}</span>}
           </span>
-          {description != null && <span className="mt-0.5 block text-sm text-muted-foreground">{description}</span>}
+          {description != null && <span className="mt-1 block text-sm text-muted-foreground">{description}</span>}
           {highlight != null && <span className="mt-1 block text-xs font-medium text-success-strong">{highlight}</span>}
         </span>
 

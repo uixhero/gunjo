@@ -628,7 +628,7 @@
           "id": "authTemplateFormContainer",
           "type": "frame",
           "name": null,
-          "width": 350,
+          "width": 352,
           "height": null,
           "layout": "vertical",
           "padding": null,

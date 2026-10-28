@@ -16,9 +16,9 @@
           "height": 20,
           "padding": [
             4,
-            10,
+            8,
             4,
-            10
+            8
           ],
           "gap": null,
           "cornerRadius": 9999,
@@ -57,9 +57,9 @@
           "height": 20,
           "padding": [
             4,
-            10,
+            8,
             4,
-            10
+            8
           ],
           "gap": null,
           "cornerRadius": 9999,
@@ -98,9 +98,9 @@
           "height": 20,
           "padding": [
             4,
-            10,
+            8,
             4,
-            10
+            8
           ],
           "gap": null,
           "cornerRadius": 9999,
@@ -139,16 +139,16 @@
           "height": 20,
           "padding": [
             4,
-            10,
+            8,
             4,
-            10
+            8
           ],
           "gap": null,
           "cornerRadius": 9999,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "justifyContent": "center",
@@ -184,9 +184,9 @@
           "height": 20,
           "padding": [
             4,
-            10,
+            8,
             4,
-            10
+            8
           ],
           "gap": null,
           "cornerRadius": 9999,
@@ -229,9 +229,9 @@
           "height": 20,
           "padding": [
             4,
-            10,
+            8,
             4,
-            10
+            8
           ],
           "gap": null,
           "cornerRadius": 9999,
@@ -274,9 +274,9 @@
           "height": 20,
           "padding": [
             4,
-            10,
+            8,
             4,
-            10
+            8
           ],
           "gap": null,
           "cornerRadius": 9999,
@@ -657,9 +657,9 @@
           "height": 20,
           "padding": [
             4,
-            6,
             4,
-            6
+            4,
+            4
           ],
           "gap": null,
           "cornerRadius": 4,
@@ -850,10 +850,10 @@
           "width": 40,
           "height": 40,
           "padding": [
-            10,
-            10,
-            10,
-            10
+            8,
+            8,
+            8,
+            8
           ],
           "gap": null,
           "cornerRadius": 12,
@@ -875,10 +875,10 @@
           "width": 40,
           "height": 40,
           "padding": [
-            10,
-            10,
-            10,
-            10
+            8,
+            8,
+            8,
+            8
           ],
           "gap": null,
           "cornerRadius": 12,
@@ -900,10 +900,10 @@
           "width": 40,
           "height": 40,
           "padding": [
-            10,
-            10,
-            10,
-            10
+            8,
+            8,
+            8,
+            8
           ],
           "gap": null,
           "cornerRadius": 12,
@@ -1029,7 +1029,7 @@
             24,
             24
           ],
-          "gap": 6,
+          "gap": 8,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
@@ -5234,7 +5234,7 @@
           "height": null,
           "layout": "vertical",
           "padding": null,
-          "gap": 6,
+          "gap": 8,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,

@@ -307,7 +307,7 @@ export function ChatInput({
     return (
         <div
             className={cn(
-                "w-full max-w-full rounded-2xl border border-input bg-background p-3 shadow-sm transition-colors focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/30",
+                "w-full max-w-full rounded-2xl border border-input bg-card p-3 shadow-sm transition-colors focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/30",
                 chatInputVariantClassNames[resolvedVariant],
                 isDisabled && "bg-muted/40 opacity-70",
                 className
@@ -345,7 +345,7 @@ export function ChatInput({
                                 className="absolute right-1 top-1 h-6 w-6 bg-background/80 opacity-0 shadow-sm group-hover:opacity-100 group-focus-within:opacity-100"
                                 onClick={() => setFiles((current) => current.filter((_, fileIndex) => fileIndex !== index))}
                             >
-                                <X className="h-3.5 w-3.5" />
+                                <X className="h-4 w-4" />
                             </TooltipButton>
                         </div>
                     ))}

@@ -27,8 +27,23 @@
         ],
         "sourcePattern": "badgeVariantClasses\\.outline"
       },
-      "reason": "outline の Badge（箱 B）。塗りを持たず、枠が variant の identity そのもの。枠を外すと default との見分けが付かなくなる。現状は bg-transparent なのでこの検査には元から出ないが、将来 bg-* を足したときに黙って違反にならないよう規則として書いておく。",
+      "reason": "outline の Badge（箱 B）。塗りを持たず、枠が variant の identity そのもの。枠を外すと default との見分けが付かなくなる。現状は bg-transparent なのでこの検査には元から出ないが、将来 bg-* を足したときに黙って違反にならないよう規則として書いておく。 2026-10-13 追記（#1067・KeEem 決定）: outline に背景 bg-card と 3:1 の枠 border-input を付けた（枠 --border は どの面の上でも 1.0〜1.37:1 で、ほぼ見えていなかった）。",
       "addedOn": "2026-09-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "outline-control-variant",
+      "match": {
+        "files": [
+          "^src/components/inputs/ButtonVariants\\.ts$",
+          "^src/components/inputs/Toggle\\.tsx$",
+          "^src/components/inputs/ToggleGroup\\.tsx$",
+          "^src/components/display/Tag\\.tsx$"
+        ],
+        "classPattern": "border-input"
+      },
+      "reason": "outline の操作部品（箱 B）。Button・Toggle・ToggleGroup・Tag の outline は、枠が variant の identity そのもの（badge-outline-variant と同じ理屈）。#1067（KeEem 2026-10-13）で、背景 bg-card と 3:1 の枠 border-input を付けた。それまでの枠 --border は、どの面の上でも 1.0〜1.37:1 で、背景も無く、押せる部品に見えなかった。塗りを持つので面の検査に出るが、枠を外すと secondary との見分けが付かなくなる。",
+      "addedOn": "2026-10-13",
       "expiresOn": "permanent"
     },
     {
@@ -40,11 +55,22 @@
           "^src/components/inputs/Textarea\\.tsx$",
           "^src/components/inputs/Checkbox\\.tsx$",
           "^src/components/inputs/RadioGroup\\.tsx$",
-          "^src/components/inputs/ChatInput\\.tsx$"
+          "^src/components/inputs/ChatInput\\.tsx$",
+          "^src/components/inputs/CurrencyInput\\.tsx$",
+          "^src/components/inputs/InputOTP\\.tsx$",
+          "^src/components/inputs/Mention\\.tsx$",
+          "^src/components/inputs/NumberInput\\.tsx$",
+          "^src/components/inputs/PasswordInput\\.tsx$",
+          "^src/components/inputs/PhoneInput\\.tsx$",
+          "^src/components/inputs/PostalCodeInput\\.tsx$",
+          "^src/components/inputs/ScanInput\\.tsx$",
+          "^src/components/inputs/SearchInput\\.tsx$",
+          "^src/components/inputs/TagInput\\.tsx$",
+          "^src/components/inputs/TimePicker\\.tsx$"
         ],
         "classPattern": "border-input"
       },
-      "reason": "入力系（箱 B）。枠が無いと「ここに入力できる」ことが伝わらない。WCAG 1.4.11（UI部品の境界は 3:1）の対象でもある。現状はどれも bg-transparent なのでこの検査には出ないが、規則として書いておく。⚠️ --input 自体が地との比 dark 1.37:1 / light 1.24:1 で 1.4.11 に足りていない（枠線の話とは別件・issue 起票済み）。 2026-09-23 追記: ChatInput の入力の殻を追加した。素は bg-background + border-input で、処理中だけ bg-primary-subtle + border-primary-border に変わる＝塗りを持つので第2段の検査に出たが、これも「ここに書ける」を伝える入力の境界。",
+      "reason": "入力系（箱 B）。枠が無いと「ここに入力できる」ことが伝わらない。WCAG 1.4.11（UI部品の境界は 3:1）の対象でもある。現状はどれも bg-transparent なのでこの検査には出ないが、規則として書いておく。⚠️ --input 自体が地との比 dark 1.37:1 / light 1.24:1 で 1.4.11 に足りていない（枠線の話とは別件・issue 起票済み）。 2026-09-23 追記: ChatInput の入力の殻を追加した。素は bg-background + border-input で、処理中だけ bg-primary-subtle + border-primary-border に変わる＝塗りを持つので第2段の検査に出たが、これも「ここに書ける」を伝える入力の境界。 2026-10-13 追記（#1067・KeEem 決定）: 入力欄に背景 bg-card を付けた（地と同じ色だと、使える欄と使えない欄の差が「薄いかどうか」だけになっていた）。枠 border-input（どの面の上でも 3:1 以上・#1034 で直した）は入力の境界として残す。使えない状態は bg-muted＋border-border＋text-muted-foreground で、半透明にしない。背景を付けたので、ほかの入力欄の部品（CurrencyInput・InputOTP・Mention・NumberInput・PasswordInput・PhoneInput・PostalCodeInput・ScanInput・SearchInput・TagInput・TimePicker）もこの検査に出るようになり、同じ理由でここに足した。",
       "addedOn": "2026-09-22",
       "expiresOn": "permanent"
     },

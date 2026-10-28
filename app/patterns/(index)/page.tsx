@@ -101,14 +101,14 @@ function PatternCard({ pattern }: { pattern: PatternEntry }) {
                     aria-label={t.meta.openPattern(copy.title)}
                 >
                     <span>{copy.title}</span>
-                    <ArrowUpRight className="h-3.5 w-3.5 opacity-60 transition-all group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 group-hover/title:opacity-100" />
+                    <ArrowUpRight className="h-4 w-4 opacity-60 transition-all group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 group-hover/title:opacity-100" />
                 </Link>
                 <p className="text-sm text-muted-foreground">{copy.description}</p>
                 <div className="space-y-2">
                     <div className="text-xs font-medium text-muted-foreground">
                         {t.meta.includes}
                     </div>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-2">
                         {pattern.routes.map((route) => {
                             const label = locale === "ja" ? route.labelJa : route.label;
 
@@ -164,7 +164,7 @@ export default function PatternsIndexPage() {
                             className="whitespace-nowrap font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"
                         >
                             {t.evidenceCta}
-                            <ArrowRight className="ml-0.5 inline size-3.5 align-[-0.1875em]" aria-hidden />
+                            <ArrowRight className="ml-1 inline size-4 align-[-0.1875em]" aria-hidden />
                         </Link>
                     </p>
                 </header>
@@ -226,7 +226,7 @@ export default function PatternsIndexPage() {
                                                 </div>
                                                 <div className="inline-flex items-center justify-between gap-2 font-semibold tracking-tight transition-colors group-hover:text-primary">
                                                     <span>{copy.title}</span>
-                                                    <ArrowUpRight className="h-3.5 w-3.5 opacity-60 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+                                                    <ArrowUpRight className="h-4 w-4 opacity-60 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
                                                 </div>
                                                 <p className="text-sm text-muted-foreground">
                                                     {copy.description}

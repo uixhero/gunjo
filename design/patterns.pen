@@ -1,5 +1,5 @@
 {
-  "version": "2.13",
+  "version": "2.18",
   "children": [
     {
       "type": "frame",
@@ -1241,7 +1241,7 @@
                             {
                               "type": "frame",
                               "id": "authTemplateFormContainer",
-                              "width": 350,
+                              "width": 352,
                               "layout": "vertical",
                               "gap": 14,
                               "children": [
@@ -5178,5 +5178,6 @@
   ],
   "imports": {
     "tokens": "tokens.pen"
-  }
+  },
+  "fileToken": "7c2ec51f-e4b4-4f8b-9b8d-4c0862271904"
 }

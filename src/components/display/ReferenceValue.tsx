@@ -148,7 +148,7 @@ const ReferenceValue = React.forwardRef<HTMLSpanElement, ReferenceValueProps>(
         return (
             <span
                 ref={ref}
-                className={cn("inline-flex items-center gap-1.5", size === "inline" ? "text-sm" : "text-base", className)}
+                className={cn("inline-flex items-center gap-2", size === "inline" ? "text-sm" : "text-base", className)}
                 {...props}
             >
                 <span
@@ -158,13 +158,13 @@ const ReferenceValue = React.forwardRef<HTMLSpanElement, ReferenceValueProps>(
                     )}
                 >
                     {format(value)}
-                    {unit ? <span className="ml-0.5 text-xs font-normal text-muted-foreground">{unit}</span> : null}
+                    {unit ? <span className="ml-1 text-xs font-normal text-muted-foreground">{unit}</span> : null}
                 </span>
 
                 {hideFlag ? null : isAbnormal ? (
                     <span
                         className={cn(
-                            "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-semibold",
+                            "inline-flex min-h-5 items-center gap-1 rounded px-2 text-xs font-semibold",
                             TONE_CHIP[config.tone]
                         )}
                     >
@@ -175,7 +175,7 @@ const ReferenceValue = React.forwardRef<HTMLSpanElement, ReferenceValueProps>(
                 ) : isAffirmative ? (
                     <span
                         className={cn(
-                            "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-semibold",
+                            "inline-flex min-h-5 items-center gap-1 rounded px-2 text-xs font-semibold",
                             TONE_CHIP.success
                         )}
                     >
@@ -183,7 +183,7 @@ const ReferenceValue = React.forwardRef<HTMLSpanElement, ReferenceValueProps>(
                         {affirmativeLabel}
                     </span>
                 ) : showLabel ? (
-                    <span className="inline-flex items-center gap-0.5 text-xs text-success-strong">
+                    <span className="inline-flex items-center gap-1 text-xs text-success-strong">
                         <Icon className="h-3 w-3 shrink-0" aria-hidden="true" />
                         {label}
                     </span>

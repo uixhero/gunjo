@@ -53,7 +53,7 @@ export function AuthTemplate({
                 </div>
             </div>
             <div className="flex h-full w-full items-center justify-center p-6 lg:p-8">
-                <div className="mx-auto flex w-full max-w-[350px] flex-col justify-center space-y-6 sm:w-[350px]">
+                <div className="mx-auto flex w-full max-w-88 flex-col justify-center space-y-6 sm:w-88">
                     {children}
                 </div>
             </div>

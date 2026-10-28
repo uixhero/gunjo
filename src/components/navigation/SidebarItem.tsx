@@ -145,7 +145,7 @@ export const SidebarItem = memo(function SidebarItem({
                 }}
                 data-sidebar-item-button
                 className={cn(
-                    "flex h-full min-w-0 flex-1 items-center gap-2 overflow-hidden py-1.5 pr-0 text-left",
+                    "flex h-full min-w-0 flex-1 items-center gap-2 overflow-hidden py-1 pr-0 text-left",
                     collapsed && "justify-center gap-0"
                 )}
                 style={

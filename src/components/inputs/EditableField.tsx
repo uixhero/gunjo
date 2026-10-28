@@ -99,7 +99,7 @@ const EditableField = React.forwardRef<HTMLDivElement, EditableFieldProps>(
         )
 
         return (
-            <div ref={ref} className={cn("relative grid w-full gap-1.5 p-0", className)} {...props} data-slot="editable-field">
+            <div ref={ref} className={cn("relative grid w-full gap-2 p-0", className)} {...props} data-slot="editable-field">
                 <div className="relative flex h-7 items-center pr-28">
                     <div className="min-w-0 text-xs font-medium leading-5 text-foreground">{label}</div>
                     <div className="absolute right-0 top-0 flex h-7 shrink-0 items-center justify-end gap-1">
@@ -118,7 +118,7 @@ const EditableField = React.forwardRef<HTMLDivElement, EditableFieldProps>(
                                             setEditing(true)
                                         }}
                                     >
-                                        <Pencil className="h-3.5 w-3.5" aria-hidden="true" />
+                                        <Pencil className="h-4 w-4" aria-hidden="true" />
                                     </Button>
                                 </TooltipTrigger>
                                 <TooltipContent>{labels?.edit ?? "Edit"}</TooltipContent>

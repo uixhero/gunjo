@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge, DocNote, List, ListItem } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 // The scale itself is generated from scripts/design-sync/token-scales.mjs, the
 // same source public/tokens.css ships as --space-*. This page used to carry the
@@ -35,16 +36,52 @@ const COPY = {
     en: {
         eyebrow: "Tokens · Spacing",
         heading: "Spacing",
-        subtitle: "The Tailwind 4-based scale, anchored to a 4px grid. Every padding, gap, and margin in the system traces to one of these steps.",
-        sections: { scale: "Scale", common: "Common uses" },
+        subtitle: "Tailwind's scale, with spacing and sizes held to a 4px grid.",
+        sections: { grid: "The 4px grid", scale: "Scale", common: "Common uses" },
         tableHeaders: { token: "Token", value: "Value", purpose: "Purpose" },
+        detailOnly: "Detail only",
+        grid: {
+            lead: "These three are multiples of 4px:",
+            items: [
+                "The gap between items (gap, space-x, space-y).",
+                "The padding and margin an element is pushed in by.",
+                "The size of controls, badges and icons. An icon is 12, 16, 20 or 24px.",
+            ],
+            sizeFirst: {
+                before: "For a one-line row or badge, set the height first and keep the padding on the grid. A menu item is ",
+                code: "min-h-8 py-1",
+                after: " (32px tall, 4px padding), not 6px padding.",
+            },
+            detailHeading: "Details may sit off the grid",
+            detail:
+                "A line, dot or tick under 12px, and a centring nudge under 4px, are exempt. The fractional steps (0.5, 1.5, 2.5, 3.5) and px exist for these alone.",
+            check: "Checked by: ",
+        },
     },
     ja: {
         eyebrow: "Tokens · Spacing",
         heading: "Spacing",
-        subtitle: "Tailwind 4 ベースのスケールを 4px グリッドに固定。システム内のすべての padding / gap / margin は、このいずれかのステップから派生します。",
-        sections: { scale: "Scale", common: "よく使う組み合わせ" },
+        subtitle: "Tailwind のスケールを使い、余白と大きさは 4px グリッドにそろえます。",
+        sections: { grid: "4px グリッド", scale: "Scale", common: "よく使う組み合わせ" },
         tableHeaders: { token: "Token", value: "値", purpose: "用途" },
+        detailOnly: "細部専用",
+        grid: {
+            lead: "次の3つは 4 の倍数にそろえます。",
+            items: [
+                "並んだ物どうしの間（gap、space-x、space-y）。",
+                "要素を内側へ寄せる余白（padding、margin）。",
+                "操作部品・バッジ・アイコンの大きさ。アイコンは 12・16・20・24px です。",
+            ],
+            sizeFirst: {
+                before: "1行の行やバッジは、先に高さを決めてから余白を整数の段にします。メニューの項目は、上下 6px の余白ではなく ",
+                code: "min-h-8 py-1",
+                after: "（高さ 32px・余白 4px）です。",
+            },
+            detailHeading: "細部は 4 の倍数でなくてよい",
+            detail:
+                "12px 未満の線・点・目盛りと、4px 未満の位置ずらし（中心合わせ）は例外です。小数の段（0.5、1.5、2.5、3.5）と px は、この細部のためだけにあります。",
+            check: "機械検査：",
+        },
     },
 } as const;
 
@@ -67,14 +104,38 @@ export default function SpacingPage() {
             </header>
 
             <section className="space-y-4">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight" id="grid">
+                    {c.sections.grid}
+                </h2>
+                <p className="text-muted-foreground">{c.grid.lead}</p>
+                <List>
+                    {c.grid.items.map((item) => (
+                        <ListItem key={item}>{item}</ListItem>
+                    ))}
+                </List>
+                <p className="text-muted-foreground">
+                    {c.grid.sizeFirst.before}
+                    <code className="rounded bg-muted px-1 font-mono text-sm">{c.grid.sizeFirst.code}</code>
+                    {c.grid.sizeFirst.after}
+                </p>
+                <DocNote variant="note" heading={c.grid.detailHeading}>
+                    {c.grid.detail}
+                </DocNote>
+                <p className="text-sm text-muted-foreground">
+                    {c.grid.check}
+                    <code className="rounded bg-muted px-1 font-mono text-xs">npm run design:verify:grid4</code>
+                </p>
+            </section>
+
+            <section className="space-y-4">
                 <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.scale}
                 </h2>
-                <div className="space-y-1.5 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5">
+                <div className="space-y-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5">
                     {SPACING_SCALE.map((step) => (
                         <div
                             key={step.step}
-                            className="flex items-center gap-4 border-b border-border/20 py-1.5 last:border-b-0"
+                            className="flex min-h-7 items-center gap-4 border-b border-border/20 py-1 last:border-b-0"
                         >
                             <code className="w-12 shrink-0 font-mono text-xs text-muted-foreground">
                                 {step.step}
@@ -82,10 +143,19 @@ export default function SpacingPage() {
                             <code className="w-16 shrink-0 font-mono text-[10px] text-muted-foreground">
                                 {step.px}
                             </code>
+                            {/* The ruler draws each step at its own shipped value, so the bar
+                                width comes from the token, not from a w-* class (a w-3.5 class
+                                would itself be off the 4px grid). */}
                             <div
-                                className={`h-3 ${step.widthClass} rounded-sm bg-primary`}
+                                className={`h-3 rounded-sm ${step.detailOnly ? "bg-muted-foreground/40" : "bg-primary"}`}
+                                style={{ width: step.value }}
                                 aria-hidden
                             />
+                            {step.detailOnly ? (
+                                <Badge variant="outline" size="sm">
+                                    {c.detailOnly}
+                                </Badge>
+                            ) : null}
                         </div>
                     ))}
                 </div>
@@ -111,7 +181,7 @@ export default function SpacingPage() {
                                     className="border-t border-border/20"
                                 >
                                     <td className="px-4 py-3">
-                                        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">
+                                        <code className="rounded bg-muted px-2 font-mono text-xs leading-5">
                                             {row.token}
                                         </code>
                                     </td>

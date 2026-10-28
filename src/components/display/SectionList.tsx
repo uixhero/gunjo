@@ -58,25 +58,25 @@ const SectionList = React.forwardRef<HTMLDivElement, SectionListProps>(
           >
             <div
               className={cn(
-                "flex items-baseline justify-between gap-2 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-muted px-3 py-1.5",
+                "flex items-baseline justify-between gap-2 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-muted px-3 py-1",
                 stickyHeaders && "sticky top-0 z-10 backdrop-blur"
               )}
             >
               <div className="flex min-w-0 items-baseline gap-2">
-                <h3 className="truncate text-sm font-semibold text-foreground">{section.title}</h3>
+                <h3 className="truncate text-sm leading-6 font-semibold text-foreground">{section.title}</h3>
                 {section.sublabel != null ? (
                   <span className="truncate text-xs text-muted-foreground">{section.sublabel}</span>
                 ) : null}
               </div>
               {section.meta != null ? (
-                <span className="shrink-0 text-sm font-medium tabular-nums text-foreground">{section.meta}</span>
+                <span className="shrink-0 text-sm leading-6 font-medium tabular-nums text-foreground">{section.meta}</span>
               ) : null}
             </div>
 
             <div className="min-w-0">{section.content}</div>
 
             {section.footer != null ? (
-              <div className="flex items-baseline justify-between gap-2 border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText] bg-accent px-3 py-1.5 text-sm font-medium tabular-nums text-foreground">
+              <div className="flex items-baseline justify-between gap-2 border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText] bg-accent px-3 py-1 text-sm leading-6 font-medium tabular-nums text-foreground">
                 {section.footer}
               </div>
             ) : null}

@@ -65,10 +65,12 @@ function ItineraryRow({ item, isLast }: { item: ItineraryItem; isLast: boolean }
         <div className="min-w-0 font-medium text-foreground">{item.title}</div>
         {item.trailing != null && <div className="shrink-0">{item.trailing}</div>}
         {item.onSelect != null && item.trailing == null && (
-          <IconChevronRight className="mt-0.5 size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
+          <span className="flex h-6 shrink-0 items-center">
+            <IconChevronRight className="size-5 text-muted-foreground" aria-hidden="true" />
+          </span>
         )}
       </div>
-      {item.description != null && <div className="mt-0.5 text-sm text-muted-foreground">{item.description}</div>}
+      {item.description != null && <div className="mt-1 text-sm text-muted-foreground">{item.description}</div>}
       {item.content != null && <div className="mt-2">{item.content}</div>}
     </>
   )

@@ -102,7 +102,7 @@ export interface SettingGroupProps extends React.HTMLAttributes<HTMLDivElement> 
 const SettingGroup = React.forwardRef<HTMLDivElement, SettingGroupProps>(
   ({ className, label, children, ...props }, ref) => {
     return (
-      <div ref={ref} className={cn("flex w-full flex-col gap-1.5", className)} {...props}>
+      <div ref={ref} className={cn("flex w-full flex-col gap-2", className)} {...props}>
         {label != null ? (
           <p className="px-1 text-xs font-medium text-muted-foreground">{label}</p>
         ) : null}

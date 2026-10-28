@@ -55,7 +55,7 @@ function PersonCellPreview({ locale, mode = "list" }: { locale: Locale; mode?: "
   return (
     <div className="flex w-full max-w-md flex-col divide-y rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       {people(locale).map((person) => (
-        <div key={person.name} className="py-2.5">
+        <div key={person.name} className="py-2">
           <PersonCell
             name={person.name}
             secondary={person.secondary}
@@ -141,7 +141,7 @@ export function DirectoryRows() {
   return (
     <div className="flex w-full max-w-md flex-col divide-y rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       {people.map((person) => (
-        <div key={person.name} className="py-2.5">
+        <div key={person.name} className="py-2">
           <PersonCell {...person} presenceLabel={person.presence} />
         </div>
       ))}
@@ -182,7 +182,7 @@ export function DirectoryRows() {
   return (
     <div className="flex w-full max-w-md flex-col divide-y rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       {people.map((person) => (
-        <div key={person.name} className="py-2.5">
+        <div key={person.name} className="py-2">
           <PersonCell {...person} presenceLabel={person.presence} />
         </div>
       ))}
@@ -444,7 +444,7 @@ export function PeopleList() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+        <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

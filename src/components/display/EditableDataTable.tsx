@@ -14,8 +14,8 @@ const editableDataTableVariantClasses: Record<EditableDataTableVariantKey, strin
 }
 
 const cellPaddingClasses: Record<EditableDataTableVariantKey, string> = {
-    default: "px-2 py-1.5",
-    compact: "px-1.5 py-1",
+    default: "px-2 py-1 leading-6",
+    compact: "px-1 py-1",
 }
 
 const alignClasses = {

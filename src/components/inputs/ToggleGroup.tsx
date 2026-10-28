@@ -9,7 +9,7 @@ import { toggleGroupDefaultVariantKey } from "./generated/default-variant-keys"
 
 const toggleGroupVariantClasses: Record<ToggleGroupVariantKey, string> = {
     default: "bg-secondary text-foreground hover:bg-muted hover:text-muted-foreground",
-    outline: "border border-input bg-transparent text-foreground hover:bg-muted",
+    outline: "border border-input bg-card text-foreground hover:bg-muted",
 }
 
 type ToggleGroupSize = "default" | "sm" | "lg"

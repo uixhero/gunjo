@@ -177,7 +177,7 @@ export function RoundRef({
                     className="h-24 w-full rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted object-cover object-top"
                 />
             ) : null}
-            <div className="flex flex-wrap items-center gap-1.5">
+            <div className="flex flex-wrap items-center gap-2">
                 <Badge variant="secondary" className="text-[10px]">
                     {h.roundBadge(data.round)}
                 </Badge>
@@ -229,7 +229,7 @@ export function IssueRef({
 
     const card = (
         <>
-            <div className="flex flex-wrap items-center gap-1.5">
+            <div className="flex flex-wrap items-center gap-2">
                 {/* OPEN / CLOSED stays in English in both locales: it is the
                     word GitHub itself puts on the issue. */}
                 <Badge

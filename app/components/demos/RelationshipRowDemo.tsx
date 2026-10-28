@@ -31,7 +31,7 @@ export function RelationshipRowDemo() {
             {PAIRS.map((p, i) => (
                 <React.Fragment key={i}>
                     {i > 0 ? <Separator /> : null}
-                    <div className="py-2.5">
+                    <div className="py-2">
                         <RelationshipRow from={p.from} to={p.to} relationshipLabel={p.relationshipLabel} trailing={p.trailing} />
                     </div>
                 </React.Fragment>

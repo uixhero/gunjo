@@ -66,11 +66,11 @@ export function AppPromoBanner({ copy }: { copy: AppPromoStrings }) {
                                 {copy.eyebrow}
                             </p>
 
-                            <CardTitle as="h2" id={TITLE_ID} className="mt-1.5 text-lg leading-snug sm:text-xl">
+                            <CardTitle as="h2" id={TITLE_ID} className="mt-2 text-lg leading-snug sm:text-xl">
                                 {copy.name}
                             </CardTitle>
 
-                            <p className="mt-1.5 text-sm font-medium leading-relaxed">
+                            <p className="mt-2 text-sm font-medium leading-relaxed">
                                 {copy.tagline}
                             </p>
 

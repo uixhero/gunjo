@@ -82,7 +82,7 @@ export const LoyaltySummaryCard = React.forwardRef<HTMLDivElement, LoyaltySummar
 
         <div className="mt-2">
           {balanceLabel != null && <div className={cn("text-xs", subtle)}>{balanceLabel}</div>}
-          <div className="flex items-baseline gap-1.5">
+          <div className="flex items-baseline gap-2">
             <span className="text-4xl font-bold tabular-nums leading-none">{balance}</span>
             {unit != null && <span className={cn("text-base font-medium", subtle)}>{unit}</span>}
           </div>
@@ -126,7 +126,7 @@ export const LoyaltySummaryCard = React.forwardRef<HTMLDivElement, LoyaltySummar
         {alert != null && (
           <div
             className={cn(
-              "mt-3 rounded-md px-2.5 py-1.5 text-xs",
+              "mt-3 rounded-md px-2 py-1 text-xs leading-5",
               brand ? "bg-primary-strong-foreground/15 text-primary-strong-foreground" : "bg-warning-subtle text-warning-subtle-foreground"
             )}
           >

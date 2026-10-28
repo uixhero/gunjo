@@ -428,7 +428,7 @@ export function SlashBreadcrumb() {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <Slash className="h-3.5 w-3.5" />
+          <Slash className="h-4 w-4" />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbLink href="/docs" onClick={(event) => event.preventDefault()}>
@@ -436,7 +436,7 @@ export function SlashBreadcrumb() {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <Slash className="h-3.5 w-3.5" />
+          <Slash className="h-4 w-4" />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbPage>パンくず</BreadcrumbPage>
@@ -467,7 +467,7 @@ export function SlashBreadcrumb() {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <Slash className="h-3.5 w-3.5" />
+          <Slash className="h-4 w-4" />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbLink href="/docs" onClick={(event) => event.preventDefault()}>
@@ -475,7 +475,7 @@ export function SlashBreadcrumb() {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <Slash className="h-3.5 w-3.5" />
+          <Slash className="h-4 w-4" />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
@@ -820,7 +820,7 @@ export default function BreadcrumbDocPage() {
                                             </BreadcrumbLink>
                                         </BreadcrumbItem>
                                         <BreadcrumbSeparator>
-                                            <Slash className="h-3.5 w-3.5" />
+                                            <Slash className="h-4 w-4" />
                                         </BreadcrumbSeparator>
                                         <BreadcrumbItem>
                                             <BreadcrumbLink href="/docs" onClick={(event) => event.preventDefault()}>
@@ -828,7 +828,7 @@ export default function BreadcrumbDocPage() {
                                             </BreadcrumbLink>
                                         </BreadcrumbItem>
                                         <BreadcrumbSeparator>
-                                            <Slash className="h-3.5 w-3.5" />
+                                            <Slash className="h-4 w-4" />
                                         </BreadcrumbSeparator>
                                         <BreadcrumbItem>
                                             <BreadcrumbPage>{isJa ? "パンくず" : "Breadcrumb"}</BreadcrumbPage>
@@ -901,7 +901,7 @@ export default function BreadcrumbDocPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
@@ -914,25 +914,25 @@ export default function BreadcrumbDocPage() {
                 {isJa ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>いまいるページはリンクにしない。</strong>最後の項目は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BreadcrumbPage</code> で描きます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">a</code> ではなく、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-current="page"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-disabled="true"'}</code> を持つ要素です。押しても何も起きない、リンクに見えるものを作らないためです。
+                            <strong>いまいるページはリンクにしない。</strong>最後の項目は <code className="rounded bg-muted px-1 font-mono text-xs">BreadcrumbPage</code> で描きます。<code className="rounded bg-muted px-1 font-mono text-xs">a</code> ではなく、<code className="rounded bg-muted px-1 font-mono text-xs">{'aria-current="page"'}</code> と <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-disabled="true"'}</code> を持つ要素です。押しても何も起きない、リンクに見えるものを作らないためです。
                         </li>
                         <li>
-                            <strong>区切りの記号は読み上げない。</strong>区切りは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="presentation"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-hidden="true"'}</code> を持つ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">li</code> です。読み上げのときに記号の名前が階層のあいだに挟まらないようにしています。
+                            <strong>区切りの記号は読み上げない。</strong>区切りは <code className="rounded bg-muted px-1 font-mono text-xs">{'role="presentation"'}</code> と <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-hidden="true"'}</code> を持つ <code className="rounded bg-muted px-1 font-mono text-xs">li</code> です。読み上げのときに記号の名前が階層のあいだに挟まらないようにしています。
                         </li>
                         <li>
-                            <strong>深いときは真ん中を畳む。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">items</code> にデータを渡して <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxItems</code> を決めると、真ん中が三点のボタンに畳まれ、隠れた階層はドロップダウンで開きます。畳まないときも <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BreadcrumbList</code> が折り返すので、狭い画面で横にはみ出しません。階層を URL ではなく人の辿り方に合わせる、という判断は資料に書いてあります。
+                            <strong>深いときは真ん中を畳む。</strong><code className="rounded bg-muted px-1 font-mono text-xs">items</code> にデータを渡して <code className="rounded bg-muted px-1 font-mono text-xs">maxItems</code> を決めると、真ん中が三点のボタンに畳まれ、隠れた階層はドロップダウンで開きます。畳まないときも <code className="rounded bg-muted px-1 font-mono text-xs">BreadcrumbList</code> が折り返すので、狭い画面で横にはみ出しません。階層を URL ではなく人の辿り方に合わせる、という判断は資料に書いてあります。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The current page is not a link.</strong> The last crumb renders through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BreadcrumbPage</code>: not an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">a</code>, but an element carrying <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-current="page"'}</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-disabled="true"'}</code>. Nothing should look like a link and then do nothing.
+                            <strong>The current page is not a link.</strong> The last crumb renders through <code className="rounded bg-muted px-1 font-mono text-xs">BreadcrumbPage</code>: not an <code className="rounded bg-muted px-1 font-mono text-xs">a</code>, but an element carrying <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-current="page"'}</code> and <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-disabled="true"'}</code>. Nothing should look like a link and then do nothing.
                         </li>
                         <li>
-                            <strong>Separators are never read out.</strong> Each separator is an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">li</code> with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="presentation"'}</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-hidden="true"'}</code>, so the name of the glyph is not spoken between levels.
+                            <strong>Separators are never read out.</strong> Each separator is an <code className="rounded bg-muted px-1 font-mono text-xs">li</code> with <code className="rounded bg-muted px-1 font-mono text-xs">{'role="presentation"'}</code> and <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-hidden="true"'}</code>, so the name of the glyph is not spoken between levels.
                         </li>
                         <li>
-                            <strong>Collapse the middle when the path is deep.</strong> Pass crumbs through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">items</code> and set <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxItems</code>: the middle folds into an ellipsis button and the hidden levels open in a dropdown. Even uncollapsed, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BreadcrumbList</code> wraps, so a long path never pushes the page sideways. Matching the trail to how people actually navigate, rather than to the URL, is covered in the article.
+                            <strong>Collapse the middle when the path is deep.</strong> Pass crumbs through <code className="rounded bg-muted px-1 font-mono text-xs">items</code> and set <code className="rounded bg-muted px-1 font-mono text-xs">maxItems</code>: the middle folds into an ellipsis button and the hidden levels open in a dropdown. Even uncollapsed, <code className="rounded bg-muted px-1 font-mono text-xs">BreadcrumbList</code> wraps, so a long path never pushes the page sideways. Matching the trail to how people actually navigate, rather than to the URL, is covered in the article.
                         </li>
                     </ul>
                 )}

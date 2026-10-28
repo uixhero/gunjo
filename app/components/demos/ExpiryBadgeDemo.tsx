@@ -18,7 +18,7 @@ export function ExpiryBadgeDemo() {
   return (
     <div className="w-full max-w-md space-y-4">
       <div>
-        <Label className="mb-1.5 flex justify-between text-xs">
+        <Label className="mb-2 flex justify-between text-xs">
           <span>期限間近のしきい値（warnWithinDays）</span>
           <span className="tabular-nums text-muted-foreground">残{warn}日以内</span>
         </Label>

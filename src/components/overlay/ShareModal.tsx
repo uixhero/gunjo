@@ -193,7 +193,7 @@ export const ShareModal = ({
                                     className="h-8 w-8 text-muted-foreground"
                                     aria-label={labels?.close ?? strings.close}
                                 >
-                                    <X size={18} />
+                                    <X size={16} />
                                 </Button>
                             </TooltipTrigger>
                             <TooltipContent portalContainer={portalContainer}>
@@ -288,11 +288,11 @@ export const ShareModal = ({
 
                             {/* Stats */}
                             <div className="flex items-center gap-4 pt-2">
-                                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                                <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                     <Globe size={12} />
                                     <span>{labels?.accessCount ?? "Access Count"}: <span className="text-foreground font-mono">{shareData.accessCount || 0}</span></span>
                                 </div>
-                                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                                <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                     <Lock size={12} />
                                     <span>{labels?.token ?? "Token"}: <span className="text-foreground font-mono">{shareData.token?.slice(0, 8)}...</span></span>
                                 </div>

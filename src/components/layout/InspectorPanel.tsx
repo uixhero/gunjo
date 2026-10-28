@@ -58,7 +58,7 @@ export const InspectorField = React.forwardRef<
     HTMLDivElement,
     React.HTMLAttributes<HTMLDivElement> & { label: string }
 >(({ className, label, children, ...props }, ref) => (
-    <div ref={ref} className={cn("grid min-w-0 gap-1.5", className)} {...props}>
+    <div ref={ref} className={cn("grid min-w-0 gap-2", className)} {...props}>
         <label className="text-xs font-medium text-foreground">{label}</label>
         {children}
     </div>

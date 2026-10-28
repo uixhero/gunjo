@@ -101,7 +101,7 @@ export default function Home() {
                         />
                         <Badge
                             variant="outline"
-                            className="on-hero-badge w-fit gap-1.5"
+                            className="on-hero-badge w-fit gap-1"
                         >
                             <Sparkles className="h-3 w-3" />
                             Beta · v0.2.0-beta.1
@@ -131,7 +131,7 @@ export default function Home() {
                             <Button asChild size="xl" className="on-hero-cta-primary">
                                 <Link href="/docs/introduction">
                                     {home.hero.ctaPrimary}
-                                    <ArrowRight className="ml-1.5 h-4 w-4" />
+                                    <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
                             <Button
@@ -206,10 +206,10 @@ export default function Home() {
                         {isJa && (
                             <Link
                                 href="/how-to-read"
-                                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                                className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                             >
                                 このサイトの読み方（案内図）
-                                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                                <ArrowRight className="h-4 w-4" aria-hidden />
                             </Link>
                         )}
                     </div>
@@ -240,10 +240,10 @@ export default function Home() {
                                     <CardContent>
                                         <Link
                                             href={card.href}
-                                            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                                            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                                         >
                                             {card.cta}
-                                            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                                         </Link>
                                     </CardContent>
                                 </Card>
@@ -317,7 +317,7 @@ export default function Home() {
                     <div className="mb-12 max-w-reading space-y-3">
                         <Badge
                             variant="outline"
-                            className="gap-1.5 bg-accent text-accent-foreground"
+                            className="gap-1 bg-accent text-accent-foreground"
                         >
                             <Cpu className="h-3 w-3" />
                             AI-native
@@ -335,7 +335,7 @@ export default function Home() {
                                 className="whitespace-nowrap font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"
                             >
                                 {home.ai.evidenceCta}
-                                <ArrowRight className="ml-0.5 inline size-3.5 align-[-0.1875em]" aria-hidden />
+                                <ArrowRight className="ml-1 inline size-4 align-[-0.1875em]" aria-hidden />
                             </Link>
                         </p>
                     </div>
@@ -358,7 +358,7 @@ export default function Home() {
                                             <CardTitle className="text-base">
                                                 {card.title}
                                             </CardTitle>
-                                            <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
+                                            <span className="rounded bg-muted px-2 text-[10px] leading-5 font-mono uppercase tracking-wider text-muted-foreground">
                                                 {card.status}
                                             </span>
                                         </div>
@@ -397,7 +397,7 @@ export default function Home() {
                             <Button asChild variant="outline">
                                 <Link href="/docs/installation">
                                     {home.engineers.learnMore}
-                                    <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                                    <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
                         </div>
@@ -408,7 +408,7 @@ export default function Home() {
             {/* ============== Section 9 — BETA SCOPE ============== */}
             <section className="bg-muted py-20">
                 <div className="container text-center">
-                    <Badge variant="outline" className="mb-4 gap-1.5">
+                    <Badge variant="outline" className="mb-4 gap-1">
                         <Sparkles className="h-3 w-3" />
                         Becoming
                     </Badge>
@@ -816,7 +816,7 @@ function PatternBrowserCarousel({ isJa }: { isJa: boolean }) {
                     <Button asChild variant="outline">
                         <Link href="/patterns">
                             {isJa ? "パターン一覧へ" : "Open patterns"}
-                            <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                            <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
                 </div>

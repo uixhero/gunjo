@@ -257,7 +257,7 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
                             <div
                                 key={i}
                                 role="columnheader"
-                                className="px-1 py-1.5 text-center text-xs font-medium text-muted-foreground"
+                                className="px-1 py-1 text-center text-xs leading-5 font-medium text-muted-foreground"
                             >
                                 {w}
                             </div>
@@ -309,7 +309,7 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
                                         >
                                             {cell.day}
                                         </span>
-                                        <div className="flex min-w-0 flex-col gap-0.5">
+                                        <div className="flex min-w-0 flex-col gap-1">
                                             {shown.map((ev) =>
                                                 renderEvent ? (
                                                     <React.Fragment key={ev.id}>{renderEvent(ev)}</React.Fragment>
@@ -322,7 +322,7 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
                                                             onSelectEvent?.(ev)
                                                         }}
                                                         className={cn(
-                                                            "w-full truncate rounded px-1 py-0.5 text-left text-[11px] leading-tight outline-none focus-visible:ring-1 focus-visible:ring-ring",
+                                                            "w-full truncate rounded px-1 text-left text-[11px] leading-4 outline-none focus-visible:ring-1 focus-visible:ring-ring",
                                                             EVENT_TONE[ev.tone ?? "default"]
                                                         )}
                                                     >

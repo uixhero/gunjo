@@ -94,7 +94,7 @@ const variantClasses: Record<SegmentTimelineCardVariantKey, SegmentTimelineCardC
         card: "rounded-lg",
         header: "p-5 pb-3",
         content: "px-5 pb-5",
-        metric: "px-3 py-2.5",
+        metric: "px-3 py-3",
         timeline: "h-24",
         title: "text-base",
     },

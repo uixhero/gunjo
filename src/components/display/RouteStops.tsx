@@ -141,7 +141,7 @@ const RouteStops = React.forwardRef<HTMLOListElement, RouteStopsProps>(
                                         stop.status === "current" && "ring-2 ring-ring ring-offset-2 ring-offset-background"
                                     )}
                                 >
-                                    {Icon ? <Icon className="h-3.5 w-3.5" aria-hidden="true" /> : (stop.seq ?? index + 1)}
+                                    {Icon ? <Icon className="h-3 w-3" aria-hidden="true" /> : (stop.seq ?? index + 1)}
                                 </span>
                                 {!isLast ? <span className="w-px flex-1 bg-border" aria-hidden="true" /> : null}
                             </div>
@@ -168,7 +168,7 @@ const RouteStops = React.forwardRef<HTMLOListElement, RouteStopsProps>(
                                 ) : null}
 
                                 {!hideTimes && stop.dateLabel == null && (stop.plannedTime || stop.actualTime || delay !== undefined) ? (
-                                    <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs tabular-nums text-muted-foreground">
+                                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs tabular-nums text-muted-foreground">
                                         {stop.plannedTime ? (
                                             <span>
                                                 {timeLabels?.planned ?? "予定"} {stop.plannedTime}

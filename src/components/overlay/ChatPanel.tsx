@@ -102,7 +102,7 @@ export function ChatPanel({
                 <div className="min-w-0 flex-1">
                     <h3 className="truncate text-sm font-semibold">{title}</h3>
                     {description ? (
-                        <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
+                        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                             {description}
                         </p>
                     ) : null}

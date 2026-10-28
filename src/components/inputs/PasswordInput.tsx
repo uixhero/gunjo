@@ -46,7 +46,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
             <div
                 className={cn(
                     "relative inline-flex items-center w-full",
-                    disabled && "opacity-50 pointer-events-none",
+                    disabled && "pointer-events-none",
                     className
                 )}
                 data-slot="password-input"
@@ -56,7 +56,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
                     type={show ? "text" : "password"}
                     disabled={disabled}
                     className={cn(
-                        "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 pr-10 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+                        "flex h-9 w-full rounded-md border border-input bg-card px-3 py-1 pr-10 disabled:border-input/40 disabled:bg-muted disabled:text-muted-foreground text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
                         "aria-invalid:border-destructive-border aria-invalid:ring-destructive-border aria-invalid:focus-visible:ring-destructive-border",
                         inputClassName
                     )}

@@ -214,7 +214,7 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
                                         setOpen(false)
                                     }}
                                 >
-                                    <X className="h-3.5 w-3.5" />
+                                    <X className="h-4 w-4" />
                                 </button>
                             </TooltipTrigger>
                             <TooltipContent>{clearLabel}</TooltipContent>

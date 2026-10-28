@@ -124,7 +124,7 @@ function FixedAuthLayout({
                 </div>
             )}
             <div className="flex min-h-0 flex-1 items-start justify-center overflow-y-auto p-8">
-                <div className="mx-auto my-auto flex w-full max-w-[350px] flex-col justify-center space-y-6 py-8">
+                <div className="mx-auto my-auto flex w-full max-w-88 flex-col justify-center space-y-6 py-8">
                     {children}
                 </div>
             </div>

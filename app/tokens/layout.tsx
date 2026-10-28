@@ -39,7 +39,7 @@ export default function TokensLayout({
                                     key={s.href}
                                     href={s.href}
                                     className={cn(
-                                        "rounded-md px-2 py-1.5 transition-colors",
+                                        "rounded-md px-2 py-1 leading-6 transition-colors",
                                         exact
                                             ? "bg-muted font-medium text-foreground"
                                             : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"

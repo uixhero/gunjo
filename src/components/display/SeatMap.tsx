@@ -244,7 +244,7 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
               </div>
             )}
             {rows.map((r) => (
-              <div role="row" key={String(r)} className="flex items-center gap-1 py-0.5">
+              <div role="row" key={String(r)} className="flex min-h-9 items-center gap-1">
                 {showHeaders && (
                   <div className="w-6 shrink-0 pr-1 text-right text-[11px] tabular-nums text-muted-foreground" aria-hidden="true">
                     {r}
@@ -305,7 +305,7 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
                       {isSelected ? (
                         <IconCheck className="size-4" aria-hidden="true" />
                       ) : state === "occupied" ? (
-                        <IconX className="size-3.5" aria-hidden="true" />
+                        <IconX className="size-4" aria-hidden="true" />
                       ) : (
                         <span aria-hidden="true">{seat.col}</span>
                       )}
@@ -329,7 +329,7 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
         </div>
 
         {!hideLegend && (
-          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-muted-foreground">
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-muted-foreground">
             <LegendDot className="border-border bg-background" label={resolvedLabels.available} />
             <LegendDot className="border-info-border bg-info-subtle" label={resolvedLabels.specialSeat} />
             <LegendDot className="border-primary bg-primary" label={resolvedLabels.selected} icon="check" />
@@ -345,7 +345,7 @@ SeatMap.displayName = "SeatMap"
 
 function LegendDot({ className, label, icon }: { className: string; label: string; icon?: "check" | "x" }) {
   return (
-    <span className="inline-flex items-center gap-1.5">
+    <span className="inline-flex items-center gap-2">
       <span className={cn("inline-flex size-4 items-center justify-center rounded border", className)}>
         {icon === "check" ? (
           <IconCheck className="size-3 text-primary-foreground" aria-hidden="true" />

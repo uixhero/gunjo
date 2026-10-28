@@ -135,7 +135,7 @@ function StringlinePreview({ locale, mode = "actual" }: { locale: Locale; mode?:
         directionLabels={locale === "ja" ? undefined : { up: "inbound", down: "outbound" }}
       />
       <section className="grid min-w-0 gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background p-3" aria-live="polite" aria-label={locale === "ja" ? "選択中運行の詳細" : "Selected run details"}>
-        <div className="min-w-0 space-y-1.5">
+        <div className="min-w-0 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedRun.label}</h3>
             <Badge variant={selectedRun.tone === "warning" ? "outline" : "secondary"}>{detail.direction}</Badge>
@@ -275,7 +275,7 @@ export function TrainDiagram() {
         aria-live="polite"
         aria-label="選択中運行の詳細"
       >
-        <div className="min-w-0 space-y-1.5">
+        <div className="min-w-0 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedRun.label}</h3>
             <Badge variant="secondary">{detail.direction}</Badge>
@@ -411,7 +411,7 @@ export function TrainDiagram() {
         aria-live="polite"
         aria-label="Selected run details"
       >
-        <div className="min-w-0 space-y-1.5">
+        <div className="min-w-0 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedRun.label}</h3>
             <Badge variant="secondary">{detail.direction}</Badge>
@@ -486,7 +486,7 @@ export function TrainDiagram() {
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">{sectionLabels.usage}</h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+        <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

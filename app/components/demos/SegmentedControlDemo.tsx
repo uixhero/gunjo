@@ -10,7 +10,7 @@ export function SegmentedControlDemo() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-4">
-      <label className="flex flex-col gap-1.5">
+      <label className="flex flex-col gap-2">
         <span className="text-sm font-medium text-foreground">旅客区分</span>
         <SegmentedControl
           aria-label="旅客区分"
@@ -24,7 +24,7 @@ export function SegmentedControlDemo() {
         />
       </label>
 
-      <label className="flex flex-col gap-1.5">
+      <label className="flex flex-col gap-2">
         <span className="text-sm font-medium text-foreground">お支払い</span>
         <SegmentedControl
           aria-label="お支払い"
@@ -38,7 +38,7 @@ export function SegmentedControlDemo() {
         />
       </label>
 
-      <label className="flex flex-col gap-1.5">
+      <label className="flex flex-col gap-2">
         <span className="text-sm font-medium text-foreground">集計期間（lg・2分割）</span>
         <SegmentedControl
           aria-label="集計期間"

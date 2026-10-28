@@ -60,7 +60,7 @@ export function SiteFooter({
                 }
             >
                 <FooterBrand className="gap-2">
-                    <GunjoLogo className="h-7 w-[3.3rem]" label={header("siteName")} />
+                    <GunjoLogo className="h-7 w-13" label={header("siteName")} />
                     <FooterCopyright className="border-0 p-0">
                         © 2026 4px LLC. Becoming blue.
                     </FooterCopyright>

@@ -43,13 +43,13 @@ const TONE_CHIP: Record<SemanticTone, string> = {
 
 const CHIP_SIZE = {
     sm: "h-4 gap-1 px-2 text-[11px]",
-    default: "h-5 gap-1 px-2.5 text-xs",
-    lg: "h-6 gap-1.5 px-3 text-sm",
+    default: "h-5 gap-1 px-2 text-xs",
+    lg: "h-6 gap-2 px-3 text-sm",
 } as const
 
 const BAR_SIZE = {
-    sm: { track: "gap-0.5", segment: "h-1 w-1.5" },
-    default: { track: "gap-0.5", segment: "h-1.5 w-2" },
+    sm: { track: "gap-1", segment: "h-1 w-1.5" },
+    default: { track: "gap-1", segment: "h-1.5 w-2" },
     lg: { track: "gap-1", segment: "h-2 w-2.5" },
 } as const
 
@@ -213,7 +213,7 @@ export const StatusLevel = React.forwardRef<HTMLSpanElement, StatusLevelProps>(
         return (
             <span
                 ref={ref}
-                className={cn("inline-flex w-fit items-center gap-1.5 align-middle", className)}
+                className={cn("inline-flex w-fit items-center gap-2 align-middle", className)}
                 {...props}
             >
                 {barPosition === "start" ? track : null}
