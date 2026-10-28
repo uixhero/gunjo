@@ -60,6 +60,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
   - **アイコンを1行目の字の中心に置く部品**：`mt-0.5` で 2px ずらす作りをやめ、1行目の高さの箱に置く作りにした。
     - 対象：`SafetyBanner`・`CheckboxCard`・`RadioCard`・`Itinerary`・`MetadataList`・`Timeline`・`PasswordRequirementList` など
 - **`--space-0-5`・`--space-1-5`・`--space-2-5`・`--space-3-5`・`--space-px` に「細部専用」と注記した**（影響: **none**）：線・点・中心合わせに使い、余白には使わない。`public/tokens.css` の行末と `/docs/spacing` の表に出る。(#1057)
+- **`design/stability.json` に全 237 部品を書いた**（影響: **none**・状態は変わらない）：未分類（既定で Experimental）だった 183 部品を Experimental と明記した。Stable 0・Beta 54・Experimental 183 は前と同じ。部品ごとに `/docs/stability` の基準を測った表は [docs/stability-review-2026-10.md](./docs/stability-review-2026-10.md)。a11y レビューの通過の記録が見つからないため、Stable 候補 11 部品・Beta 候補 7 部品は上げていない。`/docs/stability` のパッケージ版の段に `0.2.0-beta`（現在）を足した。(#1040, #1069)
 
 ## [0.2.0-beta.1] — 2026-10-11
 
