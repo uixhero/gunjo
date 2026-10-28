@@ -932,7 +932,7 @@ export function PopoverExample() {
       </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" size="sm" className="gap-1.5">
+          <Button variant="outline" size="sm">
             <SlidersHorizontal className="h-4 w-4" />
             変更
           </Button>
@@ -982,7 +982,7 @@ export function PopoverExample() {
       </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" size="sm" className="gap-1.5">
+          <Button variant="outline" size="sm">
             <SlidersHorizontal className="h-4 w-4" />
             Change
           </Button>
@@ -1033,7 +1033,7 @@ export function FilterPopoverExample() {
       </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" size="sm" className="gap-1.5">
+          <Button variant="outline" size="sm">
             <Filter className="h-4 w-4" />
             {owner ? "変更" : "設定"}
           </Button>
@@ -1086,7 +1086,7 @@ export function FilterPopoverExample() {
       </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" size="sm" className="gap-1.5">
+          <Button variant="outline" size="sm">
             <Filter className="h-4 w-4" />
             {owner ? "Change" : "Set"}
           </Button>
@@ -1141,7 +1141,7 @@ export function ConfirmPopoverExample() {
       </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" size="sm" className="gap-1.5">
+          <Button variant="outline" size="sm">
             <MoreHorizontal className="h-4 w-4" />
             {published ? "確認" : "公開"}
           </Button>
@@ -1188,7 +1188,7 @@ export function ConfirmPopoverExample() {
       </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" size="sm" className="gap-1.5">
+          <Button variant="outline" size="sm">
             <MoreHorizontal className="h-4 w-4" />
             {published ? "Review" : "Publish"}
           </Button>
@@ -1233,7 +1233,7 @@ export function StatusPopoverExample() {
       </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" size="sm" className="gap-1.5">
+          <Button variant="outline" size="sm">
             <Info className="h-4 w-4" />
             詳細
           </Button>
@@ -1270,7 +1270,7 @@ export function StatusPopoverExample() {
       </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" size="sm" className="gap-1.5">
+          <Button variant="outline" size="sm">
             <Info className="h-4 w-4" />
             Details
           </Button>
@@ -1523,12 +1523,12 @@ export function SheetExample() {
           </SheetDescription>
         </SheetHeader>
         <div className="space-y-4 py-4">
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             <Label htmlFor="sheet-name">プロジェクト名</Label>
             <Input id="sheet-name" defaultValue="春キャンペーン" />
           </div>
           <div className="flex items-center justify-between gap-4">
-            <Label htmlFor="sheet-public" className="flex flex-col gap-0.5">
+            <Label htmlFor="sheet-public" className="flex flex-col gap-1">
               <span>公開リンク</span>
               <span className="text-xs font-normal text-muted-foreground">
                 リンクを知っている人が閲覧できます。
@@ -1584,12 +1584,12 @@ export function SheetExample() {
           </SheetDescription>
         </SheetHeader>
         <div className="space-y-4 py-4">
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             <Label htmlFor="sheet-name">Project name</Label>
             <Input id="sheet-name" defaultValue="Spring campaign" />
           </div>
           <div className="flex items-center justify-between gap-4">
-            <Label htmlFor="sheet-public" className="flex flex-col gap-0.5">
+            <Label htmlFor="sheet-public" className="flex flex-col gap-1">
               <span>Public link</span>
               <span className="text-xs font-normal text-muted-foreground">
                 Anyone with the link can view.
@@ -1706,7 +1706,7 @@ export function NotificationSheetExample() {
         </SheetHeader>
         <div className="space-y-4 py-4">
           <div className="flex items-center justify-between gap-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
-            <Label htmlFor="sheet-email" className="flex flex-col gap-0.5">
+            <Label htmlFor="sheet-email" className="flex flex-col gap-1">
               <span>メール通知</span>
               <span className="text-xs font-normal text-muted-foreground">
                 重要な更新だけをメールで受け取ります。
@@ -1755,7 +1755,7 @@ export function NotificationSheetExample() {
         </SheetHeader>
         <div className="space-y-4 py-4">
           <div className="flex items-center justify-between gap-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
-            <Label htmlFor="sheet-email" className="flex flex-col gap-0.5">
+            <Label htmlFor="sheet-email" className="flex flex-col gap-1">
               <span>Email notifications</span>
               <span className="text-xs font-normal text-muted-foreground">
                 Receive important updates by email.
@@ -2062,7 +2062,7 @@ export function LongFormSheet() {
         </SheetHeader>
         <SheetBody className="space-y-4 py-4">
           {fields.map((field) => (
-            <div key={field.id} className="space-y-1.5">
+            <div key={field.id} className="space-y-2">
               <Label htmlFor={field.id}>{field.label}</Label>
               <Input id={field.id} defaultValue={field.value} />
             </div>
@@ -2106,7 +2106,7 @@ export function LongFormSheet() {
         </SheetHeader>
         <SheetBody className="space-y-4 py-4">
           {fields.map((field) => (
-            <div key={field.id} className="space-y-1.5">
+            <div key={field.id} className="space-y-2">
               <Label htmlFor={field.id}>{field.label}</Label>
               <Input id={field.id} defaultValue={field.value} />
             </div>

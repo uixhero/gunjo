@@ -40,12 +40,12 @@ KeEemルール（new-4px DECISIONS.md 2026-08-16）。gunjo.jp のUI（`app/` �
 
 ## 4px grid for spacing and sizes
 
-KeEem decision (new-4px DECISIONS.md 2026-10-11, #1057). Applies to `@gunjo/ui` (`src/components/**`) and to anything new in `app/`:
+KeEem decision (new-4px DECISIONS.md 2026-10-11, #1057). Applies to `@gunjo/ui` (`src/components/**`) and to the gunjo.jp site (`app/**`):
 
 - The gap between items (`gap-*`, `space-*`), padding and margin, and the size of controls, chips and icons are multiples of 4px. Use integer Tailwind steps only. Icons are 12 / 16 / 20 / 24px, never 14 (this includes `size={N}` props).
 - Exempt details (the checker passes them automatically): a size under 12px (hairlines, dots, ticks) and a position nudge under 4px (centring). The fractional steps (`0.5` `1.5` `2.5` `3.5`) and `px` exist for these only. `--space-*-5` stays published, marked detail-only.
 - For a one-line row or chip, fix the height first, then put the padding on the grid: a menu item is `min-h-8 py-1` (32px), not `py-1.5`. Centre an icon on the first text line with a box the line's height (`flex h-5 items-center`), not with `mt-0.5`.
-- Machine check: `npm run design:verify:grid4` (in `design:verify`, runs in CI). `src/components` is strict. `app/` has a per-file baseline in `design/policy/grid4-site-baseline.json` that may only shrink: after removing off-grid values, run `npm run design:verify:grid4 -- --shrink-site-baseline`. Anything else that must stay off the grid goes in `design/policy/grid4-exceptions.json` with a reason. Ask KeEem before adding to it.
+- Machine check: `npm run design:verify:grid4` (in `design:verify`, runs in CI). Both `src/components` and `app/` are strict (the site's baseline was cleared in #1058). Anything that must stay off the grid goes in `design/policy/grid4-exceptions.json` with a reason. Ask KeEem before adding to it.
 - A `.pen` value that a drift check reads (e.g. Badge padding) has to move with the component, or `design:verify` stays red.
 
 ## Verification before declaring done

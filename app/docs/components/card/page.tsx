@@ -46,7 +46,7 @@ const project = {
 
 export function CardDemo() {
   return (
-    <Card className="w-[350px]">
+    <Card className="w-88">
       <CardHeader>
         <CardTitle>{project.title}</CardTitle>
         <CardDescription>{project.description}</CardDescription>
@@ -75,7 +75,7 @@ const project = {
 
 export function CardDemo() {
   return (
-    <Card className="w-[350px]">
+    <Card className="w-88">
       <CardHeader>
         <CardTitle>{project.title}</CardTitle>
         <CardDescription>{project.description}</CardDescription>
@@ -266,9 +266,9 @@ export function TimelineCard() {
         <p className="text-sm leading-6">{post.body}</p>
       </CardContent>
       <CardFooter className="justify-start gap-5 border-t px-6 py-3 text-xs text-muted-foreground">
-        <span className="inline-flex items-center gap-1.5"><MessageCircle className="h-3.5 w-3.5" />{post.replies}</span>
-        <span className="inline-flex items-center gap-1.5"><Repeat2 className="h-3.5 w-3.5" />{post.reposts}</span>
-        <span className="inline-flex items-center gap-1.5"><Bookmark className="h-3.5 w-3.5" />{post.saves}</span>
+        <span className="inline-flex items-center gap-2"><MessageCircle className="h-4 w-4" />{post.replies}</span>
+        <span className="inline-flex items-center gap-2"><Repeat2 className="h-4 w-4" />{post.reposts}</span>
+        <span className="inline-flex items-center gap-2"><Bookmark className="h-4 w-4" />{post.saves}</span>
       </CardFooter>
     </Card>
   )
@@ -319,9 +319,9 @@ export function TimelineCard() {
         <p className="text-sm leading-6">{post.body}</p>
       </CardContent>
       <CardFooter className="justify-start gap-5 border-t px-6 py-3 text-xs text-muted-foreground">
-        <span className="inline-flex items-center gap-1.5"><MessageCircle className="h-3.5 w-3.5" />{post.replies}</span>
-        <span className="inline-flex items-center gap-1.5"><Repeat2 className="h-3.5 w-3.5" />{post.reposts}</span>
-        <span className="inline-flex items-center gap-1.5"><Bookmark className="h-3.5 w-3.5" />{post.saves}</span>
+        <span className="inline-flex items-center gap-2"><MessageCircle className="h-4 w-4" />{post.replies}</span>
+        <span className="inline-flex items-center gap-2"><Repeat2 className="h-4 w-4" />{post.reposts}</span>
+        <span className="inline-flex items-center gap-2"><Bookmark className="h-4 w-4" />{post.saves}</span>
       </CardFooter>
     </Card>
   )
@@ -346,7 +346,7 @@ const invitation = {
 
 export function ActionCard() {
   return (
-    <Card className="w-[350px]">
+    <Card className="w-88">
       <CardHeader>
         <CardTitle>{invitation.title}</CardTitle>
       </CardHeader>
@@ -380,7 +380,7 @@ const invitation = {
 
 export function ActionCard() {
   return (
-    <Card className="w-[350px]">
+    <Card className="w-88">
       <CardHeader>
         <CardTitle>{invitation.title}</CardTitle>
       </CardHeader>
@@ -601,7 +601,7 @@ export function ProductCard() {
 
 export function LoadingCard() {
   return (
-    <Card className="w-[350px]">
+    <Card className="w-88">
       <CardHeader className="space-y-2">
         <Skeleton shape="text" className="w-1/2" />
         <Skeleton shape="text" className="w-3/4" />
@@ -666,7 +666,7 @@ export function LoadingCard() {
             ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto">
-                <Card className="w-[350px] max-w-full">
+                <Card className="w-88 max-w-full">
                     <CardHeader>
                         <CardTitle>{isJa ? "プロジェクト概要" : "Project overview"}</CardTitle>
                         <CardDescription>
@@ -838,16 +838,16 @@ export function LoadingCard() {
                                         </p>
                                     </CardContent>
                                     <CardFooter className="justify-start gap-5 border-t px-6 py-3 text-xs text-muted-foreground">
-                                        <span className="inline-flex items-center gap-1.5">
-                                            <MessageCircle className="h-3.5 w-3.5" />
+                                        <span className="inline-flex items-center gap-2">
+                                            <MessageCircle className="h-4 w-4" />
                                             {isJa ? "返信 4" : "4 replies"}
                                         </span>
-                                        <span className="inline-flex items-center gap-1.5">
-                                            <Repeat2 className="h-3.5 w-3.5" />
+                                        <span className="inline-flex items-center gap-2">
+                                            <Repeat2 className="h-4 w-4" />
                                             {isJa ? "共有 12" : "12 reposts"}
                                         </span>
-                                        <span className="inline-flex items-center gap-1.5">
-                                            <Bookmark className="h-3.5 w-3.5" />
+                                        <span className="inline-flex items-center gap-2">
+                                            <Bookmark className="h-4 w-4" />
                                             {isJa ? "保存 28" : "28 saves"}
                                         </span>
                                     </CardFooter>
@@ -862,7 +862,7 @@ export function LoadingCard() {
                                 ? "ページ内の情報に対して、補助操作や主要操作を並べるカードです。作業を中断して確認させる場合は Dialog を使います。"
                                 : "Use for inline actions on page content. Use Dialog when the action must interrupt the current task.",
                             preview: (
-                                <Card className="w-[350px] max-w-full">
+                                <Card className="w-88 max-w-full">
                                     <CardHeader>
                                         <CardTitle>{isJa ? "招待を送信" : "Send invitation"}</CardTitle>
                                     </CardHeader>
@@ -886,7 +886,7 @@ export function LoadingCard() {
                                 ? "最終表示と同じ高さを保ち、読み込み完了時にレイアウトが動かないようにします。"
                                 : "Keep the same footprint as the final card to avoid layout shift.",
                             preview: (
-                                <Card className="w-[350px] max-w-full">
+                                <Card className="w-88 max-w-full">
                                     <CardHeader className="space-y-2">
                                         <Skeleton shape="text" className="w-1/2" />
                                         <Skeleton shape="text" className="w-3/4" />
@@ -926,25 +926,25 @@ export function LoadingCard() {
                 {isJa ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>題の見出しの深さを選べるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CardTitle</code> の既定は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h3</code> ですが、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">as</code> で変えられます。ページの見出しのすぐ下にカードが並ぶときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'as="h2"'}</code> にして、階層が飛ばないようにします。見出しにしたくない題なら <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">p</code> も選べます。見た目はどれでも同じです。
+                            <strong>題の見出しの深さを選べるようにする。</strong><code className="rounded bg-muted px-1 font-mono text-xs">CardTitle</code> の既定は <code className="rounded bg-muted px-1 font-mono text-xs">h3</code> ですが、<code className="rounded bg-muted px-1 font-mono text-xs">as</code> で変えられます。ページの見出しのすぐ下にカードが並ぶときは <code className="rounded bg-muted px-1 font-mono text-xs">{'as="h2"'}</code> にして、階層が飛ばないようにします。見出しにしたくない題なら <code className="rounded bg-muted px-1 font-mono text-xs">p</code> も選べます。見た目はどれでも同じです。
                         </li>
                         <li>
-                            <strong>カードは縦に伸びる箱として作る。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Card</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex flex-col w-full</code> です。並べたときに高さが揃い、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CardFooter</code> を下端に寄せられます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CardFooter</code> は既定で両端に寄せる並びなので、左に補足・右に操作、という置き方がそのまま書けます。
+                            <strong>カードは縦に伸びる箱として作る。</strong><code className="rounded bg-muted px-1 font-mono text-xs">Card</code> は <code className="rounded bg-muted px-1 font-mono text-xs">flex flex-col w-full</code> です。並べたときに高さが揃い、<code className="rounded bg-muted px-1 font-mono text-xs">CardFooter</code> を下端に寄せられます。<code className="rounded bg-muted px-1 font-mono text-xs">CardFooter</code> は既定で両端に寄せる並びなので、左に補足・右に操作、という置き方がそのまま書けます。
                         </li>
                         <li>
-                            <strong>組み方の決まりは部品では止めない。</strong>資料は「カードの中にカードを入れない」「画像の比率を固定する」「操作は2つまで」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Card</code> は入れ物なので、これらを機械では止めていません。組むときに守るところとして残しています。
+                            <strong>組み方の決まりは部品では止めない。</strong>資料は「カードの中にカードを入れない」「画像の比率を固定する」「操作は2つまで」を挙げています。GUNJO の <code className="rounded bg-muted px-1 font-mono text-xs">Card</code> は入れ物なので、これらを機械では止めていません。組むときに守るところとして残しています。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The title picks its own heading level.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CardTitle</code> renders <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h3</code> by default and takes an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">as</code> prop. When cards sit right under a page heading, pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'as="h2"'}</code> so the outline does not skip a level; pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">p</code> when the title is not a heading at all. The visual style is identical in every case.
+                            <strong>The title picks its own heading level.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">CardTitle</code> renders <code className="rounded bg-muted px-1 font-mono text-xs">h3</code> by default and takes an <code className="rounded bg-muted px-1 font-mono text-xs">as</code> prop. When cards sit right under a page heading, pass <code className="rounded bg-muted px-1 font-mono text-xs">{'as="h2"'}</code> so the outline does not skip a level; pass <code className="rounded bg-muted px-1 font-mono text-xs">p</code> when the title is not a heading at all. The visual style is identical in every case.
                         </li>
                         <li>
-                            <strong>A card is a column that grows.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Card</code> is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex flex-col w-full</code>, so a row of cards lines up at equal height and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CardFooter</code> can hold the bottom edge. The footer spreads its children apart by default, which is exactly the note-on-the-left, action-on-the-right shape.
+                            <strong>A card is a column that grows.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">Card</code> is <code className="rounded bg-muted px-1 font-mono text-xs">flex flex-col w-full</code>, so a row of cards lines up at equal height and <code className="rounded bg-muted px-1 font-mono text-xs">CardFooter</code> can hold the bottom edge. The footer spreads its children apart by default, which is exactly the note-on-the-left, action-on-the-right shape.
                         </li>
                         <li>
-                            <strong>Composition rules are not enforced by the component.</strong> The article asks for no card inside a card, a fixed image ratio, and at most two actions. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Card</code> is a container, so none of that is enforced in code. It stays a rule to keep while composing.
+                            <strong>Composition rules are not enforced by the component.</strong> The article asks for no card inside a card, a fixed image ratio, and at most two actions. <code className="rounded bg-muted px-1 font-mono text-xs">Card</code> is a container, so none of that is enforced in code. It stays a rule to keep while composing.
                         </li>
                     </ul>
                 )}

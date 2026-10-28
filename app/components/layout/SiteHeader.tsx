@@ -128,7 +128,7 @@ export function SiteHeader() {
                 {/* Brand — always visible at the left edge. */}
                 <HeaderBrand>
                     <Link href="/" className="flex items-center gap-2">
-                        <GunjoLogo className="h-[2.6rem] w-[4.9rem]" label={header("siteName")} />
+                        <GunjoLogo className="h-11 w-20" label={header("siteName")} />
                     </Link>
                 </HeaderBrand>
 
@@ -208,7 +208,7 @@ export function SiteHeader() {
                                 className="flex items-center gap-2"
                                 onClick={() => setDrawerOpen(false)}
                             >
-                                <GunjoLogo className="h-[2.6rem] w-[4.9rem]" label={header("siteName")} />
+                                <GunjoLogo className="h-11 w-20" label={header("siteName")} />
                             </Link>
                         </div>
                         <nav className="flex flex-col gap-1 px-3 py-4">

@@ -47,13 +47,13 @@ const COPY = {
         durationGuidance: (
             <>
                 Common rules: micro-interactions (hover, focus) →{" "}
-                <code className="rounded bg-muted px-1 py-0.5 text-xs font-mono">duration-150</code>;
+                <code className="rounded bg-muted px-1 text-xs font-mono">duration-150</code>;
                 state transitions (modal, drawer) →{" "}
-                <code className="rounded bg-muted px-1 py-0.5 text-xs font-mono">duration-200</code>{" "}
+                <code className="rounded bg-muted px-1 text-xs font-mono">duration-200</code>{" "}
                 -{" "}
-                <code className="rounded bg-muted px-1 py-0.5 text-xs font-mono">duration-300</code>;
+                <code className="rounded bg-muted px-1 text-xs font-mono">duration-300</code>;
                 storytelling moments (hero ink wash, page enter) →{" "}
-                <code className="rounded bg-muted px-1 py-0.5 text-xs font-mono">duration-500</code>{" "}
+                <code className="rounded bg-muted px-1 text-xs font-mono">duration-500</code>{" "}
                 +.
             </>
         ),
@@ -68,13 +68,13 @@ const COPY = {
         durationGuidance: (
             <>
                 目安：マイクロインタラクション（hover / focus）は{" "}
-                <code className="rounded bg-muted px-1 py-0.5 text-xs font-mono">duration-150</code>。
+                <code className="rounded bg-muted px-1 text-xs font-mono">duration-150</code>。
                 状態遷移（modal / drawer）は{" "}
-                <code className="rounded bg-muted px-1 py-0.5 text-xs font-mono">duration-200</code>{" "}
+                <code className="rounded bg-muted px-1 text-xs font-mono">duration-200</code>{" "}
                 〜{" "}
-                <code className="rounded bg-muted px-1 py-0.5 text-xs font-mono">duration-300</code>。
+                <code className="rounded bg-muted px-1 text-xs font-mono">duration-300</code>。
                 演出的な瞬間（ヒーローのインク、ページ遷移）は{" "}
-                <code className="rounded bg-muted px-1 py-0.5 text-xs font-mono">duration-500</code>{" "}
+                <code className="rounded bg-muted px-1 text-xs font-mono">duration-500</code>{" "}
                 以上。
             </>
         ),

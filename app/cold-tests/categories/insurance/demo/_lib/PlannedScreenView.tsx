@@ -59,7 +59,7 @@ function FlowPosition({ current, isJa }: { current: FlowTarget; isJa: boolean })
                             {index > 0 ? (
                                 <div
                                     aria-hidden
-                                    className="hidden text-muted-foreground sm:flex sm:items-center sm:px-0.5"
+                                    className="hidden text-muted-foreground sm:flex sm:items-center sm:px-1"
                                 >
                                     <IconChevronRight className="h-4 w-4" />
                                 </div>
@@ -68,7 +68,7 @@ function FlowPosition({ current, isJa }: { current: FlowTarget; isJa: boolean })
                                 style={{ flexGrow: run.steps.length }}
                                 aria-current={here ? "page" : undefined}
                                 className={cn(
-                                    "min-w-0 basis-0 rounded-lg p-2.5",
+                                    "min-w-0 basis-0 rounded-lg p-3",
                                     here
                                         ? "border-2 border-primary bg-primary/5"
                                         : isScreen
@@ -78,9 +78,9 @@ function FlowPosition({ current, isJa }: { current: FlowTarget; isJa: boolean })
                             >
                                 <p className="text-xs text-muted-foreground">{stepNames}</p>
                                 {here ? (
-                                    <p className="mt-0.5 text-sm font-semibold text-foreground">
+                                    <p className="mt-1 text-sm font-semibold text-foreground">
                                         {label}
-                                        <span className="ml-1.5 align-middle text-xs font-medium text-primary">
+                                        <span className="ml-2 align-middle text-xs font-medium text-primary">
                                             {isJa ? "いま見ている画面" : "You are here"}
                                         </span>
                                     </p>
@@ -88,7 +88,7 @@ function FlowPosition({ current, isJa }: { current: FlowTarget; isJa: boolean })
                                     <Link
                                         href={flowTargetHref(run.target)}
                                         className={cn(
-                                            "mt-0.5 inline-flex items-center gap-1 text-sm font-medium underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                                            "mt-1 inline-flex items-center gap-1 text-sm font-medium underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                                             isScreen ? "text-primary" : "text-muted-foreground"
                                         )}
                                     >
@@ -129,7 +129,7 @@ export function PlannedScreenView({ slug }: { slug: PlannedScreenSlug }) {
 
     return (
         <>
-            <header className="mb-6 max-w-reading space-y-1.5">
+            <header className="mb-6 max-w-reading space-y-2">
                 <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
                     {isJa ? planned.ja : planned.en}
                 </h1>
@@ -155,7 +155,7 @@ export function PlannedScreenView({ slug }: { slug: PlannedScreenSlug }) {
                     {isJa
                         ? "業務の全体像と画面一覧を見る"
                         : "See the business at a glance"}
-                    <IconArrowUpRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                    <IconArrowUpRight className="h-4 w-4 shrink-0" aria-hidden />
                 </Link>
             </EmptyState>
         </>

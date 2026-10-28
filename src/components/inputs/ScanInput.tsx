@@ -169,9 +169,9 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
 
                 <div
                     className={cn(
-                        "inline-flex h-9 w-full max-w-full items-center gap-2 rounded-lg border border-input bg-transparent px-3 py-2 text-sm shadow-sm transition-colors focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
+                        "inline-flex h-9 w-full max-w-full items-center gap-2 rounded-lg border border-input bg-card px-3 py-2 text-sm shadow-sm transition-colors focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
                         ariaInvalid && "border-destructive-border focus-within:ring-destructive-border",
-                        disabled && "cursor-not-allowed opacity-50"
+                        disabled && "cursor-not-allowed border-input/40 bg-muted text-muted-foreground"
                     )}
                 >
                     {icon === null ? null : onScannerOpen ? (

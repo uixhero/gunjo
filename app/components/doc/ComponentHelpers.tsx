@@ -289,7 +289,7 @@ export function UixheroRationaleLinks({
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        className="inline-flex min-h-5 items-center gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-secondary px-2 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                     >
                         {item.label}
                         {item.relation === "nearest" || item.relation === "unwritten" ? (
@@ -306,7 +306,7 @@ export function UixheroRationaleLinks({
 }
 
 const REFERENCE_CHIP =
-    "inline-flex items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2";
+    "inline-flex min-h-5 items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-secondary px-2 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2";
 
 function ComponentReferenceSection({
     id,
@@ -732,7 +732,7 @@ export function ComponentPreview({ codeBlock, children, className, sectionLabels
                         // scaled preview's stacking context; lift the surface while one is open so
                         // the next preview's header does not cover it. Stays under the site header (z-40).
                         "has-[[data-radix-popper-content-wrapper]]:z-30",
-                        autoHeightPreview ? "min-h-0" : viewMode === "auto" ? "min-h-0" : "min-h-[350px]",
+                        autoHeightPreview ? "min-h-0" : viewMode === "auto" ? "min-h-0" : "min-h-88",
                         autoHeightPreview
                             ? "overflow-visible"
                             : viewMode === "auto"
@@ -823,7 +823,7 @@ export function ComponentPreview({ codeBlock, children, className, sectionLabels
                     )}
                 </TabsContent>
                 <TabsContent value="code">
-                    <div className="relative rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+                    <div className="relative rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-88 overflow-auto">
                         {codeBlock}
                     </div>
                 </TabsContent>
@@ -874,15 +874,15 @@ export function CodeCopyButton({ code }: { code: string }) {
                     variant="ghost"
                     size="sm"
                     onClick={handleCopy}
-                    className="h-8 shrink-0 gap-1.5 px-2 text-muted-foreground"
+                    className="h-8 shrink-0 gap-2 px-2 text-muted-foreground"
                     aria-label={feedbackLabel}
                 >
                     {copyStatus === "copied" ? (
-                        <Check className="h-3.5 w-3.5 text-primary" />
+                        <Check className="h-4 w-4 text-primary" />
                     ) : copyStatus === "failed" ? (
-                        <X className="h-3.5 w-3.5 text-destructive" />
+                        <X className="h-4 w-4 text-destructive" />
                     ) : (
-                        <Copy className="h-3.5 w-3.5" />
+                        <Copy className="h-4 w-4" />
                     )}
                     <span className="hidden sm:inline">{feedbackLabel}</span>
                 </Button>

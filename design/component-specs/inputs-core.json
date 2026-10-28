@@ -104,10 +104,10 @@
           ],
           "gap": 8,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "justifyContent": "center",
@@ -608,10 +608,10 @@
           ],
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "alignItems": "center",
@@ -652,10 +652,10 @@
           ],
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "alignItems": "center",
@@ -754,10 +754,10 @@
           "padding": null,
           "gap": null,
           "cornerRadius": 4,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "iconFontFamily": null,
@@ -902,10 +902,10 @@
           ],
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "iconFontFamily": null,
@@ -959,10 +959,10 @@
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "iconFontFamily": null,
@@ -1069,10 +1069,10 @@
           ],
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "justifyContent": "space_between",
@@ -1162,10 +1162,10 @@
           ],
           "gap": null,
           "cornerRadius": 8,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "justifyContent": "center",

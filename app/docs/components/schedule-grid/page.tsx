@@ -94,7 +94,7 @@ function entries(locale: Locale): ScheduleEntry[] {
 
 function LessonCard({ entry, locale }: { entry: ScheduleEntry; locale: Locale }) {
   return (
-    <div className="space-y-0.5">
+    <div className="space-y-1">
       <p className="font-medium text-foreground">{entry.subject}</p>
       <p className="text-xs text-muted-foreground">{entry.detail}</p>
       {entry.tone === "destructive" ? <Badge variant="destructive">{locale === "ja" ? "競合" : "Conflict"}</Badge> : null}
@@ -104,7 +104,7 @@ function LessonCard({ entry, locale }: { entry: ScheduleEntry; locale: Locale })
 
 function OpenSlotCard({ locale }: { locale: Locale }) {
   return (
-    <div className="space-y-0.5">
+    <div className="space-y-1">
       <p className="font-medium text-muted-foreground">{locale === "ja" ? "空き" : "Open"}</p>
       <p className="text-xs text-muted-foreground">{locale === "ja" ? "授業を追加" : "Add lesson"}</p>
     </div>
@@ -145,11 +145,11 @@ function CreateLessonForm({ entry, locale }: { entry: ScheduleEntry; locale: Loc
       <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground">
         {locale === "ja" ? "この空き枠に登録する授業を入力します。" : "Enter the lesson to place in this open slot."}
       </div>
-      <label className="grid gap-1.5 text-sm font-medium">
+      <label className="grid gap-2 text-sm font-medium">
         {locale === "ja" ? "科目" : "Subject"}
         <Input defaultValue={entry.subject === "空き" || entry.subject === "Open" ? "" : entry.subject} placeholder={locale === "ja" ? "例: 国語" : "e.g. Literature"} />
       </label>
-      <label className="grid gap-1.5 text-sm font-medium">
+      <label className="grid gap-2 text-sm font-medium">
         {locale === "ja" ? "担当 / 教室" : "Teacher / room"}
         <Input placeholder={locale === "ja" ? "例: 鈴木 / 1-A" : "e.g. Suzuki / 1-A"} />
       </label>
@@ -489,7 +489,7 @@ export function WeeklyTimetable() {
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">{sectionLabels.usage}</h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+        <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

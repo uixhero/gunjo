@@ -51,9 +51,9 @@ export default function McpServerPage() {
             <div className="space-y-12">
                 <Link
                     href="/docs/ai-handoff"
-                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
-                    <ArrowLeft className="h-3.5 w-3.5" />
+                    <ArrowLeft className="h-4 w-4" />
                     Back to AI Handoff
                 </Link>
 
@@ -63,7 +63,9 @@ export default function McpServerPage() {
                        readers see that before they start planning around
                        it. */}
                     <div className="flex items-start gap-3 rounded-lg bg-warning-subtle p-4 text-sm">
-                        <Clock className="mt-0.5 h-4 w-4 shrink-0 text-warning" />
+                        <span className="flex h-5 shrink-0 items-center">
+                            <Clock className="h-4 w-4 text-warning" />
+                        </span>
                         <div className="space-y-1">
                             <div className="font-semibold text-foreground">
                                 Not built yet — Phase 7, post-1.0
@@ -72,7 +74,7 @@ export default function McpServerPage() {
                                 The MCP server below is a design spec, not a
                                 shipped product. Implementation lives in a
                                 separate repo (
-                                <code className="rounded bg-background/60 px-1 py-0.5 text-xs">
+                                <code className="rounded bg-background/60 px-1 text-xs">
                                     gunjo-ui-mcp
                                 </code>
                                 ) and will land after the 1.0 stable spec
@@ -99,7 +101,7 @@ export default function McpServerPage() {
                             </p>
                         </div>
                     </div>
-                    <Badge variant="outline" className="gap-1.5">
+                    <Badge variant="outline" className="gap-1">
                         <Network className="h-3 w-3" />
                         Phase 7 · planned
                     </Badge>
@@ -121,11 +123,11 @@ export default function McpServerPage() {
                         MCP turns the Phase 5 spec endpoints into a typed,
                         discoverable namespace. Instead of pasting Markdown,
                         users say &quot;use GunjoUI&quot; and the AI tool calls{" "}
-                        <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono">
+                        <code className="rounded bg-muted px-1 text-sm font-mono">
                             list_components
                         </code>{" "}
                         and{" "}
-                        <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono">
+                        <code className="rounded bg-muted px-1 text-sm font-mono">
                             get_component_spec
                         </code>{" "}
                         as needed. Closes the loop: AI can ask for what it
@@ -184,7 +186,7 @@ export default function McpServerPage() {
                     <p className="text-base leading-7 text-muted-foreground">
                         The MCP server is a thin CLI that proxies to the
                         existing{" "}
-                        <code className="rounded bg-muted px-1 py-0.5 text-sm font-mono">
+                        <code className="rounded bg-muted px-1 text-sm font-mono">
                             /api/specs
                         </code>{" "}
                         endpoints, normalizing responses into MCP tool results.

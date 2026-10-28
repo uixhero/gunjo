@@ -33,7 +33,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -102,7 +102,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -174,7 +174,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -239,7 +239,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -309,7 +309,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -351,7 +351,7 @@ function RelatedLinks() {
       <ul className="space-y-1">
         {relatedLinks.map((item) => (
           <li key={item.label}>
-            <a href={item.href} onClick={(event) => event.preventDefault()} className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground">
+            <a href={item.href} onClick={(event) => event.preventDefault()} className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground">
               {item.label}
             </a>
           </li>
@@ -400,7 +400,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -442,7 +442,7 @@ function RelatedLinks() {
       <ul className="space-y-1">
         {relatedLinks.map((item) => (
           <li key={item.label}>
-            <a href={item.href} onClick={(event) => event.preventDefault()} className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground">
+            <a href={item.href} onClick={(event) => event.preventDefault()} className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground">
               {item.label}
             </a>
           </li>
@@ -502,7 +502,7 @@ function ScrollingRightRailDemo() {
                     </div>
                     <ul className="max-h-48 min-h-0 flex-1 space-y-1 overflow-y-auto p-3">
                         {REVISIONS.map((item) => (
-                            <li key={item.id} className="rounded-sm px-2 py-1.5 text-xs text-muted-foreground">
+                            <li key={item.id} className="rounded-sm px-2 py-1 text-xs leading-5 text-muted-foreground">
                                 {isJa ? item.ja : item.en}
                             </li>
                         ))}
@@ -542,7 +542,7 @@ export function RevisionRail() {
             画面では max-h-* を外し、flex-1 だけで同じ形になります。 */}
         <ul className="max-h-48 min-h-0 flex-1 space-y-1 overflow-y-auto p-3">
           {revisions.map((item) => (
-            <li key={item.id} className="rounded-sm px-2 py-1.5 text-xs text-muted-foreground">
+            <li key={item.id} className="rounded-sm px-2 py-1 text-xs leading-5 text-muted-foreground">
               {item.label}
             </li>
           ))}
@@ -579,7 +579,7 @@ export function RevisionRail() {
             height you can drop max-h-* and keep flex-1 alone. */}
         <ul className="max-h-48 min-h-0 flex-1 space-y-1 overflow-y-auto p-3">
           {revisions.map((item) => (
-            <li key={item.id} className="rounded-sm px-2 py-1.5 text-xs text-muted-foreground">
+            <li key={item.id} className="rounded-sm px-2 py-1 text-xs leading-5 text-muted-foreground">
               {item.label}
             </li>
           ))}
@@ -680,7 +680,7 @@ export default function RightRailDocPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.usage}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
@@ -693,25 +693,25 @@ export default function RightRailDocPage() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>幅を props で1つだけ持たせた。</strong>資料は「Right Rail の幅はメインの3分の1以下」を挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">width</code> を Tailwind のクラス文字列として受け取り、既定を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">w-64</code>（256px）にしました。比率ではなく固定幅にしたのは、レールに載せるもの（目次・関連情報・補足）が横に広がってもほとんど得をしないからです。
+                            <strong>幅を props で1つだけ持たせた。</strong>資料は「Right Rail の幅はメインの3分の1以下」を挙げています。GUNJO は <code className="rounded bg-muted px-1 font-mono text-xs">width</code> を Tailwind のクラス文字列として受け取り、既定を <code className="rounded bg-muted px-1 font-mono text-xs">w-64</code>（256px）にしました。比率ではなく固定幅にしたのは、レールに載せるもの（目次・関連情報・補足）が横に広がってもほとんど得をしないからです。
                         </li>
                         <li>
-                            <strong>貼り付き（sticky）は部品に入れていない。</strong>資料は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sticky</code> での固定を挙げていますが、貼り付く相手はレールそのものではなく外側のレイアウトです。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RightRail</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h-full</code> の縦並びの箱で、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-h-0</code> を持つのでこの中だけをスクロールさせられます。貼り付かせるかどうかは、置く側が決めます。
+                            <strong>貼り付き（sticky）は部品に入れていない。</strong>資料は <code className="rounded bg-muted px-1 font-mono text-xs">sticky</code> での固定を挙げていますが、貼り付く相手はレールそのものではなく外側のレイアウトです。GUNJO の <code className="rounded bg-muted px-1 font-mono text-xs">RightRail</code> は <code className="rounded bg-muted px-1 font-mono text-xs">h-full</code> の縦並びの箱で、<code className="rounded bg-muted px-1 font-mono text-xs">min-h-0</code> を持つのでこの中だけをスクロールさせられます。貼り付かせるかどうかは、置く側が決めます。
                         </li>
                         <li>
-                            <strong>狭い画面での並べ替えは持っていません。</strong>資料は「モバイルでは Right Rail を本文の下に移す」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RightRail</code> にその切り替えは入っていないので、いまは親側で <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex-col lg:flex-row</code> のように組み替えることになります。ここは部品に上げる余地が残っている場所です。
+                            <strong>狭い画面での並べ替えは持っていません。</strong>資料は「モバイルでは Right Rail を本文の下に移す」を挙げています。GUNJO の <code className="rounded bg-muted px-1 font-mono text-xs">RightRail</code> にその切り替えは入っていないので、いまは親側で <code className="rounded bg-muted px-1 font-mono text-xs">flex-col lg:flex-row</code> のように組み替えることになります。ここは部品に上げる余地が残っている場所です。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>One prop for the width, and that is all.</strong> The article asks that a right rail stay under a third of the main column. GUNJO takes <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">width</code> as a Tailwind class string and defaults to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">w-64</code> (256px). A fixed width rather than a ratio, because what goes in a rail (a table of contents, related links, small notes) gains almost nothing from extra horizontal space.
+                            <strong>One prop for the width, and that is all.</strong> The article asks that a right rail stay under a third of the main column. GUNJO takes <code className="rounded bg-muted px-1 font-mono text-xs">width</code> as a Tailwind class string and defaults to <code className="rounded bg-muted px-1 font-mono text-xs">w-64</code> (256px). A fixed width rather than a ratio, because what goes in a rail (a table of contents, related links, small notes) gains almost nothing from extra horizontal space.
                         </li>
                         <li>
-                            <strong>Stickiness is not in the component.</strong> The article recommends <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sticky</code> positioning, but the thing that sticks is the surrounding layout, not the rail itself. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RightRail</code> is an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h-full</code> column with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-h-0</code>, so it can scroll on its own; whether it sticks is decided by whoever places it.
+                            <strong>Stickiness is not in the component.</strong> The article recommends <code className="rounded bg-muted px-1 font-mono text-xs">sticky</code> positioning, but the thing that sticks is the surrounding layout, not the rail itself. <code className="rounded bg-muted px-1 font-mono text-xs">RightRail</code> is an <code className="rounded bg-muted px-1 font-mono text-xs">h-full</code> column with <code className="rounded bg-muted px-1 font-mono text-xs">min-h-0</code>, so it can scroll on its own; whether it sticks is decided by whoever places it.
                         </li>
                         <li>
-                            <strong>Reflowing on narrow screens is not handled.</strong> The article asks that the rail move below the main content on mobile. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RightRail</code> has no such switch, so for now the parent does it with something like <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex-col lg:flex-row</code>. This is a gap that could reasonably move into the component later.
+                            <strong>Reflowing on narrow screens is not handled.</strong> The article asks that the rail move below the main content on mobile. <code className="rounded bg-muted px-1 font-mono text-xs">RightRail</code> has no such switch, so for now the parent does it with something like <code className="rounded bg-muted px-1 font-mono text-xs">flex-col lg:flex-row</code>. This is a gap that could reasonably move into the component later.
                         </li>
                     </ul>
                 )}

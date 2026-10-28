@@ -372,7 +372,7 @@ export function KanbanTemplateDemo() {
                             Analyze top 3 competitors in the market.
                         </CardContent>
                         <CardFooter className="p-4 pt-0">
-                            <div className="bg-destructive-subtle text-destructive-subtle-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">High</div>
+                            <div className="bg-destructive-subtle text-destructive-subtle-foreground text-[10px] px-2 leading-5 rounded-full font-medium">High</div>
                         </CardFooter>
                     </Card>
                     <Card>
@@ -399,7 +399,7 @@ export function KanbanTemplateDemo() {
                             Standardizing component tokens.
                         </CardContent>
                         <CardFooter className="p-4 pt-0">
-                            <div className="bg-primary-subtle text-primary-subtle-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">Design</div>
+                            <div className="bg-primary-subtle text-primary-subtle-foreground text-[10px] px-2 leading-5 rounded-full font-medium">Design</div>
                         </CardFooter>
                     </Card>
                 </div>
@@ -543,9 +543,9 @@ export function ChatTemplateDemo() {
                             </div>
                         </div>
                         <div className="flex items-center gap-1">
-                            <Button variant="ghost" size="icon" className="h-8 w-8"><Phone size={18} /></Button>
-                            <Button variant="ghost" size="icon" className="h-8 w-8"><Video size={18} /></Button>
-                            <Button variant="ghost" size="icon" className="h-8 w-8"><Info size={18} /></Button>
+                            <Button variant="ghost" size="icon" className="h-8 w-8"><Phone size={16} /></Button>
+                            <Button variant="ghost" size="icon" className="h-8 w-8"><Video size={16} /></Button>
+                            <Button variant="ghost" size="icon" className="h-8 w-8"><Info size={16} /></Button>
                         </div>
                     </div>
                 }
@@ -553,7 +553,7 @@ export function ChatTemplateDemo() {
                     <div className="flex gap-2">
                         <Button variant="ghost" size="icon" className="shrink-0"><Plus size={20} /></Button>
                         <Input placeholder="Type a message..." className="flex-1" />
-                        <Button size="icon" className="shrink-0"><Send size={18} /></Button>
+                        <Button size="icon" className="shrink-0"><Send size={20} /></Button>
                     </div>
                 }
                 sidebarDetail={

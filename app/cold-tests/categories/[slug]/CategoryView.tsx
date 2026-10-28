@@ -242,7 +242,7 @@ export function CategoryView({
                                 <p className="text-sm leading-6 text-muted-foreground">
                                     {demoCopy.body}
                                 </p>
-                                <div className="flex flex-wrap gap-1.5">
+                                <div className="flex flex-wrap gap-2">
                                     {demo.screens.map((screen) => (
                                         <Link
                                             key={screen.slug}
@@ -282,7 +282,7 @@ export function CategoryView({
                                 <li key={c.name}>
                                     <Link
                                         href={`/docs/components/${docSlug}`}
-                                        className="group flex h-full flex-col gap-1.5 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                        className="group flex h-full flex-col gap-2 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                     >
                                         <div className="flex items-center justify-between gap-2">
                                             <span className="font-mono text-sm font-semibold tracking-tight transition-colors group-hover:text-primary">
@@ -383,7 +383,7 @@ export function CategoryView({
                                                 <span className="line-clamp-2 text-sm font-semibold tracking-tight transition-colors group-hover:text-primary">
                                                     {entry.title}
                                                 </span>
-                                                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-40 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+                                                <ArrowUpRight className="h-4 w-4 shrink-0 opacity-40 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
                                             </div>
                                             <div className="mt-1 text-xs text-muted-foreground">
                                                 <code className="font-mono">{entry.route}</code>
@@ -414,7 +414,7 @@ export function CategoryView({
                         className="inline-flex items-center gap-1 font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                         {tc.backToGallery}
-                        <ArrowUpRight className="h-3.5 w-3.5" />
+                        <ArrowUpRight className="h-4 w-4" />
                     </Link>
                 </div>
             </article>

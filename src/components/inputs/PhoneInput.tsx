@@ -55,8 +55,8 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
         const control = (
             <div
                 className={cn(
-                    "inline-flex w-[280px] max-w-full items-stretch rounded-lg border border-input bg-transparent shadow-sm focus-within:ring-1 focus-within:ring-ring",
-                    disabled && "opacity-50",
+                    "inline-flex w-[280px] max-w-full items-stretch rounded-lg border border-input bg-card shadow-sm focus-within:ring-1 focus-within:ring-ring",
+                    disabled && "border-input/40 bg-muted text-muted-foreground",
                     className
                 )}
                 data-slot="phone-input"

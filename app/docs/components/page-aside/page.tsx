@@ -33,7 +33,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -117,7 +117,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -204,7 +204,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -281,7 +281,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -361,7 +361,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -412,7 +412,7 @@ function RelatedLinks() {
       <ul className="space-y-1">
         {relatedLinks.map((item) => (
           <li key={item.label}>
-            <a href={item.href} onClick={(event) => event.preventDefault()} className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground">
+            <a href={item.href} onClick={(event) => event.preventDefault()} className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground">
               {item.label}
             </a>
           </li>
@@ -466,7 +466,7 @@ function PageLinks() {
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
-              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+              <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
                 {item.label}
               </a>
             </li>
@@ -517,7 +517,7 @@ function RelatedLinks() {
       <ul className="space-y-1">
         {relatedLinks.map((item) => (
           <li key={item.label}>
-            <a href={item.href} onClick={(event) => event.preventDefault()} className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground">
+            <a href={item.href} onClick={(event) => event.preventDefault()} className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground hover:bg-muted hover:text-foreground">
               {item.label}
             </a>
           </li>
@@ -742,7 +742,7 @@ export default function PageAsideDocPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.usage}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

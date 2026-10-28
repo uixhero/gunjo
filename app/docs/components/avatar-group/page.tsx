@@ -88,7 +88,7 @@ function getMemberStatus(member: TeamMember, locale: string) {
 
 function renderMemberTooltip(member: TeamMember, locale: string) {
     return (
-        <span className="grid gap-0.5 text-left">
+        <span className="grid gap-1 text-left">
             <span>{getMemberName(member, locale)}</span>
             <span className="text-xs text-muted-foreground">{getMemberStatus(member, locale)}</span>
         </span>

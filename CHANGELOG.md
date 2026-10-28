@@ -18,12 +18,23 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 1. **余白・並びの間・大きさを 4px の倍数にそろえた**：6px の間は 8px に、2px の間は 4px になる。題と説明の間や、ラベルと入力の間で、縦が 2〜4px 伸びる。1行の行とバッジの高さは保った（メニューの項目は 32px、バッジは 20px のまま）。
 2. **14px のアイコンを 16px にした**：text-xs のバッジの中だけは 12px にした。
 3. **4つの部品は大きさが変わる**：`MapControlButton` の `sm`、`Tooltip`、`PlacePanel` の閉じる釦、`SegmentedControl` の `sm`。
+4. **outline の部品に背景と濃い枠が付く**：前の枠は、どの面の上でもほぼ見えなかった。
+5. **入力欄に背景が付き、使えない状態の見せ方が変わる**：使える欄は白い面（dark はカードの色）になる。使えない欄は灰の面・薄い枠・薄い字になる。
 
 ### Added
 
 - **4px グリッドの検査 `npm run design:verify:grid4`**（影響: **none**）：部品のクラスと、アイコンの `size={N}` を読む。`gap`・`space`・`padding`・`margin`・位置・大きさが 4 の倍数でなければ落とす。例外は、12px 未満の線・点・目盛りと、4px 未満の位置ずらし（中心合わせ）だけ。`design:verify` に含まれる。(#1057)
 
 ### Changed
+
+- **outline の部品に背景と濃い枠を付けた**（影響: **none**・見た目が変わる）(#1067)
+  - 対象：`Button`・`Toggle`・`ToggleGroup`・`Badge`・`Tag` の outline。
+  - 背景を透明から `bg-card` に、枠を `--border` から `--input` にした。
+  - 枠と面の比は、light 1.03〜1.24:1 から 3.05〜3.99:1 に、dark 1.00〜1.37:1 から 2.81〜4.80:1 になる。dark の `--secondary` の上だけ 3:1 に届かない。
+- **入力欄に背景を付け、使えない状態の見せ方をそろえた**（影響: **none**・見た目が変わる）(#1067)
+  - 対象：`Input`・`Textarea`・`Select`・`SearchInput`・`PasswordInput`・`NumberInput`・`CurrencyInput`・`PhoneInput`・`PostalCodeInput`・`ScanInput`・`TagInput`・`Mention`・`TimePicker`・`InputOTP`・`ChatInput`・`Checkbox`・`RadioGroup` の外枠。
+  - 使える状態：背景を透明から `bg-card` にした。枠 `--input` は変えていない。
+  - 使えない状態：`bg-muted`、枠は `--input` の 40%、字は `text-muted-foreground`。部品ごとに違っていた全体の不透明度（50%・40%・70%）は下げない。
 
 - **部品を 4px グリッドにそろえた**（影響: **none**・見た目が変わる）(#1057)
   - **大きさが変わる4部品**：

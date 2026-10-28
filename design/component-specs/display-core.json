@@ -145,10 +145,10 @@
           ],
           "gap": null,
           "cornerRadius": 9999,
-          "fill": "transparent",
+          "fill": "#ffffff",
           "stroke": {
             "align": "inside",
-            "fill": "#e2e8f0",
+            "fill": "#6c819d",
             "thickness": 1
           },
           "justifyContent": "center",

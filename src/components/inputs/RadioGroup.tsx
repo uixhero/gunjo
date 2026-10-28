@@ -18,7 +18,7 @@ const RadioGroupContext = React.createContext<{
 
 const radioGroupItemStateClasses: Record<RadioGroupVariantKey, string> = {
     checked: "border-foreground",
-    unchecked: "border-input",
+    unchecked: "border-input bg-card",
 }
 
 // A radio is disabled for roving-tabindex / arrow-nav if it's natively disabled

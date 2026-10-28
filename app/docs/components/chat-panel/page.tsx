@@ -151,7 +151,7 @@ export function WelcomeChatPanel() {
               <button
                 key={label}
                 type="button"
-                className="flex w-full items-center gap-3 rounded-lg px-2 py-1.5 text-left text-sm transition-colors hover:bg-muted"
+                className="flex min-h-8 w-full items-center gap-3 rounded-lg px-2 py-1 text-left text-sm transition-colors hover:bg-muted"
                 onClick={() => startConversation(label)}
               >
                 <Icon className="h-5 w-5 text-muted-foreground" />
@@ -198,7 +198,7 @@ function ChatPanelWelcome({ onSelect }: ChatPanelWelcomeProps) {
                     <button
                         key={label}
                         type="button"
-                        className="flex w-full items-center gap-3 rounded-lg px-2 py-1.5 text-left text-sm transition-colors hover:bg-muted"
+                        className="flex min-h-8 w-full items-center gap-3 rounded-lg px-2 py-1 text-left text-sm transition-colors hover:bg-muted"
                         onClick={() => onSelect?.(label)}
                     >
                         <Icon className="h-5 w-5 text-muted-foreground" />

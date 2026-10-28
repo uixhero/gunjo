@@ -20,7 +20,7 @@ const badgeVariantClasses: Record<BadgeVariantKey, string> = {
     default: "border-transparent bg-foreground text-background",
     secondary: "border-transparent bg-secondary text-secondary-foreground",
     destructive: "border-transparent bg-destructive-strong text-destructive-strong-foreground",
-    outline: "border-border bg-transparent text-foreground",
+    outline: "border-input bg-card text-foreground",
     info: "border-transparent bg-info-subtle text-info-subtle-foreground",
     success: "border-transparent bg-success-subtle text-success-subtle-foreground",
     warning: "border-transparent bg-warning-subtle text-warning-subtle-foreground",

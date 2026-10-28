@@ -37,7 +37,7 @@ function WeekDemo({ locale }: { locale: Locale }) {
         <div className="flex w-full flex-col gap-5">
             <ul className="divide-y rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                 {rows.map(([low, high], i) => (
-                    <li key={WEEK[locale][i]} className="grid grid-cols-[4.5rem_2rem_minmax(0,1fr)_2rem] items-center gap-2 px-4 py-2.5 text-sm">
+                    <li key={WEEK[locale][i]} className="grid min-h-10 grid-cols-[4.5rem_2rem_minmax(0,1fr)_2rem] items-center gap-2 px-4 py-2 text-sm">
                         <span className="font-medium">{WEEK[locale][i]}</span>
                         <span className="text-right font-mono tabular-nums text-muted-foreground">{low}°</span>
                         <RangeBar
@@ -100,7 +100,7 @@ export function WeeklyTemperatures() {
   return (
     <ul className="divide-y rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {WEEK.map((d) => (
-        <li key={d.day} className="grid grid-cols-[4.5rem_2rem_1fr_2rem] items-center gap-2 px-4 py-2.5 text-sm">
+        <li key={d.day} className="grid min-h-10 grid-cols-[4.5rem_2rem_1fr_2rem] items-center gap-2 px-4 py-2 text-sm">
           <span>{d.day}</span>
           <span className="text-right font-mono">{d.low}°</span>
           <RangeBar min={MIN} max={MAX} low={d.low} high={d.high} variant="gradient" label={\`\${d.day}の気温\`} unit="°" />
@@ -127,7 +127,7 @@ export function WeeklyTemperatures() {
   return (
     <ul className="divide-y rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {WEEK.map((d) => (
-        <li key={d.day} className="grid grid-cols-[4.5rem_2rem_1fr_2rem] items-center gap-2 px-4 py-2.5 text-sm">
+        <li key={d.day} className="grid min-h-10 grid-cols-[4.5rem_2rem_1fr_2rem] items-center gap-2 px-4 py-2 text-sm">
           <span>{d.day}</span>
           <span className="text-right font-mono">{d.low}°</span>
           <RangeBar min={MIN} max={MAX} low={d.low} high={d.high} variant="gradient" label={\`\${d.day} temperature\`} unit="°" />
@@ -297,7 +297,7 @@ export function NotYet() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

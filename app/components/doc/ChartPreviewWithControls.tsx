@@ -2093,7 +2093,7 @@ function ReferenceLineSwitch({
     onCheckedChange: (checked: boolean) => void;
 }) {
     return (
-        <div className="inline-flex items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2 py-1.5">
+        <div className="inline-flex min-h-9 items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2 py-1">
             <Switch id={id} checked={checked} onCheckedChange={onCheckedChange} />
             <FormLabel htmlFor={id} className="text-xs font-medium">
                 {label}
@@ -2836,7 +2836,7 @@ function SegmentTimelineDataControls({
                     {totals.map((duration, index) => (
                         <div
                             key={labels[index]}
-                            className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-2"
+                            className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2"
                         >
                             <div className="truncate text-xs text-muted-foreground">
                                 {labels[index]}
@@ -2861,7 +2861,7 @@ function SegmentTimelineDataControls({
                         />
                     </FormGroup>
                 </div>
-                <div className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-2">
+                <div className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2">
                     <div className="min-w-0">
                         <div className="text-xs text-muted-foreground">
                             {copy.intervalCount}

@@ -218,7 +218,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
             <div className="flex flex-wrap gap-2">
                 <Popover>
                     <PopoverTrigger asChild>
-                        <button type="button" className="inline-flex items-center gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                        <button type="button" className="inline-flex min-h-8 items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-1 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                             <DeviceLaptop className="h-4 w-4" />
                             {environment}
                         </button>
@@ -234,7 +234,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
                                         setEnvironment(item);
                                         setNote(isJa ? `${item} で実行します。` : `Using ${item}.`);
                                     }}
-                                    className="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm hover:bg-muted"
+                                    className="flex min-h-8 w-full items-center justify-between rounded-md px-2 py-1 text-left text-sm hover:bg-muted"
                                 >
                                     {item}
                                     {environment === item ? <Check className="h-4 w-4" /> : null}
@@ -245,7 +245,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
                 </Popover>
                 <Popover>
                     <PopoverTrigger asChild>
-                        <button type="button" className="inline-flex items-center gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                        <button type="button" className="inline-flex min-h-8 items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-1 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                             <Folder className="h-4 w-4" />
                             {workspace}
                         </button>
@@ -261,7 +261,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
                                         setWorkspace(item);
                                         setNote(isJa ? `${item} を開きました。` : `Opened ${item}.`);
                                     }}
-                                    className="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm hover:bg-muted"
+                                    className="flex min-h-8 w-full items-center justify-between rounded-md px-2 py-1 text-left text-sm hover:bg-muted"
                                 >
                                     {item}
                                     {workspace === item ? <Check className="h-4 w-4" /> : null}
@@ -270,7 +270,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
                             <button
                                 type="button"
                                 onClick={() => setNote(isJa ? "フォルダ選択ダイアログを開きます。" : "Open folder picker.")}
-                                className="w-full rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-2 py-1.5 text-left text-sm hover:bg-muted"
+                                className="w-full rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-2 py-1 text-left text-sm leading-6 hover:bg-muted"
                             >
                                 {isJa ? "フォルダを開く..." : "Open folder..."}
                             </button>
@@ -279,7 +279,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
                 </Popover>
                 <Popover>
                     <PopoverTrigger asChild>
-                        <button type="button" className="inline-flex items-center gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                        <button type="button" className="inline-flex min-h-8 items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-1 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                             <GitBranch className="h-4 w-4" />
                             {branch}
                         </button>
@@ -295,7 +295,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
                                         setBranch(item);
                                         setNote(isJa ? `${item} に切り替えました。` : `Switched to ${item}.`);
                                     }}
-                                    className="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm hover:bg-muted"
+                                    className="flex min-h-8 w-full items-center justify-between rounded-md px-2 py-1 text-left text-sm hover:bg-muted"
                                 >
                                     <span className="truncate">{item}</span>
                                     {branch === item ? <Check className="h-4 w-4 shrink-0" /> : null}
@@ -310,7 +310,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
                         setWorktree((current) => !current);
                         setNote(worktree ? (isJa ? "ワークツリーを外しました。" : "Worktree disabled.") : (isJa ? "ワークツリーを有効にしました。" : "Worktree enabled."));
                     }}
-                    className="inline-flex items-center gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex min-h-8 items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-1 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     aria-pressed={worktree}
                 >
                     <Check className={`h-4 w-4 ${worktree ? "text-primary" : "text-muted-foreground"}`} />
@@ -319,7 +319,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
             </div>
             <div className="rounded-xl border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle px-3 py-2 text-sm text-primary-subtle-foreground">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                    <span className="inline-flex items-center gap-1.5 font-semibold">
+                    <span className="inline-flex items-center gap-2 font-semibold">
                         <GitPullRequest className="h-4 w-4" />
                         #24
                     </span>
@@ -338,7 +338,7 @@ function InputMascot() {
             <div className="absolute inset-x-1 bottom-0 flex h-10 items-center justify-center rounded-[1.1rem] border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-card text-primary shadow-sm">
                 <span className="absolute -left-1 top-4 h-3 w-2 rounded-l-md bg-primary-subtle" />
                 <span className="absolute -right-1 top-4 h-3 w-2 rounded-r-md bg-primary-subtle" />
-                <span className="mt-1 flex items-center gap-1.5">
+                <span className="mt-1 flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                     <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                 </span>
@@ -576,16 +576,16 @@ export function WorkspaceComposer() {
       context={
         <>
           <div className="flex flex-wrap gap-2">
-            <button type="button" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm">
+            <button type="button" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-1 text-sm leading-6">
               ローカル
             </button>
-            <button type="button" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm">
+            <button type="button" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-1 text-sm leading-6">
               product-dashboard
             </button>
             <button
               type="button"
               onClick={() => setBranch(branch === "main" ? "feature/insights-panel" : "main")}
-              className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm"
+              className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-1 text-sm leading-6"
             >
               {branch}
             </button>

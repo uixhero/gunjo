@@ -89,7 +89,7 @@ function DayBandPlayground({ locale }: { locale: Locale }) {
             />
 
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                <div className="flex min-w-0 flex-col gap-1.5">
+                <div className="flex min-w-0 flex-col gap-2">
                     <Label htmlFor="day-band-scrub">{isJa ? "掴んで動かす作法" : "Scrub mode"}</Label>
                     <SegmentedControl
                         id="day-band-scrub"
@@ -967,7 +967,7 @@ export function FrozenBand() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

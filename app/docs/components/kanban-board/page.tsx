@@ -135,7 +135,7 @@ function TaskCard({ task, locale }: { task: Task; locale: Locale }) {
       <span className="text-xs text-muted-foreground">
         {locale === "ja" ? "担当" : "Owner"}: {task.assignee}
       </span>
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex flex-wrap gap-2">
         <Badge variant={task.priority === (locale === "ja" ? "高" : "High") ? "destructive" : "secondary"}>
           {task.priority}
         </Badge>
@@ -665,7 +665,7 @@ export function KanbanWithoutCounts() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+        <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

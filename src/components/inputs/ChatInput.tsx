@@ -307,7 +307,7 @@ export function ChatInput({
     return (
         <div
             className={cn(
-                "w-full max-w-full rounded-2xl border border-input bg-background p-3 shadow-sm transition-colors focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/30",
+                "w-full max-w-full rounded-2xl border border-input bg-card p-3 shadow-sm transition-colors focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/30",
                 chatInputVariantClassNames[resolvedVariant],
                 isDisabled && "bg-muted/40 opacity-70",
                 className

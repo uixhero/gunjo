@@ -40,11 +40,11 @@ export default function IntroductionPage() {
         <div className="space-y-16">
             <section className="space-y-6">
                 <div className="flex flex-wrap items-center gap-2">
-                    <Badge variant="outline" className="gap-1.5">
+                    <Badge variant="outline" className="gap-1">
                         <Sparkles className="h-3 w-3" />
                         {intro.alphaBadge}
                     </Badge>
-                    <Badge variant="secondary" className="gap-1.5">
+                    <Badge variant="secondary" className="gap-1">
                         <Package className="h-3 w-3" />
                         {intro.componentCountBadge}
                     </Badge>
@@ -61,7 +61,7 @@ export default function IntroductionPage() {
                     <Button asChild>
                         <Link href="/docs/installation">
                             {intro.ctaPrimary}
-                            <ArrowRight className="ml-1.5 h-4 w-4" />
+                            <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
                     <Button asChild variant="outline">
@@ -118,7 +118,7 @@ export default function IntroductionPage() {
                                 }
                                 return (
                                     <code
-                                        className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono"
+                                        className="rounded bg-muted px-1 text-sm font-mono"
                                         {...props}
                                     >
                                         {children}
@@ -157,13 +157,13 @@ export default function IntroductionPage() {
                                             href={href}
                                             target={external ? "_blank" : undefined}
                                             rel={external ? "noreferrer" : undefined}
-                                            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-primary-strong"
+                                            className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary-strong"
                                         >
                                             {pathway.cta}
                                             {external ? (
-                                                <ExternalLink className="h-3.5 w-3.5" />
+                                                <ExternalLink className="h-4 w-4" />
                                             ) : (
-                                                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                                                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                                             )}
                                         </Link>
                                     </CardContent>
@@ -325,9 +325,9 @@ function QuickstartStep({
                     aria-label={copied ? copiedLabel : copyLabel}
                 >
                     {copied ? (
-                        <Check className="h-3.5 w-3.5" />
+                        <Check className="h-4 w-4" />
                     ) : (
-                        <Copy className="h-3.5 w-3.5" />
+                        <Copy className="h-4 w-4" />
                     )}
                 </Button>
             </div>

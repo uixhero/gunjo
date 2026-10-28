@@ -67,7 +67,7 @@ export function SpecMarkdown({ content }: { content: string }) {
                     }
                     return (
                         <code
-                            className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono"
+                            className="rounded bg-muted px-1 text-sm font-mono"
                             {...props}
                         >
                             {children}

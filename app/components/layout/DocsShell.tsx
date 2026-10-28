@@ -115,11 +115,11 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
                     {currentEntry ? (
                         <nav
                             aria-label={locale === "ja" ? "現在のドキュメント位置" : "Current documentation location"}
-                            className="mb-4 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground"
+                            className="mb-4 flex flex-wrap items-center gap-2 text-xs text-muted-foreground"
                         >
                             <Link
                                 href="/docs/introduction"
-                                className="rounded-sm px-1 py-0.5 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                className="rounded-sm px-1 leading-5 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                             >
                                 {locale === "ja" ? "ドキュメント" : "Docs"}
                             </Link>

@@ -373,7 +373,7 @@ function ClaimDetail({
               <div className="mb-2 flex items-center gap-2">
                 <h4 className="text-sm font-semibold">2名承認（高額案件）</h4>
                 <CoSignBadge value={coSign} />
-                <Badge variant="warning" icon={<IconShieldCheck className="h-3.5 w-3.5" />}>
+                <Badge variant="warning" icon={<IconShieldCheck className="h-3 w-3" />}>
                   請求額 {yen(claim.claimedAmount)}
                 </Badge>
               </div>
@@ -489,11 +489,11 @@ export function ClaimsScreen() {
             c.elapsedDays > c.slaDays && c.status !== "支払済" && c.status !== "否認"
           return (
             <div className="min-w-0">
-              <div className="flex items-center gap-1.5 font-medium tabular-nums">
+              <div className="flex items-center gap-2 font-medium tabular-nums">
                 {c.id}
                 {c.fraudFlags.length > 0 && (
                   <IconAlertTriangle
-                    className="h-3.5 w-3.5 text-destructive"
+                    className="h-4 w-4 text-destructive"
                     aria-label="要注意フラグあり"
                   />
                 )}
@@ -628,7 +628,7 @@ export function ClaimsScreen() {
                     <span className="text-muted-foreground">請求額</span>
                     <span className="font-medium tabular-nums">{yen(c.claimedAmount)}</span>
                   </div>
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-2">
                     {c.claimedAmount >= HIGH_VALUE_THRESHOLD && (
                       <Badge variant="info">高額</Badge>
                     )}

@@ -205,7 +205,7 @@ export function PoliciesScreen() {
     <div>
       {/* ヘッダー（画面ローカル）— 会社名は共有シェル側に出る */}
       <header className="mb-6 flex flex-wrap items-end justify-between gap-3">
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <p className="text-sm text-muted-foreground">
             代理店ポータル ・ 募集管理者: 高橋 美咲
           </p>
@@ -424,7 +424,7 @@ export function PoliciesScreen() {
             <Separator />
             <div className="flex flex-col gap-4">
               {AGENTS.map((a) => (
-                <div key={a.id} className="flex flex-col gap-1.5">
+                <div key={a.id} className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
                     <PersonCell name={a.name} secondary={a.role} size="sm" />
                     <span className="tabular-nums text-sm font-medium">

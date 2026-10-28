@@ -126,7 +126,7 @@ export function MenubarDemo() {
 export function ContextMenuDemo() {
     return (
         <ContextMenu>
-            <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+            <ContextMenuTrigger className="flex h-38 w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
                 Right click here
             </ContextMenuTrigger>
             <ContextMenuContent className="w-64">

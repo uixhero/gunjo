@@ -1022,8 +1022,8 @@ export function MediaLibraryTemplateDemo({
     );
     const activeFilterCount = selectedTypes.length + selectedColors.length + selectedFilterTags.length + selectedFolders.length + selectedShapes.length + selectedSizes.length + (selectedRating ? 1 : 0);
     const smartFolderMeta: Record<SmartFolderId, { icon: React.ReactNode; label: string }> = {
-        "spec-check": { icon: <WandSparkles size={18} />, label: labels.specCheck },
-        compressed: { icon: <Archive size={18} />, label: labels.compressed },
+        "spec-check": { icon: <WandSparkles size={16} />, label: labels.specCheck },
+        compressed: { icon: <Archive size={16} />, label: labels.compressed },
     };
 
     React.useEffect(() => {
@@ -1376,17 +1376,17 @@ export function MediaLibraryTemplateDemo({
                     tooltipPortalContainer={portalContainer}
                     onClick={(event) => event.preventDefault()}
                 >
-                    <Settings size={18} />
+                    <Settings size={16} />
                 </TooltipButton>
             </div>
             <ScrollArea className="h-full min-h-0 w-full flex-1">
                 <div className="box-border w-full p-4">
                     <div className="text-xs font-bold text-muted-foreground mb-2 px-2">{labels.libraries.toUpperCase()}</div>
                     <div className="space-y-1">
-                        <SidebarItem id="all" icon={<Grid size={18} />} label={labels.allItems} isActive={activeFolder === "all"} onClick={() => selectFolder("all")} count={countFor("all")} reserveChevronSpace={false} />
-                        <SidebarItem id="favorite" icon={<Star size={18} />} label={labels.favorites} isActive={activeFolder === "favorite"} onClick={() => selectFolder("favorite")} count={countFor("favorite")} reserveChevronSpace={false} />
-                        <SidebarItem id="uncat" icon={<Folder size={18} />} label={labels.uncategorized} isActive={activeFolder === "uncat"} onClick={() => selectFolder("uncat")} count={countFor("uncat")} reserveChevronSpace={false} />
-                        <SidebarItem id="trash" icon={<Trash2 size={18} />} label={labels.trash} isActive={activeFolder === "trash"} onClick={() => selectFolder("trash")} count={countFor("trash")} reserveChevronSpace={false} />
+                        <SidebarItem id="all" icon={<Grid size={16} />} label={labels.allItems} isActive={activeFolder === "all"} onClick={() => selectFolder("all")} count={countFor("all")} reserveChevronSpace={false} />
+                        <SidebarItem id="favorite" icon={<Star size={16} />} label={labels.favorites} isActive={activeFolder === "favorite"} onClick={() => selectFolder("favorite")} count={countFor("favorite")} reserveChevronSpace={false} />
+                        <SidebarItem id="uncat" icon={<Folder size={16} />} label={labels.uncategorized} isActive={activeFolder === "uncat"} onClick={() => selectFolder("uncat")} count={countFor("uncat")} reserveChevronSpace={false} />
+                        <SidebarItem id="trash" icon={<Trash2 size={16} />} label={labels.trash} isActive={activeFolder === "trash"} onClick={() => selectFolder("trash")} count={countFor("trash")} reserveChevronSpace={false} />
                     </div>
                 </div>
                 <div className="box-border w-full p-4 pt-0">
@@ -1405,7 +1405,7 @@ export function MediaLibraryTemplateDemo({
                                 tooltipCloseOnPress
                                 onClick={() => setCreateFolderOpen(true)}
                             >
-                                <Plus size={14} />
+                                <Plus size={16} />
                             </TooltipButton>
                             <TooltipButton
                                 type="button"
@@ -1419,7 +1419,7 @@ export function MediaLibraryTemplateDemo({
                                 tooltipCloseOnPress
                                 onClick={() => setFoldersExpanded((open) => !open)}
                             >
-                                <ChevronRight size={14} className={cn("transition-transform", foldersExpanded && "rotate-90")} />
+                                <ChevronRight size={16} className={cn("transition-transform", foldersExpanded && "rotate-90")} />
                             </TooltipButton>
                         </div>
                     </div>
@@ -1450,7 +1450,7 @@ export function MediaLibraryTemplateDemo({
                                             setFolderToDelete(folder);
                                         }}
                                     >
-                                        <Trash2 size={14} />
+                                        <Trash2 size={16} />
                                     </TooltipButton>
                                 );
                             }}
@@ -1509,7 +1509,7 @@ export function MediaLibraryTemplateDemo({
                                 tooltipCloseOnPress
                                 onClick={() => setSmartFoldersExpanded((open) => !open)}
                             >
-                                <ChevronRight size={14} className={cn("transition-transform", smartFoldersExpanded && "rotate-90")} />
+                                <ChevronRight size={16} className={cn("transition-transform", smartFoldersExpanded && "rotate-90")} />
                             </TooltipButton>
                         </div>
                     </div>
@@ -1600,7 +1600,7 @@ export function MediaLibraryTemplateDemo({
                                         </TooltipButton>
                                     ) : null}
                                 </div>
-                                <div className="flex flex-shrink-0 items-center gap-1.5">
+                                <div className="flex flex-shrink-0 items-center gap-2">
                                     <TooltipButton
                                         type="button"
                                         variant={searchOpen ? "secondary" : "ghost"}
@@ -1629,7 +1629,7 @@ export function MediaLibraryTemplateDemo({
                                     >
                                         <Funnel className="h-5 w-5" aria-hidden="true" />
                                         {filtersOpen || activeFilterCount > 0 ? (
-                                            <span className="absolute right-1.5 top-1.5 flex h-2.5 min-w-2.5 items-center justify-center rounded-full bg-primary text-[9px] text-primary-foreground">
+                                            <span className="absolute right-1 top-1 flex h-2.5 min-w-2.5 items-center justify-center rounded-full bg-primary text-[9px] text-primary-foreground">
                                                 {activeFilterCount > 0 ? activeFilterCount : ""}
                                             </span>
                                         ) : null}
@@ -1759,7 +1759,7 @@ export function MediaLibraryTemplateDemo({
                                         tooltipCloseOnPress
                                         onClick={openDetails}
                                     >
-                                        <Info size={18} />
+                                        <Info size={20} />
                                     </TooltipButton>
                                 </div>
                             </div>
