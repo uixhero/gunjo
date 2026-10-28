@@ -6,7 +6,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
-import { NotificationCenter as GunjoNotificationCenter, type Notification, type NotificationCenterLabels } from "@gunjo/ui";
+import { NotificationCenter as GunjoNotificationCenter, type Notification, type NotificationCenterLabels, Code } from "@gunjo/ui";
 import { useState } from "react";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 import { withPreviewPortal } from "@/components/doc/PreviewPortal";
@@ -367,25 +367,25 @@ export default function NotificationCenterDocPage() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>未読は数ではなく点で出す。</strong>資料は「未読バッジは 9+ や 99+ で上限を設ける」を挙げています。GUNJO は数を出すのをやめ、ベルの右上に小さな点を1つ置くだけにしました。上限をいくつにするかを部品が決めずに済み、1件でも100件でも「まだ見ていないものがある」という同じ意味だけを伝えます。件数を見せたい画面は、渡した <code className="rounded bg-muted px-1 font-mono text-xs">notifications</code> を呼ぶ側で数えます。
+                            <strong>未読は数ではなく点で出す。</strong>資料は「未読バッジは 9+ や 99+ で上限を設ける」を挙げています。GUNJO は数を出すのをやめ、ベルの右上に小さな点を1つ置くだけにしました。上限をいくつにするかを部品が決めずに済み、1件でも100件でも「まだ見ていないものがある」という同じ意味だけを伝えます。件数を見せたい画面は、渡した <Code variant="inherit" size="sm">notifications</Code> を呼ぶ側で数えます。
                         </li>
                         <li>
-                            <strong>通知が無いときの画面を部品が持つ。</strong>0件のとき、薄いベルのアイコンと <code className="rounded bg-muted px-1 font-mono text-xs">emptyTitle</code> の一文が出ます。空のときの表示を呼ぶ側が書き忘れて、開いたら真っ白、が起きません。
+                            <strong>通知が無いときの画面を部品が持つ。</strong>0件のとき、薄いベルのアイコンと <Code variant="inherit" size="sm">emptyTitle</Code> の一文が出ます。空のときの表示を呼ぶ側が書き忘れて、開いたら真っ白、が起きません。
                         </li>
                         <li>
-                            <strong>一括既読と設定への導線は、口だけ用意した。</strong><code className="rounded bg-muted px-1 font-mono text-xs">onClearAll</code> を渡したときだけ、しかも未読があるときだけ「すべて既読」が出ます。押した先で何が起きるかは呼ぶ側が決めます。資料が挙げる時系列のグループ化（今日・今週・それ以前）は、GUNJO の <code className="rounded bg-muted px-1 font-mono text-xs">NotificationCenter</code> にはまだありません。並び順は渡した配列のままです。
+                            <strong>一括既読と設定への導線は、口だけ用意した。</strong><Code variant="inherit" size="sm">onClearAll</Code> を渡したときだけ、しかも未読があるときだけ「すべて既読」が出ます。押した先で何が起きるかは呼ぶ側が決めます。資料が挙げる時系列のグループ化（今日・今週・それ以前）は、GUNJO の <Code variant="inherit" size="sm">NotificationCenter</Code> にはまだありません。並び順は渡した配列のままです。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>Unread is a dot, not a number.</strong> The article asks for an unread badge capped at 9+ or 99+. GUNJO drops the number entirely and places a single small dot on the bell. No cap has to be chosen by the component, and one unread item and a hundred unread items say the same thing: there is something you have not seen. A screen that wants the count can derive it from the <code className="rounded bg-muted px-1 font-mono text-xs">notifications</code> it already passes in.
+                            <strong>Unread is a dot, not a number.</strong> The article asks for an unread badge capped at 9+ or 99+. GUNJO drops the number entirely and places a single small dot on the bell. No cap has to be chosen by the component, and one unread item and a hundred unread items say the same thing: there is something you have not seen. A screen that wants the count can derive it from the <Code variant="inherit" size="sm">notifications</Code> it already passes in.
                         </li>
                         <li>
-                            <strong>The empty screen belongs to the component.</strong> With zero notifications it renders a faded bell and the <code className="rounded bg-muted px-1 font-mono text-xs">emptyTitle</code> line, so a caller cannot forget the empty case and leave the panel blank.
+                            <strong>The empty screen belongs to the component.</strong> With zero notifications it renders a faded bell and the <Code variant="inherit" size="sm">emptyTitle</Code> line, so a caller cannot forget the empty case and leave the panel blank.
                         </li>
                         <li>
-                            <strong>Mark-all-read and the settings link are slots, not behaviour.</strong> Clear all appears only when <code className="rounded bg-muted px-1 font-mono text-xs">onClearAll</code> is supplied and only while something is unread. What it does is decided by the caller. Note that the time grouping the article recommends (today, this week, earlier) is not in <code className="rounded bg-muted px-1 font-mono text-xs">NotificationCenter</code> yet: the order is exactly the array you pass.
+                            <strong>Mark-all-read and the settings link are slots, not behaviour.</strong> Clear all appears only when <Code variant="inherit" size="sm">onClearAll</Code> is supplied and only while something is unread. What it does is decided by the caller. Note that the time grouping the article recommends (today, this week, earlier) is not in <Code variant="inherit" size="sm">NotificationCenter</Code> yet: the order is exactly the array you pass.
                         </li>
                     </ul>
                 )}

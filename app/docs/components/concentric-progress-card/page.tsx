@@ -7,7 +7,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithControls";
 import displayMetadata from "@design/display-metadata.json";
 import { useLocale } from "@/components/providers/LocaleProvider";
-import { ConcentricProgressCard } from "@gunjo/ui";
+import { ConcentricProgressCard, Code } from "@gunjo/ui";
 import type { ConcentricProgressMetric, ConcentricProgressRing } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
@@ -774,13 +774,13 @@ export default function ConcentricProgressCardPage() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>輪は SVG ではなく CSS の <code className="rounded bg-muted px-1 font-mono text-xs">conic-gradient</code> で描いた。</strong>データで形が変わる図は HTML と CSS の組み合わせで作る、というのが GUNJO の決まりです。輪は円錐グラデーション、真ん中の抜きは <code className="rounded bg-muted px-1 font-mono text-xs">radial-gradient</code> のマスクで作り、輪の太さ（<code className="rounded bg-muted px-1 font-mono text-xs">thickness</code>）と間隔（<code className="rounded bg-muted px-1 font-mono text-xs">gap</code>）は数値で渡します。
+                            <strong>輪は SVG ではなく CSS の <Code variant="inherit" size="sm">conic-gradient</Code> で描いた。</strong>データで形が変わる図は HTML と CSS の組み合わせで作る、というのが GUNJO の決まりです。輪は円錐グラデーション、真ん中の抜きは <Code variant="inherit" size="sm">radial-gradient</Code> のマスクで作り、輪の太さ（<Code variant="inherit" size="sm">thickness</Code>）と間隔（<Code variant="inherit" size="sm">gap</Code>）は数値で渡します。
                         </li>
                         <li>
-                            <strong>図は1枚の絵として読ませ、選ぶのは下の一覧でやる。</strong>輪の塊には <code className="rounded bg-muted px-1 font-mono text-xs">{'role="img"'}</code> と、すべての輪の値を並べた読み上げ用の名前が付きます。輪そのものを一片ずつ押せるようにはせず、押せるのは凡例の行（<code className="rounded bg-muted px-1 font-mono text-xs">button</code>）だけです。細い輪はタップの的にならないためです。
+                            <strong>図は1枚の絵として読ませ、選ぶのは下の一覧でやる。</strong>輪の塊には <Code variant="inherit" size="sm">{'role="img"'}</Code> と、すべての輪の値を並べた読み上げ用の名前が付きます。輪そのものを一片ずつ押せるようにはせず、押せるのは凡例の行（<Code variant="inherit" size="sm">button</Code>）だけです。細い輪はタップの的にならないためです。
                         </li>
                         <li>
-                            <strong>真ん中の数字はカードが計算しない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">value</code> と <code className="rounded bg-muted px-1 font-mono text-xs">centerLabel</code> は呼ぶ側が渡します。輪の合計なのか、いちばん外の輪の値なのか、達成率なのかは画面の意味で変わるからです。<code className="rounded bg-muted px-1 font-mono text-xs">max</code> も同じで、渡さなければ輪の最大値がそのまま基準になります。
+                            <strong>真ん中の数字はカードが計算しない。</strong><Code variant="inherit" size="sm">value</Code> と <Code variant="inherit" size="sm">centerLabel</Code> は呼ぶ側が渡します。輪の合計なのか、いちばん外の輪の値なのか、達成率なのかは画面の意味で変わるからです。<Code variant="inherit" size="sm">max</Code> も同じで、渡さなければ輪の最大値がそのまま基準になります。
                             <br />
                             一般のカードの設計は UIXHERO の「カード」にあります。
                         </li>
@@ -788,13 +788,13 @@ export default function ConcentricProgressCardPage() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The rings are CSS <code className="rounded bg-muted px-1 font-mono text-xs">conic-gradient</code>, not SVG.</strong> GUNJO builds data-driven shapes out of HTML and CSS. Each ring is a conic gradient, the hole is punched with a <code className="rounded bg-muted px-1 font-mono text-xs">radial-gradient</code> mask, and ring <code className="rounded bg-muted px-1 font-mono text-xs">thickness</code> and <code className="rounded bg-muted px-1 font-mono text-xs">gap</code> are passed as numbers.
+                            <strong>The rings are CSS <Code variant="inherit" size="sm">conic-gradient</Code>, not SVG.</strong> GUNJO builds data-driven shapes out of HTML and CSS. Each ring is a conic gradient, the hole is punched with a <Code variant="inherit" size="sm">radial-gradient</Code> mask, and ring <Code variant="inherit" size="sm">thickness</Code> and <Code variant="inherit" size="sm">gap</Code> are passed as numbers.
                         </li>
                         <li>
-                            <strong>The figure reads as one image; picking happens in the list below.</strong> The ring stack carries <code className="rounded bg-muted px-1 font-mono text-xs">{'role="img"'}</code> plus an accessible name that spells out every ring&rsquo;s value. Individual arcs are never clickable; only the legend rows (<code className="rounded bg-muted px-1 font-mono text-xs">button</code>) are, because a thin arc is not a tap target.
+                            <strong>The figure reads as one image; picking happens in the list below.</strong> The ring stack carries <Code variant="inherit" size="sm">{'role="img"'}</Code> plus an accessible name that spells out every ring&rsquo;s value. Individual arcs are never clickable; only the legend rows (<Code variant="inherit" size="sm">button</Code>) are, because a thin arc is not a tap target.
                         </li>
                         <li>
-                            <strong>The number in the middle is not computed by the card.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">value</code> and <code className="rounded bg-muted px-1 font-mono text-xs">centerLabel</code> come from the caller, because whether the centre shows a total, the outermost ring or a completion rate depends on the screen. <code className="rounded bg-muted px-1 font-mono text-xs">max</code> works the same way: omit it and the largest ring sets the scale.
+                            <strong>The number in the middle is not computed by the card.</strong> <Code variant="inherit" size="sm">value</Code> and <Code variant="inherit" size="sm">centerLabel</Code> come from the caller, because whether the centre shows a total, the outermost ring or a completion rate depends on the screen. <Code variant="inherit" size="sm">max</Code> works the same way: omit it and the largest ring sets the scale.
                             <br />
                             The general design of cards is covered by UIXHERO&rsquo;s card article.
                         </li>

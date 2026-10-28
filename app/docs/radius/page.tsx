@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { Code } from "@gunjo/ui";
 
 const RADII_BASE = [
     { name: "rounded-none", value: "0px", className: "rounded-none" },
@@ -43,10 +44,10 @@ const COPY = {
         subtitle: (
             <>
                 Radius scale anchored to{" "}
-                <code className="rounded bg-muted px-1 text-sm font-mono">--radius (0.5rem)</code>.
+                <Code variant="inherit">--radius (0.5rem)</Code>.
                 Most controls sit at{" "}
-                <code className="rounded bg-muted px-1 text-sm font-mono">rounded-md</code> /{" "}
-                <code className="rounded bg-muted px-1 text-sm font-mono">rounded-lg</code>;
+                <Code variant="inherit">rounded-md</Code> /{" "}
+                <Code variant="inherit">rounded-lg</Code>;
                 use the larger steps for marketing surfaces only.
             </>
         ),
@@ -70,10 +71,10 @@ const COPY = {
         subtitle: (
             <>
                 {" "}
-                <code className="rounded bg-muted px-1 text-sm font-mono">--radius (0.5rem)</code>{" "}
+                <Code variant="inherit">--radius (0.5rem)</Code>{" "}
                 を基点とする radius スケール。コントロールの多くは{" "}
-                <code className="rounded bg-muted px-1 text-sm font-mono">rounded-md</code> /{" "}
-                <code className="rounded bg-muted px-1 text-sm font-mono">rounded-lg</code>{" "}
+                <Code variant="inherit">rounded-md</Code> /{" "}
+                <Code variant="inherit">rounded-lg</Code>{" "}
                 を使い、より大きなステップはマーケティング面に限定します。
             </>
         ),

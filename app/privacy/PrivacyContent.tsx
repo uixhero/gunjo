@@ -5,6 +5,8 @@
 //    2026-09-20 に下げました（#874 の PR）＝そのときリンクだけ外し、本文は一字も変えていません。
 //    ⛔ ここの文面を勝手に書き換えないこと＝法務の文書で、書き直すかどうかは KeEem の判断です。
 
+import { Code } from "@gunjo/ui";
+
 export function PrivacyPolicyBody() {
     return (
         <div className="space-y-8">
@@ -14,7 +16,7 @@ export function PrivacyPolicyBody() {
                 4px合同会社（以下「当社」）は、GunjoUI（gunjo.jp、以下「本サイト」）における個人情報の取り扱いについて、以下のとおり定めます。本ポリシーは主に、本サイトの先行登録フォーム（
                 {/* ⛔ /pack へのリンクは張りません＝2026-09-20 にそのページを下げたので 404 です。
                     文字としての `/pack` は本文の一部なので残してあります（上のコメント参照）。 */}
-                <code className="rounded bg-muted px-1 text-sm">/pack</code>
+                <Code variant="inherit">/pack</Code>
                 ）でお預かりする情報を対象とします。
             </p>
 

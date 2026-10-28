@@ -6,7 +6,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
-import { CopyButton } from "@gunjo/ui";
+import { CopyButton, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 export default function CopyButtonPage() {
@@ -357,13 +357,13 @@ export function CompactCommandCopyButton() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>ラベルを動詞で書き、結果で入れ替える。</strong>資料は「ボタンのラベルは動詞で書く」を挙げています。この部品は <code className="rounded bg-muted px-1 font-mono text-xs">copyLabel</code>・<code className="rounded bg-muted px-1 font-mono text-xs">copiedLabel</code>・<code className="rounded bg-muted px-1 font-mono text-xs">copyFailedLabel</code> の3つを持ち、押した結果でラベルとアイコンを入れ替えます。既定では5秒（<code className="rounded bg-muted px-1 font-mono text-xs">copiedDuration</code>）でもとに戻ります。
+                            <strong>ラベルを動詞で書き、結果で入れ替える。</strong>資料は「ボタンのラベルは動詞で書く」を挙げています。この部品は <Code variant="inherit" size="sm">copyLabel</Code>・<Code variant="inherit" size="sm">copiedLabel</Code>・<Code variant="inherit" size="sm">copyFailedLabel</Code> の3つを持ち、押した結果でラベルとアイコンを入れ替えます。既定では5秒（<Code variant="inherit" size="sm">copiedDuration</Code>）でもとに戻ります。
                         </li>
                         <li>
-                            <strong>失敗しても黙らない。</strong>クリップボードの API が拒否された場合は、画面外の <code className="rounded bg-muted px-1 font-mono text-xs">textarea</code> を使う古いやり方に切り替えます。それでも駄目なら「コピーできません」を出します。押したのに何も起きない、という状態を作らないためです。
+                            <strong>失敗しても黙らない。</strong>クリップボードの API が拒否された場合は、画面外の <Code variant="inherit" size="sm">textarea</Code> を使う古いやり方に切り替えます。それでも駄目なら「コピーできません」を出します。押したのに何も起きない、という状態を作らないためです。
                         </li>
                         <li>
-                            <strong>結果はツールチップではなく <code className="rounded bg-muted px-1 font-mono text-xs">{'role="status"'}</code> で知らせる。</strong>押した後の吹き出しは読み上げ対象の要素で、そのあいだツールチップは出しません。ツールチップはポインタを乗せている人にしか届かないので、押した結果の知らせには使えないからです。
+                            <strong>結果はツールチップではなく <Code variant="inherit" size="sm">{'role="status"'}</Code> で知らせる。</strong>押した後の吹き出しは読み上げ対象の要素で、そのあいだツールチップは出しません。ツールチップはポインタを乗せている人にしか届かないので、押した結果の知らせには使えないからです。
                             <br />
                             一般のボタンの設計は UIXHERO の「ボタン」にあります。
                         </li>
@@ -371,13 +371,13 @@ export function CompactCommandCopyButton() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The label is a verb, and it changes with the outcome.</strong> The article asks for verbs on buttons. This one carries <code className="rounded bg-muted px-1 font-mono text-xs">copyLabel</code>, <code className="rounded bg-muted px-1 font-mono text-xs">copiedLabel</code> and <code className="rounded bg-muted px-1 font-mono text-xs">copyFailedLabel</code> and swaps label and icon based on what happened, reverting after <code className="rounded bg-muted px-1 font-mono text-xs">copiedDuration</code> (5 seconds by default).
+                            <strong>The label is a verb, and it changes with the outcome.</strong> The article asks for verbs on buttons. This one carries <Code variant="inherit" size="sm">copyLabel</Code>, <Code variant="inherit" size="sm">copiedLabel</Code> and <Code variant="inherit" size="sm">copyFailedLabel</Code> and swaps label and icon based on what happened, reverting after <Code variant="inherit" size="sm">copiedDuration</Code> (5 seconds by default).
                         </li>
                         <li>
-                            <strong>Failure is never silent.</strong> If the Clipboard API is denied, the component falls back to an off-screen <code className="rounded bg-muted px-1 font-mono text-xs">textarea</code>; if that fails too it says so. Pressing a button and getting nothing at all is not an allowed outcome.
+                            <strong>Failure is never silent.</strong> If the Clipboard API is denied, the component falls back to an off-screen <Code variant="inherit" size="sm">textarea</Code>; if that fails too it says so. Pressing a button and getting nothing at all is not an allowed outcome.
                         </li>
                         <li>
-                            <strong>The result is announced through <code className="rounded bg-muted px-1 font-mono text-xs">{'role="status"'}</code>, not a tooltip.</strong> The post-copy bubble is a live region, and the tooltip is suppressed while it is showing. A tooltip only reaches someone hovering with a pointer, so it cannot carry the result of a press.
+                            <strong>The result is announced through <Code variant="inherit" size="sm">{'role="status"'}</Code>, not a tooltip.</strong> The post-copy bubble is a live region, and the tooltip is suppressed while it is showing. A tooltip only reaches someone hovering with a pointer, so it cannot carry the result of a press.
                             <br />
                             The general design of buttons is covered by UIXHERO&rsquo;s button article.
                         </li>

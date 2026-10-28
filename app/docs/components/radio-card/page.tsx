@@ -9,7 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import { IconTrain } from "@tabler/icons-react";
 import displayMetadata from "@design/display-metadata.json";
-import { Badge, RadioCard, RadioCardGroup } from "@gunjo/ui";
+import { Badge, RadioCard, RadioCardGroup, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
@@ -373,13 +373,13 @@ export function MetroTicketCard() {
         {locale === "ja" ? (
           <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
             <li>
-              <strong>カードの見た目でも、中身はラジオボタンにした。</strong>一片は <code className="rounded bg-muted px-1 font-mono text-xs">{'role="radio"'}</code> と <code className="rounded bg-muted px-1 font-mono text-xs">aria-checked</code> を持つ <code className="rounded bg-muted px-1 font-mono text-xs">button</code> で、群には <code className="rounded bg-muted px-1 font-mono text-xs">{'role="radiogroup"'}</code> と矢印キーの移動（Home と End つき）が付いています。見た目がカードでも、キーボードの動きは選択の意味に合わせます。
+              <strong>カードの見た目でも、中身はラジオボタンにした。</strong>一片は <Code variant="inherit" size="sm">{'role="radio"'}</Code> と <Code variant="inherit" size="sm">aria-checked</Code> を持つ <Code variant="inherit" size="sm">button</Code> で、群には <Code variant="inherit" size="sm">{'role="radiogroup"'}</Code> と矢印キーの移動（Home と End つき）が付いています。見た目がカードでも、キーボードの動きは選択の意味に合わせます。
             </li>
             <li>
-              <strong><code className="rounded bg-muted px-1 font-mono text-xs">ListCard</code> の <code className="rounded bg-muted px-1 font-mono text-xs">onSelect</code> とは別物にした。</strong><code className="rounded bg-muted px-1 font-mono text-xs">ListCard</code> の選択は <code className="rounded bg-muted px-1 font-mono text-xs">aria-pressed</code> の切り替えで、押せば解除もできます。こちらは必ず1つだけ選ぶ形なので、別の部品にしました。同じ「押せるカード」でも、意味が違えば部品を分けます。
+              <strong><Code variant="inherit" size="sm">ListCard</Code> の <Code variant="inherit" size="sm">onSelect</Code> とは別物にした。</strong><Code variant="inherit" size="sm">ListCard</Code> の選択は <Code variant="inherit" size="sm">aria-pressed</Code> の切り替えで、押せば解除もできます。こちらは必ず1つだけ選ぶ形なので、別の部品にしました。同じ「押せるカード」でも、意味が違えば部品を分けます。
             </li>
             <li>
-              <strong>値段の置き場所を先に決めておいた。</strong><code className="rounded bg-muted px-1 font-mono text-xs">price</code> は右上の太い等幅数字、<code className="rounded bg-muted px-1 font-mono text-xs">highlight</code>（おトクの一言）はその下の小さな行、と場所が固定です。プランを縦に並べたときに、値段の位置が行ごとにずれないようにするためです。
+              <strong>値段の置き場所を先に決めておいた。</strong><Code variant="inherit" size="sm">price</Code> は右上の太い等幅数字、<Code variant="inherit" size="sm">highlight</Code>（おトクの一言）はその下の小さな行、と場所が固定です。プランを縦に並べたときに、値段の位置が行ごとにずれないようにするためです。
               <br />
               一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
@@ -387,13 +387,13 @@ export function MetroTicketCard() {
         ) : (
           <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
             <li>
-              <strong>It looks like a card but behaves like a radio button.</strong> Each card is a <code className="rounded bg-muted px-1 font-mono text-xs">button</code> with <code className="rounded bg-muted px-1 font-mono text-xs">{'role="radio"'}</code> and <code className="rounded bg-muted px-1 font-mono text-xs">aria-checked</code>, inside a <code className="rounded bg-muted px-1 font-mono text-xs">{'role="radiogroup"'}</code> that supports arrow keys plus Home and End. The look is a card; the keyboard behaviour follows the meaning of the choice.
+              <strong>It looks like a card but behaves like a radio button.</strong> Each card is a <Code variant="inherit" size="sm">button</Code> with <Code variant="inherit" size="sm">{'role="radio"'}</Code> and <Code variant="inherit" size="sm">aria-checked</Code>, inside a <Code variant="inherit" size="sm">{'role="radiogroup"'}</Code> that supports arrow keys plus Home and End. The look is a card; the keyboard behaviour follows the meaning of the choice.
             </li>
             <li>
-              <strong>Deliberately separate from <code className="rounded bg-muted px-1 font-mono text-xs">ListCard</code>&rsquo;s <code className="rounded bg-muted px-1 font-mono text-xs">onSelect</code>.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">ListCard</code> selection is an <code className="rounded bg-muted px-1 font-mono text-xs">aria-pressed</code> toggle that can be turned off again. This one is strictly pick-one, so it is a different component. Two cards can look alike and still need to be split when they mean different things.
+              <strong>Deliberately separate from <Code variant="inherit" size="sm">ListCard</Code>&rsquo;s <Code variant="inherit" size="sm">onSelect</Code>.</strong> <Code variant="inherit" size="sm">ListCard</Code> selection is an <Code variant="inherit" size="sm">aria-pressed</Code> toggle that can be turned off again. This one is strictly pick-one, so it is a different component. Two cards can look alike and still need to be split when they mean different things.
             </li>
             <li>
-              <strong>The price has a reserved slot.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">price</code> is the bold tabular number at the top right and <code className="rounded bg-muted px-1 font-mono text-xs">highlight</code> (the savings line) sits just under it. Stacking plans vertically then keeps every price on the same line.
+              <strong>The price has a reserved slot.</strong> <Code variant="inherit" size="sm">price</Code> is the bold tabular number at the top right and <Code variant="inherit" size="sm">highlight</Code> (the savings line) sits just under it. Stacking plans vertically then keeps every price on the same line.
               <br />
               The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>

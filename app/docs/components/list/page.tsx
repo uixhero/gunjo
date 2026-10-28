@@ -7,7 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, Icon, List, ListItem } from "@gunjo/ui";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, Icon, List, ListItem, Code } from "@gunjo/ui";
 import { IconArrowRight, IconCheck } from "@tabler/icons-react";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
@@ -334,25 +334,25 @@ export function CustomIconList() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>順序があるかどうかで要素を変える。</strong><code className="rounded bg-muted px-1 font-mono text-xs">{'variant="ordered"'}</code> なら <code className="rounded bg-muted px-1 font-mono text-xs">ol</code>、それ以外は <code className="rounded bg-muted px-1 font-mono text-xs">ul</code> を描きます。資料の1問目（順序に意味があるか）が、そのまま <code className="rounded bg-muted px-1 font-mono text-xs">variant</code> に対応しています。番号は自分で描かず、ブラウザの番号付けに任せています。
+                            <strong>順序があるかどうかで要素を変える。</strong><Code variant="inherit" size="sm">{'variant="ordered"'}</Code> なら <Code variant="inherit" size="sm">ol</Code>、それ以外は <Code variant="inherit" size="sm">ul</Code> を描きます。資料の1問目（順序に意味があるか）が、そのまま <Code variant="inherit" size="sm">variant</Code> に対応しています。番号は自分で描かず、ブラウザの番号付けに任せています。
                         </li>
                         <li>
-                            <strong>しるしは1か所で決める。</strong><code className="rounded bg-muted px-1 font-mono text-xs">List</code> に <code className="rounded bg-muted px-1 font-mono text-xs">marker</code> を渡すと、中の <code className="rounded bg-muted px-1 font-mono text-xs">ListItem</code> に配られます。項目ごとに書き直す必要はありません。しるしは点・丸・チェックの3つで、<code className="rounded bg-muted px-1 font-mono text-xs">icon</code> を渡せば別のものにも替えられます。<code className="rounded bg-muted px-1 font-mono text-xs">divided</code> を渡すと項目のあいだに線が入り、上端と下端の余白だけが落ちます。
+                            <strong>しるしは1か所で決める。</strong><Code variant="inherit" size="sm">List</Code> に <Code variant="inherit" size="sm">marker</Code> を渡すと、中の <Code variant="inherit" size="sm">ListItem</Code> に配られます。項目ごとに書き直す必要はありません。しるしは点・丸・チェックの3つで、<Code variant="inherit" size="sm">icon</Code> を渡せば別のものにも替えられます。<Code variant="inherit" size="sm">divided</Code> を渡すと項目のあいだに線が入り、上端と下端の余白だけが落ちます。
                         </li>
                         <li>
-                            <strong>押せる一覧・選べる一覧は、この部品ではない。</strong>資料は「押して操作するか」「複数選ぶか」で <code className="rounded bg-muted px-1 font-mono text-xs">button</code> や <code className="rounded bg-muted px-1 font-mono text-xs">checkbox</code> に分かれると書いています。GUNJO では押せる一覧は <code className="rounded bg-muted px-1 font-mono text-xs">ListCard</code>、選べる一覧は <code className="rounded bg-muted px-1 font-mono text-xs">Checkbox</code> を組んだ形で、<code className="rounded bg-muted px-1 font-mono text-xs">List</code> は読むための一覧に絞っています。空になったときは <code className="rounded bg-muted px-1 font-mono text-xs">EmptyState</code> を置きます。
+                            <strong>押せる一覧・選べる一覧は、この部品ではない。</strong>資料は「押して操作するか」「複数選ぶか」で <Code variant="inherit" size="sm">button</Code> や <Code variant="inherit" size="sm">checkbox</Code> に分かれると書いています。GUNJO では押せる一覧は <Code variant="inherit" size="sm">ListCard</Code>、選べる一覧は <Code variant="inherit" size="sm">Checkbox</Code> を組んだ形で、<Code variant="inherit" size="sm">List</Code> は読むための一覧に絞っています。空になったときは <Code variant="inherit" size="sm">EmptyState</Code> を置きます。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>Order decides the element.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">{'variant="ordered"'}</code> renders <code className="rounded bg-muted px-1 font-mono text-xs">ol</code>; anything else renders <code className="rounded bg-muted px-1 font-mono text-xs">ul</code>. The first question in the article, whether the order carries meaning, maps straight onto <code className="rounded bg-muted px-1 font-mono text-xs">variant</code>. Numbers are left to the browser rather than drawn by hand.
+                            <strong>Order decides the element.</strong> <Code variant="inherit" size="sm">{'variant="ordered"'}</Code> renders <Code variant="inherit" size="sm">ol</Code>; anything else renders <Code variant="inherit" size="sm">ul</Code>. The first question in the article, whether the order carries meaning, maps straight onto <Code variant="inherit" size="sm">variant</Code>. Numbers are left to the browser rather than drawn by hand.
                         </li>
                         <li>
-                            <strong>The marker is set once.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">marker</code> to <code className="rounded bg-muted px-1 font-mono text-xs">List</code> and it is handed down to every <code className="rounded bg-muted px-1 font-mono text-xs">ListItem</code>, so nothing is repeated per row. The markers are dot, circle and check, and <code className="rounded bg-muted px-1 font-mono text-xs">icon</code> replaces them with anything else. <code className="rounded bg-muted px-1 font-mono text-xs">divided</code> draws a rule between rows and trims the padding at the top and bottom edges.
+                            <strong>The marker is set once.</strong> Pass <Code variant="inherit" size="sm">marker</Code> to <Code variant="inherit" size="sm">List</Code> and it is handed down to every <Code variant="inherit" size="sm">ListItem</Code>, so nothing is repeated per row. The markers are dot, circle and check, and <Code variant="inherit" size="sm">icon</Code> replaces them with anything else. <Code variant="inherit" size="sm">divided</Code> draws a rule between rows and trims the padding at the top and bottom edges.
                         </li>
                         <li>
-                            <strong>Actionable and selectable lists are other components.</strong> The article splits lists by whether a row is pressed and whether several are selected, landing on <code className="rounded bg-muted px-1 font-mono text-xs">button</code> or <code className="rounded bg-muted px-1 font-mono text-xs">checkbox</code>. In GUNJO an actionable list is <code className="rounded bg-muted px-1 font-mono text-xs">ListCard</code> and a selectable one is composed with <code className="rounded bg-muted px-1 font-mono text-xs">Checkbox</code>, which leaves <code className="rounded bg-muted px-1 font-mono text-xs">List</code> for lists that are read. When it runs empty, put an <code className="rounded bg-muted px-1 font-mono text-xs">EmptyState</code> there.
+                            <strong>Actionable and selectable lists are other components.</strong> The article splits lists by whether a row is pressed and whether several are selected, landing on <Code variant="inherit" size="sm">button</Code> or <Code variant="inherit" size="sm">checkbox</Code>. In GUNJO an actionable list is <Code variant="inherit" size="sm">ListCard</Code> and a selectable one is composed with <Code variant="inherit" size="sm">Checkbox</Code>, which leaves <Code variant="inherit" size="sm">List</Code> for lists that are read. When it runs empty, put an <Code variant="inherit" size="sm">EmptyState</Code> there.
                         </li>
                     </ul>
                 )}

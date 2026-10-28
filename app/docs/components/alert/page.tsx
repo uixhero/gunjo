@@ -6,7 +6,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
-import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui";
+import { Alert, AlertDescription, AlertTitle, Code } from "@gunjo/ui";
 import {
     IconAlertCircle as AlertCircle,
     IconAlertTriangle as TriangleAlert,
@@ -447,25 +447,25 @@ import { IconCircleCheck as CheckCircle2 } from "@tabler/icons-react";
                 {isJa ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>バナーの題は既定で見出しにしない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">AlertTitle</code> は既定で <code className="rounded bg-muted px-1 font-mono text-xs">p</code> を描きます。通知バナーの題は文書の見出しの並びに属さないので、そこに見出しを置くと階層が飛びます。節の見出しを本当に持つときだけ <code className="rounded bg-muted px-1 font-mono text-xs">{'as="h2"'}</code> のように渡します。見た目はどちらでも同じです（#251）。
+                            <strong>バナーの題は既定で見出しにしない。</strong><Code variant="inherit" size="sm">AlertTitle</Code> は既定で <Code variant="inherit" size="sm">p</Code> を描きます。通知バナーの題は文書の見出しの並びに属さないので、そこに見出しを置くと階層が飛びます。節の見出しを本当に持つときだけ <Code variant="inherit" size="sm">{'as="h2"'}</Code> のように渡します。見た目はどちらでも同じです（#251）。
                         </li>
                         <li>
-                            <strong>種類を色だけに乗せない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">variant</code> を変えると、枠線・淡い背景・文字色・アイコンの色が同時に変わります。アイコンは飾りとして扱い、意味は題と説明の文が持ちます（#303）。
+                            <strong>種類を色だけに乗せない。</strong><Code variant="inherit" size="sm">variant</Code> を変えると、枠線・淡い背景・文字色・アイコンの色が同時に変わります。アイコンは飾りとして扱い、意味は題と説明の文が持ちます（#303）。
                         </li>
                         <li>
-                            <strong>資料と食い違っているところ。</strong>GUNJO の <code className="rounded bg-muted px-1 font-mono text-xs">Alert</code> は <code className="rounded bg-muted px-1 font-mono text-xs">variant</code> によらず常に <code className="rounded bg-muted px-1 font-mono text-xs">{'role="alert"'}</code> を付けます。資料は「<code className="rounded bg-muted px-1 font-mono text-xs">{'role="alert"'}</code> は読み上げに割り込むので誤りのときだけに使い、他は <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-live="polite"'}</code> にする」としています。ここは実装のほうを直す向きで、#936 で追っています。
+                            <strong>資料と食い違っているところ。</strong>GUNJO の <Code variant="inherit" size="sm">Alert</Code> は <Code variant="inherit" size="sm">variant</Code> によらず常に <Code variant="inherit" size="sm">{'role="alert"'}</Code> を付けます。資料は「<Code variant="inherit" size="sm">{'role="alert"'}</Code> は読み上げに割り込むので誤りのときだけに使い、他は <Code variant="inherit" size="sm">{'aria-live="polite"'}</Code> にする」としています。ここは実装のほうを直す向きで、#936 で追っています。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>A banner title is not a heading by default.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">AlertTitle</code> renders <code className="rounded bg-muted px-1 font-mono text-xs">p</code> by default. A status banner title does not belong to the document outline, so putting a heading there skips a level. Pass <code className="rounded bg-muted px-1 font-mono text-xs">{'as="h2"'}</code> only when the alert genuinely owns a section heading. The visual style is the same either way (#251).
+                            <strong>A banner title is not a heading by default.</strong> <Code variant="inherit" size="sm">AlertTitle</Code> renders <Code variant="inherit" size="sm">p</Code> by default. A status banner title does not belong to the document outline, so putting a heading there skips a level. Pass <Code variant="inherit" size="sm">{'as="h2"'}</Code> only when the alert genuinely owns a section heading. The visual style is the same either way (#251).
                         </li>
                         <li>
-                            <strong>Never let colour alone carry the kind.</strong> Changing <code className="rounded bg-muted px-1 font-mono text-xs">variant</code> moves the border, the subtle background, the text colour and the icon colour together. The icon is decorative; the title and description carry the meaning (#303).
+                            <strong>Never let colour alone carry the kind.</strong> Changing <Code variant="inherit" size="sm">variant</Code> moves the border, the subtle background, the text colour and the icon colour together. The icon is decorative; the title and description carry the meaning (#303).
                         </li>
                         <li>
-                            <strong>Where this diverges from the article.</strong> GUNJO always sets <code className="rounded bg-muted px-1 font-mono text-xs">{'role="alert"'}</code>, whatever the <code className="rounded bg-muted px-1 font-mono text-xs">variant</code>. The article asks for <code className="rounded bg-muted px-1 font-mono text-xs">{'role="alert"'}</code> on errors only, with <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-live="polite"'}</code> elsewhere, because an assertive region interrupts a screen reader mid-sentence. The implementation is the side that should change; tracked in #936.
+                            <strong>Where this diverges from the article.</strong> GUNJO always sets <Code variant="inherit" size="sm">{'role="alert"'}</Code>, whatever the <Code variant="inherit" size="sm">variant</Code>. The article asks for <Code variant="inherit" size="sm">{'role="alert"'}</Code> on errors only, with <Code variant="inherit" size="sm">{'aria-live="polite"'}</Code> elsewhere, because an assertive region interrupts a screen reader mid-sentence. The implementation is the side that should change; tracked in #936.
                         </li>
                     </ul>
                 )}

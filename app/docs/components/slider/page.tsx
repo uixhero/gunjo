@@ -9,7 +9,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
-import { FormControl, FormDescription, FormGroup, FormLabel, HStack, Slider } from "@gunjo/ui";
+import { FormControl, FormDescription, FormGroup, FormLabel, HStack, Slider, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function ValueSlider({ disabled, steps }: { disabled?: boolean; steps?: boolean }) {
@@ -443,25 +443,25 @@ export function DisabledSlider() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>現在値の表示は、既定では出さない。</strong>資料は「Slider を使うなら常に現在値を数値で出す」を挙げています。GUNJO は <code className="rounded bg-muted px-1 font-mono text-xs">showValue</code> を渡したときだけ出します。ラベルと値を上の行に並べる形が、置く場所によっては入らないからです。出さない選択をした画面でも、値そのものは近くのどこかに要ります。
+                            <strong>現在値の表示は、既定では出さない。</strong>資料は「Slider を使うなら常に現在値を数値で出す」を挙げています。GUNJO は <Code variant="inherit" size="sm">showValue</Code> を渡したときだけ出します。ラベルと値を上の行に並べる形が、置く場所によっては入らないからです。出さない選択をした画面でも、値そのものは近くのどこかに要ります。
                         </li>
                         <li>
-                            <strong>読み上げの文言を差し替えられるようにした。</strong><code className="rounded bg-muted px-1 font-mono text-xs">formatValue</code> を渡すと、その結果が <code className="rounded bg-muted px-1 font-mono text-xs">aria-valuetext</code> に入ります。35000000ではなく通貨の形で読ませるためです（#193）。同じ関数が <code className="rounded bg-muted px-1 font-mono text-xs">showValue</code> の表示にも使われるので、目で見る値と読み上げの値がずれません。
+                            <strong>読み上げの文言を差し替えられるようにした。</strong><Code variant="inherit" size="sm">formatValue</Code> を渡すと、その結果が <Code variant="inherit" size="sm">aria-valuetext</Code> に入ります。35000000ではなく通貨の形で読ませるためです（#193）。同じ関数が <Code variant="inherit" size="sm">showValue</Code> の表示にも使われるので、目で見る値と読み上げの値がずれません。
                         </li>
                         <li>
-                            <strong>通った部分の塗りは、クラスではなく style で作る。</strong>つまみまでの塗りつぶしは、インラインの <code className="rounded bg-muted px-1 font-mono text-xs">linear-gradient</code> で描いています。クラス名の一覧を変えずに済ませるためで、設計の元データとの差分検査がクラス名を見ているからです（#193）。<code className="rounded bg-muted px-1 font-mono text-xs">value</code> を渡さない使い方でも塗りが追いつくように、部品の中で最後の値を覚えています。2つのつまみで範囲を選ぶ形は、この部品ではなく <code className="rounded bg-muted px-1 font-mono text-xs">RangeSlider</code> が持ちます。
+                            <strong>通った部分の塗りは、クラスではなく style で作る。</strong>つまみまでの塗りつぶしは、インラインの <Code variant="inherit" size="sm">linear-gradient</Code> で描いています。クラス名の一覧を変えずに済ませるためで、設計の元データとの差分検査がクラス名を見ているからです（#193）。<Code variant="inherit" size="sm">value</Code> を渡さない使い方でも塗りが追いつくように、部品の中で最後の値を覚えています。2つのつまみで範囲を選ぶ形は、この部品ではなく <Code variant="inherit" size="sm">RangeSlider</Code> が持ちます。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The numeric readout is off by default.</strong> The article asks that a slider always show its current value as a number. GUNJO shows it only when <code className="rounded bg-muted px-1 font-mono text-xs">showValue</code> is passed, because the label-and-value row does not always fit where the slider is placed. A screen that turns it off still owes the reader that number somewhere nearby.
+                            <strong>The numeric readout is off by default.</strong> The article asks that a slider always show its current value as a number. GUNJO shows it only when <Code variant="inherit" size="sm">showValue</Code> is passed, because the label-and-value row does not always fit where the slider is placed. A screen that turns it off still owes the reader that number somewhere nearby.
                         </li>
                         <li>
-                            <strong>The announced value can be rewritten.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">formatValue</code> and its result becomes <code className="rounded bg-muted px-1 font-mono text-xs">aria-valuetext</code>, so a screen reader says a formatted amount rather than 35000000 (#193). The same function feeds <code className="rounded bg-muted px-1 font-mono text-xs">showValue</code>, so what is read and what is seen cannot drift apart.
+                            <strong>The announced value can be rewritten.</strong> Pass <Code variant="inherit" size="sm">formatValue</Code> and its result becomes <Code variant="inherit" size="sm">aria-valuetext</Code>, so a screen reader says a formatted amount rather than 35000000 (#193). The same function feeds <Code variant="inherit" size="sm">showValue</Code>, so what is read and what is seen cannot drift apart.
                         </li>
                         <li>
-                            <strong>The filled part of the track is inline style, not a class.</strong> The fill up to the thumb is drawn with an inline <code className="rounded bg-muted px-1 font-mono text-xs">linear-gradient</code>, which keeps the class list, and therefore the drift check against the design source, unchanged (#193). The component remembers the last value internally so the fill still follows the thumb when no <code className="rounded bg-muted px-1 font-mono text-xs">value</code> is passed. A two-handle range lives in <code className="rounded bg-muted px-1 font-mono text-xs">RangeSlider</code>, not here.
+                            <strong>The filled part of the track is inline style, not a class.</strong> The fill up to the thumb is drawn with an inline <Code variant="inherit" size="sm">linear-gradient</Code>, which keeps the class list, and therefore the drift check against the design source, unchanged (#193). The component remembers the last value internally so the fill still follows the thumb when no <Code variant="inherit" size="sm">value</Code> is passed. A two-handle range lives in <Code variant="inherit" size="sm">RangeSlider</Code>, not here.
                         </li>
                     </ul>
                 )}

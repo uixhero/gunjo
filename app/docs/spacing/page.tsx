@@ -1,6 +1,6 @@
 "use client";
 
-import { Badge, DocNote, List, ListItem } from "@gunjo/ui";
+import { Badge, DocNote, List, ListItem, Code } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 // The scale itself is generated from scripts/design-sync/token-scales.mjs, the
 // same source public/tokens.css ships as --space-*. This page used to carry the
@@ -115,7 +115,7 @@ export default function SpacingPage() {
                 </List>
                 <p className="text-muted-foreground">
                     {c.grid.sizeFirst.before}
-                    <code className="rounded bg-muted px-1 font-mono text-sm">{c.grid.sizeFirst.code}</code>
+                    <Code variant="inherit">{c.grid.sizeFirst.code}</Code>
                     {c.grid.sizeFirst.after}
                 </p>
                 <DocNote variant="note" heading={c.grid.detailHeading}>
@@ -123,7 +123,7 @@ export default function SpacingPage() {
                 </DocNote>
                 <p className="text-sm text-muted-foreground">
                     {c.grid.check}
-                    <code className="rounded bg-muted px-1 font-mono text-xs">npm run design:verify:grid4</code>
+                    <Code variant="inherit" size="sm">npm run design:verify:grid4</Code>
                 </p>
             </section>
 

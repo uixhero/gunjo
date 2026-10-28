@@ -8,7 +8,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
-import { Label, Switch } from "@gunjo/ui";
+import { Label, Switch, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function SwitchRow({ checked, disabled }: { checked?: boolean; disabled?: boolean }) {
@@ -285,25 +285,25 @@ export function ManagedAutoSaveSwitch() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>役割を素の <code className="rounded bg-muted px-1 font-mono text-xs">button</code> に自分で付けた。</strong>資料は「見た目がスイッチでも役割が無ければ、読み上げは単なるボタンとしか言わない」を崩れた形に挙げています。GUNJO は <code className="rounded bg-muted px-1 font-mono text-xs">button</code> に <code className="rounded bg-muted px-1 font-mono text-xs">role</code> と <code className="rounded bg-muted px-1 font-mono text-xs">aria-checked</code> を付けています。チェックボックスの入力欄を使わなかったのは、つまみの動きを <code className="rounded bg-muted px-1 font-mono text-xs">justify-start</code> と <code className="rounded bg-muted px-1 font-mono text-xs">justify-end</code> の入れ替えで作っているためで、チェックと入り切りの意味の違いもここではっきりします。
+                            <strong>役割を素の <Code variant="inherit" size="sm">button</Code> に自分で付けた。</strong>資料は「見た目がスイッチでも役割が無ければ、読み上げは単なるボタンとしか言わない」を崩れた形に挙げています。GUNJO は <Code variant="inherit" size="sm">button</Code> に <Code variant="inherit" size="sm">role</Code> と <Code variant="inherit" size="sm">aria-checked</Code> を付けています。チェックボックスの入力欄を使わなかったのは、つまみの動きを <Code variant="inherit" size="sm">justify-start</Code> と <Code variant="inherit" size="sm">justify-end</Code> の入れ替えで作っているためで、チェックと入り切りの意味の違いもここではっきりします。
                         </li>
                         <li>
-                            <strong>ラベルを部品の中に入れて、名前を必ず持たせた。</strong>資料は「ラベルの無いスイッチ単体」を禁止に挙げています。<code className="rounded bg-muted px-1 font-mono text-xs">label</code> を渡すと <code className="rounded bg-muted px-1 font-mono text-xs">aria-labelledby</code> で結んだ文字が横に出て、その文字を押しても切り替わります。<code className="rounded bg-muted px-1 font-mono text-xs">description</code> は <code className="rounded bg-muted px-1 font-mono text-xs">aria-describedby</code> で結びます。何も渡さなければ素のスイッチだけを返すので、その場合は呼ぶ側で名前を付けることになります。
+                            <strong>ラベルを部品の中に入れて、名前を必ず持たせた。</strong>資料は「ラベルの無いスイッチ単体」を禁止に挙げています。<Code variant="inherit" size="sm">label</Code> を渡すと <Code variant="inherit" size="sm">aria-labelledby</Code> で結んだ文字が横に出て、その文字を押しても切り替わります。<Code variant="inherit" size="sm">description</Code> は <Code variant="inherit" size="sm">aria-describedby</Code> で結びます。何も渡さなければ素のスイッチだけを返すので、その場合は呼ぶ側で名前を付けることになります。
                         </li>
                         <li>
-                            <strong>待っている間の状態は持っていません。</strong>資料は「通信が終わるまでは待機の見た目にして、連打を防ぐ」を挙げています。GUNJO の <code className="rounded bg-muted px-1 font-mono text-xs">Switch</code> に待機はなく、<code className="rounded bg-muted px-1 font-mono text-xs">disabled</code> で止めるところまでです。入りと切りの2つは設計の元データから生成された <code className="rounded bg-muted px-1 font-mono text-xs">SwitchVariantKey</code> なので、3つ目の状態を足すには元データの側から変えることになります。
+                            <strong>待っている間の状態は持っていません。</strong>資料は「通信が終わるまでは待機の見た目にして、連打を防ぐ」を挙げています。GUNJO の <Code variant="inherit" size="sm">Switch</Code> に待機はなく、<Code variant="inherit" size="sm">disabled</Code> で止めるところまでです。入りと切りの2つは設計の元データから生成された <Code variant="inherit" size="sm">SwitchVariantKey</Code> なので、3つ目の状態を足すには元データの側から変えることになります。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The role is applied by hand to a plain <code className="rounded bg-muted px-1 font-mono text-xs">button</code>.</strong> The article lists a missing role as a classic failure: it looks like a switch but a screen reader only says button. GUNJO puts the switch role and <code className="rounded bg-muted px-1 font-mono text-xs">aria-checked</code> on a <code className="rounded bg-muted px-1 font-mono text-xs">button</code>. A checkbox input was not used because the knob is animated by swapping <code className="rounded bg-muted px-1 font-mono text-xs">justify-start</code> and <code className="rounded bg-muted px-1 font-mono text-xs">justify-end</code>, and the button also keeps the meaning distinct from a checkbox.
+                            <strong>The role is applied by hand to a plain <Code variant="inherit" size="sm">button</Code>.</strong> The article lists a missing role as a classic failure: it looks like a switch but a screen reader only says button. GUNJO puts the switch role and <Code variant="inherit" size="sm">aria-checked</Code> on a <Code variant="inherit" size="sm">button</Code>. A checkbox input was not used because the knob is animated by swapping <Code variant="inherit" size="sm">justify-start</Code> and <Code variant="inherit" size="sm">justify-end</Code>, and the button also keeps the meaning distinct from a checkbox.
                         </li>
                         <li>
-                            <strong>The label is inside the component, so a name always exists.</strong> The article forbids a bare switch with no label. Pass <code className="rounded bg-muted px-1 font-mono text-xs">label</code> and the text renders beside the control, tied with <code className="rounded bg-muted px-1 font-mono text-xs">aria-labelledby</code>, and clicking that text toggles too; <code className="rounded bg-muted px-1 font-mono text-xs">description</code> is tied with <code className="rounded bg-muted px-1 font-mono text-xs">aria-describedby</code>. Pass neither and you get the bare control, and naming it becomes the responsibility of the caller.
+                            <strong>The label is inside the component, so a name always exists.</strong> The article forbids a bare switch with no label. Pass <Code variant="inherit" size="sm">label</Code> and the text renders beside the control, tied with <Code variant="inherit" size="sm">aria-labelledby</Code>, and clicking that text toggles too; <Code variant="inherit" size="sm">description</Code> is tied with <Code variant="inherit" size="sm">aria-describedby</Code>. Pass neither and you get the bare control, and naming it becomes the responsibility of the caller.
                         </li>
                         <li>
-                            <strong>There is no pending state.</strong> The article asks for a loading state while an asynchronous change is in flight, to stop repeated presses. <code className="rounded bg-muted px-1 font-mono text-xs">Switch</code> has none; <code className="rounded bg-muted px-1 font-mono text-xs">disabled</code> is as far as it goes. Checked and unchecked are the two keys of <code className="rounded bg-muted px-1 font-mono text-xs">SwitchVariantKey</code>, generated from the design source, so a third state would have to start there.
+                            <strong>There is no pending state.</strong> The article asks for a loading state while an asynchronous change is in flight, to stop repeated presses. <Code variant="inherit" size="sm">Switch</Code> has none; <Code variant="inherit" size="sm">disabled</Code> is as far as it goes. Checked and unchecked are the two keys of <Code variant="inherit" size="sm">SwitchVariantKey</Code>, generated from the design source, so a third state would have to start there.
                         </li>
                     </ul>
                 )}

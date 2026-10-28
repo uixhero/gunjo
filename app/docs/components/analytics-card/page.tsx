@@ -7,7 +7,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithControls";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
-import { AnalyticsCard, SparklineChart } from "@gunjo/ui";
+import { AnalyticsCard, SparklineChart, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
@@ -392,13 +392,13 @@ export default function AnalyticsCardPage() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>見出しの高さを呼ぶ側が決める。</strong><code className="rounded bg-muted px-1 font-mono text-xs">titleAs</code> の既定は <code className="rounded bg-muted px-1 font-mono text-xs">h3</code> で、KPI を横に並べる行がページの <code className="rounded bg-muted px-1 font-mono text-xs">h1</code> の直下に来るときは <code className="rounded bg-muted px-1 font-mono text-xs">h2</code> に上げられます（#181）。カードの中の見出しを固定にすると、ページ全体の見出しの並びが崩れます。
+                            <strong>見出しの高さを呼ぶ側が決める。</strong><Code variant="inherit" size="sm">titleAs</Code> の既定は <Code variant="inherit" size="sm">h3</Code> で、KPI を横に並べる行がページの <Code variant="inherit" size="sm">h1</Code> の直下に来るときは <Code variant="inherit" size="sm">h2</Code> に上げられます（#181）。カードの中の見出しを固定にすると、ページ全体の見出しの並びが崩れます。
                         </li>
                         <li>
-                            <strong>読ませる順を「値・増減・補足」に固定した。</strong>資料は「情報の優先順位を決める」を判断の核に挙げています。この部品はタイトルと説明を上、大きな値を中、増減をその右、<code className="rounded bg-muted px-1 font-mono text-xs">footer</code> を下に置き、この並びを差し替えられなくしました。KPI を4枚横に並べたときに、カードごとに読む順が変わらないようにするためです。
+                            <strong>読ませる順を「値・増減・補足」に固定した。</strong>資料は「情報の優先順位を決める」を判断の核に挙げています。この部品はタイトルと説明を上、大きな値を中、増減をその右、<Code variant="inherit" size="sm">footer</Code> を下に置き、この並びを差し替えられなくしました。KPI を4枚横に並べたときに、カードごとに読む順が変わらないようにするためです。
                         </li>
                         <li>
-                            <strong>理由があるときだけ増減が押せるようになる。</strong><code className="rounded bg-muted px-1 font-mono text-xs">deltaDescription</code> を渡すと、増減の表示が本物の <code className="rounded bg-muted px-1 font-mono text-xs">button</code> になってツールチップで内訳を出します。渡さなければただの文字のままです。資料の「カードのアクションは最大2つ」を守るため、増減を常にボタンにはしていません。
+                            <strong>理由があるときだけ増減が押せるようになる。</strong><Code variant="inherit" size="sm">deltaDescription</Code> を渡すと、増減の表示が本物の <Code variant="inherit" size="sm">button</Code> になってツールチップで内訳を出します。渡さなければただの文字のままです。資料の「カードのアクションは最大2つ」を守るため、増減を常にボタンにはしていません。
                             <br />
                             一般のカードの設計は UIXHERO の「カード」にあります。
                         </li>
@@ -406,13 +406,13 @@ export default function AnalyticsCardPage() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The heading level is the caller&rsquo;s call.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">titleAs</code> defaults to <code className="rounded bg-muted px-1 font-mono text-xs">h3</code> and can be raised to <code className="rounded bg-muted px-1 font-mono text-xs">h2</code> when a KPI row sits directly under the page <code className="rounded bg-muted px-1 font-mono text-xs">h1</code> (#181). Pinning the heading level inside the card would break the page outline.
+                            <strong>The heading level is the caller&rsquo;s call.</strong> <Code variant="inherit" size="sm">titleAs</Code> defaults to <Code variant="inherit" size="sm">h3</Code> and can be raised to <Code variant="inherit" size="sm">h2</Code> when a KPI row sits directly under the page <Code variant="inherit" size="sm">h1</Code> (#181). Pinning the heading level inside the card would break the page outline.
                         </li>
                         <li>
-                            <strong>The reading order is fixed at value, delta, footnote.</strong> The article makes information priority one of its decision principles. Title and description sit on top, the big value in the middle, the delta to its right, <code className="rounded bg-muted px-1 font-mono text-xs">footer</code> underneath, and that order cannot be rearranged. Four KPI cards side by side should read in the same order.
+                            <strong>The reading order is fixed at value, delta, footnote.</strong> The article makes information priority one of its decision principles. Title and description sit on top, the big value in the middle, the delta to its right, <Code variant="inherit" size="sm">footer</Code> underneath, and that order cannot be rearranged. Four KPI cards side by side should read in the same order.
                         </li>
                         <li>
-                            <strong>The delta becomes clickable only when there is a reason to explain.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">deltaDescription</code> and the delta turns into a real <code className="rounded bg-muted px-1 font-mono text-xs">button</code> with a tooltip carrying the breakdown; omit it and the delta is plain text. Keeping it plain by default is how the card honours the article&rsquo;s two-actions-maximum rule.
+                            <strong>The delta becomes clickable only when there is a reason to explain.</strong> Pass <Code variant="inherit" size="sm">deltaDescription</Code> and the delta turns into a real <Code variant="inherit" size="sm">button</Code> with a tooltip carrying the breakdown; omit it and the delta is plain text. Keeping it plain by default is how the card honours the article&rsquo;s two-actions-maximum rule.
                             <br />
                             The general design of cards is covered by UIXHERO&rsquo;s card article.
                         </li>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState, type PointerEvent } from "react";
-import { SpatialCanvas } from "@gunjo/ui";
+import { SpatialCanvas, Code } from "@gunjo/ui";
 import { FloatingPanel } from "@gunjo/ui/motion";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
 import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
@@ -561,10 +561,10 @@ export default function SpatialCanvasPage() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>土台の紙だけを部品にした。</strong>資料の核は座標の変換です（移動と拡大を2つの値で持ち、画面の座標をキャンバスの座標に直してから扱う）。GUNJO の <code className="rounded bg-muted px-1 font-mono text-xs">SpatialCanvas</code> はそこを持ちません。方眼の背景と、はみ出しの切り取りと、ドラッグ中に文字が選ばれない指定（<code className="rounded bg-muted px-1 font-mono text-xs">select-none</code>）だけを持つ箱です。ノードをどう置いて動かすかは、この上に載せる画面が決めます。
+                            <strong>土台の紙だけを部品にした。</strong>資料の核は座標の変換です（移動と拡大を2つの値で持ち、画面の座標をキャンバスの座標に直してから扱う）。GUNJO の <Code variant="inherit" size="sm">SpatialCanvas</Code> はそこを持ちません。方眼の背景と、はみ出しの切り取りと、ドラッグ中に文字が選ばれない指定（<Code variant="inherit" size="sm">select-none</Code>）だけを持つ箱です。ノードをどう置いて動かすかは、この上に載せる画面が決めます。
                         </li>
                         <li>
-                            <strong>方眼は2枚重ねで、明るい配色と暗い配色で濃さを変える。</strong><code className="rounded bg-muted px-1 font-mono text-xs">gridSize</code>（既定20px）の点の方眼と、その5倍の間隔の線の方眼を重ねています。線のほうは明るい配色で <code className="rounded bg-muted px-1 font-mono text-xs">opacity-5</code>、暗い配色で <code className="rounded bg-muted px-1 font-mono text-xs">opacity-20</code> と別の濃さにしてあり、どちらでも「言われれば見える」くらいに合わせました。
+                            <strong>方眼は2枚重ねで、明るい配色と暗い配色で濃さを変える。</strong><Code variant="inherit" size="sm">gridSize</Code>（既定20px）の点の方眼と、その5倍の間隔の線の方眼を重ねています。線のほうは明るい配色で <Code variant="inherit" size="sm">opacity-5</Code>、暗い配色で <Code variant="inherit" size="sm">opacity-20</Code> と別の濃さにしてあり、どちらでも「言われれば見える」くらいに合わせました。
                         </li>
                         <li>
                             <strong>移動・拡大・ミニマップ・表示範囲外の間引きは入っていません。</strong>資料が挙げる4点（マウスの位置を中心にした拡大、ポインターの捕捉、大量のノードの間引き、キーボードでの操作）はどれも未実装で、載せる画面ごとに書くことになります。ここは部品に上げる余地がはっきり残っている場所です。
@@ -573,10 +573,10 @@ export default function SpatialCanvasPage() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>Only the paper is the component.</strong> The core of the article is coordinate transformation: pan and zoom held as two values, with every pointer position converted from screen space to canvas space before use. <code className="rounded bg-muted px-1 font-mono text-xs">SpatialCanvas</code> does none of that. It is a box with a grid background, clipping, and <code className="rounded bg-muted px-1 font-mono text-xs">select-none</code> so text is not selected mid-drag. How nodes are placed and moved is decided by whatever is built on top.
+                            <strong>Only the paper is the component.</strong> The core of the article is coordinate transformation: pan and zoom held as two values, with every pointer position converted from screen space to canvas space before use. <Code variant="inherit" size="sm">SpatialCanvas</Code> does none of that. It is a box with a grid background, clipping, and <Code variant="inherit" size="sm">select-none</Code> so text is not selected mid-drag. How nodes are placed and moved is decided by whatever is built on top.
                         </li>
                         <li>
-                            <strong>The grid is two layers, weighted differently in light and dark.</strong> A dot grid at <code className="rounded bg-muted px-1 font-mono text-xs">gridSize</code> (20px by default) sits under a line grid at five times that spacing. The line layer is <code className="rounded bg-muted px-1 font-mono text-xs">opacity-5</code> in light and <code className="rounded bg-muted px-1 font-mono text-xs">opacity-20</code> in dark, so in either theme it stays at the level of visible-once-you-look.
+                            <strong>The grid is two layers, weighted differently in light and dark.</strong> A dot grid at <Code variant="inherit" size="sm">gridSize</Code> (20px by default) sits under a line grid at five times that spacing. The line layer is <Code variant="inherit" size="sm">opacity-5</Code> in light and <Code variant="inherit" size="sm">opacity-20</Code> in dark, so in either theme it stays at the level of visible-once-you-look.
                         </li>
                         <li>
                             <strong>Pan, zoom, minimap and viewport culling are absent.</strong> All four points the article raises (zooming around the pointer, pointer capture during a drag, culling nodes outside the viewport, keyboard control) are unimplemented and have to be written per screen. This is the clearest place where work could move into the component.

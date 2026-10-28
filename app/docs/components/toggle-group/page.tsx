@@ -8,7 +8,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { ToggleGroupDemo } from "@/components/demos/OrganismsDemo";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
-import { ToggleGroup, ToggleGroupItem, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+import { ToggleGroup, ToggleGroupItem, Tooltip, TooltipContent, TooltipTrigger, Code } from "@gunjo/ui";
 import { IconAlignCenter, IconAlignLeft, IconAlignRight, IconBold, IconItalic, IconUnderline } from "@tabler/icons-react";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
@@ -347,25 +347,25 @@ export function DisabledToggleGroupItem() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>「全部は外せない」を、既定ではなく明示の指定にした。</strong>資料は「単一選択では、選ばれている項目をもう一度押しても外れないようにする」を挙げています。GUNJO は <code className="rounded bg-muted px-1 font-mono text-xs">disallowEmpty</code> を渡したときだけそうします（#170）。フィルターのように「0件は、すべて表示」が正しい画面もあり、どちらが正しいかは並べたものの意味で変わるからです。土台の Radix が空の値を返してきたときに、それを捨てる形で作ってあります。
+                            <strong>「全部は外せない」を、既定ではなく明示の指定にした。</strong>資料は「単一選択では、選ばれている項目をもう一度押しても外れないようにする」を挙げています。GUNJO は <Code variant="inherit" size="sm">disallowEmpty</Code> を渡したときだけそうします（#170）。フィルターのように「0件は、すべて表示」が正しい画面もあり、どちらが正しいかは並べたものの意味で変わるからです。土台の Radix が空の値を返してきたときに、それを捨てる形で作ってあります。
                         </li>
                         <li>
-                            <strong>選ばれたときの色を、項目ごとに変えられる。</strong><code className="rounded bg-muted px-1 font-mono text-xs">tone</code> に注意や成功や警告や破壊を渡すと、その項目が選ばれたときだけ淡い色に変わります（#288）。休講と補講と通常のように、選択肢そのものが意味を持つ切り替えのためです。色は <code className="rounded bg-muted px-1 font-mono text-xs">Badge</code> や <code className="rounded bg-muted px-1 font-mono text-xs">Alert</code> と同じ淡い色の組み合わせなので、文字とのコントラストは揃っています。
+                            <strong>選ばれたときの色を、項目ごとに変えられる。</strong><Code variant="inherit" size="sm">tone</Code> に注意や成功や警告や破壊を渡すと、その項目が選ばれたときだけ淡い色に変わります（#288）。休講と補講と通常のように、選択肢そのものが意味を持つ切り替えのためです。色は <Code variant="inherit" size="sm">Badge</Code> や <Code variant="inherit" size="sm">Alert</Code> と同じ淡い色の組み合わせなので、文字とのコントラストは揃っています。
                         </li>
                         <li>
-                            <strong><code className="rounded bg-muted px-1 font-mono text-xs">variant</code> と <code className="rounded bg-muted px-1 font-mono text-xs">size</code> は親に1回書けば足りる。</strong>文脈で子に配り、項目ごとの上書きもできます。資料が求める <code className="rounded bg-muted px-1 font-mono text-xs">role</code> の付与と <code className="rounded bg-muted px-1 font-mono text-xs">aria-pressed</code> は土台の Radix が持つので、こちらは目的を伝える <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code> を親に渡すだけで済みます。
+                            <strong><Code variant="inherit" size="sm">variant</Code> と <Code variant="inherit" size="sm">size</Code> は親に1回書けば足りる。</strong>文脈で子に配り、項目ごとの上書きもできます。資料が求める <Code variant="inherit" size="sm">role</Code> の付与と <Code variant="inherit" size="sm">aria-pressed</Code> は土台の Radix が持つので、こちらは目的を伝える <Code variant="inherit" size="sm">aria-label</Code> を親に渡すだけで済みます。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>Not-empty is opt-in, not the default.</strong> The article asks that a single-select group refuse to clear itself when the active item is pressed again. GUNJO does that only when <code className="rounded bg-muted px-1 font-mono text-xs">disallowEmpty</code> is passed (#170), because a filter row where zero selected means show everything is equally valid, and which reading is right depends on what the items mean. It is implemented by discarding the empty value Radix reports.
+                            <strong>Not-empty is opt-in, not the default.</strong> The article asks that a single-select group refuse to clear itself when the active item is pressed again. GUNJO does that only when <Code variant="inherit" size="sm">disallowEmpty</Code> is passed (#170), because a filter row where zero selected means show everything is equally valid, and which reading is right depends on what the items mean. It is implemented by discarding the empty value Radix reports.
                         </li>
                         <li>
-                            <strong>The selected colour can differ per item.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">tone</code> as info, success, warning or destructive and that item tints only while selected (#288). This is for controls where the options themselves carry meaning, such as cancelled, make-up and normal class states. The tones reuse the same subtle pairs as <code className="rounded bg-muted px-1 font-mono text-xs">Badge</code> and <code className="rounded bg-muted px-1 font-mono text-xs">Alert</code>, so the text contrast is already settled.
+                            <strong>The selected colour can differ per item.</strong> Pass <Code variant="inherit" size="sm">tone</Code> as info, success, warning or destructive and that item tints only while selected (#288). This is for controls where the options themselves carry meaning, such as cancelled, make-up and normal class states. The tones reuse the same subtle pairs as <Code variant="inherit" size="sm">Badge</Code> and <Code variant="inherit" size="sm">Alert</Code>, so the text contrast is already settled.
                         </li>
                         <li>
-                            <strong><code className="rounded bg-muted px-1 font-mono text-xs">variant</code> and <code className="rounded bg-muted px-1 font-mono text-xs">size</code> are written once on the parent.</strong> They travel to the items through context and each item can still override. The group role and <code className="rounded bg-muted px-1 font-mono text-xs">aria-pressed</code> the article requires come from Radix, which leaves only the <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code> naming the purpose of the group to pass in.
+                            <strong><Code variant="inherit" size="sm">variant</Code> and <Code variant="inherit" size="sm">size</Code> are written once on the parent.</strong> They travel to the items through context and each item can still override. The group role and <Code variant="inherit" size="sm">aria-pressed</Code> the article requires come from Radix, which leaves only the <Code variant="inherit" size="sm">aria-label</Code> naming the purpose of the group to pass in.
                         </li>
                     </ul>
                 )}

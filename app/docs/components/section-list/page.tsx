@@ -11,7 +11,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
-import { Badge, ListCard, SectionList, type SectionListSection } from "@gunjo/ui";
+import { Badge, ListCard, SectionList, type SectionListSection, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
@@ -237,13 +237,13 @@ export function InvoiceSectionList() {
         {locale === "ja" ? (
           <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
             <li>
-              <strong>まとめ方と小計の計算を部品に持たせない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">sections</code> は既にまとまった形で渡します。何でまとめるか（取引先か、月か）も、小計の出し方も画面ごとに違うので、部品が持つのは見出しの帯・本文の置き場・小計の帯という共通の枠だけです。
+              <strong>まとめ方と小計の計算を部品に持たせない。</strong><Code variant="inherit" size="sm">sections</Code> は既にまとまった形で渡します。何でまとめるか（取引先か、月か）も、小計の出し方も画面ごとに違うので、部品が持つのは見出しの帯・本文の置き場・小計の帯という共通の枠だけです。
             </li>
             <li>
-              <strong>中身の形を決めない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">content</code> には <code className="rounded bg-muted px-1 font-mono text-xs">ListCard</code> の並びでも、<code className="rounded bg-muted px-1 font-mono text-xs">Table</code> でも、台帳の行でも入ります。資料は「7項目以上ならセパレータや見出しでまとまりを作る」を挙げていますが、そのまとまりの中身までは決めていません。GUNJO もそこを開けたままにしました。
+              <strong>中身の形を決めない。</strong><Code variant="inherit" size="sm">content</Code> には <Code variant="inherit" size="sm">ListCard</Code> の並びでも、<Code variant="inherit" size="sm">Table</Code> でも、台帳の行でも入ります。資料は「7項目以上ならセパレータや見出しでまとまりを作る」を挙げていますが、そのまとまりの中身までは決めていません。GUNJO もそこを開けたままにしました。
             </li>
             <li>
-              <strong>見出しを貼り付けるかどうかは宣言で選ぶ。</strong><code className="rounded bg-muted px-1 font-mono text-xs">stickyHeaders</code> を渡したときだけ、見出しの帯がスクロール中に上へ残ります。既定で貼り付けにしていないのは、短いまとまりが多数並ぶ画面では、帯が次々に積み替わって読みにくくなるためです。
+              <strong>見出しを貼り付けるかどうかは宣言で選ぶ。</strong><Code variant="inherit" size="sm">stickyHeaders</Code> を渡したときだけ、見出しの帯がスクロール中に上へ残ります。既定で貼り付けにしていないのは、短いまとまりが多数並ぶ画面では、帯が次々に積み替わって読みにくくなるためです。
               <br />
               一般のリストの設計は UIXHERO の「リスト」にあります。
             </li>
@@ -251,13 +251,13 @@ export function InvoiceSectionList() {
         ) : (
           <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
             <li>
-              <strong>Grouping and subtotal maths stay with the caller.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">sections</code> arrives already grouped. What to group by (customer, month) and how to total it differ per screen, so the component owns only the shared chrome: the heading band, the body slot and the subtotal band.
+              <strong>Grouping and subtotal maths stay with the caller.</strong> <Code variant="inherit" size="sm">sections</Code> arrives already grouped. What to group by (customer, month) and how to total it differ per screen, so the component owns only the shared chrome: the heading band, the body slot and the subtotal band.
             </li>
             <li>
-              <strong>The body shape is left open.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">content</code> accepts a stack of <code className="rounded bg-muted px-1 font-mono text-xs">ListCard</code>s, a <code className="rounded bg-muted px-1 font-mono text-xs">Table</code>, or ledger rows. The article asks for separators or group headings once a list passes seven items but says nothing about what goes inside a group, and GUNJO leaves that open too.
+              <strong>The body shape is left open.</strong> <Code variant="inherit" size="sm">content</Code> accepts a stack of <Code variant="inherit" size="sm">ListCard</Code>s, a <Code variant="inherit" size="sm">Table</Code>, or ledger rows. The article asks for separators or group headings once a list passes seven items but says nothing about what goes inside a group, and GUNJO leaves that open too.
             </li>
             <li>
-              <strong>Sticky headings are opt-in.</strong> Only with <code className="rounded bg-muted px-1 font-mono text-xs">stickyHeaders</code> does the heading band stay pinned while its section scrolls. It is off by default because on a screen of many short groups the band swaps constantly and becomes harder to read than a plain heading.
+              <strong>Sticky headings are opt-in.</strong> Only with <Code variant="inherit" size="sm">stickyHeaders</Code> does the heading band stay pinned while its section scrolls. It is off by default because on a screen of many short groups the band swaps constantly and becomes harder to read than a plain heading.
               <br />
               The general design of lists is covered by UIXHERO&rsquo;s list article.
             </li>

@@ -19,6 +19,7 @@ import {
     HoverCardContent,
     HoverCardTrigger,
     useToast,
+    Code,
 } from "@gunjo/ui";
 import { IconHome as Home, IconSlash as Slash } from "@tabler/icons-react";
 import type { KeyboardEvent, MouseEvent, PointerEvent } from "react";
@@ -914,25 +915,25 @@ export default function BreadcrumbDocPage() {
                 {isJa ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>いまいるページはリンクにしない。</strong>最後の項目は <code className="rounded bg-muted px-1 font-mono text-xs">BreadcrumbPage</code> で描きます。<code className="rounded bg-muted px-1 font-mono text-xs">a</code> ではなく、<code className="rounded bg-muted px-1 font-mono text-xs">{'aria-current="page"'}</code> と <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-disabled="true"'}</code> を持つ要素です。押しても何も起きない、リンクに見えるものを作らないためです。
+                            <strong>いまいるページはリンクにしない。</strong>最後の項目は <Code variant="inherit" size="sm">BreadcrumbPage</Code> で描きます。<Code variant="inherit" size="sm">a</Code> ではなく、<Code variant="inherit" size="sm">{'aria-current="page"'}</Code> と <Code variant="inherit" size="sm">{'aria-disabled="true"'}</Code> を持つ要素です。押しても何も起きない、リンクに見えるものを作らないためです。
                         </li>
                         <li>
-                            <strong>区切りの記号は読み上げない。</strong>区切りは <code className="rounded bg-muted px-1 font-mono text-xs">{'role="presentation"'}</code> と <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-hidden="true"'}</code> を持つ <code className="rounded bg-muted px-1 font-mono text-xs">li</code> です。読み上げのときに記号の名前が階層のあいだに挟まらないようにしています。
+                            <strong>区切りの記号は読み上げない。</strong>区切りは <Code variant="inherit" size="sm">{'role="presentation"'}</Code> と <Code variant="inherit" size="sm">{'aria-hidden="true"'}</Code> を持つ <Code variant="inherit" size="sm">li</Code> です。読み上げのときに記号の名前が階層のあいだに挟まらないようにしています。
                         </li>
                         <li>
-                            <strong>深いときは真ん中を畳む。</strong><code className="rounded bg-muted px-1 font-mono text-xs">items</code> にデータを渡して <code className="rounded bg-muted px-1 font-mono text-xs">maxItems</code> を決めると、真ん中が三点のボタンに畳まれ、隠れた階層はドロップダウンで開きます。畳まないときも <code className="rounded bg-muted px-1 font-mono text-xs">BreadcrumbList</code> が折り返すので、狭い画面で横にはみ出しません。階層を URL ではなく人の辿り方に合わせる、という判断は資料に書いてあります。
+                            <strong>深いときは真ん中を畳む。</strong><Code variant="inherit" size="sm">items</Code> にデータを渡して <Code variant="inherit" size="sm">maxItems</Code> を決めると、真ん中が三点のボタンに畳まれ、隠れた階層はドロップダウンで開きます。畳まないときも <Code variant="inherit" size="sm">BreadcrumbList</Code> が折り返すので、狭い画面で横にはみ出しません。階層を URL ではなく人の辿り方に合わせる、という判断は資料に書いてあります。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The current page is not a link.</strong> The last crumb renders through <code className="rounded bg-muted px-1 font-mono text-xs">BreadcrumbPage</code>: not an <code className="rounded bg-muted px-1 font-mono text-xs">a</code>, but an element carrying <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-current="page"'}</code> and <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-disabled="true"'}</code>. Nothing should look like a link and then do nothing.
+                            <strong>The current page is not a link.</strong> The last crumb renders through <Code variant="inherit" size="sm">BreadcrumbPage</Code>: not an <Code variant="inherit" size="sm">a</Code>, but an element carrying <Code variant="inherit" size="sm">{'aria-current="page"'}</Code> and <Code variant="inherit" size="sm">{'aria-disabled="true"'}</Code>. Nothing should look like a link and then do nothing.
                         </li>
                         <li>
-                            <strong>Separators are never read out.</strong> Each separator is an <code className="rounded bg-muted px-1 font-mono text-xs">li</code> with <code className="rounded bg-muted px-1 font-mono text-xs">{'role="presentation"'}</code> and <code className="rounded bg-muted px-1 font-mono text-xs">{'aria-hidden="true"'}</code>, so the name of the glyph is not spoken between levels.
+                            <strong>Separators are never read out.</strong> Each separator is an <Code variant="inherit" size="sm">li</Code> with <Code variant="inherit" size="sm">{'role="presentation"'}</Code> and <Code variant="inherit" size="sm">{'aria-hidden="true"'}</Code>, so the name of the glyph is not spoken between levels.
                         </li>
                         <li>
-                            <strong>Collapse the middle when the path is deep.</strong> Pass crumbs through <code className="rounded bg-muted px-1 font-mono text-xs">items</code> and set <code className="rounded bg-muted px-1 font-mono text-xs">maxItems</code>: the middle folds into an ellipsis button and the hidden levels open in a dropdown. Even uncollapsed, <code className="rounded bg-muted px-1 font-mono text-xs">BreadcrumbList</code> wraps, so a long path never pushes the page sideways. Matching the trail to how people actually navigate, rather than to the URL, is covered in the article.
+                            <strong>Collapse the middle when the path is deep.</strong> Pass crumbs through <Code variant="inherit" size="sm">items</Code> and set <Code variant="inherit" size="sm">maxItems</Code>: the middle folds into an ellipsis button and the hidden levels open in a dropdown. Even uncollapsed, <Code variant="inherit" size="sm">BreadcrumbList</Code> wraps, so a long path never pushes the page sideways. Matching the trail to how people actually navigate, rather than to the URL, is covered in the article.
                         </li>
                     </ul>
                 )}

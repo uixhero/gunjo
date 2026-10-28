@@ -7,7 +7,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
-import { Avatar, AvatarFallback, Button, Sidebar, SidebarBody, SidebarFooter, SidebarHeader, SidebarItem, SidebarProvider, SidebarToggle, useSidebar } from "@gunjo/ui";
+import { Avatar, AvatarFallback, Button, Sidebar, SidebarBody, SidebarFooter, SidebarHeader, SidebarItem, SidebarProvider, SidebarToggle, useSidebar, Code } from "@gunjo/ui";
 import {
     IconChartBar as BarChart3,
     IconHome as Home,
@@ -594,25 +594,25 @@ export default function SidebarPage() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>畳んだ幅を60pxに固定した。</strong>資料は「畳んだときはアイコンだけを出し、ホバーで補足を出す。アイコンの無い項目に畳みは使わない」を挙げています。GUNJO は240pxと60pxの2つだけを持ち、その間の幅を作れないようにしました。60pxはアイコン1つと左右の余白でちょうど埋まる幅なので、「ラベルが半分だけ見える」中途半端な状態が作れません。畳んだときの補足は <code className="rounded bg-muted px-1 font-mono text-xs">SidebarItem</code> が吹き出しで出します。
+                            <strong>畳んだ幅を60pxに固定した。</strong>資料は「畳んだときはアイコンだけを出し、ホバーで補足を出す。アイコンの無い項目に畳みは使わない」を挙げています。GUNJO は240pxと60pxの2つだけを持ち、その間の幅を作れないようにしました。60pxはアイコン1つと左右の余白でちょうど埋まる幅なので、「ラベルが半分だけ見える」中途半端な状態が作れません。畳んだときの補足は <Code variant="inherit" size="sm">SidebarItem</Code> が吹き出しで出します。
                         </li>
                         <li>
-                            <strong>畳みの状態は文脈で配るが、文脈が無くても壊れない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">SidebarProvider</code> が状態を持ち、<code className="rounded bg-muted px-1 font-mono text-xs">SidebarHeader</code> と <code className="rounded bg-muted px-1 font-mono text-xs">SidebarFooter</code> と <code className="rounded bg-muted px-1 font-mono text-xs">SidebarItem</code> が同じ状態を読んで自分で詰めます。ただし <code className="rounded bg-muted px-1 font-mono text-xs">useSidebarCollapsed</code> はプロバイダが無いとき例外を投げずに空を返します。<code className="rounded bg-muted px-1 font-mono text-xs">SidebarItem</code> はサイドバーの外（設定画面の一覧など）でも使う部品なので、そのために毎回プロバイダで包ませるのを避けました（#692）。
+                            <strong>畳みの状態は文脈で配るが、文脈が無くても壊れない。</strong><Code variant="inherit" size="sm">SidebarProvider</Code> が状態を持ち、<Code variant="inherit" size="sm">SidebarHeader</Code> と <Code variant="inherit" size="sm">SidebarFooter</Code> と <Code variant="inherit" size="sm">SidebarItem</Code> が同じ状態を読んで自分で詰めます。ただし <Code variant="inherit" size="sm">useSidebarCollapsed</Code> はプロバイダが無いとき例外を投げずに空を返します。<Code variant="inherit" size="sm">SidebarItem</Code> はサイドバーの外（設定画面の一覧など）でも使う部品なので、そのために毎回プロバイダで包ませるのを避けました（#692）。
                         </li>
                         <li>
-                            <strong>現在地の印は項目の側が持つ。</strong>資料が求める <code className="rounded bg-muted px-1 font-mono text-xs">aria-current</code> は、<code className="rounded bg-muted px-1 font-mono text-xs">isActive</code> を渡した <code className="rounded bg-muted px-1 font-mono text-xs">SidebarItem</code> が付けます。開いている親の行は、子の塗りと二重にならないように別の見た目（<code className="rounded bg-muted px-1 font-mono text-xs">isCurrentAncestor</code>）にしてあります。資料が挙げる「モバイルではサイドバーを Sheet に置き換える」は部品に入っていないので、いまは画面の側で出し分けます。
+                            <strong>現在地の印は項目の側が持つ。</strong>資料が求める <Code variant="inherit" size="sm">aria-current</Code> は、<Code variant="inherit" size="sm">isActive</Code> を渡した <Code variant="inherit" size="sm">SidebarItem</Code> が付けます。開いている親の行は、子の塗りと二重にならないように別の見た目（<Code variant="inherit" size="sm">isCurrentAncestor</Code>）にしてあります。資料が挙げる「モバイルではサイドバーを Sheet に置き換える」は部品に入っていないので、いまは画面の側で出し分けます。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The collapsed width is pinned at 60px.</strong> The article asks that a collapsed rail show icons only, reveal labels on hover, and never collapse items that have no icon. GUNJO offers exactly two widths, 240px and 60px, with nothing in between. 60px is filled by one icon and its padding, so a half-visible label is not a state you can reach. The hover label comes from <code className="rounded bg-muted px-1 font-mono text-xs">SidebarItem</code> as a tooltip.
+                            <strong>The collapsed width is pinned at 60px.</strong> The article asks that a collapsed rail show icons only, reveal labels on hover, and never collapse items that have no icon. GUNJO offers exactly two widths, 240px and 60px, with nothing in between. 60px is filled by one icon and its padding, so a half-visible label is not a state you can reach. The hover label comes from <Code variant="inherit" size="sm">SidebarItem</Code> as a tooltip.
                         </li>
                         <li>
-                            <strong>Collapse is shared through context, but the context is optional.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">SidebarProvider</code> holds the state and <code className="rounded bg-muted px-1 font-mono text-xs">SidebarHeader</code>, <code className="rounded bg-muted px-1 font-mono text-xs">SidebarFooter</code> and <code className="rounded bg-muted px-1 font-mono text-xs">SidebarItem</code> read it and tighten themselves. <code className="rounded bg-muted px-1 font-mono text-xs">useSidebarCollapsed</code> returns empty instead of throwing when there is no provider, because <code className="rounded bg-muted px-1 font-mono text-xs">SidebarItem</code> is also used outside a sidebar, for instance in a settings list, and forcing every such caller to wrap it would be the wrong trade (#692).
+                            <strong>Collapse is shared through context, but the context is optional.</strong> <Code variant="inherit" size="sm">SidebarProvider</Code> holds the state and <Code variant="inherit" size="sm">SidebarHeader</Code>, <Code variant="inherit" size="sm">SidebarFooter</Code> and <Code variant="inherit" size="sm">SidebarItem</Code> read it and tighten themselves. <Code variant="inherit" size="sm">useSidebarCollapsed</Code> returns empty instead of throwing when there is no provider, because <Code variant="inherit" size="sm">SidebarItem</Code> is also used outside a sidebar, for instance in a settings list, and forcing every such caller to wrap it would be the wrong trade (#692).
                         </li>
                         <li>
-                            <strong>The current-page marker belongs to the item.</strong> The <code className="rounded bg-muted px-1 font-mono text-xs">aria-current</code> the article requires is applied by a <code className="rounded bg-muted px-1 font-mono text-xs">SidebarItem</code> given <code className="rounded bg-muted px-1 font-mono text-xs">isActive</code>. An expanded parent on the active path uses a different treatment (<code className="rounded bg-muted px-1 font-mono text-xs">isCurrentAncestor</code>) so two solid fills do not stack. Replacing the sidebar with a Sheet on mobile, which the article recommends, is not built in and is still decided by the screen.
+                            <strong>The current-page marker belongs to the item.</strong> The <Code variant="inherit" size="sm">aria-current</Code> the article requires is applied by a <Code variant="inherit" size="sm">SidebarItem</Code> given <Code variant="inherit" size="sm">isActive</Code>. An expanded parent on the active path uses a different treatment (<Code variant="inherit" size="sm">isCurrentAncestor</Code>) so two solid fills do not stack. Replacing the sidebar with a Sheet on mobile, which the article recommends, is not built in and is still decided by the screen.
                         </li>
                     </ul>
                 )}
