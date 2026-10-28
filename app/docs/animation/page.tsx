@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { Code } from "@gunjo/ui";
 
 const DURATIONS = [
     { name: "duration-75", value: "75ms", className: "duration-75" },
@@ -47,13 +48,13 @@ const COPY = {
         durationGuidance: (
             <>
                 Common rules: micro-interactions (hover, focus) →{" "}
-                <code className="rounded bg-muted px-1 text-xs font-mono">duration-150</code>;
+                <Code variant="inherit" size="sm">duration-150</Code>;
                 state transitions (modal, drawer) →{" "}
-                <code className="rounded bg-muted px-1 text-xs font-mono">duration-200</code>{" "}
+                <Code variant="inherit" size="sm">duration-200</Code>{" "}
                 -{" "}
-                <code className="rounded bg-muted px-1 text-xs font-mono">duration-300</code>;
+                <Code variant="inherit" size="sm">duration-300</Code>;
                 storytelling moments (hero ink wash, page enter) →{" "}
-                <code className="rounded bg-muted px-1 text-xs font-mono">duration-500</code>{" "}
+                <Code variant="inherit" size="sm">duration-500</Code>{" "}
                 +.
             </>
         ),
@@ -68,13 +69,13 @@ const COPY = {
         durationGuidance: (
             <>
                 目安：マイクロインタラクション（hover / focus）は{" "}
-                <code className="rounded bg-muted px-1 text-xs font-mono">duration-150</code>。
+                <Code variant="inherit" size="sm">duration-150</Code>。
                 状態遷移（modal / drawer）は{" "}
-                <code className="rounded bg-muted px-1 text-xs font-mono">duration-200</code>{" "}
+                <Code variant="inherit" size="sm">duration-200</Code>{" "}
                 〜{" "}
-                <code className="rounded bg-muted px-1 text-xs font-mono">duration-300</code>。
+                <Code variant="inherit" size="sm">duration-300</Code>。
                 演出的な瞬間（ヒーローのインク、ページ遷移）は{" "}
-                <code className="rounded bg-muted px-1 text-xs font-mono">duration-500</code>{" "}
+                <Code variant="inherit" size="sm">duration-500</Code>{" "}
                 以上。
             </>
         ),

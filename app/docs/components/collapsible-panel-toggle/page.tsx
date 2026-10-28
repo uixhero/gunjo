@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { CollapsiblePanelToggle, cn } from "@gunjo/ui";
+import { CollapsiblePanelToggle, cn, Code } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
 import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
@@ -549,13 +549,13 @@ export default function CollapsiblePanelToggleDocPage() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>ON と OFF ではなく、次にやることを書く。</strong>資料はトグルを「状態を持つボタン」と定義していますが、この部品は <code className="rounded bg-muted px-1 font-mono text-xs">aria-pressed</code> を持たず、<code className="rounded bg-muted px-1 font-mono text-xs">collapsed</code> の値でラベルとアイコンを「開く／閉じる」に入れ替える押しボタンです。パネルの開閉は結果が画面に大きく出るので、ボタン自身に状態を持たせるより「次にどうなるか」を書くほうが読みやすいと判断しました。
+                            <strong>ON と OFF ではなく、次にやることを書く。</strong>資料はトグルを「状態を持つボタン」と定義していますが、この部品は <Code variant="inherit" size="sm">aria-pressed</Code> を持たず、<Code variant="inherit" size="sm">collapsed</Code> の値でラベルとアイコンを「開く／閉じる」に入れ替える押しボタンです。パネルの開閉は結果が画面に大きく出るので、ボタン自身に状態を持たせるより「次にどうなるか」を書くほうが読みやすいと判断しました。
                         </li>
                         <li>
-                            <strong>どの辺のパネルかで、アイコンとツールチップの向きが決まる。</strong><code className="rounded bg-muted px-1 font-mono text-xs">side</code> に上下左右のどれかを渡すと、対応するアイコンに変わり、ツールチップはパネルの反対側に出ます。ツールチップが、自分が畳むパネルの上に重なると読めないためです。
+                            <strong>どの辺のパネルかで、アイコンとツールチップの向きが決まる。</strong><Code variant="inherit" size="sm">side</Code> に上下左右のどれかを渡すと、対応するアイコンに変わり、ツールチップはパネルの反対側に出ます。ツールチップが、自分が畳むパネルの上に重なると読めないためです。
                         </li>
                         <li>
-                            <strong>押した瞬間にツールチップを畳む。一方、パネルとの結び付きはまだ書いていません。</strong><code className="rounded bg-muted px-1 font-mono text-xs">tooltipCloseOnPress</code> を渡してあるので、押したあとに吹き出しが残りません。ただし <code className="rounded bg-muted px-1 font-mono text-xs">aria-expanded</code> と <code className="rounded bg-muted px-1 font-mono text-xs">aria-controls</code> で「どのパネルを開くのか」を伝えるところは<strong>まだ書いていません</strong>。読み上げでは、ラベルの「パネルを開く」までしか分かりません。
+                            <strong>押した瞬間にツールチップを畳む。一方、パネルとの結び付きはまだ書いていません。</strong><Code variant="inherit" size="sm">tooltipCloseOnPress</Code> を渡してあるので、押したあとに吹き出しが残りません。ただし <Code variant="inherit" size="sm">aria-expanded</Code> と <Code variant="inherit" size="sm">aria-controls</Code> で「どのパネルを開くのか」を伝えるところは<strong>まだ書いていません</strong>。読み上げでは、ラベルの「パネルを開く」までしか分かりません。
                             <br />
                             一般のトグルの設計は UIXHERO の「トグルボタン」にあります。
                         </li>
@@ -563,13 +563,13 @@ export default function CollapsiblePanelToggleDocPage() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>It states the next action, not an on/off state.</strong> The article defines a toggle as a button that holds state. This one deliberately does not set <code className="rounded bg-muted px-1 font-mono text-xs">aria-pressed</code>: <code className="rounded bg-muted px-1 font-mono text-xs">collapsed</code> swaps the label and icon between open and close. Collapsing a panel produces a large visible result, so naming what will happen next reads better than reporting a pressed state.
+                            <strong>It states the next action, not an on/off state.</strong> The article defines a toggle as a button that holds state. This one deliberately does not set <Code variant="inherit" size="sm">aria-pressed</Code>: <Code variant="inherit" size="sm">collapsed</Code> swaps the label and icon between open and close. Collapsing a panel produces a large visible result, so naming what will happen next reads better than reporting a pressed state.
                         </li>
                         <li>
-                            <strong>The panel&rsquo;s edge decides the icon and the tooltip side.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">side</code> as left, right, top or bottom and the icon changes to match while the tooltip opens on the opposite side, because a tooltip that lands on the very panel being collapsed cannot be read.
+                            <strong>The panel&rsquo;s edge decides the icon and the tooltip side.</strong> Pass <Code variant="inherit" size="sm">side</Code> as left, right, top or bottom and the icon changes to match while the tooltip opens on the opposite side, because a tooltip that lands on the very panel being collapsed cannot be read.
                         </li>
                         <li>
-                            <strong>The tooltip closes on press; the link to the panel is not written yet.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">tooltipCloseOnPress</code> is set, so no bubble is left hanging after the press. But <code className="rounded bg-muted px-1 font-mono text-xs">aria-expanded</code> and <code className="rounded bg-muted px-1 font-mono text-xs">aria-controls</code> are <strong>not written yet</strong>, so a screen reader hears only the label and never learns which panel this button governs.
+                            <strong>The tooltip closes on press; the link to the panel is not written yet.</strong> <Code variant="inherit" size="sm">tooltipCloseOnPress</Code> is set, so no bubble is left hanging after the press. But <Code variant="inherit" size="sm">aria-expanded</Code> and <Code variant="inherit" size="sm">aria-controls</Code> are <strong>not written yet</strong>, so a screen reader hears only the label and never learns which panel this button governs.
                             <br />
                             The general design of toggles is covered by UIXHERO&rsquo;s toggle article.
                         </li>

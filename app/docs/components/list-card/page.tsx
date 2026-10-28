@@ -8,7 +8,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
-import { Badge, LineChip, ListCard, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@gunjo/ui";
+import { Badge, LineChip, ListCard, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
@@ -607,13 +607,13 @@ export function ServiceStatusListCards() {
         {locale === "ja" ? (
           <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
             <li>
-              <strong>押せるようにするかどうかを、既定では決めない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">onSelect</code> を渡したときだけ 44px 以上の <code className="rounded bg-muted px-1 font-mono text-xs">button</code> になり、渡さなければただの <code className="rounded bg-muted px-1 font-mono text-xs">div</code> です。資料は「カード全体をリンクにするか、部分だけにするか」を2番目の判断に挙げています。GUNJO はこれを既定で決めず、呼ぶ側の宣言にしました。
+              <strong>押せるようにするかどうかを、既定では決めない。</strong><Code variant="inherit" size="sm">onSelect</Code> を渡したときだけ 44px 以上の <Code variant="inherit" size="sm">button</Code> になり、渡さなければただの <Code variant="inherit" size="sm">div</Code> です。資料は「カード全体をリンクにするか、部分だけにするか」を2番目の判断に挙げています。GUNJO はこれを既定で決めず、呼ぶ側の宣言にしました。
             </li>
             <li>
-              <strong>状態は色だけに乗せない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">severity</code> が変えるのは全周の境界線と淡い背景だけで、状態そのものは <code className="rounded bg-muted px-1 font-mono text-xs">status</code> に渡す Badge の文字が持ちます。色を見分けられない人にも同じ情報が届くようにするためです。
+              <strong>状態は色だけに乗せない。</strong><Code variant="inherit" size="sm">severity</Code> が変えるのは全周の境界線と淡い背景だけで、状態そのものは <Code variant="inherit" size="sm">status</Code> に渡す Badge の文字が持ちます。色を見分けられない人にも同じ情報が届くようにするためです。
             </li>
             <li>
-              <strong>右側は「状態」と「補足」の2段に固定した。</strong><code className="rounded bg-muted px-1 font-mono text-xs">status</code>（Badge）と <code className="rounded bg-muted px-1 font-mono text-xs">meta</code>（価格・時刻・件数）は右上と右下に縦に積み、<code className="rounded bg-muted px-1 font-mono text-xs">meta</code> は折り返しません。行を何十も並べたときに、値の位置が行ごとにずれないようにするためです。
+              <strong>右側は「状態」と「補足」の2段に固定した。</strong><Code variant="inherit" size="sm">status</Code>（Badge）と <Code variant="inherit" size="sm">meta</Code>（価格・時刻・件数）は右上と右下に縦に積み、<Code variant="inherit" size="sm">meta</Code> は折り返しません。行を何十も並べたときに、値の位置が行ごとにずれないようにするためです。
               <br />
               一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
@@ -621,13 +621,13 @@ export function ServiceStatusListCards() {
         ) : (
           <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
             <li>
-              <strong>Whether the row is pressable is not decided by default.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">onSelect</code> and the card becomes a 44px-minimum <code className="rounded bg-muted px-1 font-mono text-xs">button</code>; omit it and it stays a plain <code className="rounded bg-muted px-1 font-mono text-xs">div</code>. The article makes whole-card versus partial linking its second decision point, and GUNJO leaves that decision to the caller instead of baking one in.
+              <strong>Whether the row is pressable is not decided by default.</strong> Pass <Code variant="inherit" size="sm">onSelect</Code> and the card becomes a 44px-minimum <Code variant="inherit" size="sm">button</Code>; omit it and it stays a plain <Code variant="inherit" size="sm">div</Code>. The article makes whole-card versus partial linking its second decision point, and GUNJO leaves that decision to the caller instead of baking one in.
             </li>
             <li>
-              <strong>Status never rides on colour alone.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">severity</code> only changes the full border and a faint background; the status itself lives in the text of the Badge passed to <code className="rounded bg-muted px-1 font-mono text-xs">status</code>. Anyone who cannot separate those colours still gets the same information.
+              <strong>Status never rides on colour alone.</strong> <Code variant="inherit" size="sm">severity</Code> only changes the full border and a faint background; the status itself lives in the text of the Badge passed to <Code variant="inherit" size="sm">status</Code>. Anyone who cannot separate those colours still gets the same information.
             </li>
             <li>
-              <strong>The right-hand side is fixed at two stacked lines.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">status</code> (a Badge) and <code className="rounded bg-muted px-1 font-mono text-xs">meta</code> (price, time, count) stack top and bottom on the right, and <code className="rounded bg-muted px-1 font-mono text-xs">meta</code> never wraps. Across dozens of rows the values stay on the same vertical line.
+              <strong>The right-hand side is fixed at two stacked lines.</strong> <Code variant="inherit" size="sm">status</Code> (a Badge) and <Code variant="inherit" size="sm">meta</Code> (price, time, count) stack top and bottom on the right, and <Code variant="inherit" size="sm">meta</Code> never wraps. Across dozens of rows the values stay on the same vertical line.
               <br />
               The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>

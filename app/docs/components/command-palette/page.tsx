@@ -6,7 +6,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
-import { Button, CommandPalette, Kbd } from "@gunjo/ui";
+import { Button, CommandPalette, Kbd, Code } from "@gunjo/ui";
 import {
     IconCalculator as Calculator,
     IconCalendar as Calendar,
@@ -688,25 +688,25 @@ export default function CommandPalettePage() {
                 {isJa ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>並びは呼ぶ側のデータで決める。</strong><code className="rounded bg-muted px-1 font-mono text-xs">groups</code> に見出しと項目を渡すと、群ごとに見出しが付き、群と群のあいだに区切りが入ります。資料が言う「最近使ったもの」「移動」「操作」の並べ分けは、この形でそのまま書けます。
+                            <strong>並びは呼ぶ側のデータで決める。</strong><Code variant="inherit" size="sm">groups</Code> に見出しと項目を渡すと、群ごとに見出しが付き、群と群のあいだに区切りが入ります。資料が言う「最近使ったもの」「移動」「操作」の並べ分けは、この形でそのまま書けます。
                         </li>
                         <li>
-                            <strong>打った文字の当たり先を広げる。</strong>項目ごとの <code className="rounded bg-muted px-1 font-mono text-xs">keywords</code> に、表示名だけでなくショートカットの文字も入れています。入力欄は開いた時点で焦点が入り、消すボタンには <code className="rounded bg-muted px-1 font-mono text-xs">clearLabel</code> で名前を付けます。見つからないときの文言は <code className="rounded bg-muted px-1 font-mono text-xs">LocaleProvider</code> から取るので、日本語の画面では日本語で出ます。
+                            <strong>打った文字の当たり先を広げる。</strong>項目ごとの <Code variant="inherit" size="sm">keywords</Code> に、表示名だけでなくショートカットの文字も入れています。入力欄は開いた時点で焦点が入り、消すボタンには <Code variant="inherit" size="sm">clearLabel</Code> で名前を付けます。見つからないときの文言は <Code variant="inherit" size="sm">LocaleProvider</Code> から取るので、日本語の画面では日本語で出ます。
                         </li>
                         <li>
-                            <strong>画面の高さを超えない。</strong>中身の高さは画面の高さから余白を引いた値で頭打ちにしてあります。項目が増えても、パレットが画面の外にはみ出して下が押せなくなることがありません。上下キー・Enter・Esc と焦点の閉じ込めは土台の <code className="rounded bg-muted px-1 font-mono text-xs">CommandDialog</code> が持ちます。
+                            <strong>画面の高さを超えない。</strong>中身の高さは画面の高さから余白を引いた値で頭打ちにしてあります。項目が増えても、パレットが画面の外にはみ出して下が押せなくなることがありません。上下キー・Enter・Esc と焦点の閉じ込めは土台の <Code variant="inherit" size="sm">CommandDialog</Code> が持ちます。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The grouping is data, not markup.</strong> Pass headings and items through <code className="rounded bg-muted px-1 font-mono text-xs">groups</code> and each group gets its heading with a separator drawn between groups. The recent / navigate / act split the article recommends is expressible directly in that shape.
+                            <strong>The grouping is data, not markup.</strong> Pass headings and items through <Code variant="inherit" size="sm">groups</Code> and each group gets its heading with a separator drawn between groups. The recent / navigate / act split the article recommends is expressible directly in that shape.
                         </li>
                         <li>
-                            <strong>Widen what the typed text can hit.</strong> Each item lists both its label and its shortcut in <code className="rounded bg-muted px-1 font-mono text-xs">keywords</code>. The input takes focus as the palette opens, the clear control is named through <code className="rounded bg-muted px-1 font-mono text-xs">clearLabel</code>, and the empty message falls back to the wording on <code className="rounded bg-muted px-1 font-mono text-xs">LocaleProvider</code>.
+                            <strong>Widen what the typed text can hit.</strong> Each item lists both its label and its shortcut in <Code variant="inherit" size="sm">keywords</Code>. The input takes focus as the palette opens, the clear control is named through <Code variant="inherit" size="sm">clearLabel</Code>, and the empty message falls back to the wording on <Code variant="inherit" size="sm">LocaleProvider</Code>.
                         </li>
                         <li>
-                            <strong>It never grows past the viewport.</strong> The body height is capped against the viewport minus a margin, so a long list cannot push the palette off the bottom of the screen. Arrow keys, Enter, Escape and the focus trap all come from the underlying <code className="rounded bg-muted px-1 font-mono text-xs">CommandDialog</code>.
+                            <strong>It never grows past the viewport.</strong> The body height is capped against the viewport minus a margin, so a long list cannot push the palette off the bottom of the screen. Arrow keys, Enter, Escape and the focus trap all come from the underlying <Code variant="inherit" size="sm">CommandDialog</Code>.
                         </li>
                     </ul>
                 )}

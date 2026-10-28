@@ -7,7 +7,7 @@ import inputsMetadata from "@design/inputs-metadata.json";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { useLocale } from "@/components/providers/LocaleProvider";
-import { Checkbox, Label } from "@gunjo/ui";
+import { Checkbox, Label, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 export default function CheckboxPage() {
@@ -299,10 +299,10 @@ export function LockedNotificationCheckbox() {
                 {isJa ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>土台は入力欄ではなくボタン。</strong><code className="rounded bg-muted px-1 font-mono text-xs">{'role="checkbox"'}</code> と <code className="rounded bg-muted px-1 font-mono text-xs">aria-checked</code> を自分で持つ <code className="rounded bg-muted px-1 font-mono text-xs">button</code> で作っています。素の入力欄の描画に見た目を縛られないための選択で、その代わり読み上げ用の属性は部品の側で全部埋めています。
+                            <strong>土台は入力欄ではなくボタン。</strong><Code variant="inherit" size="sm">{'role="checkbox"'}</Code> と <Code variant="inherit" size="sm">aria-checked</Code> を自分で持つ <Code variant="inherit" size="sm">button</Code> で作っています。素の入力欄の描画に見た目を縛られないための選択で、その代わり読み上げ用の属性は部品の側で全部埋めています。
                         </li>
                         <li>
-                            <strong>名前と補足を部品に渡せる。</strong><code className="rounded bg-muted px-1 font-mono text-xs">label</code> と <code className="rounded bg-muted px-1 font-mono text-xs">description</code> を渡すと、<code className="rounded bg-muted px-1 font-mono text-xs">useId</code> で作った id を使って <code className="rounded bg-muted px-1 font-mono text-xs">aria-labelledby</code> と <code className="rounded bg-muted px-1 font-mono text-xs">aria-describedby</code> に繋がります。呼ぶ側が毎回 <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code> を思い出さなくて済みます。ラベルを押しても切り替わるので、当たり判定は四角の中だけではありません。
+                            <strong>名前と補足を部品に渡せる。</strong><Code variant="inherit" size="sm">label</Code> と <Code variant="inherit" size="sm">description</Code> を渡すと、<Code variant="inherit" size="sm">useId</Code> で作った id を使って <Code variant="inherit" size="sm">aria-labelledby</Code> と <Code variant="inherit" size="sm">aria-describedby</Code> に繋がります。呼ぶ側が毎回 <Code variant="inherit" size="sm">aria-label</Code> を思い出さなくて済みます。ラベルを押しても切り替わるので、当たり判定は四角の中だけではありません。
                         </li>
                         <li>
                             <strong>見た目の段は生成された定義から引く。</strong>チェック済み・未チェック・使えない、の3つの見た目は設計の元から生成した名前で引いています。ソースの側だけで段を足すことはできません。四角は複数選べる・丸は1つだけ、という使い分けは資料に書いてあります。
@@ -311,10 +311,10 @@ export function LockedNotificationCheckbox() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>A button underneath, not an input.</strong> It is a <code className="rounded bg-muted px-1 font-mono text-xs">button</code> that carries <code className="rounded bg-muted px-1 font-mono text-xs">{'role="checkbox"'}</code> and <code className="rounded bg-muted px-1 font-mono text-xs">aria-checked</code> itself. That keeps the visual out of the native control renderer, and in exchange every attribute a screen reader needs is filled in by the component.
+                            <strong>A button underneath, not an input.</strong> It is a <Code variant="inherit" size="sm">button</Code> that carries <Code variant="inherit" size="sm">{'role="checkbox"'}</Code> and <Code variant="inherit" size="sm">aria-checked</Code> itself. That keeps the visual out of the native control renderer, and in exchange every attribute a screen reader needs is filled in by the component.
                         </li>
                         <li>
-                            <strong>The name and the hint are props.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">label</code> and <code className="rounded bg-muted px-1 font-mono text-xs">description</code> and they are wired through ids from <code className="rounded bg-muted px-1 font-mono text-xs">useId</code> into <code className="rounded bg-muted px-1 font-mono text-xs">aria-labelledby</code> and <code className="rounded bg-muted px-1 font-mono text-xs">aria-describedby</code>, so callers do not have to remember a per-instance <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code>. Clicking the label toggles it too, so the hit area is more than the box.
+                            <strong>The name and the hint are props.</strong> Pass <Code variant="inherit" size="sm">label</Code> and <Code variant="inherit" size="sm">description</Code> and they are wired through ids from <Code variant="inherit" size="sm">useId</Code> into <Code variant="inherit" size="sm">aria-labelledby</Code> and <Code variant="inherit" size="sm">aria-describedby</Code>, so callers do not have to remember a per-instance <Code variant="inherit" size="sm">aria-label</Code>. Clicking the label toggles it too, so the hit area is more than the box.
                         </li>
                         <li>
                             <strong>The states come from generated keys.</strong> Checked, unchecked and disabled are looked up by names generated from the design source, so a state cannot be added from the React side alone. Square means many, round means one is covered in the article.

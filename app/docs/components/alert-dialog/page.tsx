@@ -10,6 +10,7 @@ import {
 } from "@/components/demos/OverlayComponentDemos";
 import overlayMetadata from "@design/overlay-metadata.json";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
+import { Code } from "@gunjo/ui";
 
 const codeByLocale = {
     ja: `import {
@@ -471,25 +472,25 @@ export default function AlertDialogPage() {
                 {isJa ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>取り消しのほうを押しやすい場所に置く。</strong><code className="rounded bg-muted px-1 font-mono text-xs">AlertDialogCancel</code> は輪郭だけのボタン、<code className="rounded bg-muted px-1 font-mono text-xs">AlertDialogAction</code> は塗りつぶしのボタンです。狭い画面では脚部が <code className="rounded bg-muted px-1 font-mono text-xs">flex-col-reverse</code> になるので、実行が上、取り消しが下に縦に並びます。片手で持ったときに指が届きやすいのは下側なので、取り消しがそこに来ます。
+                            <strong>取り消しのほうを押しやすい場所に置く。</strong><Code variant="inherit" size="sm">AlertDialogCancel</Code> は輪郭だけのボタン、<Code variant="inherit" size="sm">AlertDialogAction</Code> は塗りつぶしのボタンです。狭い画面では脚部が <Code variant="inherit" size="sm">flex-col-reverse</Code> になるので、実行が上、取り消しが下に縦に並びます。片手で持ったときに指が届きやすいのは下側なので、取り消しがそこに来ます。
                         </li>
                         <li>
-                            <strong>外側を押しても閉じない。</strong>土台は Radix の <code className="rounded bg-muted px-1 font-mono text-xs">AlertDialog</code> です。ふつうのダイアログと違って背景を押しても閉じないので、取り消すか実行するかを必ず選ぶことになります。だからこそ、押すだけで済む儀式のような確認には使わない、という資料の指摘がそのまま効きます。
+                            <strong>外側を押しても閉じない。</strong>土台は Radix の <Code variant="inherit" size="sm">AlertDialog</Code> です。ふつうのダイアログと違って背景を押しても閉じないので、取り消すか実行するかを必ず選ぶことになります。だからこそ、押すだけで済む儀式のような確認には使わない、という資料の指摘がそのまま効きます。
                         </li>
                         <li>
-                            <strong>説明が無いときだけ読み上げの紐づけを外す。</strong><code className="rounded bg-muted px-1 font-mono text-xs">AlertDialogDescription</code> を置いたときは Radix の紐づけをそのまま残し、題だけのダイアログでは <code className="rounded bg-muted px-1 font-mono text-xs">aria-describedby</code> を明示で空にします。開発時の警告だけを消して、説明があるときの読み上げは壊さないための作りです（#322）。
+                            <strong>説明が無いときだけ読み上げの紐づけを外す。</strong><Code variant="inherit" size="sm">AlertDialogDescription</Code> を置いたときは Radix の紐づけをそのまま残し、題だけのダイアログでは <Code variant="inherit" size="sm">aria-describedby</Code> を明示で空にします。開発時の警告だけを消して、説明があるときの読み上げは壊さないための作りです（#322）。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>Put cancel where the thumb lands.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">AlertDialogCancel</code> is an outline button and <code className="rounded bg-muted px-1 font-mono text-xs">AlertDialogAction</code> is a filled one. On a narrow screen the footer becomes <code className="rounded bg-muted px-1 font-mono text-xs">flex-col-reverse</code>, so the action stacks on top and cancel sits at the bottom, which is the easier half of a phone to reach.
+                            <strong>Put cancel where the thumb lands.</strong> <Code variant="inherit" size="sm">AlertDialogCancel</Code> is an outline button and <Code variant="inherit" size="sm">AlertDialogAction</Code> is a filled one. On a narrow screen the footer becomes <Code variant="inherit" size="sm">flex-col-reverse</Code>, so the action stacks on top and cancel sits at the bottom, which is the easier half of a phone to reach.
                         </li>
                         <li>
-                            <strong>Clicking outside does not dismiss it.</strong> The base is the Radix <code className="rounded bg-muted px-1 font-mono text-xs">AlertDialog</code>. Unlike a plain dialog, pressing the backdrop does nothing, so the reader has to choose cancel or confirm. That is exactly why the article warns against using it for confirmations that are only a ritual.
+                            <strong>Clicking outside does not dismiss it.</strong> The base is the Radix <Code variant="inherit" size="sm">AlertDialog</Code>. Unlike a plain dialog, pressing the backdrop does nothing, so the reader has to choose cancel or confirm. That is exactly why the article warns against using it for confirmations that are only a ritual.
                         </li>
                         <li>
-                            <strong>Drop the description wiring only when there is no description.</strong> When an <code className="rounded bg-muted px-1 font-mono text-xs">AlertDialogDescription</code> is present, Radix keeps its own <code className="rounded bg-muted px-1 font-mono text-xs">aria-describedby</code> wiring. For a title-only dialog the attribute is explicitly cleared instead, which silences the dev warning without breaking the association for screen readers (#322).
+                            <strong>Drop the description wiring only when there is no description.</strong> When an <Code variant="inherit" size="sm">AlertDialogDescription</Code> is present, Radix keeps its own <Code variant="inherit" size="sm">aria-describedby</Code> wiring. For a title-only dialog the attribute is explicitly cleared instead, which silences the dev warning without breaking the association for screen readers (#322).
                         </li>
                     </ul>
                 )}

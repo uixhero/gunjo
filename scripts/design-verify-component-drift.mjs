@@ -980,6 +980,27 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       /cva\(\s*"[^"]*\bbreak-words\b/,
       'Code base classes should include "break-words" so an unbreakable token wraps instead of widening the page'
     );
+    // variant="inherit" is the inline code of docs prose (#1063): it keeps the
+    // colour and weight of the sentence around it, so neither the base nor the
+    // variant may set them. The other variants carry their own weight.
+    assertNoMatch(
+      errors,
+      codeSource,
+      /cva\(\s*"[^"]*\bfont-(?:medium|semibold|bold)\b/,
+      "Code base classes should not set a font weight; variant=\"inherit\" takes the weight of the surrounding text"
+    );
+    assertMatch(
+      errors,
+      codeSource,
+      /\binherit:\s*"bg-muted px-1"/,
+      'Code variant "inherit" should be exactly "bg-muted px-1" (background only; colour and weight inherited)'
+    );
+    assertMatch(
+      errors,
+      codeSource,
+      /\bdefault:\s*"[^"]*\bfont-medium\b/,
+      'Code variant "default" should keep "font-medium"'
+    );
     },
   });
 

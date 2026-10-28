@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { Code } from "@gunjo/ui";
 
 const SHADOWS_BASE = [
     { name: "shadow-none", cssVar: "--shadow-none", className: "shadow-none" },
@@ -45,8 +46,8 @@ const COPY = {
         behaviorBody: (
             <>
                 In light mode shadows use 10% alpha; in dark mode they bump to 20% so depth remains readable on dark surfaces. The token name (
-                <code className="rounded bg-muted px-1 text-xs font-mono">shadow-md</code>{" "}etc.) stays the same — the alpha is what flips. Never use arbitrary{" "}
-                <code className="rounded bg-muted px-1 text-xs font-mono">shadow-[...]</code>{" "}classes; the design verifier will block them.
+                <Code variant="inherit" size="sm">shadow-md</Code>{" "}etc.) stays the same — the alpha is what flips. Never use arbitrary{" "}
+                <Code variant="inherit" size="sm">shadow-[...]</Code>{" "}classes; the design verifier will block them.
             </>
         ),
     },
@@ -58,8 +59,8 @@ const COPY = {
         behaviorBody: (
             <>
                 ライトモードでは shadow のアルファが 10%、ダークモードでは 20% に上がるので、暗い面の上でも深さが読み取れます。トークン名（
-                <code className="rounded bg-muted px-1 text-xs font-mono">shadow-md</code>{" "}など）は変わらず、変わるのはアルファ値だけです。任意値の{" "}
-                <code className="rounded bg-muted px-1 text-xs font-mono">shadow-[...]</code>{" "}クラスは使わないでください ── design verifier がブロックします。
+                <Code variant="inherit" size="sm">shadow-md</Code>{" "}など）は変わらず、変わるのはアルファ値だけです。任意値の{" "}
+                <Code variant="inherit" size="sm">shadow-[...]</Code>{" "}クラスは使わないでください ── design verifier がブロックします。
             </>
         ),
     },

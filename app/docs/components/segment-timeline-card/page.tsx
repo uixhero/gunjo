@@ -3,7 +3,7 @@
 import type { ComponentProps } from "react";
 import { ChartDocPage } from "@/components/doc/ChartDocPage";
 import displayMetadata from "@design/display-metadata.json";
-import { SegmentTimelineCard } from "@gunjo/ui";
+import { SegmentTimelineCard, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
@@ -572,13 +572,13 @@ const designDecisions = {
     ja: (
         <>
             <li>
-                <strong>時間の帯を横スクロールでカードの中に収めた。</strong>帯は最低 36rem を確保し、<code className="rounded bg-muted px-1 font-mono text-xs">overflow-x-auto</code> の入れ物に入れています。スマホでカードごと横に伸びると、ページ全体が横に流れてしまうためです。
+                <strong>時間の帯を横スクロールでカードの中に収めた。</strong>帯は最低 36rem を確保し、<Code variant="inherit" size="sm">overflow-x-auto</Code> の入れ物に入れています。スマホでカードごと横に伸びると、ページ全体が横に流れてしまうためです。
             </li>
             <li>
-                <strong>押せるのは区分と凡例で、目印は読み物にした。</strong><code className="rounded bg-muted px-1 font-mono text-xs">segments</code> の一片と凡例の行は <code className="rounded bg-muted px-1 font-mono text-xs">button</code> ですが、<code className="rounded bg-muted px-1 font-mono text-xs">markers</code>（締切・交代の時刻）は <code className="rounded bg-muted px-1 font-mono text-xs">{'role="img"'}</code> の飾りです。目印は幅を持たないので、タップの的として使えないためです。
+                <strong>押せるのは区分と凡例で、目印は読み物にした。</strong><Code variant="inherit" size="sm">segments</Code> の一片と凡例の行は <Code variant="inherit" size="sm">button</Code> ですが、<Code variant="inherit" size="sm">markers</Code>（締切・交代の時刻）は <Code variant="inherit" size="sm">{'role="img"'}</Code> の飾りです。目印は幅を持たないので、タップの的として使えないためです。
             </li>
             <li>
-                <strong>時間の左端と右端は呼ぶ側が書く。</strong><code className="rounded bg-muted px-1 font-mono text-xs">startLabel</code> と <code className="rounded bg-muted px-1 font-mono text-xs">endLabel</code>、<code className="rounded bg-muted px-1 font-mono text-xs">min</code> と <code className="rounded bg-muted px-1 font-mono text-xs">max</code> は渡された値をそのまま使い、部品は時刻の書式を持ちません。24時間の1日なのか、8時間の1シフトなのかで、書き方も刻みも変わるからです。
+                <strong>時間の左端と右端は呼ぶ側が書く。</strong><Code variant="inherit" size="sm">startLabel</Code> と <Code variant="inherit" size="sm">endLabel</Code>、<Code variant="inherit" size="sm">min</Code> と <Code variant="inherit" size="sm">max</Code> は渡された値をそのまま使い、部品は時刻の書式を持ちません。24時間の1日なのか、8時間の1シフトなのかで、書き方も刻みも変わるからです。
                 <br />
                 一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
@@ -587,13 +587,13 @@ const designDecisions = {
     en: (
         <>
             <li>
-                <strong>The timeline scrolls inside the card.</strong> The track holds a 36rem floor inside an <code className="rounded bg-muted px-1 font-mono text-xs">overflow-x-auto</code> box. Letting the card itself grow wider would drag page-level horizontal scroll onto phones.
+                <strong>The timeline scrolls inside the card.</strong> The track holds a 36rem floor inside an <Code variant="inherit" size="sm">overflow-x-auto</Code> box. Letting the card itself grow wider would drag page-level horizontal scroll onto phones.
             </li>
             <li>
-                <strong>Segments and legend rows are pressable; markers are not.</strong> Each <code className="rounded bg-muted px-1 font-mono text-xs">segments</code> block and each legend row is a <code className="rounded bg-muted px-1 font-mono text-xs">button</code>, while <code className="rounded bg-muted px-1 font-mono text-xs">markers</code> (a cut-off, a shift change) are <code className="rounded bg-muted px-1 font-mono text-xs">{'role="img"'}</code> decorations: a marker has no width, so it cannot be a tap target.
+                <strong>Segments and legend rows are pressable; markers are not.</strong> Each <Code variant="inherit" size="sm">segments</Code> block and each legend row is a <Code variant="inherit" size="sm">button</Code>, while <Code variant="inherit" size="sm">markers</Code> (a cut-off, a shift change) are <Code variant="inherit" size="sm">{'role="img"'}</Code> decorations: a marker has no width, so it cannot be a tap target.
             </li>
             <li>
-                <strong>The two ends of the axis are written by the caller.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">startLabel</code>, <code className="rounded bg-muted px-1 font-mono text-xs">endLabel</code>, <code className="rounded bg-muted px-1 font-mono text-xs">min</code> and <code className="rounded bg-muted px-1 font-mono text-xs">max</code> are used verbatim; the component owns no time formatting. A 24-hour day and an 8-hour shift want different labels and different ticks.
+                <strong>The two ends of the axis are written by the caller.</strong> <Code variant="inherit" size="sm">startLabel</Code>, <Code variant="inherit" size="sm">endLabel</Code>, <Code variant="inherit" size="sm">min</Code> and <Code variant="inherit" size="sm">max</Code> are used verbatim; the component owns no time formatting. A 24-hour day and an 8-hour shift want different labels and different ticks.
                 <br />
                 The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>

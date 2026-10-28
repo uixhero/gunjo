@@ -3,7 +3,7 @@
 import type { ComponentProps } from "react";
 import { ChartDocPage } from "@/components/doc/ChartDocPage";
 import displayMetadata from "@design/display-metadata.json";
-import { RetentionCohortCard } from "@gunjo/ui";
+import { RetentionCohortCard, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
@@ -922,13 +922,13 @@ const designDecisions = {
     ja: (
         <>
             <li>
-                <strong>濃さは1色の透明度で作る。</strong>升目の色は期間ごとに変えず、<code className="rounded bg-muted px-1 font-mono text-xs">color</code> に渡した1色の不透明度を 0.08 から 1.00 まで動かして作ります。虹色にすると「濃い＝多い」が読めなくなるためです。数字を重ねるかどうかは <code className="rounded bg-muted px-1 font-mono text-xs">showValues</code> で切り替えます（升目が小さいときは畳みます）。
+                <strong>濃さは1色の透明度で作る。</strong>升目の色は期間ごとに変えず、<Code variant="inherit" size="sm">color</Code> に渡した1色の不透明度を 0.08 から 1.00 まで動かして作ります。虹色にすると「濃い＝多い」が読めなくなるためです。数字を重ねるかどうかは <Code variant="inherit" size="sm">showValues</Code> で切り替えます（升目が小さいときは畳みます）。
             </li>
             <li>
-                <strong>横スクロールをこのカードの中に閉じ込めた。</strong>升目の表は <code className="rounded bg-muted px-1 font-mono text-xs">overflow-x-auto</code> の入れ物に入れ、スマホでは最低 34rem を確保して中で横に流します。カードの外枠は <code className="rounded bg-muted px-1 font-mono text-xs">overflow-hidden</code> です。これが無いと、期間の多いコホート表がページ全体の横スクロールを引き起こします。
+                <strong>横スクロールをこのカードの中に閉じ込めた。</strong>升目の表は <Code variant="inherit" size="sm">overflow-x-auto</Code> の入れ物に入れ、スマホでは最低 34rem を確保して中で横に流します。カードの外枠は <Code variant="inherit" size="sm">overflow-hidden</Code> です。これが無いと、期間の多いコホート表がページ全体の横スクロールを引き起こします。
             </li>
             <li>
-                <strong>升目の無いところは押せない空欄にした。</strong>まだ来ていない期間は <code className="rounded bg-muted px-1 font-mono text-xs">aria-hidden</code> の空欄で、ボタンにしていません。<code className="rounded bg-muted px-1 font-mono text-xs">onCellSelect</code> を渡したときだけ升目が <code className="rounded bg-muted px-1 font-mono text-xs">button</code> になり、渡さなければ読むだけの表のままです。
+                <strong>升目の無いところは押せない空欄にした。</strong>まだ来ていない期間は <Code variant="inherit" size="sm">aria-hidden</Code> の空欄で、ボタンにしていません。<Code variant="inherit" size="sm">onCellSelect</Code> を渡したときだけ升目が <Code variant="inherit" size="sm">button</Code> になり、渡さなければ読むだけの表のままです。
                 <br />
                 一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
@@ -937,13 +937,13 @@ const designDecisions = {
     en: (
         <>
             <li>
-                <strong>Depth is one hue at varying opacity.</strong> Cells never change colour by period; the single <code className="rounded bg-muted px-1 font-mono text-xs">color</code> is drawn at an opacity that runs from 0.08 to 1.00. A rainbow would destroy the darker-means-more reading. Whether the number is printed on top is a separate switch, <code className="rounded bg-muted px-1 font-mono text-xs">showValues</code>, so small cells can drop it.
+                <strong>Depth is one hue at varying opacity.</strong> Cells never change colour by period; the single <Code variant="inherit" size="sm">color</Code> is drawn at an opacity that runs from 0.08 to 1.00. A rainbow would destroy the darker-means-more reading. Whether the number is printed on top is a separate switch, <Code variant="inherit" size="sm">showValues</Code>, so small cells can drop it.
             </li>
             <li>
-                <strong>Horizontal scrolling is contained inside this card.</strong> The grid sits in an <code className="rounded bg-muted px-1 font-mono text-xs">overflow-x-auto</code> box and holds a 34rem floor on phones so it scrolls within itself; the card shell is <code className="rounded bg-muted px-1 font-mono text-xs">overflow-hidden</code>. Without that, a cohort table with many periods leaks page-level horizontal scroll.
+                <strong>Horizontal scrolling is contained inside this card.</strong> The grid sits in an <Code variant="inherit" size="sm">overflow-x-auto</Code> box and holds a 34rem floor on phones so it scrolls within itself; the card shell is <Code variant="inherit" size="sm">overflow-hidden</Code>. Without that, a cohort table with many periods leaks page-level horizontal scroll.
             </li>
             <li>
-                <strong>Missing cells are inert blanks.</strong> Periods that have not happened yet render as <code className="rounded bg-muted px-1 font-mono text-xs">aria-hidden</code> blanks rather than buttons. Cells become <code className="rounded bg-muted px-1 font-mono text-xs">button</code> elements only when <code className="rounded bg-muted px-1 font-mono text-xs">onCellSelect</code> is supplied; otherwise the grid is something you read, not something you operate.
+                <strong>Missing cells are inert blanks.</strong> Periods that have not happened yet render as <Code variant="inherit" size="sm">aria-hidden</Code> blanks rather than buttons. Cells become <Code variant="inherit" size="sm">button</Code> elements only when <Code variant="inherit" size="sm">onCellSelect</Code> is supplied; otherwise the grid is something you read, not something you operate.
                 <br />
                 The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>

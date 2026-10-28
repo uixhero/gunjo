@@ -8,7 +8,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithControls";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
-import { DonutChart } from "@gunjo/ui";
+import { DonutChart, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type DonutSegment = ComponentProps<typeof DonutChart>["segments"][number];
@@ -660,25 +660,25 @@ export default function DonutChartPage() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>中央の数字は、図の外の要素です。</strong>資料は「中央の数字を SVG の中に閉じ込めない」を挙げています。GUNJO の <code className="rounded bg-muted px-1 font-mono text-xs">DonutChart</code> はリングを <code className="rounded bg-muted px-1 font-mono text-xs">conic-gradient</code> で描き、<code className="rounded bg-muted px-1 font-mono text-xs">centerValue</code> と <code className="rounded bg-muted px-1 font-mono text-xs">centerLabel</code> はその上に重ねた普通の HTML の要素です。読み上げにも、文字の拡大にも乗ります。
+                            <strong>中央の数字は、図の外の要素です。</strong>資料は「中央の数字を SVG の中に閉じ込めない」を挙げています。GUNJO の <Code variant="inherit" size="sm">DonutChart</Code> はリングを <Code variant="inherit" size="sm">conic-gradient</Code> で描き、<Code variant="inherit" size="sm">centerValue</Code> と <Code variant="inherit" size="sm">centerLabel</Code> はその上に重ねた普通の HTML の要素です。読み上げにも、文字の拡大にも乗ります。
                         </li>
                         <li>
-                            <strong>中央の値を、部品は計算しません。</strong><code className="rounded bg-muted px-1 font-mono text-xs">centerValue</code> は呼ぶ側が渡します。中央に置くものが合計とは限らないからです（達成率、母数、前期比のどれもあり得ます）。資料の「中央とリングで同じことを2回言わない」を、部品が勝手に合計を出さないことで書く人の判断に残しました。
+                            <strong>中央の値を、部品は計算しません。</strong><Code variant="inherit" size="sm">centerValue</Code> は呼ぶ側が渡します。中央に置くものが合計とは限らないからです（達成率、母数、前期比のどれもあり得ます）。資料の「中央とリングで同じことを2回言わない」を、部品が勝手に合計を出さないことで書く人の判断に残しました。
                         </li>
                         <li>
-                            <strong>くり抜きは、カードの色で塗っています。</strong>中央の穴は <code className="rounded bg-muted px-1 font-mono text-xs">thickness</code> ピクセルぶん内側に置いた円で、色は <code className="rounded bg-muted px-1 font-mono text-xs">bg-card</code> です。カードの上に置く前提の作りなので、違う色の面に置くときは重なりを確かめてください。<code className="rounded bg-muted px-1 font-mono text-xs">thickness</code> の既定は 24（<code className="rounded bg-muted px-1 font-mono text-xs">compact</code> は 18）です。数値の整形は <code className="rounded bg-muted px-1 font-mono text-xs">formatValue</code> だけで、シリアライズできる <code className="rounded bg-muted px-1 font-mono text-xs">valueFormat</code> は <code className="rounded bg-muted px-1 font-mono text-xs">DonutChart</code> にはまだありません。サーバーコンポーネントからは渡せないので、<code className="rounded bg-muted px-1 font-mono text-xs">{'"use client"'}</code> の境界を挟みます（#338）。
+                            <strong>くり抜きは、カードの色で塗っています。</strong>中央の穴は <Code variant="inherit" size="sm">thickness</Code> ピクセルぶん内側に置いた円で、色は <Code variant="inherit" size="sm">bg-card</Code> です。カードの上に置く前提の作りなので、違う色の面に置くときは重なりを確かめてください。<Code variant="inherit" size="sm">thickness</Code> の既定は 24（<Code variant="inherit" size="sm">compact</Code> は 18）です。数値の整形は <Code variant="inherit" size="sm">formatValue</Code> だけで、シリアライズできる <Code variant="inherit" size="sm">valueFormat</Code> は <Code variant="inherit" size="sm">DonutChart</Code> にはまだありません。サーバーコンポーネントからは渡せないので、<Code variant="inherit" size="sm">{'"use client"'}</Code> の境界を挟みます（#338）。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The centre number lives outside the drawing.</strong> The article asks you not to trap it inside the SVG. GUNJO&rsquo;s <code className="rounded bg-muted px-1 font-mono text-xs">DonutChart</code> paints the ring with a <code className="rounded bg-muted px-1 font-mono text-xs">conic-gradient</code>, and <code className="rounded bg-muted px-1 font-mono text-xs">centerValue</code> and <code className="rounded bg-muted px-1 font-mono text-xs">centerLabel</code> are ordinary HTML elements layered on top, so they reach both a screen reader and text zoom.
+                            <strong>The centre number lives outside the drawing.</strong> The article asks you not to trap it inside the SVG. GUNJO&rsquo;s <Code variant="inherit" size="sm">DonutChart</Code> paints the ring with a <Code variant="inherit" size="sm">conic-gradient</Code>, and <Code variant="inherit" size="sm">centerValue</Code> and <Code variant="inherit" size="sm">centerLabel</Code> are ordinary HTML elements layered on top, so they reach both a screen reader and text zoom.
                         </li>
                         <li>
-                            <strong>The component never computes the centre value.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">centerValue</code> comes from the caller, because what belongs in the hole is not necessarily the total — it may be an attainment rate, a denominator, or a change against last period. Not summing automatically is how the article&rsquo;s “don&rsquo;t say the same thing twice” stays a decision the author makes.
+                            <strong>The component never computes the centre value.</strong> <Code variant="inherit" size="sm">centerValue</Code> comes from the caller, because what belongs in the hole is not necessarily the total — it may be an attainment rate, a denominator, or a change against last period. Not summing automatically is how the article&rsquo;s “don&rsquo;t say the same thing twice” stays a decision the author makes.
                         </li>
                         <li>
-                            <strong>The hole is painted in the card colour.</strong> It is a circle inset by <code className="rounded bg-muted px-1 font-mono text-xs">thickness</code> pixels filled with <code className="rounded bg-muted px-1 font-mono text-xs">bg-card</code>, which assumes the chart sits on a card; check the overlap when you place it on a differently coloured surface. <code className="rounded bg-muted px-1 font-mono text-xs">thickness</code> defaults to 24 (18 for <code className="rounded bg-muted px-1 font-mono text-xs">compact</code>). Formatting goes through <code className="rounded bg-muted px-1 font-mono text-xs">formatValue</code> only: the serializable <code className="rounded bg-muted px-1 font-mono text-xs">valueFormat</code> is not on <code className="rounded bg-muted px-1 font-mono text-xs">DonutChart</code> yet, so a Server Component needs a <code className="rounded bg-muted px-1 font-mono text-xs">{'"use client"'}</code> boundary in between (#338).
+                            <strong>The hole is painted in the card colour.</strong> It is a circle inset by <Code variant="inherit" size="sm">thickness</Code> pixels filled with <Code variant="inherit" size="sm">bg-card</Code>, which assumes the chart sits on a card; check the overlap when you place it on a differently coloured surface. <Code variant="inherit" size="sm">thickness</Code> defaults to 24 (18 for <Code variant="inherit" size="sm">compact</Code>). Formatting goes through <Code variant="inherit" size="sm">formatValue</Code> only: the serializable <Code variant="inherit" size="sm">valueFormat</Code> is not on <Code variant="inherit" size="sm">DonutChart</Code> yet, so a Server Component needs a <Code variant="inherit" size="sm">{'"use client"'}</Code> boundary in between (#338).
                         </li>
                     </ul>
                 )}

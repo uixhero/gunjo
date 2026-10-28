@@ -140,12 +140,36 @@ export function RegenerateNote() {
   );
 }`;
 
+    const inheritCode = isJa
+        ? `import { Code } from "@gunjo/ui";
+
+export function PropNote() {
+  return (
+    <p className="text-sm leading-7 text-muted-foreground">
+      字の大きさは <Code variant="inherit">size</Code> で切り替えます。既定は{" "}
+      <Code variant="inherit">default</Code> です。
+    </p>
+  );
+}`
+        : `import { Code } from "@gunjo/ui";
+
+export function PropNote() {
+  return (
+    <p className="text-sm leading-7 text-muted-foreground">
+      Set the text size with <Code variant="inherit">size</Code>. The default is{" "}
+      <Code variant="inherit">default</Code>.
+    </p>
+  );
+}`;
+
     const propsData = [
         {
             name: "variant",
-            type: '"default" | "muted"',
+            type: '"default" | "muted" | "inherit"',
             default: '"default"',
-            description: isJa ? "インラインコードの背景と境界線の強さを切り替えます。" : "Controls the inline code background and border emphasis.",
+            description: isJa
+                ? "インラインコードの背景と境界線の強さを切り替えます。inherit は字の色と太さを周りの本文から受け継ぎ、背景だけを付けます。"
+                : "Controls the inline code background and border emphasis. inherit takes its text colour and weight from the surrounding prose and adds only the background.",
         },
         {
             name: "size",
@@ -203,6 +227,24 @@ export function RegenerateNote() {
                             ),
                             previewHeight: "auto",
                             code: variantsCode,
+                        },
+                        {
+                            key: "inherit",
+                            title: isJa ? "本文の色と太さのまま" : "Keeping the prose colour and weight",
+                            description: isJa
+                                ? "variant=\"inherit\" は背景だけを付けます。字の色と太さは周りの本文のままなので、薄い色の段落の中ではコードも薄い色になります。説明文の中で、項目の名前や値を少しだけ読み分けたいときに使います。"
+                                : "variant=\"inherit\" adds only the background. The text keeps the colour and weight of the prose around it, so inside a muted paragraph the code is muted too. Use it to set off a prop name or a value inside an explanation.",
+                            preview: (
+                                <p className="text-sm leading-7 text-muted-foreground">
+                                    {isJa ? "字の大きさは " : "Set the text size with "}
+                                    <Code variant="inherit">size</Code>
+                                    {isJa ? " で切り替えます。既定は " : ". The default is "}
+                                    <Code variant="inherit">default</Code>
+                                    {isJa ? " です。" : "."}
+                                </p>
+                            ),
+                            previewHeight: "auto",
+                            code: inheritCode,
                         },
                         {
                             key: "sizes",

@@ -7,7 +7,7 @@ import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
-import { TooltipButton } from "@gunjo/ui";
+import { TooltipButton, Code } from "@gunjo/ui";
 import { IconCopy, IconSparkles, IconTrash } from "@tabler/icons-react";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
@@ -265,13 +265,13 @@ export function DeleteAssetAction() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>ツールチップ付きのボタンを1つの部品にした。</strong><code className="rounded bg-muted px-1 font-mono text-xs">Button</code> を <code className="rounded bg-muted px-1 font-mono text-xs">Tooltip</code> で巻く形を画面ごとに書くと、<code className="rounded bg-muted px-1 font-mono text-xs">asChild</code> の付け忘れや、トリガーとボタンの二重のフォーカス管理で壊れます。ここに寄せて、<code className="rounded bg-muted px-1 font-mono text-xs">tooltip</code> を渡すだけで済むようにしました。
+                            <strong>ツールチップ付きのボタンを1つの部品にした。</strong><Code variant="inherit" size="sm">Button</Code> を <Code variant="inherit" size="sm">Tooltip</Code> で巻く形を画面ごとに書くと、<Code variant="inherit" size="sm">asChild</Code> の付け忘れや、トリガーとボタンの二重のフォーカス管理で壊れます。ここに寄せて、<Code variant="inherit" size="sm">tooltip</Code> を渡すだけで済むようにしました。
                         </li>
                         <li>
-                            <strong>触った瞬間にツールチップを畳む口を用意した。</strong><code className="rounded bg-muted px-1 font-mono text-xs">tooltipCloseOnPress</code> を渡すと、押した瞬間に吹き出しが閉じ、指を離すまで再び開きません。スマホでは「触る」がホバーも兼ねるので、押したあとも説明が画面に残って邪魔になるためです。
+                            <strong>触った瞬間にツールチップを畳む口を用意した。</strong><Code variant="inherit" size="sm">tooltipCloseOnPress</Code> を渡すと、押した瞬間に吹き出しが閉じ、指を離すまで再び開きません。スマホでは「触る」がホバーも兼ねるので、押したあとも説明が画面に残って邪魔になるためです。
                         </li>
                         <li>
-                            <strong>押したあとに出す使い方もできる。</strong><code className="rounded bg-muted px-1 font-mono text-xs">tooltipOpenOnClick</code> を渡すと、押したときだけ開いて既定 1600ms で閉じます。ただしこれは説明ではなく短い知らせなので、押した結果そのものを伝えるなら、読み上げに載る <code className="rounded bg-muted px-1 font-mono text-xs">{'role="status"'}</code> を使ってください（<code className="rounded bg-muted px-1 font-mono text-xs">CopyButton</code> がその形です）。
+                            <strong>押したあとに出す使い方もできる。</strong><Code variant="inherit" size="sm">tooltipOpenOnClick</Code> を渡すと、押したときだけ開いて既定 1600ms で閉じます。ただしこれは説明ではなく短い知らせなので、押した結果そのものを伝えるなら、読み上げに載る <Code variant="inherit" size="sm">{'role="status"'}</Code> を使ってください（<Code variant="inherit" size="sm">CopyButton</Code> がその形です）。
                             <br />
                             一般のボタンの設計は UIXHERO の「ボタン」にあります。
                         </li>
@@ -279,13 +279,13 @@ export function DeleteAssetAction() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>A button with a tooltip is one component, not a recipe.</strong> Hand-wrapping <code className="rounded bg-muted px-1 font-mono text-xs">Button</code> in <code className="rounded bg-muted px-1 font-mono text-xs">Tooltip</code> on every screen invites a missing <code className="rounded bg-muted px-1 font-mono text-xs">asChild</code> and two competing focus owners. Consolidating it here means passing <code className="rounded bg-muted px-1 font-mono text-xs">tooltip</code> and nothing else.
+                            <strong>A button with a tooltip is one component, not a recipe.</strong> Hand-wrapping <Code variant="inherit" size="sm">Button</Code> in <Code variant="inherit" size="sm">Tooltip</Code> on every screen invites a missing <Code variant="inherit" size="sm">asChild</Code> and two competing focus owners. Consolidating it here means passing <Code variant="inherit" size="sm">tooltip</Code> and nothing else.
                         </li>
                         <li>
-                            <strong>There is an explicit escape for touch.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">tooltipCloseOnPress</code> and the bubble closes the moment the control is pressed and stays closed until the finger leaves. On a phone a tap is also the hover, so without this the explanation lingers over the result.
+                            <strong>There is an explicit escape for touch.</strong> Pass <Code variant="inherit" size="sm">tooltipCloseOnPress</Code> and the bubble closes the moment the control is pressed and stays closed until the finger leaves. On a phone a tap is also the hover, so without this the explanation lingers over the result.
                         </li>
                         <li>
-                            <strong>It can also open on press.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">tooltipOpenOnClick</code> opens the bubble only on click and closes it after 1600ms by default. That is a brief notice rather than an explanation, though: to announce the outcome of a press, use a <code className="rounded bg-muted px-1 font-mono text-xs">{'role="status"'}</code> region instead, the way <code className="rounded bg-muted px-1 font-mono text-xs">CopyButton</code> does.
+                            <strong>It can also open on press.</strong> <Code variant="inherit" size="sm">tooltipOpenOnClick</Code> opens the bubble only on click and closes it after 1600ms by default. That is a brief notice rather than an explanation, though: to announce the outcome of a press, use a <Code variant="inherit" size="sm">{'role="status"'}</Code> region instead, the way <Code variant="inherit" size="sm">CopyButton</Code> does.
                             <br />
                             The general design of buttons is covered by UIXHERO&rsquo;s button article.
                         </li>

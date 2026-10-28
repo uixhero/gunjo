@@ -7,7 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
-import { MetadataList } from "@gunjo/ui";
+import { MetadataList, Code } from "@gunjo/ui";
 import { IconCalendarEvent as CalendarDays, IconDatabase as HardDrive, IconFileTypeJpg as FileImage, IconRuler as Ruler } from "@tabler/icons-react";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
@@ -244,13 +244,13 @@ export default function MetadataListDocPage() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong><code className="rounded bg-muted px-1 font-mono text-xs">ul</code> ではなく <code className="rounded bg-muted px-1 font-mono text-xs">dl</code> にした。</strong>資料は順序と操作の有無でリストの種類を選べと書いています。ここは「名前と値の組」なので、<code className="rounded bg-muted px-1 font-mono text-xs">dl</code> と <code className="rounded bg-muted px-1 font-mono text-xs">dt</code> と <code className="rounded bg-muted px-1 font-mono text-xs">dd</code> を使います。項目に順序の意味は無く、押すこともありません。
+                            <strong><Code variant="inherit" size="sm">ul</Code> ではなく <Code variant="inherit" size="sm">dl</Code> にした。</strong>資料は順序と操作の有無でリストの種類を選べと書いています。ここは「名前と値の組」なので、<Code variant="inherit" size="sm">dl</Code> と <Code variant="inherit" size="sm">dt</Code> と <Code variant="inherit" size="sm">dd</Code> を使います。項目に順序の意味は無く、押すこともありません。
                         </li>
                         <li>
-                            <strong>既定は切り詰めで、伸ばすのは宣言で。</strong>値は既定で1行に切り詰め、<code className="rounded bg-muted px-1 font-mono text-xs">title</code> 属性に全文を入れます。折り返したいときは <code className="rounded bg-muted px-1 font-mono text-xs">wrap</code> を渡し、項目ごとの上書きもできます（#284）。行の高さが揃うことを既定にしたのは、詳細パネルに縦に並べたときに読み飛ばしやすくするためです。
+                            <strong>既定は切り詰めで、伸ばすのは宣言で。</strong>値は既定で1行に切り詰め、<Code variant="inherit" size="sm">title</Code> 属性に全文を入れます。折り返したいときは <Code variant="inherit" size="sm">wrap</Code> を渡し、項目ごとの上書きもできます（#284）。行の高さが揃うことを既定にしたのは、詳細パネルに縦に並べたときに読み飛ばしやすくするためです。
                         </li>
                         <li>
-                            <strong>空のときは何も描かずに済ませない。</strong>項目が0件のときは破線の枠に <code className="rounded bg-muted px-1 font-mono text-xs">emptyMessage</code> を出します。資料も「空状態を必ず設計する」を挙げています。何も描かないと、読み込み中なのか本当に無いのかが分かりません。
+                            <strong>空のときは何も描かずに済ませない。</strong>項目が0件のときは破線の枠に <Code variant="inherit" size="sm">emptyMessage</Code> を出します。資料も「空状態を必ず設計する」を挙げています。何も描かないと、読み込み中なのか本当に無いのかが分かりません。
                             <br />
                             一般のリストの設計は UIXHERO の「リスト」にあります。
                         </li>
@@ -258,13 +258,13 @@ export default function MetadataListDocPage() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>A <code className="rounded bg-muted px-1 font-mono text-xs">dl</code>, not a <code className="rounded bg-muted px-1 font-mono text-xs">ul</code>.</strong> The article picks the list element from order and interactivity. These are name-and-value pairs with no meaningful order and nothing to click, so they render as <code className="rounded bg-muted px-1 font-mono text-xs">dl</code> with <code className="rounded bg-muted px-1 font-mono text-xs">dt</code> and <code className="rounded bg-muted px-1 font-mono text-xs">dd</code>.
+                            <strong>A <Code variant="inherit" size="sm">dl</Code>, not a <Code variant="inherit" size="sm">ul</Code>.</strong> The article picks the list element from order and interactivity. These are name-and-value pairs with no meaningful order and nothing to click, so they render as <Code variant="inherit" size="sm">dl</Code> with <Code variant="inherit" size="sm">dt</Code> and <Code variant="inherit" size="sm">dd</Code>.
                         </li>
                         <li>
-                            <strong>Truncation is the default; wrapping is opt-in.</strong> Values truncate to one line and carry the full text in <code className="rounded bg-muted px-1 font-mono text-xs">title</code>. Pass <code className="rounded bg-muted px-1 font-mono text-xs">wrap</code> to let them wrap, with a per-item override (#284). Equal row heights are the default because a details panel is read by skimming down the column.
+                            <strong>Truncation is the default; wrapping is opt-in.</strong> Values truncate to one line and carry the full text in <Code variant="inherit" size="sm">title</Code>. Pass <Code variant="inherit" size="sm">wrap</Code> to let them wrap, with a per-item override (#284). Equal row heights are the default because a details panel is read by skimming down the column.
                         </li>
                         <li>
-                            <strong>Empty is drawn, not skipped.</strong> With no items the list renders <code className="rounded bg-muted px-1 font-mono text-xs">emptyMessage</code> inside a dashed frame. The article calls for designing the empty state explicitly; drawing nothing leaves &ldquo;still loading&rdquo; and &ldquo;genuinely empty&rdquo; indistinguishable.
+                            <strong>Empty is drawn, not skipped.</strong> With no items the list renders <Code variant="inherit" size="sm">emptyMessage</Code> inside a dashed frame. The article calls for designing the empty state explicitly; drawing nothing leaves &ldquo;still loading&rdquo; and &ldquo;genuinely empty&rdquo; indistinguishable.
                             <br />
                             The general design of lists is covered by UIXHERO&rsquo;s list article.
                         </li>

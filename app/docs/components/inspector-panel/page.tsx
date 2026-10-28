@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, HStack, Input, InspectorField, InspectorPanel, InspectorSection, Switch } from "@gunjo/ui";
+import { Button, HStack, Input, InspectorField, InspectorPanel, InspectorSection, Switch, Code } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
 import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
@@ -433,25 +433,25 @@ export default function InspectorPanelPage() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>縦に流れるのは真ん中だけ。</strong><code className="rounded bg-muted px-1 font-mono text-xs">InspectorPanel</code> は題の行・中身・脚の3段で、流れるのは中身だけです。長い設定を下まで見ても、何を選んでいるかを示す題の行と、下の操作は動きません。横には流れないようにしてあります。
+                            <strong>縦に流れるのは真ん中だけ。</strong><Code variant="inherit" size="sm">InspectorPanel</Code> は題の行・中身・脚の3段で、流れるのは中身だけです。長い設定を下まで見ても、何を選んでいるかを示す題の行と、下の操作は動きません。横には流れないようにしてあります。
                         </li>
                         <li>
-                            <strong>ラベルは列で揃えず、上に積む。</strong>資料はラベルの列幅を64pxのように揃えることを勧めています。GUNJO の <code className="rounded bg-muted px-1 font-mono text-xs">InspectorField</code> はラベルを入力欄の上に置く形にしました。日本語のラベルは長さの幅が大きく、固定の列にすると折り返すか切れるからです。上に積めば、ラベルの長さに関係なく入力欄の左端が揃います。
+                            <strong>ラベルは列で揃えず、上に積む。</strong>資料はラベルの列幅を64pxのように揃えることを勧めています。GUNJO の <Code variant="inherit" size="sm">InspectorField</Code> はラベルを入力欄の上に置く形にしました。日本語のラベルは長さの幅が大きく、固定の列にすると折り返すか切れるからです。上に積めば、ラベルの長さに関係なく入力欄の左端が揃います。
                         </li>
                         <li>
-                            <strong>3段に分けて、平らに並べない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">InspectorPanel</code>（枠）・<code className="rounded bg-muted px-1 font-mono text-xs">InspectorSection</code>（群の見出し）・<code className="rounded bg-muted px-1 font-mono text-xs">InspectorField</code>（1つの値）の3つに分かれています。設定を平らに並べず、意味のまとまりごとに <code className="rounded bg-muted px-1 font-mono text-xs">InspectorSection</code> で区切ります。選んだものが変わったら遅れなく差し替える、という判断は資料に書いてあります。
+                            <strong>3段に分けて、平らに並べない。</strong><Code variant="inherit" size="sm">InspectorPanel</Code>（枠）・<Code variant="inherit" size="sm">InspectorSection</Code>（群の見出し）・<Code variant="inherit" size="sm">InspectorField</Code>（1つの値）の3つに分かれています。設定を平らに並べず、意味のまとまりごとに <Code variant="inherit" size="sm">InspectorSection</Code> で区切ります。選んだものが変わったら遅れなく差し替える、という判断は資料に書いてあります。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>Only the middle scrolls.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">InspectorPanel</code> is three bands: title row, body, footer. Only the body scrolls, so the row that says what is selected and the controls at the bottom stay put however long the settings run. Horizontal scrolling is closed off.
+                            <strong>Only the middle scrolls.</strong> <Code variant="inherit" size="sm">InspectorPanel</Code> is three bands: title row, body, footer. Only the body scrolls, so the row that says what is selected and the controls at the bottom stay put however long the settings run. Horizontal scrolling is closed off.
                         </li>
                         <li>
-                            <strong>Labels stack above the field instead of sharing a column.</strong> The article recommends a shared label column of a fixed width such as 64px. <code className="rounded bg-muted px-1 font-mono text-xs">InspectorField</code> puts the label above the control instead, because Japanese labels vary a lot in length and a fixed column either wraps them or clips them. Stacking keeps the left edge of every field aligned whatever the label length.
+                            <strong>Labels stack above the field instead of sharing a column.</strong> The article recommends a shared label column of a fixed width such as 64px. <Code variant="inherit" size="sm">InspectorField</Code> puts the label above the control instead, because Japanese labels vary a lot in length and a fixed column either wraps them or clips them. Stacking keeps the left edge of every field aligned whatever the label length.
                         </li>
                         <li>
-                            <strong>Three levels, so nothing is a flat list.</strong> The parts are <code className="rounded bg-muted px-1 font-mono text-xs">InspectorPanel</code> for the frame, <code className="rounded bg-muted px-1 font-mono text-xs">InspectorSection</code> for a group heading, and <code className="rounded bg-muted px-1 font-mono text-xs">InspectorField</code> for a single value. Properties are grouped by meaning with <code className="rounded bg-muted px-1 font-mono text-xs">InspectorSection</code> rather than listed flat. Swapping the contents the instant the selection changes is covered in the article.
+                            <strong>Three levels, so nothing is a flat list.</strong> The parts are <Code variant="inherit" size="sm">InspectorPanel</Code> for the frame, <Code variant="inherit" size="sm">InspectorSection</Code> for a group heading, and <Code variant="inherit" size="sm">InspectorField</Code> for a single value. Properties are grouped by meaning with <Code variant="inherit" size="sm">InspectorSection</Code> rather than listed flat. Swapping the contents the instant the selection changes is covered in the article.
                         </li>
                     </ul>
                 )}

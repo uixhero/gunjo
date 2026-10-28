@@ -9,7 +9,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { TextareaDemo } from "@/components/demos/FormDemo";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
-import { FormControl, FormDescription, FormGroup, FormLabel, Textarea } from "@gunjo/ui";
+import { FormControl, FormDescription, FormGroup, FormLabel, Textarea, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const CHAR_LIMIT = 120;
@@ -345,25 +345,25 @@ export function LockedNoteTextarea() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>高さはクラスで決まっていて、<code className="rounded bg-muted px-1 font-mono text-xs">rows</code> では変わりません。</strong>資料は「<code className="rounded bg-muted px-1 font-mono text-xs">rows</code> でだいたいこれくらい書いてほしいという期待量を示す」を挙げています。GUNJO の <code className="rounded bg-muted px-1 font-mono text-xs">Textarea</code> は <code className="rounded bg-muted px-1 font-mono text-xs">h-20</code>（80px）を持つので、<code className="rounded bg-muted px-1 font-mono text-xs">rows</code> を渡しても見た目の高さは変わりません。高さを変えるときは <code className="rounded bg-muted px-1 font-mono text-xs">className</code> で <code className="rounded bg-muted px-1 font-mono text-xs">h-32</code> のように上書きすることになります。ここは資料の勧めをそのまま受け取れない場所です。
+                            <strong>高さはクラスで決まっていて、<Code variant="inherit" size="sm">rows</Code> では変わりません。</strong>資料は「<Code variant="inherit" size="sm">rows</Code> でだいたいこれくらい書いてほしいという期待量を示す」を挙げています。GUNJO の <Code variant="inherit" size="sm">Textarea</Code> は <Code variant="inherit" size="sm">h-20</Code>（80px）を持つので、<Code variant="inherit" size="sm">rows</Code> を渡しても見た目の高さは変わりません。高さを変えるときは <Code variant="inherit" size="sm">className</Code> で <Code variant="inherit" size="sm">h-32</Code> のように上書きすることになります。ここは資料の勧めをそのまま受け取れない場所です。
                         </li>
                         <li>
-                            <strong>縦に伸ばす操作は塞いでいない。</strong>資料は「<code className="rounded bg-muted px-1 font-mono text-xs">resize</code> を CSS で殺す」を禁止に挙げています。GUNJO は <code className="rounded bg-muted px-1 font-mono text-xs">resize</code> に一切触れていないので、ブラウザの既定どおり利用者が自分で広げられます。一方で、入力に合わせて自動で伸びる仕組みも持っていません。
+                            <strong>縦に伸ばす操作は塞いでいない。</strong>資料は「<Code variant="inherit" size="sm">resize</Code> を CSS で殺す」を禁止に挙げています。GUNJO は <Code variant="inherit" size="sm">resize</Code> に一切触れていないので、ブラウザの既定どおり利用者が自分で広げられます。一方で、入力に合わせて自動で伸びる仕組みも持っていません。
                         </li>
                         <li>
-                            <strong>文字数は数えるが、色は変えない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">showCount</code> を渡すと右下に数が出て、<code className="rounded bg-muted px-1 font-mono text-xs">maxLength</code> があれば「いまの数と上限」の形になります。この数は <code className="rounded bg-muted px-1 font-mono text-xs">aria-describedby</code> で入力欄に結んであるので、読み上げでも一緒に伝わります。資料が挙げる「残り20から30文字で警告色に変える」は入れていません。<code className="rounded bg-muted px-1 font-mono text-xs">maxLength</code> を付ければブラウザ側で入力が止まるので、まず止まることを優先しました。
+                            <strong>文字数は数えるが、色は変えない。</strong><Code variant="inherit" size="sm">showCount</Code> を渡すと右下に数が出て、<Code variant="inherit" size="sm">maxLength</Code> があれば「いまの数と上限」の形になります。この数は <Code variant="inherit" size="sm">aria-describedby</Code> で入力欄に結んであるので、読み上げでも一緒に伝わります。資料が挙げる「残り20から30文字で警告色に変える」は入れていません。<Code variant="inherit" size="sm">maxLength</Code> を付ければブラウザ側で入力が止まるので、まず止まることを優先しました。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The height comes from a class, so <code className="rounded bg-muted px-1 font-mono text-xs">rows</code> does nothing.</strong> The article suggests using <code className="rounded bg-muted px-1 font-mono text-xs">rows</code> to signal roughly how much text is expected. <code className="rounded bg-muted px-1 font-mono text-xs">Textarea</code> carries <code className="rounded bg-muted px-1 font-mono text-xs">h-20</code> (80px), so passing <code className="rounded bg-muted px-1 font-mono text-xs">rows</code> does not change the rendered height; changing it means overriding with something like <code className="rounded bg-muted px-1 font-mono text-xs">h-32</code> in <code className="rounded bg-muted px-1 font-mono text-xs">className</code>. This is one place where the article advice cannot be taken as written.
+                            <strong>The height comes from a class, so <Code variant="inherit" size="sm">rows</Code> does nothing.</strong> The article suggests using <Code variant="inherit" size="sm">rows</Code> to signal roughly how much text is expected. <Code variant="inherit" size="sm">Textarea</Code> carries <Code variant="inherit" size="sm">h-20</Code> (80px), so passing <Code variant="inherit" size="sm">rows</Code> does not change the rendered height; changing it means overriding with something like <Code variant="inherit" size="sm">h-32</Code> in <Code variant="inherit" size="sm">className</Code>. This is one place where the article advice cannot be taken as written.
                         </li>
                         <li>
-                            <strong>Dragging the corner is not blocked.</strong> The article forbids killing <code className="rounded bg-muted px-1 font-mono text-xs">resize</code> in CSS. GUNJO never touches <code className="rounded bg-muted px-1 font-mono text-xs">resize</code>, so the browser default stands and the reader can enlarge the box. Auto-growing with the content is not implemented either.
+                            <strong>Dragging the corner is not blocked.</strong> The article forbids killing <Code variant="inherit" size="sm">resize</Code> in CSS. GUNJO never touches <Code variant="inherit" size="sm">resize</Code>, so the browser default stands and the reader can enlarge the box. Auto-growing with the content is not implemented either.
                         </li>
                         <li>
-                            <strong>The characters are counted, but the colour never changes.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">showCount</code> and a readout appears at the bottom right, becoming current-over-limit when <code className="rounded bg-muted px-1 font-mono text-xs">maxLength</code> is set. It is tied to the field with <code className="rounded bg-muted px-1 font-mono text-xs">aria-describedby</code>, so it reaches screen readers too. The warning colour the article asks for at twenty to thirty characters remaining is not implemented: with <code className="rounded bg-muted px-1 font-mono text-xs">maxLength</code> the browser stops the input anyway, and stopping was treated as the more important half.
+                            <strong>The characters are counted, but the colour never changes.</strong> Pass <Code variant="inherit" size="sm">showCount</Code> and a readout appears at the bottom right, becoming current-over-limit when <Code variant="inherit" size="sm">maxLength</Code> is set. It is tied to the field with <Code variant="inherit" size="sm">aria-describedby</Code>, so it reaches screen readers too. The warning colour the article asks for at twenty to thirty characters remaining is not implemented: with <Code variant="inherit" size="sm">maxLength</Code> the browser stops the input anyway, and stopping was treated as the more important half.
                         </li>
                     </ul>
                 )}

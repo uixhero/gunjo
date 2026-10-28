@@ -1,5 +1,5 @@
 {
-  "version": "2.18",
+  "version": "2.21",
   "children": [
     {
       "type": "frame",
@@ -1052,6 +1052,32 @@
         },
         {
           "type": "frame",
+          "id": "q5KdmC",
+          "name": "Code/Inherit",
+          "reusable": true,
+          "fill": "#f1f5f9",
+          "cornerRadius": 4,
+          "padding": [
+            0,
+            4
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "bYx9o",
+              "name": "Code Inherit Text",
+              "fill": "#64748b",
+              "content": "size",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
           "id": "BkuMh",
           "name": "Spacer/Default",
           "reusable": true,
@@ -1514,6 +1540,12 @@
               "id": "Yk9Ty",
               "type": "ref",
               "ref": "lckl1"
+            },
+            {
+              "id": "X4AI7",
+              "type": "ref",
+              "ref": "q5KdmC",
+              "name": "Code Inherit Instance"
             },
             {
               "type": "text",

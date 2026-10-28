@@ -6,7 +6,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
-import { AppRail, Badge, DocNote, TooltipButton } from "@gunjo/ui";
+import { AppRail, Badge, DocNote, TooltipButton, Code } from "@gunjo/ui";
 import {
     IconBell as Bell,
     IconHome as Home,
@@ -880,25 +880,25 @@ export default function AppRailDocPage() {
                 {isJa ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>器と中身を分ける。</strong><code className="rounded bg-muted px-1 font-mono text-xs">AppRail</code> が持つのは幅64px・地色・縦並びだけです。項目は <code className="rounded bg-muted px-1 font-mono text-xs">TooltipButton</code> を並べて作ります。項目の見た目や当たり判定を器の側で決め打ちしないので、通知の点を足すのも、下端に別の一群を置くのも呼ぶ側でできます。
+                            <strong>器と中身を分ける。</strong><Code variant="inherit" size="sm">AppRail</Code> が持つのは幅64px・地色・縦並びだけです。項目は <Code variant="inherit" size="sm">TooltipButton</Code> を並べて作ります。項目の見た目や当たり判定を器の側で決め打ちしないので、通知の点を足すのも、下端に別の一群を置くのも呼ぶ側でできます。
                         </li>
                         <li>
-                            <strong>アイコンだけの並びに、必ず名前を付ける。</strong>見本では項目ごとに <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code> と、右側に出るツールチップを付けています。この並びではアイコンは飾りではなく唯一のラベルなので、名前が無いと読み上げでも触っただけでも何の項目か分かりません。<code className="rounded bg-muted px-1 font-mono text-xs">tooltipOpenOnClick</code> を付けているのは、触る画面でも名前を出せるようにするためです。
+                            <strong>アイコンだけの並びに、必ず名前を付ける。</strong>見本では項目ごとに <Code variant="inherit" size="sm">aria-label</Code> と、右側に出るツールチップを付けています。この並びではアイコンは飾りではなく唯一のラベルなので、名前が無いと読み上げでも触っただけでも何の項目か分かりません。<Code variant="inherit" size="sm">tooltipOpenOnClick</Code> を付けているのは、触る画面でも名前を出せるようにするためです。
                         </li>
                         <li>
-                            <strong>いまいる場所を、色以外でも出す。</strong>選択中の項目には <code className="rounded bg-muted px-1 font-mono text-xs">aria-pressed</code> を付け、見た目は背景の明るさと細い輪郭の2つで示します。地色が暗いので、明るさの差だけに頼らない形にしています。幅で切り替える3段の考え方（狭い画面は下の並び、広い画面は横の並び）は資料に書いてあります。
+                            <strong>いまいる場所を、色以外でも出す。</strong>選択中の項目には <Code variant="inherit" size="sm">aria-pressed</Code> を付け、見た目は背景の明るさと細い輪郭の2つで示します。地色が暗いので、明るさの差だけに頼らない形にしています。幅で切り替える3段の考え方（狭い画面は下の並び、広い画面は横の並び）は資料に書いてあります。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>Keep the shell and the items apart.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">AppRail</code> owns only the 64px width, the dark ground, and the vertical stack. Items are composed from <code className="rounded bg-muted px-1 font-mono text-xs">TooltipButton</code>. Because the shell does not dictate item shape or hit area, callers can add an unread dot or park a second group at the bottom without fighting it.
+                            <strong>Keep the shell and the items apart.</strong> <Code variant="inherit" size="sm">AppRail</Code> owns only the 64px width, the dark ground, and the vertical stack. Items are composed from <Code variant="inherit" size="sm">TooltipButton</Code>. Because the shell does not dictate item shape or hit area, callers can add an unread dot or park a second group at the bottom without fighting it.
                         </li>
                         <li>
-                            <strong>An icon-only column still needs names.</strong> Every item in the demo carries an <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code> and a tooltip on the right. Here the icon is not decoration, it is the only label, so without a name neither a screen reader nor a touch user can tell what the item does. <code className="rounded bg-muted px-1 font-mono text-xs">tooltipOpenOnClick</code> is set so the name is reachable on touch as well.
+                            <strong>An icon-only column still needs names.</strong> Every item in the demo carries an <Code variant="inherit" size="sm">aria-label</Code> and a tooltip on the right. Here the icon is not decoration, it is the only label, so without a name neither a screen reader nor a touch user can tell what the item does. <Code variant="inherit" size="sm">tooltipOpenOnClick</Code> is set so the name is reachable on touch as well.
                         </li>
                         <li>
-                            <strong>Show the current place with more than colour.</strong> The selected item gets <code className="rounded bg-muted px-1 font-mono text-xs">aria-pressed</code>, and visually it is marked by both a lighter background and a thin ring. The ground is dark, so brightness alone is not enough. The three-step responsive strategy (bottom bar, rail, sidebar) is covered in the article.
+                            <strong>Show the current place with more than colour.</strong> The selected item gets <Code variant="inherit" size="sm">aria-pressed</Code>, and visually it is marked by both a lighter background and a thin ring. The ground is dark, so brightness alone is not enough. The three-step responsive strategy (bottom bar, rail, sidebar) is covered in the article.
                         </li>
                     </ul>
                 )}

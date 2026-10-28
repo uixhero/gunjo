@@ -16,6 +16,7 @@ import {
     CardHeader,
     CardTitle,
     Button,
+    Code,
 } from "@gunjo/ui";
 
 const TOOLS = [
@@ -123,13 +124,13 @@ export default function McpServerPage() {
                         MCP turns the Phase 5 spec endpoints into a typed,
                         discoverable namespace. Instead of pasting Markdown,
                         users say &quot;use GunjoUI&quot; and the AI tool calls{" "}
-                        <code className="rounded bg-muted px-1 text-sm font-mono">
+                        <Code variant="inherit">
                             list_components
-                        </code>{" "}
+                        </Code>{" "}
                         and{" "}
-                        <code className="rounded bg-muted px-1 text-sm font-mono">
+                        <Code variant="inherit">
                             get_component_spec
-                        </code>{" "}
+                        </Code>{" "}
                         as needed. Closes the loop: AI can ask for what it
                         needs at the moment it needs it.
                     </p>
@@ -186,9 +187,9 @@ export default function McpServerPage() {
                     <p className="text-base leading-7 text-muted-foreground">
                         The MCP server is a thin CLI that proxies to the
                         existing{" "}
-                        <code className="rounded bg-muted px-1 text-sm font-mono">
+                        <Code variant="inherit">
                             /api/specs
-                        </code>{" "}
+                        </Code>{" "}
                         endpoints, normalizing responses into MCP tool results.
                         No state of its own — the docs site remains the single
                         source of truth.

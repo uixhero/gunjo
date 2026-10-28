@@ -12,6 +12,7 @@ import {
     BreadcrumbSeparator,
     Card,
     CardContent,
+    Code,
 } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { LocalNav } from "@/components/layout/TableOfContents";
@@ -211,7 +212,7 @@ export function WhyView({
                     </h2>
                     {isJa ? (
                         <p className="leading-7 text-foreground">
-                            <code className="rounded bg-muted px-1 font-mono text-sm">@gunjo/ui</code>{" "}
+                            <Code variant="inherit">@gunjo/ui</Code>{" "}
                             は、「AI から使えるように設計した」とうたって公開されました。コンポーネントを型つきで一か所からまとめて呼べること、
                             コンポーネントの仕様を機械が読めること、AI にそのまま渡せる説明があること。AI が「眺める」だけでなく
                             「読んでそのまま使える」形を、最初から組み込んだ設計です。
@@ -222,7 +223,7 @@ export function WhyView({
                     ) : (
                         <p className="leading-7 text-foreground">
                             When I shipped{" "}
-                            <code className="rounded bg-muted px-1 font-mono text-sm">@gunjo/ui</code>{" "}
+                            <Code variant="inherit">@gunjo/ui</Code>{" "}
                             I claimed it was &quot;designed for AI to use&quot; — typed entry point, machine-readable
                             metadata, an AI-handoff doc surface built in from day one. Anyone can write that on a
                             landing page. So I tested it.
@@ -275,7 +276,7 @@ export function WhyView({
                             2回目は docs のコンポーネント検索や説明を調整するだけにとどめ、3回目になって初めてコンポーネントをつくります。
                             <strong>その形が本当に安定するのを見届けるため</strong>です。
                             急いで正式なコンポーネントにすると、コンポーネントの形がひとつの用途に狭く固まってしまいます。たとえば{" "}
-                            <code className="rounded bg-muted px-1 font-mono text-sm">MatchCard</code>{" "}
+                            <Code variant="inherit">MatchCard</Code>{" "}
                             は、3回目（補助金マッチング＝会社×制度という<strong>異なる種類どうしのペア</strong>）が決め手になりました。
                             もし1〜2回目（同じ種類どうしのペア）の時点でつくっていたら、「会社×会社」に固定してしまっていたかもしれません。
                             異なる種類のペアに出会ったからこそ、「左右はどんな対象でもよい」という設計にたどり着けたのです。
@@ -286,7 +287,7 @@ export function WhyView({
                             Wait until the same gap shows up three times. First hit: file an issue. Second hit: nudge
                             the docs / discovery index. Third hit: build. The wait lets the shape stabilise — building
                             too early locks the API around a single use-case.{" "}
-                            <code className="rounded bg-muted px-1 font-mono text-sm">MatchCard</code>{" "}
+                            <Code variant="inherit">MatchCard</Code>{" "}
                             became real on the third sighting (a subsidy-matching screen pairing{" "}
                             <em>company × programme</em> — heterogeneous entities). The first two were same-type pairs;
                             building then would have hard-coded a company-vs-company shape. The heterogeneous third

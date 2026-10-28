@@ -8,7 +8,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
-import { Badge, Button, Input } from "@gunjo/ui";
+import { Badge, Button, Input, Code } from "@gunjo/ui";
 import { DataTable, type DataTableLabels } from "@gunjo/ui/table";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
@@ -743,13 +743,13 @@ export function InvoiceTotalsTable() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>横スクロールをこの箱の中に閉じ込めた。</strong>表は <code className="rounded bg-muted px-1 font-mono text-xs">overflow-x-auto</code> の入れ物に入れ、さらに <code className="rounded bg-muted px-1 font-mono text-xs">[contain:paint]</code> を付けています。これが無いと、幅の広い表がスマホ（375px）でページ全体の横スクロールを引き起こしていました（#289）。表そのものは最低 720px を確保します。
+                            <strong>横スクロールをこの箱の中に閉じ込めた。</strong>表は <Code variant="inherit" size="sm">overflow-x-auto</Code> の入れ物に入れ、さらに <Code variant="inherit" size="sm">[contain:paint]</Code> を付けています。これが無いと、幅の広い表がスマホ（375px）でページ全体の横スクロールを引き起こしていました（#289）。表そのものは最低 720px を確保します。
                         </li>
                         <li>
-                            <strong>スマホでは「横に流す」か「積み直す」かを選べる。</strong><code className="rounded bg-muted px-1 font-mono text-xs">renderCard</code> を渡すと、<code className="rounded bg-muted px-1 font-mono text-xs">md</code> 未満では同じ行をカードの縦積みで出します（#195）。渡さなければどの幅でも表のまま横に流れます。資料は「行を読むのではなく列をスキャンする」を核に挙げていますが、スマホには列を並べる幅が無いので、そこだけ形を変える口を開けました。
+                            <strong>スマホでは「横に流す」か「積み直す」かを選べる。</strong><Code variant="inherit" size="sm">renderCard</Code> を渡すと、<Code variant="inherit" size="sm">md</Code> 未満では同じ行をカードの縦積みで出します（#195）。渡さなければどの幅でも表のまま横に流れます。資料は「行を読むのではなく列をスキャンする」を核に挙げていますが、スマホには列を並べる幅が無いので、そこだけ形を変える口を開けました。
                         </li>
                         <li>
-                            <strong>並べ替えの状態は見出しのセルが持つ。</strong><code className="rounded bg-muted px-1 font-mono text-xs">aria-sort</code> は <code className="rounded bg-muted px-1 font-mono text-xs">th</code> に付けてあり、中の並べ替えボタンには付けていません。二重に読み上げられるのを避けるためです。表の名前は <code className="rounded bg-muted px-1 font-mono text-xs">caption</code> か <code className="rounded bg-muted px-1 font-mono text-xs">aria-labelledby</code> で必ず付けられるようにしました（#298）。1つの画面に表が複数あるとき、読み上げで区別が付かなくなるからです。
+                            <strong>並べ替えの状態は見出しのセルが持つ。</strong><Code variant="inherit" size="sm">aria-sort</Code> は <Code variant="inherit" size="sm">th</Code> に付けてあり、中の並べ替えボタンには付けていません。二重に読み上げられるのを避けるためです。表の名前は <Code variant="inherit" size="sm">caption</Code> か <Code variant="inherit" size="sm">aria-labelledby</Code> で必ず付けられるようにしました（#298）。1つの画面に表が複数あるとき、読み上げで区別が付かなくなるからです。
                             <br />
                             一般の表の設計は UIXHERO の「テーブル」にあります。
                         </li>
@@ -757,13 +757,13 @@ export function InvoiceTotalsTable() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>Horizontal scrolling is contained in this box.</strong> The table sits in an <code className="rounded bg-muted px-1 font-mono text-xs">overflow-x-auto</code> container marked <code className="rounded bg-muted px-1 font-mono text-xs">[contain:paint]</code>. Without that, a wide table leaked page-level horizontal scroll on a 375px phone (#289). The table itself holds a 720px floor.
+                            <strong>Horizontal scrolling is contained in this box.</strong> The table sits in an <Code variant="inherit" size="sm">overflow-x-auto</Code> container marked <Code variant="inherit" size="sm">[contain:paint]</Code>. Without that, a wide table leaked page-level horizontal scroll on a 375px phone (#289). The table itself holds a 720px floor.
                         </li>
                         <li>
-                            <strong>On a phone you choose between scrolling and restacking.</strong> Pass <code className="rounded bg-muted px-1 font-mono text-xs">renderCard</code> and rows below <code className="rounded bg-muted px-1 font-mono text-xs">md</code> render as a stacked card list instead (#195); omit it and the table stays a table at every width and scrolls sideways. The article&rsquo;s core is scanning columns rather than reading rows, but a phone has no room for columns, so that is the one place the shape is allowed to change.
+                            <strong>On a phone you choose between scrolling and restacking.</strong> Pass <Code variant="inherit" size="sm">renderCard</Code> and rows below <Code variant="inherit" size="sm">md</Code> render as a stacked card list instead (#195); omit it and the table stays a table at every width and scrolls sideways. The article&rsquo;s core is scanning columns rather than reading rows, but a phone has no room for columns, so that is the one place the shape is allowed to change.
                         </li>
                         <li>
-                            <strong>Sort state lives on the header cell.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">aria-sort</code> is set on the <code className="rounded bg-muted px-1 font-mono text-xs">th</code>, not on the button inside it, so the state is not announced twice. Every table can be named through <code className="rounded bg-muted px-1 font-mono text-xs">caption</code> or <code className="rounded bg-muted px-1 font-mono text-xs">aria-labelledby</code> (#298), because several tables on one screen are otherwise indistinguishable to a screen reader.
+                            <strong>Sort state lives on the header cell.</strong> <Code variant="inherit" size="sm">aria-sort</Code> is set on the <Code variant="inherit" size="sm">th</Code>, not on the button inside it, so the state is not announced twice. Every table can be named through <Code variant="inherit" size="sm">caption</Code> or <Code variant="inherit" size="sm">aria-labelledby</Code> (#298), because several tables on one screen are otherwise indistinguishable to a screen reader.
                             <br />
                             The general design of tables is covered by UIXHERO&rsquo;s table article.
                         </li>

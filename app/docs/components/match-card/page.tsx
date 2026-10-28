@@ -8,7 +8,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
-import { Badge, Button, CompanyCell, MatchCard, PersonCell, Toast, type MatchFactor } from "@gunjo/ui";
+import { Badge, Button, CompanyCell, MatchCard, PersonCell, Toast, type MatchFactor, Code } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
@@ -417,13 +417,13 @@ export function ReadOnlySubsidyMatch() {
         {locale === "ja" ? (
           <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
             <li>
-              <strong>左右のどちらも「人」だと決めていない。</strong><code className="rounded bg-muted px-1 font-mono text-xs">left</code> と <code className="rounded bg-muted px-1 font-mono text-xs">right</code> は任意のノードで、会社と制度、荷物と空車のように、種類の違う2つを並べられます。人どうしに固定した <code className="rounded bg-muted px-1 font-mono text-xs">RelationshipRow</code> とは、ここが分かれ目です。
+              <strong>左右のどちらも「人」だと決めていない。</strong><Code variant="inherit" size="sm">left</Code> と <Code variant="inherit" size="sm">right</Code> は任意のノードで、会社と制度、荷物と空車のように、種類の違う2つを並べられます。人どうしに固定した <Code variant="inherit" size="sm">RelationshipRow</Code> とは、ここが分かれ目です。
             </li>
             <li>
-              <strong>適合度の出し方をカードが決めない。</strong>真ん中の <code className="rounded bg-muted px-1 font-mono text-xs">score</code> は数値でもメーターでもバッジでもよく、渡さなければ左右をつなぐ記号が出るだけです。「何点なら良いか」は制度ごとに変わるので、部品は判定を持ちません。
+              <strong>適合度の出し方をカードが決めない。</strong>真ん中の <Code variant="inherit" size="sm">score</Code> は数値でもメーターでもバッジでもよく、渡さなければ左右をつなぐ記号が出るだけです。「何点なら良いか」は制度ごとに変わるので、部品は判定を持ちません。
             </li>
             <li>
-              <strong>内訳は文字つきの印で出す。</strong><code className="rounded bg-muted px-1 font-mono text-xs">factors</code> の各行は、丸や三角のような文字を色つきの小さな枠に入れて出します。色（<code className="rounded bg-muted px-1 font-mono text-xs">tone</code>）は補助で、意味は文字が持ちます。色だけで「適合」と「不適合」を分けないためです。
+              <strong>内訳は文字つきの印で出す。</strong><Code variant="inherit" size="sm">factors</Code> の各行は、丸や三角のような文字を色つきの小さな枠に入れて出します。色（<Code variant="inherit" size="sm">tone</Code>）は補助で、意味は文字が持ちます。色だけで「適合」と「不適合」を分けないためです。
               <br />
               一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
@@ -431,13 +431,13 @@ export function ReadOnlySubsidyMatch() {
         ) : (
           <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
             <li>
-              <strong>Neither side is assumed to be a person.</strong> <code className="rounded bg-muted px-1 font-mono text-xs">left</code> and <code className="rounded bg-muted px-1 font-mono text-xs">right</code> take arbitrary nodes, so the pairing can be a company against a subsidy programme, or a shipment against an empty truck. That is what separates this from <code className="rounded bg-muted px-1 font-mono text-xs">RelationshipRow</code>, which is fixed at person-to-person.
+              <strong>Neither side is assumed to be a person.</strong> <Code variant="inherit" size="sm">left</Code> and <Code variant="inherit" size="sm">right</Code> take arbitrary nodes, so the pairing can be a company against a subsidy programme, or a shipment against an empty truck. That is what separates this from <Code variant="inherit" size="sm">RelationshipRow</Code>, which is fixed at person-to-person.
             </li>
             <li>
-              <strong>The card does not decide how a match score is expressed.</strong> The centre <code className="rounded bg-muted px-1 font-mono text-xs">score</code> can be a number, a meter or a badge, and without it the card just draws the connector glyph. What counts as a good score differs per programme, so the component holds no judgement of its own.
+              <strong>The card does not decide how a match score is expressed.</strong> The centre <Code variant="inherit" size="sm">score</Code> can be a number, a meter or a badge, and without it the card just draws the connector glyph. What counts as a good score differs per programme, so the component holds no judgement of its own.
             </li>
             <li>
-              <strong>The breakdown is marked with characters, not colour.</strong> Each <code className="rounded bg-muted px-1 font-mono text-xs">factors</code> row puts a symbol in a small tinted chip; <code className="rounded bg-muted px-1 font-mono text-xs">tone</code> is support and the symbol carries the meaning, so a match and a mismatch are never separated by colour alone.
+              <strong>The breakdown is marked with characters, not colour.</strong> Each <Code variant="inherit" size="sm">factors</Code> row puts a symbol in a small tinted chip; <Code variant="inherit" size="sm">tone</Code> is support and the symbol carries the meaning, so a match and a mismatch are never separated by colour alone.
               <br />
               The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>
