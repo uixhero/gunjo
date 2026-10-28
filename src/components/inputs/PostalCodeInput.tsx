@@ -55,8 +55,8 @@ const PostalCodeInput = React.forwardRef<
         const control = (
             <div
                 className={cn(
-                    "inline-flex w-[220px] max-w-full items-stretch rounded-lg border border-input bg-transparent shadow-sm focus-within:ring-1 focus-within:ring-ring",
-                    disabled && "opacity-50",
+                    "inline-flex w-[220px] max-w-full items-stretch rounded-lg border border-input bg-card shadow-sm focus-within:ring-1 focus-within:ring-ring",
+                    disabled && "border-input/40 bg-muted text-muted-foreground",
                     className
                 )}
                 data-slot="postal-code-input"

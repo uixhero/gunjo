@@ -16,7 +16,7 @@ const buttonVariantClasses: Record<ButtonVariantKey, string> = {
     destructive:
         "bg-destructive-strong text-destructive-strong-foreground shadow-sm hover:bg-destructive-strong",
     outline:
-        "border border-border bg-transparent shadow-sm hover:bg-muted hover:text-foreground",
+        "border border-input bg-card shadow-sm hover:bg-muted hover:text-foreground",
     secondary:
         "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
     ghost: "bg-transparent hover:bg-muted hover:text-foreground",
