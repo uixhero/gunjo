@@ -17,6 +17,30 @@
       "expiresOn": "permanent"
     },
     {
+      "file": "design/inputs.pen",
+      "className": "switchUnchecked.padding",
+      "count": 1,
+      "reason": "src/components/inputs/Switch.tsx の p-0.5 と同じ値（上の例外）。地 24px の中に玉 20px を置く中心合わせで、（24−20）÷2 から出る数。",
+      "addedOn": "2026-10-28",
+      "expiresOn": "permanent"
+    },
+    {
+      "file": "design/inputs.pen",
+      "className": "switchChecked.padding",
+      "count": 1,
+      "reason": "Switch/Unchecked と同じ（オンの状態の絵）。",
+      "addedOn": "2026-10-28",
+      "expiresOn": "permanent"
+    },
+    {
+      "file": "design/layout.pen",
+      "className": "scrollAreaScrollbar.padding",
+      "count": 1,
+      "reason": "src/components/layout/ScrollArea.tsx の p-[1px] と同じ値（上の例外）。幅 10px のスクロールバーの中で、つまみを 1px 内側へ寄せる線の太さの調整。",
+      "addedOn": "2026-10-28",
+      "expiresOn": "permanent"
+    },
+    {
       "file": "app/docs/components/scan-gate/page.tsx",
       "className": "gap-0.5",
       "count": 6,

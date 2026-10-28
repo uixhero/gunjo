@@ -1,5 +1,5 @@
 {
-  "version": "2.18",
+  "version": "2.21",
   "children": [
     {
       "type": "frame",
@@ -105,7 +105,7 @@
                             {
                               "type": "frame",
                               "id": "dashboardTemplateHeaderBrand",
-                              "gap": 10,
+                              "gap": 8,
                               "alignItems": "center",
                               "children": [
                                 {
@@ -206,11 +206,12 @@
                                     {
                                       "type": "frame",
                                       "id": "dashboardTemplateSidebarItemOverview",
+                                      "height": 36,
                                       "fill": "#e2e8f0",
                                       "cornerRadius": 8,
                                       "padding": [
-                                        8,
-                                        10
+                                        4,
+                                        8
                                       ],
                                       "alignItems": "center",
                                       "children": [
@@ -228,10 +229,11 @@
                                     {
                                       "type": "frame",
                                       "id": "dashboardTemplateSidebarItemAnalytics",
+                                      "height": 36,
                                       "cornerRadius": 8,
                                       "padding": [
-                                        8,
-                                        10
+                                        4,
+                                        8
                                       ],
                                       "alignItems": "center",
                                       "children": [
@@ -249,10 +251,11 @@
                                     {
                                       "type": "frame",
                                       "id": "dashboardTemplateSidebarItemBilling",
+                                      "height": 36,
                                       "cornerRadius": 8,
                                       "padding": [
-                                        8,
-                                        10
+                                        4,
+                                        8
                                       ],
                                       "alignItems": "center",
                                       "children": [
@@ -625,11 +628,8 @@
                               "strokeWidth": 1,
                               "strokeAlignment": "inner",
                               "layout": "vertical",
-                              "gap": 10,
-                              "padding": [
-                                14,
-                                12
-                              ],
+                              "gap": 12,
+                              "padding": 12,
                               "children": [
                                 {
                                   "type": "text",
@@ -644,17 +644,14 @@
                                   "type": "frame",
                                   "id": "editorTemplateLeftPanelList",
                                   "layout": "vertical",
-                                  "gap": 6,
+                                  "gap": 4,
                                   "children": [
                                     {
                                       "type": "frame",
                                       "id": "editorTemplateLeftPanelItemHero",
                                       "fill": "#e2e8f0",
                                       "cornerRadius": 8,
-                                      "padding": [
-                                        8,
-                                        10
-                                      ],
+                                      "padding": 8,
                                       "alignItems": "center",
                                       "children": [
                                         {
@@ -672,10 +669,7 @@
                                       "type": "frame",
                                       "id": "editorTemplateLeftPanelItemCTA",
                                       "cornerRadius": 8,
-                                      "padding": [
-                                        8,
-                                        10
-                                      ],
+                                      "padding": 8,
                                       "alignItems": "center",
                                       "children": [
                                         {
@@ -693,10 +687,7 @@
                                       "type": "frame",
                                       "id": "editorTemplateLeftPanelItemFooter",
                                       "cornerRadius": 8,
-                                      "padding": [
-                                        8,
-                                        10
-                                      ],
+                                      "padding": 8,
                                       "alignItems": "center",
                                       "children": [
                                         {
@@ -775,9 +766,9 @@
                               "strokeWidth": 1,
                               "strokeAlignment": "inner",
                               "layout": "vertical",
-                              "gap": 10,
+                              "gap": 12,
                               "padding": [
-                                14,
+                                16,
                                 12
                               ],
                               "children": [
@@ -974,7 +965,7 @@
                           "height": 280,
                           "fill": "#eff6ff",
                           "layout": "vertical",
-                          "gap": 14,
+                          "gap": 16,
                           "padding": [
                             48,
                             20
@@ -1044,7 +1035,7 @@
                                   "strokeWidth": 1,
                                   "strokeAlignment": "inner",
                                   "layout": "vertical",
-                                  "gap": 6,
+                                  "gap": 8,
                                   "children": [
                                     {
                                       "type": "text",
@@ -1076,7 +1067,7 @@
                                   "strokeWidth": 1,
                                   "strokeAlignment": "inner",
                                   "layout": "vertical",
-                                  "gap": 6,
+                                  "gap": 8,
                                   "children": [
                                     {
                                       "type": "text",
@@ -1108,7 +1099,7 @@
                                   "strokeWidth": 1,
                                   "strokeAlignment": "inner",
                                   "layout": "vertical",
-                                  "gap": 6,
+                                  "gap": 8,
                                   "children": [
                                     {
                                       "type": "text",
@@ -1243,7 +1234,7 @@
                               "id": "authTemplateFormContainer",
                               "width": 352,
                               "layout": "vertical",
-                              "gap": 14,
+                              "gap": 24,
                               "children": [
                                 {
                                   "type": "text",
@@ -1267,7 +1258,7 @@
                                   "type": "frame",
                                   "id": "authTemplateEmailField",
                                   "layout": "vertical",
-                                  "gap": 6,
+                                  "gap": 8,
                                   "children": [
                                     {
                                       "type": "text",
@@ -1281,13 +1272,14 @@
                                     {
                                       "type": "frame",
                                       "id": "authTemplateEmailFieldInput",
+                                      "height": 36,
                                       "fill": "#ffffff",
                                       "cornerRadius": 10,
                                       "stroke": "#d1d5db",
                                       "strokeWidth": 1,
                                       "strokeAlignment": "inner",
                                       "padding": [
-                                        10,
+                                        8,
                                         12
                                       ],
                                       "alignItems": "center",
@@ -1309,7 +1301,7 @@
                                   "type": "frame",
                                   "id": "authTemplatePasswordField",
                                   "layout": "vertical",
-                                  "gap": 6,
+                                  "gap": 8,
                                   "children": [
                                     {
                                       "type": "text",
@@ -1323,13 +1315,14 @@
                                     {
                                       "type": "frame",
                                       "id": "authTemplatePasswordFieldInput",
+                                      "height": 36,
                                       "fill": "#ffffff",
                                       "cornerRadius": 10,
                                       "stroke": "#d1d5db",
                                       "strokeWidth": 1,
                                       "strokeAlignment": "inner",
                                       "padding": [
-                                        10,
+                                        8,
                                         12
                                       ],
                                       "alignItems": "center",
@@ -1767,7 +1760,7 @@
                           "strokeWidth": 1,
                           "strokeAlignment": "inner",
                           "layout": "vertical",
-                          "gap": 10,
+                          "gap": 8,
                           "padding": [
                             16,
                             12
@@ -1786,16 +1779,17 @@
                               "type": "frame",
                               "id": "chatTemplateSidebarListItems",
                               "layout": "vertical",
-                              "gap": 6,
+                              "gap": 4,
                               "children": [
                                 {
                                   "type": "frame",
                                   "id": "chatTemplateSidebarListGeneral",
+                                  "height": 36,
                                   "fill": "#e2e8f0",
                                   "cornerRadius": 8,
                                   "padding": [
-                                    8,
-                                    10
+                                    4,
+                                    8
                                   ],
                                   "alignItems": "center",
                                   "children": [
@@ -1813,10 +1807,11 @@
                                 {
                                   "type": "frame",
                                   "id": "chatTemplateSidebarListDesign",
+                                  "height": 36,
                                   "cornerRadius": 8,
                                   "padding": [
-                                    8,
-                                    10
+                                    4,
+                                    8
                                   ],
                                   "alignItems": "center",
                                   "children": [
@@ -1881,7 +1876,7 @@
                               "id": "chatTemplateMessages",
                               "height": "fill_container",
                               "layout": "vertical",
-                              "gap": 10,
+                              "gap": 12,
                               "padding": 16,
                               "children": [
                                 {
@@ -1892,10 +1887,7 @@
                                   "cornerRadius": 10,
                                   "layout": "vertical",
                                   "gap": 4,
-                                  "padding": [
-                                    10,
-                                    12
-                                  ],
+                                  "padding": 12,
                                   "children": [
                                     {
                                       "type": "text",
@@ -1925,10 +1917,7 @@
                                   "cornerRadius": 10,
                                   "layout": "vertical",
                                   "gap": 4,
-                                  "padding": [
-                                    10,
-                                    12
-                                  ],
+                                  "padding": 12,
                                   "children": [
                                     {
                                       "type": "text",
@@ -1967,10 +1956,11 @@
                                   "type": "frame",
                                   "id": "chatTemplateComposerInputShell",
                                   "width": "fill_container",
+                                  "height": 36,
                                   "fill": "#f8fafc",
                                   "cornerRadius": 10,
                                   "padding": [
-                                    10,
+                                    8,
                                     12
                                   ],
                                   "alignItems": "center",
@@ -1989,11 +1979,12 @@
                                 {
                                   "type": "frame",
                                   "id": "chatTemplateComposerSendBtn",
+                                  "height": 36,
                                   "fill": "#2563eb",
                                   "cornerRadius": 10,
                                   "padding": [
-                                    10,
-                                    14
+                                    8,
+                                    16
                                   ],
                                   "alignItems": "center",
                                   "children": [
@@ -2022,7 +2013,7 @@
                           "strokeWidth": 1,
                           "strokeAlignment": "inner",
                           "layout": "vertical",
-                          "gap": 10,
+                          "gap": 12,
                           "padding": [
                             16,
                             12
@@ -2046,7 +2037,7 @@
                               "strokeWidth": 1,
                               "strokeAlignment": "inner",
                               "layout": "vertical",
-                              "gap": 6,
+                              "gap": 4,
                               "children": [
                                 {
                                   "type": "text",
@@ -2210,11 +2201,12 @@
                                     {
                                       "type": "frame",
                                       "id": "settingsTemplateNavItemProfile",
+                                      "height": 36,
                                       "fill": "#e2e8f0",
                                       "cornerRadius": 8,
                                       "padding": [
                                         8,
-                                        10
+                                        16
                                       ],
                                       "alignItems": "center",
                                       "children": [
@@ -2232,10 +2224,11 @@
                                     {
                                       "type": "frame",
                                       "id": "settingsTemplateNavItemBilling",
+                                      "height": 36,
                                       "cornerRadius": 8,
                                       "padding": [
                                         8,
-                                        10
+                                        16
                                       ],
                                       "alignItems": "center",
                                       "children": [
@@ -2253,10 +2246,11 @@
                                     {
                                       "type": "frame",
                                       "id": "settingsTemplateNavItemNotifications",
+                                      "height": 36,
                                       "cornerRadius": 8,
                                       "padding": [
                                         8,
-                                        10
+                                        16
                                       ],
                                       "alignItems": "center",
                                       "children": [
@@ -2446,7 +2440,7 @@
                               "strokeWidth": 1,
                               "strokeAlignment": "inner",
                               "layout": "vertical",
-                              "gap": 10,
+                              "gap": 8,
                               "padding": [
                                 16,
                                 12
@@ -2545,7 +2539,7 @@
                               "strokeWidth": 1,
                               "strokeAlignment": "inner",
                               "layout": "vertical",
-                              "gap": 10,
+                              "gap": 8,
                               "padding": [
                                 16,
                                 12
@@ -2569,7 +2563,7 @@
                                   "strokeWidth": 1,
                                   "strokeAlignment": "inner",
                                   "layout": "vertical",
-                                  "gap": 6,
+                                  "gap": 8,
                                   "children": [
                                     {
                                       "type": "text",
@@ -2789,7 +2783,7 @@
                                       "strokeWidth": 1,
                                       "strokeAlignment": "inner",
                                       "layout": "vertical",
-                                      "gap": 6,
+                                      "gap": 8,
                                       "children": [
                                         {
                                           "type": "frame",
@@ -2820,7 +2814,7 @@
                                       "strokeWidth": 1,
                                       "strokeAlignment": "inner",
                                       "layout": "vertical",
-                                      "gap": 6,
+                                      "gap": 8,
                                       "children": [
                                         {
                                           "type": "frame",
@@ -3734,7 +3728,7 @@
           "name": "Pricing Header",
           "width": "fill_container",
           "layout": "vertical",
-          "gap": 14,
+          "gap": 8,
           "children": [
             {
               "type": "text",
@@ -3820,18 +3814,19 @@
                       "name": "Billing Toggle",
                       "fill": "#C5BEB6",
                       "cornerRadius": 9999,
-                      "gap": 6,
-                      "padding": 6,
+                      "gap": 4,
+                      "padding": 4,
                       "children": [
                         {
                           "type": "frame",
                           "id": "j47wA",
                           "name": "Monthly Segment",
+                          "height": 36,
                           "fill": "#1A1A1A",
                           "cornerRadius": 9999,
                           "padding": [
-                            10,
-                            16
+                            0,
+                            12
                           ],
                           "children": [
                             {
@@ -3850,12 +3845,13 @@
                           "type": "frame",
                           "id": "B7vZc",
                           "name": "Yearly Segment",
+                          "height": 36,
                           "fill": "#F3EBE2",
                           "cornerRadius": 9999,
                           "gap": 8,
                           "padding": [
-                            10,
-                            16
+                            0,
+                            12
                           ],
                           "children": [
                             {
@@ -4013,14 +4009,14 @@
                               "name": "Feature List",
                               "width": "fill_container",
                               "layout": "vertical",
-                              "gap": 10,
+                              "gap": 8,
                               "children": [
                                 {
                                   "type": "frame",
                                   "id": "fEPpa",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4051,7 +4047,7 @@
                                   "id": "KhCDx",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4082,7 +4078,7 @@
                                   "id": "V4cOT0",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4115,13 +4111,14 @@
                               "id": "i2Cet",
                               "name": "Action Area",
                               "width": "fill_container",
+                              "height": 36,
                               "fill": "#E8DED3",
                               "cornerRadius": 12,
                               "stroke": "#D7CBC0",
                               "strokeWidth": 1,
                               "strokeAlignment": "inner",
                               "padding": [
-                                14,
+                                8,
                                 16
                               ],
                               "justifyContent": "center",
@@ -4153,8 +4150,7 @@
                           "effect": {
                             "type": "shadow",
                             "shadowType": "outer",
-                            "color": "#D4916E22",
-                            "spread": 10
+                            "color": "#D4916E22"
                           },
                           "layout": "vertical",
                           "gap": 20,
@@ -4233,14 +4229,15 @@
                                   "type": "frame",
                                   "id": "Jc5aK",
                                   "name": "Popular Badge",
+                                  "height": 20,
                                   "fill": "#F3EBE2",
                                   "cornerRadius": 9999,
                                   "stroke": "#D4916E",
                                   "strokeWidth": 1,
                                   "strokeAlignment": "inner",
                                   "padding": [
-                                    6,
-                                    10
+                                    4,
+                                    8
                                   ],
                                   "children": [
                                     {
@@ -4263,14 +4260,14 @@
                               "name": "Feature List",
                               "width": "fill_container",
                               "layout": "vertical",
-                              "gap": 10,
+                              "gap": 8,
                               "children": [
                                 {
                                   "type": "frame",
                                   "id": "C3VhT",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4301,7 +4298,7 @@
                                   "id": "HNIB4",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4332,7 +4329,7 @@
                                   "id": "s3G8Me",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4365,13 +4362,14 @@
                               "id": "zXxnK",
                               "name": "Action Area",
                               "width": "fill_container",
+                              "height": 36,
                               "fill": "#F3EBE2",
                               "cornerRadius": 12,
                               "stroke": "#D4916E",
                               "strokeWidth": 1,
                               "strokeAlignment": "inner",
                               "padding": [
-                                14,
+                                8,
                                 16
                               ],
                               "justifyContent": "center",
@@ -4512,14 +4510,14 @@
                               "name": "Feature List",
                               "width": "fill_container",
                               "layout": "vertical",
-                              "gap": 10,
+                              "gap": 8,
                               "children": [
                                 {
                                   "type": "frame",
                                   "id": "MJNPi",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4550,7 +4548,7 @@
                                   "id": "k0aCy",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4581,7 +4579,7 @@
                                   "id": "yJsyU",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4614,13 +4612,14 @@
                               "id": "hC7fB",
                               "name": "Action Area",
                               "width": "fill_container",
+                              "height": 36,
                               "fill": "#E8DED3",
                               "cornerRadius": 12,
                               "stroke": "#D7CBC0",
                               "strokeWidth": 1,
                               "strokeAlignment": "inner",
                               "padding": [
-                                14,
+                                8,
                                 16
                               ],
                               "justifyContent": "center",
@@ -4739,14 +4738,14 @@
                               "name": "Feature List",
                               "width": "fill_container",
                               "layout": "vertical",
-                              "gap": 10,
+                              "gap": 8,
                               "children": [
                                 {
                                   "type": "frame",
                                   "id": "NG5x2",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4777,7 +4776,7 @@
                                   "id": "mXQsm",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4808,7 +4807,7 @@
                                   "id": "tQtix",
                                   "name": "Feature Row",
                                   "width": "fill_container",
-                                  "gap": 10,
+                                  "gap": 8,
                                   "alignItems": "center",
                                   "children": [
                                     {
@@ -4841,13 +4840,14 @@
                               "id": "yE3Iy",
                               "name": "Action Area",
                               "width": "fill_container",
+                              "height": 36,
                               "fill": "#E8DED3",
                               "cornerRadius": 12,
                               "stroke": "#D7CBC0",
                               "strokeWidth": 1,
                               "strokeAlignment": "inner",
                               "padding": [
-                                14,
+                                8,
                                 16
                               ],
                               "justifyContent": "center",
@@ -5044,7 +5044,7 @@
           "strokeWidth": 1,
           "strokeAlignment": "inner",
           "layout": "vertical",
-          "gap": 6,
+          "gap": 4,
           "padding": 16,
           "children": [
             {

@@ -846,7 +846,7 @@
             8,
             8
           ],
-          "gap": 2,
+          "gap": 4,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
@@ -1339,7 +1339,7 @@
             4,
             4
           ],
-          "gap": 2,
+          "gap": null,
           "cornerRadius": 6,
           "fill": "#ffffff",
           "stroke": {
@@ -1366,11 +1366,11 @@
           "type": "frame",
           "name": null,
           "width": null,
-          "height": null,
+          "height": 32,
           "padding": [
-            6,
+            4,
             8,
-            6,
+            4,
             8
           ],
           "gap": 8,
@@ -1415,11 +1415,11 @@
           "type": "frame",
           "name": null,
           "width": null,
-          "height": null,
+          "height": 32,
           "padding": [
-            6,
+            4,
             8,
-            6,
+            4,
             8
           ],
           "gap": null,
@@ -1881,7 +1881,7 @@
             8,
             8
           ],
-          "gap": 6,
+          "gap": 4,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,

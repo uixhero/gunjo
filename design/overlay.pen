@@ -1,5 +1,5 @@
 {
-  "version": "2.18",
+  "version": "2.21",
   "children": [
     {
       "type": "frame",
@@ -1290,8 +1290,8 @@
                                 {
                                   "type": "icon",
                                   "id": "aiChatMessageActionButtonIcon",
-                                  "width": 14,
-                                  "height": 14,
+                                  "width": 16,
+                                  "height": 16,
                                   "icon": "copy",
                                   "library": "lucide",
                                   "fill": "#64748b"
@@ -1380,7 +1380,7 @@
               "name": "adTitleFrame",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 6,
+              "gap": 8,
               "children": [
                 {
                   "type": "text",
@@ -1416,14 +1416,15 @@
                   "type": "frame",
                   "id": "xh6eB",
                   "name": "adCancel",
+                  "height": 36,
                   "fill": "#ffffff",
                   "cornerRadius": 6,
                   "stroke": "#e2e8f0",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
                   "padding": [
-                    16,
-                    9
+                    8,
+                    16
                   ],
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -1443,11 +1444,12 @@
                   "type": "frame",
                   "id": "l5gAhV",
                   "name": "adConfirm",
+                  "height": 36,
                   "fill": "#dc2626",
                   "cornerRadius": 6,
                   "padding": [
-                    16,
-                    9
+                    8,
+                    16
                   ],
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -1513,7 +1515,7 @@
               "name": "drTitleFrame",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 6,
+              "gap": 8,
               "children": [
                 {
                   "type": "text",
@@ -1877,8 +1879,8 @@
                         {
                           "type": "icon",
                           "id": "shareModalCloseIcon",
-                          "width": 18,
-                          "height": 18,
+                          "width": 16,
+                          "height": 16,
                           "icon": "x",
                           "library": "lucide",
                           "fill": "#6b7280"
@@ -2408,7 +2410,7 @@
               "width": "fit_content",
               "height": 32,
               "padding": [
-                6,
+                0,
                 12
               ],
               "name": "instSm",
@@ -2437,7 +2439,7 @@
               "width": "fit_content",
               "height": 40,
               "padding": [
-                10,
+                0,
                 32
               ],
               "name": "instLg",

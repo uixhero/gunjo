@@ -300,12 +300,12 @@
           "height": null,
           "layout": "vertical",
           "padding": [
-            14,
             12,
-            14,
+            12,
+            12,
             12
           ],
-          "gap": 10,
+          "gap": 12,
           "cornerRadius": null,
           "fill": "#ffffff",
           "stroke": {
@@ -355,12 +355,12 @@
           "height": null,
           "layout": "vertical",
           "padding": [
-            14,
+            16,
             12,
-            14,
+            16,
             12
           ],
-          "gap": 10,
+          "gap": 12,
           "cornerRadius": null,
           "fill": "#ffffff",
           "stroke": {
@@ -476,7 +476,7 @@
             48,
             20
           ],
-          "gap": 14,
+          "gap": 16,
           "cornerRadius": null,
           "fill": "#eff6ff",
           "stroke": null,
@@ -632,7 +632,7 @@
           "height": null,
           "layout": "vertical",
           "padding": null,
-          "gap": 14,
+          "gap": 24,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
@@ -1069,7 +1069,7 @@
             16,
             12
           ],
-          "gap": 10,
+          "gap": 8,
           "cornerRadius": null,
           "fill": "#f1f5f9",
           "stroke": {
@@ -1156,7 +1156,7 @@
             16,
             16
           ],
-          "gap": 10,
+          "gap": 12,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
@@ -1215,7 +1215,7 @@
             16,
             12
           ],
-          "gap": 10,
+          "gap": 12,
           "cornerRadius": null,
           "fill": "#f1f5f9",
           "stroke": {
@@ -1567,7 +1567,7 @@
             16,
             12
           ],
-          "gap": 10,
+          "gap": 8,
           "cornerRadius": null,
           "fill": "#f1f5f91a",
           "stroke": {
@@ -1648,7 +1648,7 @@
             16,
             12
           ],
-          "gap": 10,
+          "gap": 8,
           "cornerRadius": null,
           "fill": "#ffffff",
           "stroke": {
@@ -1918,7 +1918,7 @@
           "height": null,
           "layout": "vertical",
           "padding": null,
-          "gap": 14,
+          "gap": 8,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
@@ -2024,12 +2024,12 @@
           "width": null,
           "height": null,
           "padding": [
-            6,
-            6,
-            6,
-            6
+            4,
+            4,
+            4,
+            4
           ],
-          "gap": 6,
+          "gap": 4,
           "cornerRadius": 9999,
           "fill": "#C5BEB6",
           "stroke": null,
@@ -2049,12 +2049,12 @@
           "type": "frame",
           "name": "Monthly Segment",
           "width": null,
-          "height": null,
+          "height": 36,
           "padding": [
-            10,
-            16,
-            10,
-            16
+            0,
+            12,
+            0,
+            12
           ],
           "gap": null,
           "cornerRadius": 9999,
@@ -2094,12 +2094,12 @@
           "type": "frame",
           "name": "Yearly Segment",
           "width": null,
-          "height": null,
+          "height": 36,
           "padding": [
-            10,
-            16,
-            10,
-            16
+            0,
+            12,
+            0,
+            12
           ],
           "gap": 8,
           "cornerRadius": 9999,
@@ -2290,7 +2290,7 @@
           "height": null,
           "layout": "vertical",
           "padding": null,
-          "gap": 10,
+          "gap": 8,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
@@ -2311,11 +2311,11 @@
           "type": "frame",
           "name": "Action Area",
           "width": "fill_container",
-          "height": null,
+          "height": 36,
           "padding": [
-            14,
+            8,
             16,
-            14,
+            8,
             16
           ],
           "gap": null,
@@ -2400,7 +2400,7 @@
           "height": null,
           "layout": "vertical",
           "padding": null,
-          "gap": 10,
+          "gap": 8,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
@@ -2421,11 +2421,11 @@
           "type": "frame",
           "name": "Action Area",
           "width": "fill_container",
-          "height": null,
+          "height": 36,
           "padding": [
-            14,
+            8,
             16,
-            14,
+            8,
             16
           ],
           "gap": null,
@@ -2527,7 +2527,7 @@
           "height": null,
           "layout": "vertical",
           "padding": null,
-          "gap": 10,
+          "gap": 8,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
@@ -2548,11 +2548,11 @@
           "type": "frame",
           "name": "Action Area",
           "width": "fill_container",
-          "height": null,
+          "height": 36,
           "padding": [
-            14,
+            8,
             16,
-            14,
+            8,
             16
           ],
           "gap": null,
@@ -2635,7 +2635,7 @@
           "height": null,
           "layout": "vertical",
           "padding": null,
-          "gap": 10,
+          "gap": 8,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
@@ -2656,11 +2656,11 @@
           "type": "frame",
           "name": "Action Area",
           "width": "fill_container",
-          "height": null,
+          "height": 36,
           "padding": [
-            14,
+            8,
             16,
-            14,
+            8,
             16
           ],
           "gap": null,
