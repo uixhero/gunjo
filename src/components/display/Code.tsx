@@ -3,8 +3,11 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "../../lib/utils"
 
+// `break-words` lets one long token — a path, a URL, an identifier — wrap
+// instead of widening the page on a narrow viewport, the same contract as code
+// spans in MarkdownRenderer. It only acts on a word that cannot fit a line.
 export const codeVariants = cva(
-    "relative rounded font-mono text-sm font-medium",
+    "relative rounded font-mono text-sm font-medium break-words",
     {
         variants: {
             variant: {
